@@ -24,8 +24,8 @@ int main() {
 
   } while (currentValue && std::cin);
 
-  std::cout << "Maximum successive equal elements number: " << LocalMax.count << std::endl;
-  std::cout << "Strict local maxima number: " << LocalMax.countV << std::endl;
+  std::cout << "Number of local maximum: " << LocalMax.count << std::endl;
+  std::cout << "Number of numbers of neighbors: " << LocalMax.countV << std::endl;
 
   return 0;
 }
