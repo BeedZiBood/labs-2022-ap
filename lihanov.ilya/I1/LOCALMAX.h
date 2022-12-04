@@ -1,5 +1,5 @@
-#ifndef LOCAL_MAX
-#define LOCAL_MAX
+#ifndef LOCALMAX
+#define LOCALMAX
 
 struct LocalMax {
   void operator()(unsigned int currentValue);
