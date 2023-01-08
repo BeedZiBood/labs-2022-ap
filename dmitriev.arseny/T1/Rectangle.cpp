@@ -47,3 +47,8 @@ void Rectangle::scale(double k)
   left.x = center.x - (right.x - center.x);
   left.y = center.y - (right.y - center.y);
 }
+
+Shape* Rectangle::clone() const
+{
+  return new Rectangle(left, right);
+}
