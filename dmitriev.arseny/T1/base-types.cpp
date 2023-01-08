@@ -8,3 +8,11 @@ point_t countPointBetwen(point_t p1, point_t p2)
 
   return newPoint;
 }
+
+point_t addVector(point_t p, double dx, double dy)
+{
+  p.x = p.x + dx;
+  p.y = p.y + dy;
+
+  return p;
+}

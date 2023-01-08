@@ -25,3 +25,9 @@ rectangle_t Rectangle::getFrameRect() const
 
   return newRect;
 }
+
+void Rectangle::move(double dx, double dy)
+{
+  left = addVector(left, dx, dy);
+  right = addVector(right, dx, dy);
+}
