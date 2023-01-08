@@ -10,3 +10,8 @@ Rectangle::Rectangle(point_t left, point_t right) :
     throw std::invalid_argument("incorrect input");
   }
 }
+
+double Rectangle::getArea() const
+{
+  return (right.y - left.y) * (right.x - left.x);
+}
