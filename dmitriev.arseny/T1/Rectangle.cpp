@@ -15,3 +15,13 @@ double Rectangle::getArea() const
 {
   return (right.y - left.y) * (right.x - left.x);
 }
+
+rectangle_t Rectangle::getFrameRect() const
+{
+  rectangle_t newRect;
+  newRect.height = right.y - left.y;
+  newRect.width = right.x - left.x;
+  newRect.pos = countPointBetwen(right, left);
+
+  return newRect;
+}
