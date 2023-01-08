@@ -39,3 +39,11 @@ void Rectangle::move(point_t newPosition)
 
   move(shiftPoint.x, shiftPoint.y);
 }
+
+void Rectangle::scale(double k)
+{
+  point_t center = getFrameRect().pos;
+  right = multiplShift(center, right, k);
+  left.x = center.x - (right.x - center.x);
+  left.y = center.y - (right.y - center.y);
+}

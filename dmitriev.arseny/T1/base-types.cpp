@@ -25,3 +25,11 @@ point_t countShift(point_t oldCenter, point_t newCenter)
 
   return newPoint;
 }
+
+point_t multiplShift(point_t center, point_t point, double k)
+{
+  point.x = k * (point.x - center.x) + center.x;
+  point.y = k * (point.y - center.y) + center.y;
+
+  return point;
+}
