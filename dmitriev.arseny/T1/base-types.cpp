@@ -16,3 +16,12 @@ point_t addVector(point_t p, double dx, double dy)
 
   return p;
 }
+
+point_t countShift(point_t oldCenter, point_t newCenter)
+{
+  point_t newPoint;
+  newPoint.x = newCenter.x - oldCenter.x;
+  newPoint.y = newCenter.y - oldCenter.y;
+
+  return newPoint;
+}
