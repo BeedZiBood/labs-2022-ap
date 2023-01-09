@@ -3,7 +3,6 @@
 
 int main() {
   LocalMax LocalMax{0,0,0};
-
   unsigned int currentValue = 0;
   do {
       std::cin >> currentValue;
