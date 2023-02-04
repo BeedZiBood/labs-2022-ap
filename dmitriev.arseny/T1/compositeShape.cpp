@@ -1,5 +1,6 @@
 #include "compositeShape.h"
 #include <stdexcept>
+#include <limits>
 
 CompositeShape::CompositeShape() :
   size(0),
@@ -25,6 +26,11 @@ CompositeShape::CompositeShape(const CompositeShape& otherShape) :
 {
   for (int i = 0; i < size; i++)
   {
+    if (i == std::numeric_limits< unsigned int >::max())
+    {
+      clear();
+      throw std::overflow_error("too many val");
+    }
     try
     {
       arr[i] = otherShape.arr[i]->clone();
