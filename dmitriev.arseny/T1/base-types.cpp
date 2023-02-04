@@ -7,7 +7,7 @@ rectangle_t makeNewRect(point_t leftBott, point_t rightTop)
 
   point_t pos{ (wedth / 2) + leftBott.x, (height / 2) + leftBott.y };
 
-  rectangle_t newRec{ wedth, height, pos };
+  rectangle_t newRec{ pos, wedth, height };
 
   return newRec;
 }

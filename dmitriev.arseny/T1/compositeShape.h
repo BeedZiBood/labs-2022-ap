@@ -31,9 +31,9 @@ public:
   unsigned sizeArr();
 
 private:
-  Shape** arr;
   unsigned size;
   unsigned capacity;
+  Shape** arr;
 
   void clear();
 };

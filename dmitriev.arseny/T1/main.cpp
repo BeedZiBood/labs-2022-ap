@@ -1,5 +1,5 @@
 #include <iostream>
-#include "rectangle.h"
+#include "Rectangle.h"
 #include "ring.h"
 #include "triangle.h"
 #include "compositeShape.h"
