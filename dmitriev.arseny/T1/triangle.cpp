@@ -88,4 +88,3 @@ Shape* Triangle::clone() const
 {
   return new Triangle(a, b, c);
 }
-
