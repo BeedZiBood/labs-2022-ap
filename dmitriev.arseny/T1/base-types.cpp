@@ -1,35 +1,29 @@
 #include "base-types.h"
 
-point_t countPointBetwen(point_t p1, point_t p2)
+rectangle_t makeNewRect(point_t leftBott, point_t rightTop)
 {
-  point_t newPoint;
-  newPoint.x = (p2.x + p1.x) / 2;
-  newPoint.y = (p2.y + p1.y) / 2;
+  double wedth = rightTop.x - leftBott.x;
+  double height = rightTop.y - leftBott.y;
 
-  return newPoint;
+  point_t pos{ (wedth / 2) + leftBott.x, (height / 2) + leftBott.y };
+
+  rectangle_t newRec{ wedth, height, pos };
+
+  return newRec;
 }
 
-point_t addVector(point_t p, double dx, double dy)
+point_t shiftPoint(point_t source, double x, double y)
 {
-  p.x = p.x + dx;
-  p.y = p.y + dy;
+  source.x = source.x + x;
+  source.y = source.y + y;
 
-  return p;
+  return source;
 }
 
-point_t countShift(point_t oldCenter, point_t newCenter)
+point_t multVec(point_t begin, point_t end, double k)
 {
-  point_t newPoint;
-  newPoint.x = newCenter.x - oldCenter.x;
-  newPoint.y = newCenter.y - oldCenter.y;
+  end.x = (end.x - begin.x) * k;
+  end.y = (end.y - begin.y) * k;
 
-  return newPoint;
-}
-
-point_t multiplShift(point_t center, point_t point, double k)
-{
-  point.x = k * (point.x - center.x) + center.x;
-  point.y = k * (point.y - center.y) + center.y;
-
-  return point;
+  return end;
 }

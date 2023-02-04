@@ -1,54 +1,54 @@
-#include "Rectangle.h"
+#include "rectangle.h"
 #include <stdexcept>
 
-Rectangle::Rectangle(point_t left, point_t right) :
-  left(left),
-  right(right)
+Rectangle::Rectangle(point_t leftBott, point_t rightTop)
 {
-  if (left.x > right.x && left.y > right.y)
+  if (leftBott.x > rightTop.x && leftBott.y > rightTop.y)
   {
-    throw std::invalid_argument("incorrect input");
+    throw std::logic_error("invalid arguments");
   }
+  if (leftBott.x == rightTop.x || leftBott.y == rightTop.y)
+  {
+    throw std::logic_error("invalid arguments");
+  }
+  rect = makeNewRect(leftBott, rightTop);
 }
 
-double Rectangle::getArea() const
+double Rectangle::getArea()
 {
-  return (right.y - left.y) * (right.x - left.x);
+  return rect.height * rect.width;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+rectangle_t Rectangle::getFrameRect()
 {
-  rectangle_t newRect;
-  newRect.height = right.y - left.y;
-  newRect.width = right.x - left.x;
-  newRect.pos = countPointBetwen(right, left);
-
-  return newRect;
+  return rect;
 }
 
-void Rectangle::move(double dx, double dy)
+void Rectangle::move(double x, double y)
 {
-  left = addVector(left, dx, dy);
-  right = addVector(right, dx, dy);
+  point_t newPos{ rect.pos.x + x, rect.pos.y + y };
+  move(newPos);
 }
 
-void Rectangle::move(point_t newPosition)
+void Rectangle::move(point_t newPos)
 {
-  point_t shiftPoint;
-  shiftPoint = countShift(getFrameRect().pos, newPosition);
-
-  move(shiftPoint.x, shiftPoint.y);
+  rect.pos = newPos;
 }
 
 void Rectangle::scale(double k)
 {
-  point_t center = getFrameRect().pos;
-  right = multiplShift(center, right, k);
-  left.x = center.x - (right.x - center.x);
-  left.y = center.y - (right.y - center.y);
+  if (k < 0)
+  {
+    throw std::logic_error("invalid argument");
+  }
+  rect.height = rect.height * k;
+  rect.width = rect.width * k;
 }
 
 Shape* Rectangle::clone() const
 {
-  return new Rectangle(left, right);
+  point_t leftBott{ rect.pos.x - rect.width / 2, rect.pos.y - rect.height / 2 };
+  point_t rightTop{ rect.pos.x + rect.width / 2, rect.pos.y + rect.height / 2 };
+
+  return new Rectangle(leftBott, rightTop);
 }

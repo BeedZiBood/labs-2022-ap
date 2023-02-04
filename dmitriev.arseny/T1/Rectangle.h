@@ -6,18 +6,17 @@
 class Rectangle : public Shape
 {
 public:
-	explicit Rectangle(point_t left, point_t right);
+  Rectangle(point_t leftBott, point_t rightTop);
 
-	double getArea() const override;
-	rectangle_t getFrameRect() const override;
-	void move(double dx, double dy) override;
-	void move(point_t newPosition) override;
-	void scale(double k) override;
-	Shape* clone() const override;
+  double getArea() override;
+  rectangle_t getFrameRect() override;
+  void move(double x, double y) override;
+  void move(point_t pos) override;
+  void scale(double k) override;
+  Shape* clone() const override;
 
 private:
-	point_t left;
-	point_t right;
+  rectangle_t rect;
 
 };
 
