@@ -15,5 +15,7 @@ struct rectangle_t
 };
 
 rectangle_t makeNewRect(point_t leftBott, point_t rightTop);
+point_t shiftPoint(point_t source, double x, double y);
+point_t multVec(point_t begin, point_t end, double k);
 
 #endif

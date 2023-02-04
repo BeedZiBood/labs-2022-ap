@@ -208,7 +208,7 @@ bool CompositeShape::empty()
   return size == 0;
 }
 
-size_t CompositeShape::sizeArr()
+unsigned CompositeShape::sizeArr()
 {
   return size;
 }

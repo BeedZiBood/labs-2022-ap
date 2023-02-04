@@ -28,7 +28,7 @@ public:
   Shape* operator[](unsigned id);
   const Shape* operator[](unsigned id) const;
   bool empty();
-  size_t sizeArr();
+  unsigned sizeArr();
 
 private:
   Shape** arr;
