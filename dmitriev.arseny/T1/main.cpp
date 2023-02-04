@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "Rectangle.h"
 #include "ring.h"
 #include "triangle.h"
@@ -7,7 +8,7 @@
 int main()
 {
   std::cout << std::fixed;
-  /*try
+  try
   {
     CompositeShape cShape;
     std::string type = "";
@@ -79,7 +80,7 @@ int main()
   catch (const std::exception& e)
   {
     std::cout << e.what() << '\n';
-  }*/
+  }
 
   return 0;
 }

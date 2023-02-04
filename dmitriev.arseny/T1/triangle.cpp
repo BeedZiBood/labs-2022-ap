@@ -1,5 +1,5 @@
 #include "triangle.h"
-#include <exception>
+#include <stdexcept>
 #include <cmath>
 #include <iostream>
 
@@ -19,18 +19,18 @@ Triangle::Triangle(point_t a, point_t b, point_t c) :
   bSide = std::sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
   cSide = std::sqrt(vec3.x * vec3.x + vec3.y * vec3.y);
 
-  //if (!(aSide + bSide > cSide))
-  //{
-  //  throw std::exception("invalid arguments");
-  //}
-  //else if (!(bSide + cSide > aSide))
-  //{
-  //  throw std::exception("invalid arguments");
-  //}
-  //else if (!(cSide + aSide > bSide))
-  //{
-  //  throw std::exception("invalid arguments");
-  //}
+  if (!(aSide + bSide > cSide))
+  {
+    throw std::logic_error("invalid arguments");
+  }
+  else if (!(bSide + cSide > aSide))
+  {
+    throw std::logic_error("invalid arguments");
+  }
+  else if (!(cSide + aSide > bSide))
+  {
+    throw std::logic_error("invalid arguments");
+  }
 }
 
 double Triangle::getArea()
