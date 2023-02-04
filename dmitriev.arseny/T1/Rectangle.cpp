@@ -1,4 +1,4 @@
-#include "rectangle.h"
+#include "Rectangle.h"
 #include <stdexcept>
 
 Rectangle::Rectangle(point_t leftBott, point_t rightTop)
