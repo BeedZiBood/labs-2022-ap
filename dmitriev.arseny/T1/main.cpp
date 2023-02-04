@@ -7,7 +7,7 @@
 int main()
 {
   std::cout << std::fixed;
-  try
+  /*try
   {
     CompositeShape cShape;
     std::string type = "";
@@ -79,7 +79,7 @@ int main()
   catch (const std::exception& e)
   {
     std::cout << e.what() << '\n';
-  }
+  }*/
 
   return 0;
 }

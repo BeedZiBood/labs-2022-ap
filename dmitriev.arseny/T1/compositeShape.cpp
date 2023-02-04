@@ -1,5 +1,5 @@
 #include "compositeShape.h"
-#include <iostream>
+#include <stdexcept>
 
 CompositeShape::CompositeShape() :
   size(0),
@@ -23,18 +23,18 @@ CompositeShape::CompositeShape(const CompositeShape& otherShape) :
   capacity(otherShape.capacity),
   arr(new Shape* [capacity])
 {
-  for (int i = 0; i < size; i++)
-  {
-    try
-    {
-      arr[i] = otherShape.arr[i]->clone();
-    }
-    catch (std::exception)
-    {
-      clear();
-      throw std::exception("problems with memory");
-    }
-  }
+  //for (int i = 0; i < size; i++)
+  //{
+  //  try
+  //  {
+  //    arr[i] = otherShape.arr[i]->clone();
+  //  }
+  //  catch (std::exception)
+  //  {
+  //    clear();
+  //    throw std::exception("problems with memory");
+  //  }
+  //}
 }
 
 CompositeShape::~CompositeShape()
@@ -128,22 +128,22 @@ void CompositeShape::push_back(Shape* shp)
   if (size == capacity)
   {
     capacity = capacity + 10;
-    try
-    {
-      Shape** newArr = new Shape * [capacity];
+    //try
+    //{
+    //  Shape** newArr = new Shape * [capacity];
 
-      for (unsigned i = 0; i < size; i++)
-      {
-        newArr[i] = arr[i]->clone();
-      }
-      clear();
-      arr = newArr;
-    }
-    catch (std::exception)
-    {
-      clear();
-      throw std::exception("problems with memory");
-    }
+    //  for (unsigned i = 0; i < size; i++)
+    //  {
+    //    newArr[i] = arr[i]->clone();
+    //  }
+    //  clear();
+    //  arr = newArr;
+    //}
+    //catch (std::exception)
+    //{
+    //  clear();
+    //  throw std::exception("problems with memory");
+    //}
   }
   arr[size++] = shp;
 }
@@ -156,40 +156,40 @@ void CompositeShape::push_back(Shape* const shp) const
 
 void CompositeShape::pop_back()
 {
-  try
-  {
-    Shape** newArr = new Shape * [--capacity];
+  //try
+  //{
+  //  Shape** newArr = new Shape * [--capacity];
 
-    for (unsigned i = 0; i < size - 1; i++)
-    {
-      newArr[i] = arr[i]->clone();
-    }
-    clear();
-    arr = newArr;
-    size--;
-  }
-  catch (const std::exception&)
-  {
-    clear();
-    throw std::exception("problems with memory");
-  }
+  //  for (unsigned i = 0; i < size - 1; i++)
+  //  {
+  //    newArr[i] = arr[i]->clone();
+  //  }
+  //  clear();
+  //  arr = newArr;
+  //  size--;
+  //}
+  //catch (const std::exception&)
+  //{
+  //  clear();
+  //  throw std::exception("problems with memory");
+  //}
 }
 
 Shape* CompositeShape::at(const unsigned id)
 {
-  if (id > size)
-  {
-    throw std::out_of_range("invalid argument");
-  }
+  //if (id > size)
+  //{
+  //  throw std::out_of_range("invalid argument");
+  //}
   return arr[id];
 }
 
 const Shape* CompositeShape::at(unsigned id) const
 {
-  if (id > size)
-  {
-    throw std::out_of_range("invalid argument");
-  }
+  //if (id > size)
+  //{
+  //  throw std::out_of_range("invalid argument");
+  //}
   return arr[id];
 }
 
