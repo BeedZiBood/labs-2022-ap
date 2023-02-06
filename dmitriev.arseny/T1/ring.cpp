@@ -8,7 +8,7 @@ Ring::Ring(point_t center, double externalRadius, double internalRadius) :
 {
   if (externalRadius < internalRadius)
   {
-    throw std::overflow_error("invalid arguments");
+    throw std::logic_error("invalid arguments");
   }
 }
 

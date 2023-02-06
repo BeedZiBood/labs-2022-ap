@@ -71,10 +71,10 @@ void Triangle::move(point_t pos)
 
 void Triangle::scale(double k)
 {
-  //if (k < 0)
-  //{
-  //  throw std::logic_error("invalid argument");
-  //}
+  if (k < 0)
+  {
+    throw std::logic_error("invalid argument");
+  }
   aSide = aSide * k;
   bSide = bSide * k;
   cSide = cSide * k;

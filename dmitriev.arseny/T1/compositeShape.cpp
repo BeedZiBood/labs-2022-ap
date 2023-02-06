@@ -123,6 +123,17 @@ void CompositeShape::scale(double k)
   }
 }
 
+void CompositeShape::isoScale(point_t posLeftBoard, double k)
+{
+  point_t currentLeftBoard{ getFrameRect().pos.x - getFrameRect().width / 2, getFrameRect().pos.y - getFrameRect().height / 2 };
+
+  double dx = posLeftBoard.x - currentLeftBoard.x + getFrameRect().width / 2;
+  double dy = posLeftBoard.y - currentLeftBoard.y + getFrameRect().height / 2;
+
+  scale(k);
+  move(dx, dy);
+}
+
 void CompositeShape::push_back(Shape* shp)
 {
   if (size == capacity)

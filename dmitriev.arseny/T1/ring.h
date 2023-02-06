@@ -1,5 +1,5 @@
-#ifndef RING
-#define RING
+#ifndef RING_H
+#define RING_H
 
 #include "shape.h"
 

@@ -1,5 +1,5 @@
-#ifndef COMPOSITESHAPE
-#define COMPOSITESHAPE
+#ifndef COMPOSITESHAPE_H
+#define COMPOSITESHAPE_H
 
 #include "shape.h"
 
@@ -19,6 +19,8 @@ public:
   void move(double x, double y);
   void move(point_t pos);
   void scale(double k);
+
+  void isoScale(point_t posLeftBoard, double k);
 
   void push_back(Shape* shp);
   void push_back(Shape* const shp) const;
