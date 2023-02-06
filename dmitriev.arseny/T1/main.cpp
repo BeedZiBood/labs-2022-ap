@@ -74,8 +74,14 @@ int main()
       }
     }
     std::cout << cShape.getArea() << '\n';
-
-    delete[] cShape;
+    for (unsigned i = 0; i < cShape.sizeArr(); i++)
+    {
+      std::cout << cShape[i]->getArea() << "\n";
+      std::cout << cShape.getFrameRect().pos.x - cShape.getFrameRect().width / 2 << " ";
+      std::cout << cShape.getFrameRect().pos.y - cShape.getFrameRect().height / 2 << " ";
+      std::cout << cShape.getFrameRect().pos.x + cShape.getFrameRect().width / 2 << " ";
+      std::cout << cShape.getFrameRect().pos.y + cShape.getFrameRect().height / 2 << " ";
+    }
   }
   catch (const std::exception& e)
   {
