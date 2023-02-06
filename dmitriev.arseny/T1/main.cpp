@@ -80,7 +80,8 @@ int main()
       std::cout << cShape.getFrameRect().pos.x - cShape.getFrameRect().width / 2 << " ";
       std::cout << cShape.getFrameRect().pos.y - cShape.getFrameRect().height / 2 << " ";
       std::cout << cShape.getFrameRect().pos.x + cShape.getFrameRect().width / 2 << " ";
-      std::cout << cShape.getFrameRect().pos.y + cShape.getFrameRect().height / 2 << " ";
+      std::cout << cShape.getFrameRect().pos.y + cShape.getFrameRect().height / 2 << "\n";
+
     }
   }
   catch (const std::exception& e)
