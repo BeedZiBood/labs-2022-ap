@@ -72,9 +72,8 @@ int main()
         cShape.move(x, y);
         cShape.scale(k);
       }
-      std::cout << cShape.getArea() << '\n';
     }
-
+    std::cout << cShape.getArea() << '\n';
 
   }
   catch (const std::exception& e)
