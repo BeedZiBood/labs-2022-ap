@@ -75,6 +75,7 @@ int main()
     }
     std::cout << cShape.getArea() << '\n';
 
+    delete[] cShape;
   }
   catch (const std::exception& e)
   {
