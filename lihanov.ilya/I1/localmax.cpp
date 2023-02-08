@@ -22,4 +22,5 @@ void LocalMax::operator()(unsigned int currentValue)
 
   beforePreviousValue = previousValue;
   previousValue = currentValue;
+
 }
