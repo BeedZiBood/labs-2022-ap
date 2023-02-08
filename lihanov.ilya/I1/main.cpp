@@ -5,18 +5,18 @@ int main() {
   LocalMax LocalMax{0,0,0};
   unsigned int currentValue = 0;
   do {
-      std::cin >> currentValue;
+    std::cin >> currentValue;
 
-      if (!std::cin) {
-          std::cout << "Error occurred." << "/n";
-          return 1;
+    if (!std::cin) {
+      std::cout << "Error occurred." << "/n";
+        return 1;
       }
 
       try {
-          LocalMax(currentValue);
+        LocalMax(currentValue);
       }
       catch (const std::overflow_error& e) {
-          std::cout << e.what() << "/n";
+        std::cout << e.what() << "/n";
           return 2;
       }
 
