@@ -1,225 +1,142 @@
 #include "compositeShape.h"
-#include <stdexcept>
+#include <iostream>
 
-CompositeShape::CompositeShape() :
-  size(0),
-  capacity(10),
-  arr(new Shape* [capacity])
-{}
-
-
-CompositeShape::CompositeShape(CompositeShape&& otherShape) :
-  size(otherShape.size),
-  capacity(otherShape.capacity),
-  arr(otherShape.arr)
+CompociteShape::CompociteShape() :
+	size(0),
+	capacity(10),
+	arr(new Shape* [capacity])
 {
-  otherShape.arr = nullptr;
-  otherShape.size = 0;
-  otherShape.capacity = 0;
 }
 
-CompositeShape::CompositeShape(const CompositeShape& otherShape) :
-  size(otherShape.size),
-  capacity(otherShape.capacity),
-  arr(new Shape* [capacity])
+CompociteShape::CompociteShape(const CompociteShape& otherCS) :
+	size(size),
+	capacity(capacity),
+	arr(new Shape* [capacity])
 {
-  for (unsigned i = 0; i < size; i++)
-  {
-    try
-    {
-      arr[i] = otherShape.arr[i]->clone();
-    }
-    catch (const std::exception& e)
-    {
-      clear();
-      throw e;
-    }
-  }
+	for (unsigned i = 0; i < size; i++)
+	{
+		arr[i] = otherCS.arr[i]->clone();
+	}
 }
 
-CompositeShape::~CompositeShape()
+CompociteShape::CompociteShape(CompociteShape&& othreCS) :
+	size(size),
+	capacity(capacity),
+	arr(othreCS.arr)
 {
-  clear();
+	othreCS.size = 0;
+	othreCS.capacity = 0;
+	othreCS.arr = nullptr;
 }
 
-void CompositeShape::clear()
+CompociteShape::~CompociteShape()
 {
-  for (unsigned i = 0; i < size; i++)
-  {
-    delete[] arr[i];
-  }
-  delete[] arr;
+	clear(arr, size);
 }
 
-CompositeShape& CompositeShape::operator=(const CompositeShape&& otherShape)
+double CompociteShape::getArea() const
 {
-  clear();
-
-  size = otherShape.size;
-  capacity = otherShape.capacity;
-  arr = new Shape * [capacity];
-
-  for (unsigned i = 0; i < size; i++)
-  {
-    arr[i] = otherShape.arr[i]->clone();
-  }
-  return *this;
+	double area = 0;
+	for (unsigned i = 0; i < size; i++)
+	{
+		area = area + arr[i]->getArea();
+	}
+	return area;
 }
 
-double CompositeShape::getArea()
+rectangle_t CompociteShape::getFrameRect() const
 {
-  double s = 0;
-  for (unsigned i = 0; i < size; i++)
-  {
-    s = s + arr[i]->getArea();
-  }
-  return s;
+	double minX = arr[0]->getFrameRect().center.x - arr[0]->getFrameRect().width / 2;
+	double minY = arr[0]->getFrameRect().center.y - arr[0]->getFrameRect().height / 2;
+	double maxX = arr[0]->getFrameRect().center.x + arr[0]->getFrameRect().width / 2;
+	double maxY = arr[0]->getFrameRect().center.y + arr[0]->getFrameRect().height / 2;
+
+	for (unsigned i = 1; i < size; i++)
+	{
+		minX = std::min(minX, arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2);
+		minY = std::min(minY, arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2);
+		maxX = std::max(maxX, arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2);
+		maxY = std::max(maxY, arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2);
+	}
+
+	return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
 }
 
-rectangle_t CompositeShape::getFrameRect()
+void CompociteShape::move(double dx, double dy)
 {
-  double xMin = arr[0]->getFrameRect().pos.x - arr[0]->getFrameRect().width / 2;
-  double yMin = arr[0]->getFrameRect().pos.y - arr[0]->getFrameRect().height / 2;
-  double xMax = arr[0]->getFrameRect().pos.x + arr[0]->getFrameRect().width / 2;
-  double yMax = arr[0]->getFrameRect().pos.y + arr[0]->getFrameRect().height / 2;
-
-  for (unsigned i = 1; i < size; i++)
-  {
-    xMin = std::min(xMin, arr[i]->getFrameRect().pos.x - arr[i]->getFrameRect().width / 2);
-    yMin = std::min(yMin, arr[i]->getFrameRect().pos.y - arr[i]->getFrameRect().height / 2);
-    xMax = std::min(xMax, arr[i]->getFrameRect().pos.x + arr[i]->getFrameRect().width / 2);
-    yMax = std::min(yMax, arr[i]->getFrameRect().pos.y + arr[i]->getFrameRect().height / 2);
-  }
-
-  point_t leftBott{ xMin, yMin };
-  point_t rightTop{ xMax, yMax };
-
-  rectangle_t newRect = makeNewRect(leftBott, rightTop);
-
-  return newRect;
+	for (unsigned i = 0; i < size; i++)
+	{
+		arr[i]->move(dx, dy);
+	}
 }
 
-void CompositeShape::move(double x, double y)
+void CompociteShape::move(point_t newPos)
 {
-  for (unsigned i = 0; i < size; i++)
-  {
-    arr[i]->move(x, y);
-  }
+	for (unsigned i = 0; i < size; i++)
+	{
+		arr[i]->move(newPos);
+	}
 }
 
-void CompositeShape::move(point_t pos)
+void CompociteShape::scale(double k)
 {
-  for (unsigned i = 0; i < size; i++)
-  {
-    arr[i]->move(pos);
-  }
+	for (unsigned i = 0; i < size; i++)
+	{
+		arr[i]->scale(k);
+	}
 }
 
-void CompositeShape::scale(double k)
+void CompociteShape::isoScale(point_t pos, double k)
 {
-  for (unsigned i = 0; i < size; i++)
-  {
-    arr[i]->scale(k);
-  }
+	for (unsigned i = 0; i < size; i++)
+	{
+		point_t p1{ arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y };
+		arr[i]->move(pos);
+		point_t p2{ arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y };
+
+		double dx = k * (p1.x - p2.x);
+		double dy = k * (p1.y - p2.y);
+		arr[i]->scale(k);
+		arr[i]->move(dx, dy);
+	}
 }
 
-void CompositeShape::isoScale(point_t posLeftBoard, double k)
+void CompociteShape::push_back(Shape* newShape)
 {
-  point_t currentLeftBoard{ getFrameRect().pos.x - getFrameRect().width / 2, getFrameRect().pos.y - getFrameRect().height / 2 };
-
-  double dx = posLeftBoard.x - currentLeftBoard.x + getFrameRect().width / 2;
-  double dy = posLeftBoard.y - currentLeftBoard.y + getFrameRect().height / 2;
-
-  scale(k);
-  move(dx, dy);
+	if (size == capacity)
+	{
+		capacity = capacity + 10;
+		Shape** newArr = new Shape * [capacity];
+		for (unsigned i = 0; i < size; i++)
+		{
+			newArr[i] = arr[i]->clone();
+		}
+		clear(arr, size);
+		arr = newArr;
+	}
+	arr[size++] = newShape;
 }
 
-void CompositeShape::push_back(Shape* shp)
+Shape* CompociteShape::operator[](unsigned id)
 {
-  if (size == capacity)
-  {
-    capacity = capacity + 10;
-    try
-    {
-      Shape** newArr = new Shape * [capacity];
-
-      for (unsigned i = 0; i < size; i++)
-      {
-        newArr[i] = arr[i]->clone();
-      }
-      clear();
-      arr = newArr;
-    }
-    catch (const std::exception& e)
-    {
-      clear();
-      throw e;
-    }
-  }
-  arr[size++] = shp;
+	return arr[id];
 }
 
-void CompositeShape::push_back(Shape* const shp) const
+const Shape* CompociteShape::operator[](unsigned id) const
 {
-  Shape* newShp = shp->clone();
-  push_back(newShp);
+	return arr[id]->clone();
 }
 
-void CompositeShape::pop_back()
+unsigned CompociteShape::sizeArr() const
 {
-  try
-  {
-    Shape** newArr = new Shape * [--capacity];
-
-    for (unsigned i = 0; i < size - 1; i++)
-    {
-      newArr[i] = arr[i]->clone();
-    }
-    clear();
-    arr = newArr;
-    size--;
-  }
-  catch (const std::exception& e)
-  {
-    clear();
-    throw e;
-  }
+	return size;
 }
 
-Shape* CompositeShape::at(const unsigned id)
+void CompociteShape::clear(Shape** arr, unsigned size)
 {
-  if (id > size)
-  {
-    throw std::overflow_error("invalid argument");
-  }
-  return arr[id];
-}
-
-const Shape* CompositeShape::at(unsigned id) const
-{
-  if (id > size)
-  {
-    throw std::overflow_error("invalid argument");
-  }
-  return arr[id];
-}
-
-Shape* CompositeShape::operator[](unsigned id)
-{
-  return arr[id];
-}
-
-const Shape* CompositeShape::operator[](unsigned id) const
-{
-  return arr[id]->clone();
-}
-
-bool CompositeShape::empty()
-{
-  return size == 0;
-}
-
-unsigned CompositeShape::sizeArr()
-{
-  return size;
+	for (unsigned i = 0; i < size; i++)
+	{
+		delete[]arr[i];
+	}
+	delete[]arr;
 }

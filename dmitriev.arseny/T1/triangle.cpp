@@ -1,90 +1,76 @@
 #include "triangle.h"
-#include <stdexcept>
+#include <exception>
 #include <cmath>
 #include <iostream>
 
 Triangle::Triangle(point_t a, point_t b, point_t c) :
-  a(a),
-  b(b),
-  c(c)
+	a(a),
+	b(b),
+	c(c)
 {
-  point_t vec1{ b.x - a.x, b.y - a.y };
-  point_t vec2{ c.x - b.x, c.y - b.y };
-  point_t vec3{ a.x - c.x, a.y - c.y };
+	double aSide = makeLine(a, b);
+	double bSide = makeLine(b, c);
+	double cSide = makeLine(c, a);
 
-  center.x = (a.x + b.x + c.x) / 2;
-  center.y = (a.y + b.y + c.y) / 2;
-
-  aSide = std::sqrt(vec1.x * vec1.x + vec1.y * vec1.y);
-  bSide = std::sqrt(vec2.x * vec2.x + vec2.y * vec2.y);
-  cSide = std::sqrt(vec3.x * vec3.x + vec3.y * vec3.y);
-
-  if (!(aSide + bSide > cSide))
-  {
-    throw std::logic_error("invalid arguments");
-  }
-  else if (!(bSide + cSide > aSide))
-  {
-    throw std::logic_error("invalid arguments");
-  }
-  else if (!(cSide + aSide > bSide))
-  {
-    throw std::logic_error("invalid arguments");
-  }
+	if (aSide + bSide >= cSide)
+	{
+		throw std::exception("invalid argumet");
+	}
+	else if (bSide + cSide >= aSide)
+	{
+		throw std::exception("invalid argumet");
+	}
+	else if (cSide + aSide >= bSide)
+	{
+		throw std::exception("invalid argumet");
+	}
 }
 
-double Triangle::getArea()
+double Triangle::getArea() const
 {
-  double p = (aSide + bSide + cSide) / 2;
-  return std::sqrt(p * (p - aSide) * (p - bSide) * (p - cSide));
+	double aSide = makeLine(a, b);
+	double bSide = makeLine(b, c);
+	double cSide = makeLine(c, a);
+	double p = (aSide + bSide + cSide) / 2;
+	return std::sqrt(p * (p - aSide) * (p - bSide) * (p - cSide));
 }
 
-rectangle_t Triangle::getFrameRect()
+rectangle_t Triangle::getFrameRect() const
 {
-  double xMin = std::min(a.x, std::min(b.x, c.x));
-  double yMin = std::min(a.y, std::min(b.y, c.y));
-  double xMax = std::max(a.x, std::max(b.x, c.x));
-  double yMax = std::max(a.y, std::max(b.y, c.y));
-
-  point_t leftBott{ xMin, yMin };
-  point_t rightTop{ xMax, yMax };
-
-  rectangle_t newRect = makeNewRect(leftBott, rightTop);
-
-  return newRect;
+	point_t leftBott{ std::min(a.x, std::min(b.x, c.x)), std::min(a.y, std::min(b.y, c.y)) };
+	point_t rightTop{ std::max(a.x, std::max(b.x, c.x)), std::max(a.y, std::max(b.y, c.y)) };
+	return makeNewRect(leftBott, rightTop);
 }
 
-void Triangle::move(double x, double y)
+void Triangle::move(double dx, double dy)
 {
-  a = shiftPoint(a, x, y);
-  b = shiftPoint(b, x, y);
-  c = shiftPoint(c, x, y);
+	a.x = a.x + dx;
+	a.y = a.y + dy;
+	b.x = b.x + dx;
+	b.y = b.y + dy;
+	c.x = c.x + dx;
+	c.y = c.y + dy;
 }
 
-void Triangle::move(point_t pos)
+void Triangle::move(point_t newPos)
 {
-  double x = center.x - pos.x;
-  double y = center.y - pos.y;
-
-  move(x, y);
+	point_t center{ (a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 };
+	move(newPos.x - center.x, newPos.y - center.y);
 }
 
 void Triangle::scale(double k)
 {
-  if (k < 0)
-  {
-    throw std::logic_error("invalid argument");
-  }
-  aSide = aSide * k;
-  bSide = bSide * k;
-  cSide = cSide * k;
-
-  a = multVec(center, a, k);
-  b = multVec(center, b, k);
-  c = multVec(center, c, k);
+	if (k < 0)
+	{
+		throw std::exception("invalid argument");
+	}
+	point_t center{ (a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 };
+	a = multVec(center, a, k);
+	b = multVec(center, b, k);
+	c = multVec(center, c, k);
 }
 
-Shape* Triangle::clone() const
+Shape* Triangle::clone()
 {
-  return new Triangle(a, b, c);
+	return new Triangle{ a, b, c };
 }

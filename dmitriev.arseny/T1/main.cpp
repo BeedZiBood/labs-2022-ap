@@ -6,19 +6,56 @@
 #include "triangle.h"
 #include "compositeShape.h"
 
+void printShapes(const CompociteShape& cShape, char delimiter)
+{
+  std::cout << cShape.getArea();
+  for (size_t i = 0; i < cShape.sizeArr(); i++)
+  {
+    std::cout << delimiter << cShape[i]->getFrameRect().center.x - cShape[i]->getFrameRect().width / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.y - cShape[i]->getFrameRect().height / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.x + cShape[i]->getFrameRect().width / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.y + cShape[i]->getFrameRect().height / 2;
+  }
+}
+
 int main()
 {
-  std::cout << std::setprecision(1);
-  try
+  std::cout << std::setprecision(1) << std::fixed;
+  CompociteShape cShape;
+  bool invalidShape = false;
+  bool isScaleCalled = false;
+  bool invalidScale = false;
+  bool invalidComposite = false;
+  while (std::cin)
   {
-    CompositeShape cShape;
-    std::string type = "";
-    for (std::cin >> type; std::cin; std::cin >> type)
+    std::string name = "";
+    std::cin >> name;
+    if (!std::cin)
     {
-      std::cout << type << '\n';
+      break;
+    }
+    if (name == "RECTANGLE" || name == "TRIANGLE" || name == "RING")
+    {
+      Shape* shape = nullptr;
       try
       {
-        if (type == "TRIANGLE")
+        if (name == "RECTANGLE")
+        {
+          double x = 0;
+          double y = 0;
+
+          std::cin >> x >> y;
+          point_t a{ x, y };
+
+          std::cin >> x >> y;
+          point_t b{ x, y };
+
+          Rectangle rec{ a, b };
+          Shape* shape = rec.clone();
+
+          cShape.push_back(shape);
+        }
+        else if (name == "TRIANGLE")
         {
           double x = 0;
           double y = 0;
@@ -36,23 +73,7 @@ int main()
 
           cShape.push_back(shape);
         }
-        else if (type == "RECTANGLE")
-        {
-          double x = 0;
-          double y = 0;
-
-          std::cin >> x >> y;
-          point_t a{ x, y };
-
-          std::cin >> x >> y;
-          point_t b{ x, y };
-
-          Rectangle rec{ a, b };
-          Shape* shape = rec.clone();
-
-          cShape.push_back(shape);
-        }
-        else if (type == "RING")
+        else if (name == "RING")
         {
           double x = 0;
           double y = 0;
@@ -67,41 +88,57 @@ int main()
           cShape.push_back(shape);
         }
       }
-      catch (const std::logic_error& e)
+      catch (const std::invalid_argument& e)
       {
-        std::cout << e.what() << "\n";
+        invalidShape = true;
       }
+      catch (...)
+      {
+        invalidComposite = true;
+      }
+    }
+
+    if (name == "SCALE")
+    {
+      isScaleCalled = true;
+      double x = 0.0;
+      double y = 0.0;
+      std::cin >> x >> y;
+      point_t point{ x, y };
+      double k = 0.0;
+      std::cin >> k;
+      printShapes(cShape, ' ');
+      std::cout << '\n';
       try
       {
-        if (type == "SCALE")
-        {
-          double x = 0;
-          double y = 0;
-          double k = 0;
-          std::cin >> x >> y >> k;
-
-          cShape.isoScale(point_t{ x, y }, k);
-        }
+        cShape.isoScale(point, k);
       }
-      catch (const std::logic_error& e)
+      catch (...)
       {
-        std::cout << e.what() << "\n";
-        return 1;
+        invalidScale = true;
       }
-
-      std::cout << cShape.getArea() << '\t';
-      std::cout << cShape.getFrameRect().pos.x - cShape.getFrameRect().width / 2 << " ";
-      std::cout << cShape.getFrameRect().pos.y - cShape.getFrameRect().height / 2 << " ";
-      std::cout << cShape.getFrameRect().pos.x + cShape.getFrameRect().width / 2 << " ";
-      std::cout << cShape.getFrameRect().pos.y + cShape.getFrameRect().height / 2 << "\n";
-
+      printShapes(cShape, ' ');
+      std::cout << '\n';
     }
   }
-  catch (const std::exception& e)
+
+  if (!isScaleCalled)
   {
-    std::cout << e.what() << '\n';
+    std::cerr << "Scale was not called";
     return 1;
   }
-
+  if (invalidShape)
+  {
+    std::cerr << "Invalid shape or shapes";
+  }
+  if (invalidScale)
+  {
+    std::cerr << "Invalid scaling";
+    return 1;
+  }
+  if (invalidComposite)
+  {
+    std::cerr << "Invalid composite";
+  }
   return 0;
 }

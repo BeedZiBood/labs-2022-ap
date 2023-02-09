@@ -6,25 +6,18 @@
 class Triangle : public Shape
 {
 public:
-  Triangle(point_t a, point_t b, point_t c);
-
-  double getArea() override;
-  rectangle_t getFrameRect() override;
-  void move(double x, double y) override;
-  void move(point_t pos) override;
-  void scale(double k) override;
-  Shape* clone() const override;
-
+	Triangle(point_t a, point_t b, point_t c);
+	double getArea() const override;
+	rectangle_t getFrameRect() const override;
+	void move(double dx, double dy) override;
+	void move(point_t newPos) override;
+	void scale(double k) override;
+	Shape* clone() override;
 private:
-  point_t a;
-  point_t b;
-  point_t c;
+	point_t a;
+	point_t b;
+	point_t c;
 
-  point_t center;
-
-  double aSide;
-  double bSide;
-  double cSide;
 };
 
 #endif

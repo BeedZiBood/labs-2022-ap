@@ -3,19 +3,19 @@
 
 struct point_t
 {
-  double x;
-  double y;
+	double x;
+	double y;
 };
 
 struct rectangle_t
 {
-  point_t pos;
-  double width;
-  double height;
+	point_t center;
+	double width;
+	double height;
 };
 
 rectangle_t makeNewRect(point_t leftBott, point_t rightTop);
-point_t shiftPoint(point_t source, double x, double y);
+double makeLine(point_t begin, point_t end);
 point_t multVec(point_t begin, point_t end, double k);
 
 #endif

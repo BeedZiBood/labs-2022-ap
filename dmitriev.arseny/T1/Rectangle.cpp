@@ -1,54 +1,51 @@
 #include "Rectangle.h"
 #include <stdexcept>
 
-Rectangle::Rectangle(point_t leftBott, point_t rightTop)
+Rectangle::Rectangle(point_t leftBott, point_t rightTop) :
+	rect(makeNewRect(leftBott, rightTop))
 {
-  if (leftBott.x > rightTop.x && leftBott.y > rightTop.y)
-  {
-    throw std::logic_error("invalid arguments");
-  }
-  if (leftBott.x == rightTop.x || leftBott.y == rightTop.y)
-  {
-    throw std::logic_error("invalid arguments");
-  }
-  rect = makeNewRect(leftBott, rightTop);
+	if (rect.height <= 0 || rect.width <= 0)
+	{
+		throw std::exception("invalid arguments");
+	}
 }
 
-double Rectangle::getArea()
+double Rectangle::getArea() const
 {
-  return rect.height * rect.width;
+	return rect.height * rect.width;
 }
 
-rectangle_t Rectangle::getFrameRect()
+rectangle_t Rectangle::getFrameRect() const
 {
-  return rect;
+	return rect;
 }
 
-void Rectangle::move(double x, double y)
+void Rectangle::move(double dx, double dy)
 {
-  point_t newPos{ rect.pos.x + x, rect.pos.y + y };
-  move(newPos);
+	rect.center.x = rect.center.x + dx;
+	rect.center.y = rect.center.y + dy;
 }
 
 void Rectangle::move(point_t newPos)
 {
-  rect.pos = newPos;
+	double dx = newPos.x - rect.center.x;
+	double dy = newPos.y - rect.center.y;
+	move(dx, dy);
 }
 
 void Rectangle::scale(double k)
 {
-  if (k < 0)
-  {
-    throw std::logic_error("invalid argument");
-  }
-  rect.height = rect.height * k;
-  rect.width = rect.width * k;
+	if (k < 0)
+	{
+		throw std::exception("invalid argument");
+	}
+	rect.height = rect.height * k;
+	rect.width = rect.width * k;
 }
 
-Shape* Rectangle::clone() const
+Shape* Rectangle::clone()
 {
-  point_t leftBott{ rect.pos.x - rect.width / 2, rect.pos.y - rect.height / 2 };
-  point_t rightTop{ rect.pos.x + rect.width / 2, rect.pos.y + rect.height / 2 };
-
-  return new Rectangle(leftBott, rightTop);
+	point_t leftBott{ rect.center.x - rect.width / 2, rect.center.y - rect.height / 2 };
+	point_t rightTop{ rect.center.x + rect.width / 2, rect.center.y + rect.height / 2 };
+	return new Rectangle{ leftBott, rightTop };
 }

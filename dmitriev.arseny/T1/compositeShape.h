@@ -1,43 +1,35 @@
-#ifndef COMPOSITESHAPE_H
-#define COMPOSITESHAPE_H
+#ifndef COMPOCITESHAPE_H
+#define COMPOCITESHAPE_H
 
 #include "shape.h"
 
-class CompositeShape
+class CompociteShape
 {
 public:
-  CompositeShape();
-  CompositeShape(CompositeShape&& otherShape);
-  CompositeShape(const CompositeShape& otherShape);
+	CompociteShape();
+	CompociteShape(const CompociteShape& otherCS);
+	CompociteShape(CompociteShape&& othreCS);
+	~CompociteShape();
 
-  ~CompositeShape();
+	double getArea() const;
+	rectangle_t getFrameRect() const;
+	void move(double dx, double dy);
+	void move(point_t newPos);
+	void scale(double k);
 
-  CompositeShape& operator=(const CompositeShape&& otherShape);
+	void isoScale(point_t pos, double k);
 
-  double getArea();
-  rectangle_t getFrameRect();
-  void move(double x, double y);
-  void move(point_t pos);
-  void scale(double k);
-
-  void isoScale(point_t posLeftBoard, double k);
-
-  void push_back(Shape* shp);
-  void push_back(Shape* const shp) const;
-  void pop_back();
-  Shape* at(unsigned id);
-  const Shape* at(unsigned id) const;
-  Shape* operator[](unsigned id);
-  const Shape* operator[](unsigned id) const;
-  bool empty();
-  unsigned sizeArr();
+	void push_back(Shape* newShape);
+	Shape* operator[](unsigned id);
+	const Shape* operator[](unsigned id) const;
+	unsigned sizeArr() const;
 
 private:
-  unsigned size;
-  unsigned capacity;
-  Shape** arr;
+	unsigned size;
+	unsigned capacity;
+	Shape** arr;
 
-  void clear();
+	void clear(Shape** arr, unsigned size);
 };
 
 #endif
