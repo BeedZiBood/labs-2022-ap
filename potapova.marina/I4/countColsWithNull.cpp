@@ -1,5 +1,4 @@
 #include "countColsWithNull.h"
-#include <cstddef>
 
 size_t countColsWithNull(const int* matrix,
                          size_t count_rows,
