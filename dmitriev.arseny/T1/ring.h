@@ -6,17 +6,17 @@
 class Ring : public Shape
 {
 public:
-	Ring(point_t center, double externalRadius, double internalRadius);
-	double getArea() const override;
-	rectangle_t getFrameRect() const override;
-	void move(double dx, double dy) override;
-	void move(point_t newPos) override;
-	void scale(double k) override;
-	Shape* clone() override;
+  Ring(point_t center, double externalRadius, double internalRadius);
+  double getArea() const override;
+  rectangle_t getFrameRect() const override;
+  void move(double dx, double dy) override;
+  void move(point_t newPos) override;
+  void scale(double k) override;
+  Shape* clone() override;
 private:
-	point_t center;
-	double externalRadius;
-	double internalRadius;
+  point_t center;
+  double externalRadius;
+  double internalRadius;
 
 };
 

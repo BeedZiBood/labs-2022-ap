@@ -3,15 +3,15 @@
 
 struct point_t
 {
-	double x;
-	double y;
+  double x;
+  double y;
 };
 
 struct rectangle_t
 {
-	point_t center;
-	double width;
-	double height;
+  point_t center;
+  double width;
+  double height;
 };
 
 rectangle_t makeNewRect(point_t leftBott, point_t rightTop);
