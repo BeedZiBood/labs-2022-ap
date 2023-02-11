@@ -9,8 +9,8 @@ CompociteShape::CompociteShape() :
 }
 
 CompociteShape::CompociteShape(const CompociteShape& otherCS) :
-  size(size),
-  capacity(capacity),
+  size(otherCS.size),
+  capacity(otherCS.capacity),
   arr(new Shape* [capacity])
 {
   for (unsigned i = 0; i < size; i++)
@@ -20,8 +20,8 @@ CompociteShape::CompociteShape(const CompociteShape& otherCS) :
 }
 
 CompociteShape::CompociteShape(CompociteShape&& othreCS) :
-  size(size),
-  capacity(capacity),
+  size(otherCS.size),
+  capacity(otherCS.capacity),
   arr(othreCS.arr)
 {
   othreCS.size = 0;
