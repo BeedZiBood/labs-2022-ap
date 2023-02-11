@@ -1,5 +1,6 @@
 #include "ring.h"
 #include <exception>
+#include <iostream>
 
 Ring::Ring(point_t center, double externalRadius, double internalRadius) :
   center(center),
@@ -8,7 +9,7 @@ Ring::Ring(point_t center, double externalRadius, double internalRadius) :
 {
   if (externalRadius < internalRadius)
   {
-    throw std::logic_error("invalid argumet");
+    throw std::logic_error("invalid arguments");
   }
 }
 
@@ -40,7 +41,7 @@ void Ring::scale(double k)
 {
   if (k < 0)
   {
-    throw std::logic_error("invalid argument");
+    throw std::logic_error("invalid arguments");
   }
   externalRadius = externalRadius * k;
   internalRadius = internalRadius * k;
