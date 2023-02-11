@@ -40,7 +40,6 @@ int main()
       {
         if (name == "RECTANGLE")
         {
-          Shape* shape = nullptr;
           double x = 0;
           double y = 0;
 
@@ -57,7 +56,6 @@ int main()
         }
         else if (name == "TRIANGLE")
         {
-          Shape* shape = nullptr;
           double x = 0;
           double y = 0;
           std::cin >> x >> y;
@@ -76,7 +74,6 @@ int main()
         }
         else if (name == "RING")
         {
-          Shape* shape = nullptr;
           double x = 0;
           double y = 0;
 

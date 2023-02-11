@@ -19,14 +19,14 @@ CompociteShape::CompociteShape(const CompociteShape& otherCS) :
   }
 }
 
-CompociteShape::CompociteShape(CompociteShape&& othreCS) :
-  size(otherCS.size),
-  capacity(otherCS.capacity),
-  arr(othreCS.arr)
+CompociteShape::CompociteShape(CompociteShape&& othrerCS) :
+  size(othrerCS.size),
+  capacity(othrerCS.capacity),
+  arr(othrerCS.arr)
 {
-  othreCS.size = 0;
-  othreCS.capacity = 0;
-  othreCS.arr = nullptr;
+  othrerCS.size = 0;
+  othrerCS.capacity = 0;
+  othrerCS.arr = nullptr;
 }
 
 CompociteShape::~CompociteShape()

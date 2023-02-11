@@ -8,7 +8,7 @@ class CompociteShape
 public:
   CompociteShape();
   CompociteShape(const CompociteShape& otherCS);
-  CompociteShape(CompociteShape&& othreCS);
+  CompociteShape(CompociteShape&& othrerCS);
   ~CompociteShape();
 
   double getArea() const;
