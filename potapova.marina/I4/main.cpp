@@ -41,10 +41,10 @@ int main(int argc, char* argv[])
 
   if (!std::strcmp(argv[1], "1"))
   {
-    int arr[1000];
+    std::int16_t static_arr[1000];
     for (size_t i = 0; i < count_rows * count_cols; ++i)
     {
-      input >> arr[i];
+      input >> static_arr[i];
       if (!input)
       {
         std::cerr << "Error\n";
@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
       }
     }
     std::ofstream output(argv[3]);
-    output << countRowsWithoutNull(arr, count_rows, count_cols) << " " << countRowsWithoutNull(arr, count_rows, count_cols) << "\n";
+    output << countRowsWithoutNull(static_arr, count_rows, count_cols) << " " << countRowsWithoutNull(static_arr, count_rows, count_cols) << "\n";
   }
   else
   {
