@@ -31,7 +31,8 @@ CompociteShape::CompociteShape(CompociteShape&& othrerCS) :
 
 CompociteShape::~CompociteShape()
 {
-  clear(arr, size);
+  clear();
+  delete[]arr;
 }
 
 double CompociteShape::getArea() const
@@ -136,7 +137,8 @@ void CompociteShape::clear()
 {
   for (unsigned i = 0; i < size; i++)
   {
-    delete[]arr[i];
+    delete arr[i];
   }
+
   size = 0;
 }
