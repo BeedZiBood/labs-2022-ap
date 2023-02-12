@@ -125,7 +125,7 @@ Shape* CompociteShape::operator[](unsigned id)
 
 const Shape* CompociteShape::operator[](unsigned id) const
 {
-  return arr[id]->clone();
+  return arr[id];
 }
 
 unsigned CompociteShape::sizeArr() const
