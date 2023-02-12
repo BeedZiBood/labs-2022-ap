@@ -109,9 +109,9 @@ void CompociteShape::push_back(Shape* newShape)
     Shape** newArr = new Shape * [capacity];
     for (unsigned i = 0; i < size; i++)
     {
-      newArr[i] = arr[i]->clone();
+      newArr[i] = arr[i];
     }
-    clear(arr, size);
+    delete[]arr;
     arr = newArr;
   }
   arr[size++] = newShape;
@@ -132,11 +132,11 @@ unsigned CompociteShape::sizeArr() const
   return size;
 }
 
-void CompociteShape::clear(Shape** arr, unsigned size)
+void CompociteShape::clear()
 {
   for (unsigned i = 0; i < size; i++)
   {
     delete[]arr[i];
   }
-  delete[]arr;
+  size = 0;
 }
