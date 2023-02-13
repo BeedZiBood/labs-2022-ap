@@ -21,7 +21,8 @@ CompociteShape::CompociteShape(const CompociteShape& otherCS) :
     }
     catch(const std::bad_alloc& e)
     {
-      /*clear();*/
+      clear(arr, i);
+      throw e;
     }
   }
 }
@@ -38,8 +39,7 @@ CompociteShape::CompociteShape(CompociteShape&& othrerCS) :
 
 CompociteShape::~CompociteShape()
 {
-  clear();
-  delete[]arr;
+  clear(arr, size);
 }
 
 double CompociteShape::getArea() const
@@ -144,12 +144,12 @@ unsigned CompociteShape::sizeArr() const
   return size;
 }
 
-void CompociteShape::clear()
+void CompociteShape::clear(Shape** arr, unsigned size)
 {
   for (unsigned i = 0; i < size; i++)
   {
     delete arr[i];
   }
-
+  delete[]arr;
   size = 0;
 }

@@ -29,7 +29,7 @@ private:
   unsigned capacity;
   Shape** arr;
 
-  void clear();
+  void clear(Shape** arr, unsigned size);
 };
 
 #endif
