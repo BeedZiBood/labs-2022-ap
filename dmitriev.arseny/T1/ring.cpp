@@ -7,7 +7,7 @@ Ring::Ring(point_t center, double externalRadius, double internalRadius) :
   externalRadius(externalRadius),
   internalRadius(internalRadius)
 {
-  if (externalRadius < internalRadius)
+  if (externalRadius <= internalRadius)
   {
     throw std::invalid_argument("invalid arguments");
   }
