@@ -6,7 +6,7 @@
 #include "triangle.h"
 #include "compositeShape.h"
 
-void printShapes(const CompociteShape& cShape, char delimiter)
+void printShapes(const CompositeShape& cShape, char delimiter)
 {
   std::cout << cShape.getArea();
   for (size_t i = 0; i < cShape.sizeArr(); i++)
@@ -21,7 +21,7 @@ void printShapes(const CompociteShape& cShape, char delimiter)
 int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
-  CompociteShape cShape;
+  CompositeShape cShape;
   bool invalidShape = false;
   bool isScaleCalled = false;
   bool invalidScale = false;

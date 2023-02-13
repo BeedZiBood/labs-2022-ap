@@ -51,7 +51,7 @@ void Ring::scale(double k)
   internalRadius = internalRadius * k;
 }
 
-Shape* Ring::clone()
+Shape* Ring::clone() const
 {
   return new Ring{ center, externalRadius, internalRadius };
 }

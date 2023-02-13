@@ -1,14 +1,14 @@
 #include "compositeShape.h"
 #include <iostream>
 
-CompociteShape::CompociteShape() :
+CompositeShape::CompositeShape() :
   size(0),
   capacity(10),
   arr(new Shape* [capacity])
 {
 }
 
-CompociteShape::CompociteShape(const CompociteShape& otherCS) :
+CompositeShape::CompositeShape(const CompositeShape& otherCS) :
   size(otherCS.size),
   capacity(otherCS.capacity),
   arr(new Shape* [capacity])
@@ -27,7 +27,7 @@ CompociteShape::CompociteShape(const CompociteShape& otherCS) :
   }
 }
 
-CompociteShape::CompociteShape(CompociteShape&& othrerCS) :
+CompositeShape::CompositeShape(CompositeShape&& othrerCS) :
   size(othrerCS.size),
   capacity(othrerCS.capacity),
   arr(othrerCS.arr)
@@ -37,12 +37,12 @@ CompociteShape::CompociteShape(CompociteShape&& othrerCS) :
   othrerCS.arr = nullptr;
 }
 
-CompociteShape::~CompociteShape()
+CompositeShape::~CompositeShape()
 {
   clear(arr, size);
 }
 
-double CompociteShape::getArea() const
+double CompositeShape::getArea() const
 {
   double area = 0;
   for (unsigned i = 0; i < size; i++)
@@ -52,7 +52,7 @@ double CompociteShape::getArea() const
   return area;
 }
 
-rectangle_t CompociteShape::getFrameRect() const
+rectangle_t CompositeShape::getFrameRect() const
 {
   double minX = arr[0]->getFrameRect().center.x - arr[0]->getFrameRect().width / 2;
   double minY = arr[0]->getFrameRect().center.y - arr[0]->getFrameRect().height / 2;
@@ -70,7 +70,7 @@ rectangle_t CompociteShape::getFrameRect() const
   return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
 }
 
-void CompociteShape::move(double dx, double dy)
+void CompositeShape::move(double dx, double dy)
 {
   for (unsigned i = 0; i < size; i++)
   {
@@ -78,7 +78,7 @@ void CompociteShape::move(double dx, double dy)
   }
 }
 
-void CompociteShape::move(point_t newPos)
+void CompositeShape::move(point_t newPos)
 {
   for (unsigned i = 0; i < size; i++)
   {
@@ -86,7 +86,7 @@ void CompociteShape::move(point_t newPos)
   }
 }
 
-void CompociteShape::scale(double k)
+void CompositeShape::scale(double k)
 {
   for (unsigned i = 0; i < size; i++)
   {
@@ -94,7 +94,7 @@ void CompociteShape::scale(double k)
   }
 }
 
-void CompociteShape::isoScale(point_t pos, double k)
+void CompositeShape::isoScale(point_t pos, double k)
 {
   if (size == 0)
   {
@@ -113,7 +113,7 @@ void CompociteShape::isoScale(point_t pos, double k)
   }
 }
 
-void CompociteShape::push_back(Shape* newShape)
+void CompositeShape::push_back(Shape* newShape)
 {
   if (size == capacity)
   {
@@ -129,27 +129,88 @@ void CompociteShape::push_back(Shape* newShape)
   arr[size++] = newShape;
 }
 
-Shape* CompociteShape::operator[](unsigned id)
+void CompositeShape::push_back(const Shape* newShape)
+{
+  Shape* newShapeClone = newShape->clone();
+  push_back(newShapeClone);
+}
+
+void CompositeShape::pop_back()
+{
+  delete arr[--size];
+}
+
+Shape* CompositeShape::at(unsigned id)
 {
   return arr[id];
 }
 
-const Shape* CompociteShape::operator[](unsigned id) const
+const Shape* CompositeShape::at(unsigned id) const
 {
   return arr[id];
 }
 
-unsigned CompociteShape::sizeArr() const
+Shape* CompositeShape::operator[](unsigned id)
+{
+  return arr[id];
+}
+
+const Shape* CompositeShape::operator[](unsigned id) const
+{
+  return arr[id];
+}
+
+CompositeShape& CompositeShape::operator=(CompositeShape& otherCS)
+{
+  clear(arr, size);
+  size = otherCS.size;
+  capacity = otherCS.capacity;
+  arr = otherCS.arr;
+  otherCS.size = 0;
+  otherCS.capacity = 0;
+  otherCS.arr = nullptr;
+
+  return *this;
+}
+
+CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
+{
+  clear(arr, size);
+  size = otherCS.size;
+  capacity = otherCS.capacity;
+  arr = new Shape * [capacity];
+
+  for (unsigned i = 0; i < size; i++)
+  {
+    try
+    {
+      arr[i] = otherCS.arr[i]->clone();
+    }
+    catch (const std::bad_alloc& e)
+    {
+      clear(arr, i);
+      throw e;
+    }
+  }
+
+  return *this;
+}
+
+bool CompositeShape::empty()
+{
+  return (size == 0);
+}
+
+unsigned CompositeShape::sizeArr() const
 {
   return size;
 }
 
-void CompociteShape::clear(Shape** arr, unsigned size)
+void CompositeShape::clear(Shape** arr, unsigned size)
 {
   for (unsigned i = 0; i < size; i++)
   {
     delete arr[i];
   }
   delete[]arr;
-  size = 0;
 }

@@ -12,7 +12,7 @@ public:
   void move(double dx, double dy) override;
   void move(point_t newPos) override;
   void scale(double k) override;
-  Shape* clone() override;
+  Shape* clone() const override;
 
 private:
   rectangle_t rect;

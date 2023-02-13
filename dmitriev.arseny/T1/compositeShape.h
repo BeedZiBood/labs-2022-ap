@@ -3,13 +3,13 @@
 
 #include "shape.h"
 
-class CompociteShape
+class CompositeShape
 {
 public:
-  CompociteShape();
-  CompociteShape(const CompociteShape& otherCS);
-  CompociteShape(CompociteShape&& othrerCS);
-  ~CompociteShape();
+  CompositeShape();
+  CompositeShape(const CompositeShape& otherCS);
+  CompositeShape(CompositeShape&& othrerCS);
+  ~CompositeShape();
 
   double getArea() const;
   rectangle_t getFrameRect() const;
@@ -20,8 +20,17 @@ public:
   void isoScale(point_t pos, double k);
 
   void push_back(Shape* newShape);
+  void push_back(const Shape* newShape);
+  void pop_back();
+  Shape* at(unsigned id);
+  const Shape* at(unsigned id) const;
+
   Shape* operator[](unsigned id);
   const Shape* operator[](unsigned id) const;
+  CompositeShape& operator=(CompositeShape& otherCS);
+  CompositeShape& operator=(const CompositeShape& otherCS);
+
+  bool empty();
   unsigned sizeArr() const;
 
 private:

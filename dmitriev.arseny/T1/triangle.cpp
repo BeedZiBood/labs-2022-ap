@@ -70,7 +70,7 @@ void Triangle::scale(double k)
   c = multVec(center, c, k);
 }
 
-Shape* Triangle::clone()
+Shape* Triangle::clone() const
 {
   return new Triangle{ a, b, c };
 }

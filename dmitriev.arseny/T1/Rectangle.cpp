@@ -43,7 +43,7 @@ void Rectangle::scale(double k)
   rect.width = rect.width * k;
 }
 
-Shape* Rectangle::clone()
+Shape* Rectangle::clone() const
 {
   point_t leftBott{ rect.center.x - rect.width / 2, rect.center.y - rect.height / 2 };
   point_t rightTop{ rect.center.x + rect.width / 2, rect.center.y + rect.height / 2 };
