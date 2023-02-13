@@ -6,7 +6,7 @@ Rectangle::Rectangle(point_t leftBott, point_t rightTop) :
 {
   if (rect.height <= 0 || rect.width <= 0)
   {
-    throw std::logic_error("invalid arguments");
+    throw std::invalid_argument("invalid arguments");
   }
 }
 
@@ -37,7 +37,7 @@ void Rectangle::scale(double k)
 {
   if (k < 0)
   {
-    throw std::logic_error("invalid argument");
+    throw std::invalid_argument("invalid argument");
   }
   rect.height = rect.height * k;
   rect.width = rect.width * k;

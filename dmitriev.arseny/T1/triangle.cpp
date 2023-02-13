@@ -14,15 +14,15 @@ Triangle::Triangle(point_t a, point_t b, point_t c) :
 
   if (aSide + bSide >= cSide)
   {
-    throw std::logic_error("invalid argumet");
+    throw std::invalid_argument("invalid argumet");
   }
   else if (bSide + cSide >= aSide)
   {
-    throw std::logic_error("invalid argumet");
+    throw std::invalid_argument("invalid argumet");
   }
   else if (cSide + aSide >= bSide)
   {
-    throw std::logic_error("invalid argumet");
+    throw std::invalid_argument("invalid argumet");
   }
 }
 
@@ -62,7 +62,7 @@ void Triangle::scale(double k)
 {
   if (k < 0)
   {
-    throw std::logic_error("invalid argument");
+    throw std::invalid_argument("invalid argument");
   }
   point_t center{ (a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 };
   a = multVec(center, a, k);

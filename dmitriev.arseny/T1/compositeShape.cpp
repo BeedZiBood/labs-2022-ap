@@ -15,7 +15,14 @@ CompociteShape::CompociteShape(const CompociteShape& otherCS) :
 {
   for (unsigned i = 0; i < size; i++)
   {
-    arr[i] = otherCS.arr[i]->clone();
+    try
+    {
+      arr[i] = otherCS.arr[i]->clone();
+    }
+    catch(const std::bad_alloc& e)
+    {
+      /*clear();*/
+    }
   }
 }
 

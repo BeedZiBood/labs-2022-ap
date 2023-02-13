@@ -91,7 +91,7 @@ int main()
       {
         invalidShape = true;
       }
-      catch (...)
+      catch (const std::bad_alloc& e)
       {
         invalidComposite = true;
       }
@@ -112,7 +112,7 @@ int main()
       {
         cShape.isoScale(point, k);
       }
-      catch (...)
+      catch (const std::invalid_argument& e)
       {
         invalidScale = true;
       }
@@ -135,9 +135,9 @@ int main()
     std::cerr << "Invalid scaling";
     return 1;
   }
-  if (invalidComposite)
-  {
-    std::cerr << "Invalid composite";
-  }
+  //if (invalidComposite)
+  //{
+  //  std::cerr << "Invalid composite";
+  //}
   return 0;
 }
