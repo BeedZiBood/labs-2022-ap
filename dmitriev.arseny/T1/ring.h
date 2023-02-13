@@ -15,8 +15,8 @@ public:
   Shape* clone() override;
 private:
   point_t center;
-  double externalRadius;
   double internalRadius;
+  double externalRadius;
 
 };
 
