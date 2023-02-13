@@ -96,10 +96,19 @@ void CompositeShape::scale(double k)
 
 void CompositeShape::isoScale(point_t pos, double k)
 {
+  if (k < 0)
+  {
+    throw std::logic_error("invalid argument");
+  }
   if (size == 0)
   {
     throw std::logic_error("invalid scaling");
   }
+  unsafeIsoScale(pos, k);
+}
+
+void CompositeShape::unsafeIsoScale(point_t pos, double k)
+{
   for (unsigned i = 0; i < size; i++)
   {
     point_t p1{ arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y };
@@ -108,7 +117,7 @@ void CompositeShape::isoScale(point_t pos, double k)
 
     double dx = k * (p1.x - p2.x);
     double dy = k * (p1.y - p2.y);
-    arr[i]->scale(k);
+    arr[i]->unsafeScale(k);
     arr[i]->move(dx, dy);
   }
 }

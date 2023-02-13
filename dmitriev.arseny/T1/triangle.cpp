@@ -62,8 +62,13 @@ void Triangle::scale(double k)
 {
   if (k < 0)
   {
-    throw std::invalid_argument("invalid argument");
+    throw std::invalid_argument("invalid_argument");
   }
+  unsafeScale(k);
+}
+
+void Triangle::unsafeScale(double k)
+{
   point_t center{ (a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 };
   a = multVec(center, a, k);
   b = multVec(center, b, k);

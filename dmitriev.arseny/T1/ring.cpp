@@ -47,6 +47,11 @@ void Ring::scale(double k)
   {
     throw std::invalid_argument("invalid arguments");
   }
+  unsafeScale(k);
+}
+
+void Ring::unsafeScale(double k)
+{
   externalRadius = externalRadius * k;
   internalRadius = internalRadius * k;
 }

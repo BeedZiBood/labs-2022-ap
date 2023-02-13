@@ -39,6 +39,11 @@ void Rectangle::scale(double k)
   {
     throw std::invalid_argument("invalid argument");
   }
+  unsafeScale(k);
+}
+
+void Rectangle::unsafeScale(double k)
+{
   rect.height = rect.height * k;
   rect.width = rect.width * k;
 }

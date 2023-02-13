@@ -11,6 +11,7 @@ public:
   virtual void move(double dx, double dy) = 0;
   virtual void move(point_t pos) = 0;
   virtual void scale(double k) = 0;
+  virtual void unsafeScale(double k) = 0;
   virtual Shape* clone() const = 0;
   virtual ~Shape() = default;
 
