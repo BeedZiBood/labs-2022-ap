@@ -1,5 +1,5 @@
 #include "triangle.h"
-#include <exception>
+#include <stdexcept>
 #include <cmath>
 
 Triangle::Triangle(point_t a, point_t b, point_t c):

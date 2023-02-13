@@ -68,7 +68,7 @@ rectangle_t CompositeShape::getFrameRect() const
     maxY = std::max(maxY, arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2);
   }
 
-  return makeNewRect(point_t minX, minY}, point_t{maxX, maxY});
+  return makeNewRect(point_t{minX, minY}, point_t{maxX, maxY});
 }
 
 void CompositeShape::move(double dx, double dy)
@@ -91,7 +91,7 @@ void CompositeShape::scale(double k)
 {
   if (k < 0)
   {
-    throw std::logic_error("invalid argument");
+    throw std::invalid_argument("invalid argument");
   }
   unsafeScale(k);
 }
@@ -108,7 +108,7 @@ void CompositeShape::isoScale(point_t pos, double k)
 {
   if (k < 0)
   {
-    throw std::logic_error("invalid argument");
+    throw std::invalid_argument("invalid argument");
   }
   if (size == 0)
   {
