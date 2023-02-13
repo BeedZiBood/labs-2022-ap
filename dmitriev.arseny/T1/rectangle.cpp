@@ -1,7 +1,7 @@
 #include "rectangle.h"
 #include <stdexcept>
 
-Rectangle::Rectangle(point_t leftBott, point_t rightTop) :
+Rectangle::Rectangle(point_t leftBott, point_t rightTop):
   rect(makeNewRect(leftBott, rightTop))
 {
   if (rect.height <= 0 || rect.width <= 0)
@@ -52,5 +52,5 @@ Shape* Rectangle::clone() const
 {
   point_t leftBott{ rect.center.x - rect.width / 2, rect.center.y - rect.height / 2 };
   point_t rightTop{ rect.center.x + rect.width / 2, rect.center.y + rect.height / 2 };
-  return new Rectangle{ leftBott, rightTop };
+  return new Rectangle{leftBott, rightTop};
 }

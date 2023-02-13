@@ -2,7 +2,7 @@
 #include <exception>
 #include <iostream>
 
-Ring::Ring(point_t center, double externalRadius, double internalRadius) :
+Ring::Ring(point_t center, double externalRadius, double internalRadius):
   center(center),
   internalRadius(internalRadius),
   externalRadius(externalRadius)
@@ -25,8 +25,8 @@ double Ring::getArea() const
 
 rectangle_t Ring::getFrameRect() const
 {
-  point_t leftBott{ center.x - externalRadius, center.y - externalRadius };
-  point_t rightTop{ center.x + externalRadius, center.y + externalRadius };
+  point_t leftBott{center.x - externalRadius, center.y - externalRadius};
+  point_t rightTop{center.x + externalRadius, center.y + externalRadius};
   return makeNewRect(leftBott, rightTop);
 }
 
@@ -58,5 +58,5 @@ void Ring::unsafeScale(double k)
 
 Shape* Ring::clone() const
 {
-  return new Ring{ center, externalRadius, internalRadius };
+  return new Ring{center, externalRadius, internalRadius};
 }

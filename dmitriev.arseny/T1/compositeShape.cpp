@@ -1,14 +1,14 @@
 #include "compositeShape.h"
 #include <iostream>
 
-CompositeShape::CompositeShape() :
+CompositeShape::CompositeShape():
   size(0),
   capacity(10),
   arr(new Shape* [capacity])
 {
 }
 
-CompositeShape::CompositeShape(const CompositeShape& otherCS) :
+CompositeShape::CompositeShape(const CompositeShape& otherCS):
   size(otherCS.size),
   capacity(otherCS.capacity),
   arr(new Shape* [capacity])
@@ -27,7 +27,7 @@ CompositeShape::CompositeShape(const CompositeShape& otherCS) :
   }
 }
 
-CompositeShape::CompositeShape(CompositeShape&& othrerCS) :
+CompositeShape::CompositeShape(CompositeShape&& othrerCS):
   size(othrerCS.size),
   capacity(othrerCS.capacity),
   arr(othrerCS.arr)
@@ -67,7 +67,7 @@ rectangle_t CompositeShape::getFrameRect() const
     maxY = std::max(maxY, arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2);
   }
 
-  return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
+  return makeNewRect(point_t minX, minY}, point_t{maxX, maxY});
 }
 
 void CompositeShape::move(double dx, double dy)
@@ -136,7 +136,7 @@ void CompositeShape::push_back(Shape* newShape)
   if (size == capacity)
   {
     capacity = capacity + 10;
-    Shape** newArr = new Shape * [capacity];
+    Shape** newArr = new Shape* [capacity];
     for (unsigned i = 0; i < size; i++)
     {
       newArr[i] = arr[i];

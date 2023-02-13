@@ -3,7 +3,7 @@
 #include <cmath>
 #include <iostream>
 
-Triangle::Triangle(point_t a, point_t b, point_t c) :
+Triangle::Triangle(point_t a, point_t b, point_t c):
   a(a),
   b(b),
   c(c)
@@ -37,8 +37,8 @@ double Triangle::getArea() const
 
 rectangle_t Triangle::getFrameRect() const
 {
-  point_t leftBott{ std::min(a.x, std::min(b.x, c.x)), std::min(a.y, std::min(b.y, c.y)) };
-  point_t rightTop{ std::max(a.x, std::max(b.x, c.x)), std::max(a.y, std::max(b.y, c.y)) };
+  point_t leftBott{std::min(a.x, std::min(b.x, c.x)), std::min(a.y, std::min(b.y, c.y))};
+  point_t rightTop{std::max(a.x, std::max(b.x, c.x)), std::max(a.y, std::max(b.y, c.y))};
   return makeNewRect(leftBott, rightTop);
 }
 
@@ -46,15 +46,17 @@ void Triangle::move(double dx, double dy)
 {
   a.x = a.x + dx;
   a.y = a.y + dy;
+
   b.x = b.x + dx;
   b.y = b.y + dy;
+
   c.x = c.x + dx;
   c.y = c.y + dy;
 }
 
 void Triangle::move(point_t newPos)
 {
-  point_t center{ (a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 };
+  point_t center{(a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3};
   move(newPos.x - center.x, newPos.y - center.y);
 }
 

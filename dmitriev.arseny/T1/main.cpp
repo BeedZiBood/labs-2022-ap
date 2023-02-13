@@ -44,12 +44,12 @@ int main()
           double y = 0;
 
           std::cin >> x >> y;
-          point_t a{ x, y };
+          point_t a{x, y};
 
           std::cin >> x >> y;
-          point_t b{ x, y };
+          point_t b{x, y};
 
-          Rectangle rec{ a, b };
+          Rectangle rec{a, b};
           Shape* shape = rec.clone();
 
           cShape.push_back(shape);
@@ -59,15 +59,15 @@ int main()
           double x = 0;
           double y = 0;
           std::cin >> x >> y;
-          point_t a{ x, y };
+          point_t a{x, y};
 
           std::cin >> x >> y;
-          point_t b{ x, y };
+          point_t b{x, y};
 
           std::cin >> x >> y;
-          point_t c{ x, y };
+          point_t c{x, y};
 
-          Triangle tri{ a, b, c };
+          Triangle tri{a, b, c};
           Shape* shape = tri.clone();
 
           cShape.push_back(shape);
@@ -78,10 +78,10 @@ int main()
           double y = 0;
 
           std::cin >> x >> y;
-          point_t a{ x, y };
+          point_t a{x, y};
           std::cin >> x >> y;
 
-          Ring rin{ a, x, y };
+          Ring rin{a, x, y};
           Shape* shape = rin.clone();
 
           cShape.push_back(shape);
@@ -103,7 +103,7 @@ int main()
       double x = 0.0;
       double y = 0.0;
       std::cin >> x >> y;
-      point_t point{ x, y };
+      point_t point{x, y};
       double k = 0.0;
       std::cin >> k;
       printShapes(cShape, ' ');
