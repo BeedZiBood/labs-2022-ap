@@ -13,7 +13,6 @@ public:
   virtual void scale(double k) = 0;
   virtual void unsafeScale(double k) = 0;
   virtual Shape* clone() const = 0;
-  virtual ~Shape() = default;
 
 };
 
