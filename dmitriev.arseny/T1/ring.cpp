@@ -25,8 +25,8 @@ double Ring::getArea() const
 
 rectangle_t Ring::getFrameRect() const
 {
-  point_t leftBott{ center.x - externalRadius / 2, center.y - externalRadius / 2 };
-  point_t rightTop{ center.x + externalRadius / 2, center.y + externalRadius / 2 };
+  point_t leftBott{ center.x - externalRadius, center.y - externalRadius };
+  point_t rightTop{ center.x + externalRadius, center.y + externalRadius };
   return makeNewRect(leftBott, rightTop);
 }
 
