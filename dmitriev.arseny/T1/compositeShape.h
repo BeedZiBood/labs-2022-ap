@@ -16,6 +16,7 @@ public:
   void move(double dx, double dy);
   void move(point_t newPos);
   void scale(double k);
+  void unsafeScale(double k);
 
   void isoScale(point_t pos, double k);
   void unsafeIsoScale(point_t pos, double k);

@@ -88,9 +88,18 @@ void CompositeShape::move(point_t newPos)
 
 void CompositeShape::scale(double k)
 {
+  if (k < 0)
+  {
+    throw std::logic_error("invalid argument");
+  }
+  unsafeScale(k);
+}
+
+void CompositeShape::unsafeScale(double k)
+{
   for (unsigned i = 0; i < size; i++)
   {
-    arr[i]->scale(k);
+    arr[i]->unsafeScale(k);
   }
 }
 
