@@ -1,5 +1,5 @@
 #include "compositeShape.h"
-#include <iostream>
+#include <exeption>
 
 CompositeShape::CompositeShape():
   size(0),

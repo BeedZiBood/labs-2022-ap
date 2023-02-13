@@ -1,6 +1,5 @@
 #include "ring.h"
 #include <exception>
-#include <iostream>
 
 Ring::Ring(point_t center, double externalRadius, double internalRadius):
   center(center),

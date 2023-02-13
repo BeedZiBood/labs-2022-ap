@@ -1,7 +1,6 @@
 #include "triangle.h"
 #include <exception>
 #include <cmath>
-#include <iostream>
 
 Triangle::Triangle(point_t a, point_t b, point_t c):
   a(a),
