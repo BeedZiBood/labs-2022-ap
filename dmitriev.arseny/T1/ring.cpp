@@ -2,7 +2,7 @@
 #include <exception>
 #include <iostream>
 
-Ring::Ring(point_t center, double internalRadius, double externalRadius) :
+Ring::Ring(point_t center, double externalRadius, double internalRadius) :
   center(center),
   internalRadius(internalRadius),
   externalRadius(externalRadius)
