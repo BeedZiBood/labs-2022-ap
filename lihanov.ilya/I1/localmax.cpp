@@ -1,4 +1,4 @@
-#include "LOCALMAX.h"
+#include "localmax.h"
 #include <limits>
 #include <stdexcept>
 
