@@ -21,11 +21,10 @@ void printShapes(const CompositeShape& cShape, char delimiter)
 int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
+
   CompositeShape cShape;
-  bool invalidShape = false;
   bool isScaleCalled = false;
-  bool invalidScale = false;
-  bool invalidComposite = false;
+
   while (std::cin)
   {
     std::string name = "";
@@ -89,11 +88,11 @@ int main()
       }
       catch (const std::invalid_argument& e)
       {
-        invalidShape = true;
+        std::cerr << "Invalid shape or shapes";
       }
       catch (const std::bad_alloc& e)
       {
-        invalidComposite = true;
+        std::cerr << "Invalid composite";
       }
     }
 
@@ -114,7 +113,8 @@ int main()
       }
       catch (const std::exception& e)
       {
-        invalidScale = true;
+        std::cerr << "Invalid scaling";
+        return 1;
       }
 
       printShapes(cShape, ' ');
@@ -127,18 +127,6 @@ int main()
     std::cerr << "Scale was not called";
     return 1;
   }
-  if (invalidShape)
-  {
-    std::cerr << "Invalid shape or shapes";
-  }
-  if (invalidScale)
-  {
-    std::cerr << "Invalid scaling";
-    return 1;
-  }
-  if (invalidComposite)
-  {
-    std::cerr << "Invalid composite";
-  }
+
   return 0;
 }
