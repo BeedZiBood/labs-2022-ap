@@ -121,9 +121,9 @@ void CompositeShape::unsafeIsoScale(point_t pos, double k)
 {
   for (unsigned i = 0; i < size; i++)
   {
-    point_t p1{ arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y };
+    point_t p1{arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y};
     arr[i]->move(pos);
-    point_t p2{ arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y };
+    point_t p2{arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y};
 
     double dx = k * (p1.x - p2.x);
     double dy = k * (p1.y - p2.y);

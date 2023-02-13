@@ -70,7 +70,7 @@ void Triangle::scale(double k)
 
 void Triangle::unsafeScale(double k)
 {
-  point_t center{ (a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3 };
+  point_t center{(a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3};
   a = multVec(center, a, k);
   b = multVec(center, b, k);
   c = multVec(center, c, k);
@@ -78,5 +78,5 @@ void Triangle::unsafeScale(double k)
 
 Shape* Triangle::clone() const
 {
-  return new Triangle{ a, b, c };
+  return new Triangle{a, b, c};
 }

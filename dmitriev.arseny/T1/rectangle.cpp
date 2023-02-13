@@ -50,7 +50,7 @@ void Rectangle::unsafeScale(double k)
 
 Shape* Rectangle::clone() const
 {
-  point_t leftBott{ rect.center.x - rect.width / 2, rect.center.y - rect.height / 2 };
-  point_t rightTop{ rect.center.x + rect.width / 2, rect.center.y + rect.height / 2 };
+  point_t leftBott{rect.center.x - rect.width / 2, rect.center.y - rect.height / 2};
+  point_t rightTop{rect.center.x + rect.width / 2, rect.center.y + rect.height / 2};
   return new Rectangle{leftBott, rightTop};
 }
