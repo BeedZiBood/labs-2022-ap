@@ -135,9 +135,9 @@ int main()
     std::cerr << "Invalid scaling";
     return 1;
   }
-  //if (invalidComposite)
-  //{
-  //  std::cerr << "Invalid composite";
-  //}
+  if (invalidComposite)
+  {
+    std::cerr << "Invalid composite";
+  }
   return 0;
 }
