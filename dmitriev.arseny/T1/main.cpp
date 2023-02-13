@@ -112,10 +112,11 @@ int main()
       {
         cShape.isoScale(point, k);
       }
-      catch (const std::invalid_argument& e)
+      catch (const std::exception& e)
       {
         invalidScale = true;
       }
+
       printShapes(cShape, ' ');
       std::cout << '\n';
     }

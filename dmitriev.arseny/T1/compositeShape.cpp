@@ -96,6 +96,10 @@ void CompociteShape::scale(double k)
 
 void CompociteShape::isoScale(point_t pos, double k)
 {
+  if (size == 0)
+  {
+    throw std::logic_error("invalid scaling");
+  }
   for (unsigned i = 0; i < size; i++)
   {
     point_t p1{ arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y };
