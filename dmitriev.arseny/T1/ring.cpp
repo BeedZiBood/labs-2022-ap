@@ -2,12 +2,12 @@
 #include <exception>
 #include <iostream>
 
-Ring::Ring(point_t center, double externalRadius, double internalRadius) :
+Ring::Ring(point_t center, double internalRadius, double externalRadius) :
   center(center),
-  externalRadius(externalRadius),
-  internalRadius(internalRadius)
+  internalRadius(internalRadius),
+  externalRadius(externalRadius)
 {
-  if (externalRadius <= internalRadius)
+  if (externalRadius < internalRadius)
   {
     throw std::invalid_argument("invalid arguments");
   }
