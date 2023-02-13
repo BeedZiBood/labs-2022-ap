@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <iomanip>
-#include "Rectangle.h"
+#include "rectangle.h"
 #include "ring.h"
 #include "triangle.h"
 #include "compositeShape.h"
