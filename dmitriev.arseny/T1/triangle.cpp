@@ -12,15 +12,15 @@ Triangle::Triangle(point_t a, point_t b, point_t c) :
   double bSide = makeLine(b, c);
   double cSide = makeLine(c, a);
 
-  if (aSide + bSide >= cSide)
+  if (aSide + bSide < cSide)
   {
     throw std::invalid_argument("invalid argumet");
   }
-  else if (bSide + cSide >= aSide)
+  else if (bSide + cSide < aSide)
   {
     throw std::invalid_argument("invalid argumet");
   }
-  else if (cSide + aSide >= bSide)
+  else if (cSide + aSide < bSide)
   {
     throw std::invalid_argument("invalid argumet");
   }
