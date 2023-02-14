@@ -57,6 +57,7 @@ int main()
         {
           double x = 0;
           double y = 0;
+
           std::cin >> x >> y;
           point_t a{x, y};
 
@@ -101,9 +102,12 @@ int main()
       isScaleCalled = true;
       double x = 0.0;
       double y = 0.0;
+
       std::cin >> x >> y;
       point_t point{x, y};
+
       double k = 0.0;
+
       std::cin >> k;
       printShapes(cShape, ' ');
       std::cout << '\n';

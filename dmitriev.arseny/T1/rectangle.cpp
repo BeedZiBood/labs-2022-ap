@@ -33,15 +33,6 @@ void Rectangle::move(point_t newPos)
   move(dx, dy);
 }
 
-void Rectangle::scale(double k)
-{
-  if (k < 0)
-  {
-    throw std::invalid_argument("invalid argument");
-  }
-  unsafeScale(k);
-}
-
 void Rectangle::unsafeScale(double k)
 {
   rect.height = rect.height * k;

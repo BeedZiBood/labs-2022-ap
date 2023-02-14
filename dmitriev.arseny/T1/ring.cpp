@@ -40,15 +40,6 @@ void Ring::move(point_t newPos)
   move(newPos.x - center.x, newPos.y - center.y);
 }
 
-void Ring::scale(double k)
-{
-  if (k < 0)
-  {
-    throw std::invalid_argument("invalid arguments");
-  }
-  unsafeScale(k);
-}
-
 void Ring::unsafeScale(double k)
 {
   externalRadius = externalRadius * k;
