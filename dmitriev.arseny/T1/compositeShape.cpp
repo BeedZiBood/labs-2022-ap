@@ -215,7 +215,7 @@ CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
   return *this;
 }
 
-bool CompositeShape::empty()
+bool CompositeShape::empty() const
 {
   return (size == 0);
 }

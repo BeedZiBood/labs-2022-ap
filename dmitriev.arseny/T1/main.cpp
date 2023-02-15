@@ -11,10 +11,10 @@ void printShapes(const CompositeShape& cShape, char delimiter)
   std::cout << cShape.getArea();
   for (size_t i = 0; i < cShape.sizeArr(); i++)
   {
-    std::cout << ' ' << cShape[i]->getFrameRect().center.x - cShape[i]->getFrameRect().width / 2;
-    std::cout << ' ' << cShape[i]->getFrameRect().center.y - cShape[i]->getFrameRect().height / 2;
-    std::cout << ' ' << cShape[i]->getFrameRect().center.x + cShape[i]->getFrameRect().width / 2;
-    std::cout << ' ' << cShape[i]->getFrameRect().center.y + cShape[i]->getFrameRect().height / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.x - cShape[i]->getFrameRect().width / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.y - cShape[i]->getFrameRect().height / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.x + cShape[i]->getFrameRect().width / 2;
+    std::cout << delimiter << cShape[i]->getFrameRect().center.y + cShape[i]->getFrameRect().height / 2;
   }
 }
 
