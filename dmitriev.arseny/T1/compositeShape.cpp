@@ -14,7 +14,7 @@ CompositeShape::CompositeShape(const CompositeShape& otherCS):
   capacity(otherCS.capacity),
   arr(new Shape* [capacity])
 {
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     try
     {
@@ -46,7 +46,7 @@ CompositeShape::~CompositeShape()
 double CompositeShape::getArea() const
 {
   double area = 0;
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     area = area + arr[i]->getArea();
   }
@@ -60,7 +60,7 @@ rectangle_t CompositeShape::getFrameRect() const
   double maxX = arr[0]->getFrameRect().center.x + arr[0]->getFrameRect().width / 2;
   double maxY = arr[0]->getFrameRect().center.y + arr[0]->getFrameRect().height / 2;
 
-  for (unsigned i = 1; i < size; i++)
+  for (size_t i = 1; i < size; i++)
   {
     minX = std::min(minX, arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2);
     minY = std::min(minY, arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2);
@@ -73,7 +73,7 @@ rectangle_t CompositeShape::getFrameRect() const
 
 void CompositeShape::move(double dx, double dy)
 {
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     arr[i]->move(dx, dy);
   }
@@ -81,7 +81,7 @@ void CompositeShape::move(double dx, double dy)
 
 void CompositeShape::move(point_t newPos)
 {
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     arr[i]->move(newPos);
   }
@@ -98,7 +98,7 @@ void CompositeShape::scale(double k)
 
 void CompositeShape::unsafeScale(double k)
 {
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     arr[i]->unsafeScale(k);
   }
@@ -138,7 +138,7 @@ void CompositeShape::push_back(Shape* newShape)
   {
     capacity = capacity + 10;
     Shape** newArr = new Shape* [capacity];
-    for (unsigned i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
       newArr[i] = arr[i];
     }
@@ -159,22 +159,22 @@ void CompositeShape::pop_back()
   delete arr[--size];
 }
 
-Shape* CompositeShape::at(unsigned id)
+Shape* CompositeShape::at(size_t id)
 {
   return arr[id];
 }
 
-const Shape* CompositeShape::at(unsigned id) const
+const Shape* CompositeShape::at(size_t id) const
 {
   return arr[id];
 }
 
-Shape* CompositeShape::operator[](unsigned id)
+Shape* CompositeShape::operator[](size_t id)
 {
   return arr[id];
 }
 
-const Shape* CompositeShape::operator[](unsigned id) const
+const Shape* CompositeShape::operator[](size_t id) const
 {
   return arr[id];
 }
@@ -199,7 +199,7 @@ CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
   capacity = otherCS.capacity;
   arr = new Shape * [capacity];
 
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     try
     {
@@ -220,14 +220,14 @@ bool CompositeShape::empty()
   return (size == 0);
 }
 
-unsigned CompositeShape::sizeArr() const
+size_t CompositeShape::sizeArr() const
 {
   return size;
 }
 
-void CompositeShape::clear(Shape** arr, unsigned size)
+void CompositeShape::clear(Shape** arr, size_t size)
 {
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     delete arr[i];
   }

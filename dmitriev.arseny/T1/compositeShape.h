@@ -1,6 +1,7 @@
 #ifndef COMPOCITESHAPE_H
 #define COMPOCITESHAPE_H
 
+#include <cstddef>
 #include "shape.h"
 
 class CompositeShape
@@ -24,23 +25,23 @@ public:
   void push_back(Shape* newShape);
   void push_back(const Shape* newShape);
   void pop_back();
-  Shape* at(unsigned id);
-  const Shape* at(unsigned id) const;
+  Shape* at(size_t id);
+  const Shape* at(size_t id) const;
 
-  Shape* operator[](unsigned id);
-  const Shape* operator[](unsigned id) const;
+  Shape* operator[](size_t id);
+  const Shape* operator[](size_t id) const;
   CompositeShape& operator=(CompositeShape& otherCS);
   CompositeShape& operator=(const CompositeShape& otherCS);
 
-  bool empty();
-  unsigned sizeArr() const;
+  bool empty() const;
+  size_t sizeArr() const;
 
 private:
-  unsigned size;
-  unsigned capacity;
+  size_t size;
+  size_t capacity;
   Shape** arr;
 
-  void clear(Shape** arr, unsigned size);
+  void clear(Shape** arr, size_t size);
 };
 
 #endif
