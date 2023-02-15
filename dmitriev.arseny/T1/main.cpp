@@ -6,6 +6,18 @@
 #include "triangle.h"
 #include "compositeShape.h"
 
+void printShapes(const CompositeShape& cShape, char delimiter)
+{
+  std::cout << cShape.getArea();
+  for (size_t i = 0; i < cShape.sizeArr(); i++)
+  {
+    std::cout << ' ' << cShape[i]->getFrameRect().center.x - cShape[i]->getFrameRect().width / 2;
+    std::cout << ' ' << cShape[i]->getFrameRect().center.y - cShape[i]->getFrameRect().height / 2;
+    std::cout << ' ' << cShape[i]->getFrameRect().center.x + cShape[i]->getFrameRect().width / 2;
+    std::cout << ' ' << cShape[i]->getFrameRect().center.y + cShape[i]->getFrameRect().height / 2;
+  }
+}
+
 int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
@@ -109,14 +121,7 @@ int main()
         return 1;
       }
 
-      std::cout << cShape.getArea();
-      for (size_t i = 0; i < cShape.sizeArr(); i++)
-      {
-        std::cout << ' ' << cShape[i]->getFrameRect().center.x - cShape[i]->getFrameRect().width / 2;
-        std::cout << ' ' << cShape[i]->getFrameRect().center.y - cShape[i]->getFrameRect().height / 2;
-        std::cout << ' ' << cShape[i]->getFrameRect().center.x + cShape[i]->getFrameRect().width / 2;
-        std::cout << ' ' << cShape[i]->getFrameRect().center.y + cShape[i]->getFrameRect().height / 2;
-      }
+      printShapes(cShape, ' ');
       std::cout << '\n';
     }
   }
