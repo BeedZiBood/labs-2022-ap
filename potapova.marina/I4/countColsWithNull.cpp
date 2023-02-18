@@ -10,7 +10,7 @@ size_t countColsWithNull(const int* matrix,
       cur_col_ptr < matrix + count_rows;
       cur_col_ptr += count_rows)
   {
-    for (const int* cur_rlrm_ptr = cur_col_ptr;
+    for (const int* cur_elem_ptr = cur_col_ptr;
         cur_elem_ptr < cur_col_ptr + count_rows;
         ++cur_elem_ptr)
     {
