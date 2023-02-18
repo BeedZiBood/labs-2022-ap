@@ -54,3 +54,4 @@ int main()
   std::cout << "\nChange of signs: " << counter << "\n";
   return 0;
 }
+

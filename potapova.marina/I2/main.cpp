@@ -3,7 +3,7 @@
 #include <fstream>
 #include "elements.h"
 
-int main(int argc, char ** argv)
+int main(int argc, char** argv)
 {
   if (argc != 2) {
     std::cerr << "Not correct amount of CML args\n";
@@ -21,7 +21,7 @@ int main(int argc, char ** argv)
     return 1;
   }
   if (dyn_array_size > 0) {
-    int *dyn_array = new int[dyn_array_size];
+    int* dyn_array = new int[dyn_array_size];
     const unsigned int srand_elem = 3;
     std::srand(srand_elem);
     for (size_t i = 0; i < dyn_array_size; i++) {
@@ -48,21 +48,18 @@ int main(int argc, char ** argv)
   if (!arr_size) {
     std::cout << "0 0\n";
   } else {
-    int *arr = new int[arr_size];
-    while (!input.eof()) {
-      for (size_t i = 0; i < arr_size; i++) {
-        int y = 0;
-        input >> y;
-        if (!input) {
-          std::cerr << "Error while reading\n";
-          return 2;
-        }
-        arr[i] = y;
+    int* arr = new int[arr_size];
+    for (size_t i = 0; i < arr_size; i++) {
+      input >> arr[i];
+      if (!input) {
+        std::cerr << "Error while reading\n";
+        delete [] arr;
+        return 2;
       }
     }
-    delete [] arr;
     size_t neg_after_max = potapova::findNegativeAfterMax(arr, arr_size);
     size_t repeat_pos_numb = potapova::findRepeatingPositiveNumbers(arr, arr_size);
+    delete [] arr;
     std::cout << neg_after_max << " " << repeat_pos_numb << "\n";
   }
   return 0;

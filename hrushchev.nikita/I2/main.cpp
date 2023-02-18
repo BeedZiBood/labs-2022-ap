@@ -14,8 +14,8 @@ int main(int argc, char* argv[])
 
   constexpr size_t size1 = 10;
   int arr1[size1] = {1, 3, 24, 3, 0, 4, 3, 10 , 24, 12};
-  std::cout << get_count_max_element(arr1, size1) << "\n";
-  int* border1 = partition_by_even(arr1, size1);
+  std::cout << getCountMaxElement(arr1, size1) << "\n";
+  int* border1 = partitionByEven(arr1, size1);
   std::cout << *border1 << "\n";
 
   size_t size2 = 0;
@@ -33,8 +33,8 @@ int main(int argc, char* argv[])
     {
       arr2[i] = std::rand() % 10;
     }
-    std::cout << get_count_max_element(arr2, size2) << "\n";
-    int* border2 = partition_by_even(arr2, size2);
+    std::cout << getCountMaxElement(arr2, size2) << "\n";
+    int* border2 = partitionByEven(arr2, size2);
     std::cout << *border2 << "\n";
     delete[] arr2;
   }
@@ -73,8 +73,8 @@ int main(int argc, char* argv[])
   }
   else
   {
-    std::cout << get_count_max_element(arr3, size3) << "\n";
-    int* border3 = partition_by_even(arr3, size3);
+    std::cout << getCountMaxElement(arr3, size3) << "\n";
+    int* border3 = partitionByEven(arr3, size3);
     std::cout << *border3 << "\n";
   }
   delete[] arr3;

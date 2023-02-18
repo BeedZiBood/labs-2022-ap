@@ -94,14 +94,15 @@ double dimkashelk::CompositeShape::getArea() const
 }
 dimkashelk::rectangle_t dimkashelk::CompositeShape::getFrameRect() const
 {
+  namespace dks = dimkashelk;
   if (empty())
   {
     throw std::logic_error("CompositeShape empty");
   }
-  rectangle_t rectangle = dimkashelk::getFrameRect(shapes_[0]->getFrameRect(), shapes_[0]->getFrameRect());
+  rectangle_t rectangle = dks::getFrameRect(shapes_[0]->getFrameRect(), shapes_[0]->getFrameRect());
   for (size_t i = 1; i < size_; i++)
   {
-    rectangle = dimkashelk::getFrameRect(shapes_[i]->getFrameRect(), shapes_[i]->getFrameRect());
+    rectangle = dks::getFrameRect(shapes_[i]->getFrameRect(), shapes_[i]->getFrameRect());
   }
   return rectangle;
 }
@@ -131,10 +132,11 @@ void dimkashelk::CompositeShape::scale(double k)
 }
 void dimkashelk::CompositeShape::unsafeScale(double k)
 {
+  namespace dks = dimkashelk;
   point_t center = getFrameRect().pos;
   for (size_t i = 0; i < size_; i++)
   {
-    dimkashelk::unsafeIsotropicScaling(shapes_[i], center, k);
+    dks::unsafeIsotropicScaling(shapes_[i], center, k);
   }
 }
 void dimkashelk::CompositeShape::push_back(Shape *shp)
@@ -163,7 +165,7 @@ void dimkashelk::CompositeShape::push_back(const Shape *shp)
   Shape *cloneShape = shp->clone();
   try
   {
-    push_back(shp);
+    push_back(cloneShape);
   }
   catch (...)
   {

@@ -33,11 +33,12 @@ double dimkashelk::Polygon::getArea() const
 }
 dimkashelk::rectangle_t dimkashelk::Polygon::getFrameRect() const
 {
+  namespace dks = dimkashelk;
   rectangle_t rectangle = triangles_[0].getFrameRect();
-  rectangle_t rect = dimkashelk::getFrameRect(rectangle, rectangle);
+  rectangle_t rect = dks::getFrameRect(rectangle, rectangle);
   for (size_t i = 1; i < count_; i++)
   {
-    rect = dimkashelk::getFrameRect(triangles_[i].getFrameRect(), rect);
+    rect = dks::getFrameRect(triangles_[i].getFrameRect(), rect);
   }
   return rect;
 }

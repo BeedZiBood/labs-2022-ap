@@ -1,7 +1,7 @@
 #include "partitionbyeven.hpp"
 #include <utility>
 
-int* partition_by_even(int* arr, const size_t size)
+int* partitionByEven(int* arr, const size_t size)
 {
   int* left = arr;
   int* right = arr + size - 1;
