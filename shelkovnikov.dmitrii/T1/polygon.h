@@ -8,6 +8,7 @@ namespace dimkashelk
   {
   public:
     Polygon(const point_t *points, size_t size);
+    Polygon(const Polygon &polygon);
     ~Polygon();
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -19,7 +20,6 @@ namespace dimkashelk
     size_t count_;
     Triangle *triangles_;
     point_t center_;
-    Polygon(const Polygon &polygon);
   };
 }
 #endif

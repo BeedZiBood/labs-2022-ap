@@ -2,6 +2,6 @@
 #define PARTITIONBYEVEN_HPP
 #include <cstddef>
 
-int* partition_by_even(int* arr, size_t size);
+int* partitionByEven(int* arr, size_t size);
 
 #endif

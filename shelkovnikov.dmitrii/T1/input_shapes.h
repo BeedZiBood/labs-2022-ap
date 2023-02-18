@@ -7,5 +7,6 @@ namespace dimkashelk
   Shape* inputRectangle(std::istream &in);
   Shape* inputRegular(std::istream &in);
   Shape* inputPolygon(std::istream &in);
+  Shape* inputEllipse(std::istream &in);
 }
 #endif
