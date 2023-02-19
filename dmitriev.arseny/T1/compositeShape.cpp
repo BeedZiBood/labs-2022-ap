@@ -225,7 +225,7 @@ size_t CompositeShape::sizeArr() const
   return size;
 }
 
-void CompositeShape::printInfo(std::ofstream out, char separator) const
+void CompositeShape::printInfo(std::ostream& out, char separator) const
 {
   out << getArea();
 

@@ -35,7 +35,7 @@ public:
 
   bool empty() const;
   size_t sizeArr() const;
-  void printInfo(std::ofstream out, char separator) const;
+  void printInfo(std::ostream& out, char separator) const;
 
 private:
   size_t size;
