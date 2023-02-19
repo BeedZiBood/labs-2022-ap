@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
         }
         std::ofstream output(argv[3]);
         output << countRowsWithoutNull(static_arr, count_rows, count_cols) << " "
-               << countColsWithNull(static_arr, count_rows) << "\n";
+               << countColsWithNull(static_arr, count_rows, count_cols) << "\n";
     }
     else if (!strcmp(argv[1], "2"))
     {
