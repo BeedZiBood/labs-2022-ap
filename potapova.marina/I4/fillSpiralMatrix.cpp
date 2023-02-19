@@ -12,7 +12,7 @@ void fillSpiralMatrix(std::uint32_t* const dest,
 
   static std::uint32_t cur_elem_val = 1;
 
-  if (matrix_order == 1 && original_matrix_order & 1 == 1)
+  if (matrix_order == 1 && (original_matrix_order & 1) == 1)
   {
     *dest = cur_elem_val;
   }
