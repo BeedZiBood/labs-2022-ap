@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
     }
     else if (!strcmp(argv[1], "2"))
     {
-        const std::uint16_t matrix_order = inputMatrixOrder(argv[1]);
+        const std::uint16_t matrix_order = inputMatrixOrder(argv[2]);
 
         std::uint32_t* spiral_matrix;
 
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
         }
 
         fillSpiralMatrix(spiral_matrix, matrix_order);
-        printSpiralMatrix(spiral_matrix, matrix_order, argv[2]);
+        printSpiralMatrix(spiral_matrix, matrix_order, argv[3]);
 
         delete[] spiral_matrix;
 
@@ -82,11 +82,11 @@ int main(int argc, char* argv[])
         size_t count_cols;
         std::int64_t* matrix;
 
-        inputMatrix(count_rows, count_cols, matrix, argv[1]);
+        inputMatrix(count_rows, count_cols, matrix, argv[2]);
 
         printCountOfSaddlePoints(
             getCountOfSaddlePoints(matrix, count_rows, count_cols),
-            argv[2]);
+            argv[3]);
 
         delete[] matrix;
     }
