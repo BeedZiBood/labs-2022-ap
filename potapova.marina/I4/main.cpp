@@ -1,3 +1,4 @@
+#include <cstring>
 #include "countColsWithNull.h"
 #include "countRowsWithoutNull.h"
 #include "inputOutputStaticMatrix.h"
