@@ -45,7 +45,7 @@ CompositeShape::~CompositeShape()
 
 double CompositeShape::getArea() const
 {
-  double area = 0;
+  double area = 0.0;
   for (size_t i = 0; i < size; i++)
   {
     area = area + arr[i]->getArea();
@@ -89,7 +89,7 @@ void CompositeShape::move(point_t newPos)
 
 void CompositeShape::scale(double k)
 {
-  if (k < 0)
+  if (k < 0.0)
   {
     throw std::invalid_argument("invalid argument");
   }
@@ -106,7 +106,7 @@ void CompositeShape::unsafeScale(double k)
 
 void CompositeShape::isoScale(point_t pos, double k)
 {
-  if (k < 0)
+  if (k < 0.0)
   {
     throw std::invalid_argument("invalid argument");
   }
@@ -119,7 +119,7 @@ void CompositeShape::isoScale(point_t pos, double k)
 
 void CompositeShape::unsafeIsoScale(point_t pos, double k)
 {
-  for (unsigned i = 0; i < size; i++)
+  for (size_t i = 0; i < size; i++)
   {
     point_t p1{arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y};
     arr[i]->move(pos);
@@ -223,6 +223,19 @@ bool CompositeShape::empty() const
 size_t CompositeShape::sizeArr() const
 {
   return size;
+}
+
+void CompositeShape::printInfo(std::ofstream out, char separator) const
+{
+  out << getArea();
+
+  for (size_t i = 0; i < sizeArr(); i++)
+  {
+    out << separator << arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2;
+    out << separator << arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2;
+    out << separator << arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2;
+    out << separator << arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2;
+  }
 }
 
 void CompositeShape::clear(Shape** arr, size_t size)

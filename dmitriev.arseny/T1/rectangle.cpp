@@ -4,7 +4,7 @@
 Rectangle::Rectangle(point_t leftBott, point_t rightTop):
   rect(makeNewRect(leftBott, rightTop))
 {
-  if (rect.height <= 0 || rect.width <= 0)
+  if (rect.height <= 0.0 || rect.width <= 0.0)
   {
     throw std::invalid_argument("invalid arguments");
   }

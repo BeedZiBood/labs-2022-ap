@@ -6,18 +6,6 @@
 #include "triangle.h"
 #include "compositeShape.h"
 
-void printShapes(const CompositeShape& cShape, char delimiter)
-{
-  std::cout << cShape.getArea();
-  for (size_t i = 0; i < cShape.sizeArr(); i++)
-  {
-    std::cout << delimiter << cShape[i]->getFrameRect().center.x - cShape[i]->getFrameRect().width / 2;
-    std::cout << delimiter << cShape[i]->getFrameRect().center.y - cShape[i]->getFrameRect().height / 2;
-    std::cout << delimiter << cShape[i]->getFrameRect().center.x + cShape[i]->getFrameRect().width / 2;
-    std::cout << delimiter << cShape[i]->getFrameRect().center.y + cShape[i]->getFrameRect().height / 2;
-  }
-}
-
 int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
@@ -74,8 +62,8 @@ int main()
         }
         else if (name == "RING")
         {
-          double x = 0;
-          double y = 0;
+          double x = 0.0;
+          double y = 0.0;
 
           std::cin >> x >> y;
           point_t a{x, y};
@@ -109,7 +97,7 @@ int main()
       double k = 0.0;
 
       std::cin >> k;
-      printShapes(cShape, ' ');
+      cShape.printInfo(std::cout, ' ');
       std::cout << '\n';
       try
       {
@@ -121,7 +109,7 @@ int main()
         return 1;
       }
 
-      printShapes(cShape, ' ');
+      cShape.printInfo(std::cout, ' ');
       std::cout << '\n';
     }
   }

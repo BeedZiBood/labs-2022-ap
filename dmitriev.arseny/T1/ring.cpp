@@ -10,7 +10,7 @@ Ring::Ring(point_t center, double externalRadius, double internalRadius):
   {
     throw std::invalid_argument("invalid arguments");
   }
-  if (internalRadius <= 0)
+  if (internalRadius <= 0.0)
   {
     throw std::invalid_argument("invalid arguments");
   }
