@@ -20,7 +20,7 @@ int main(int argc, char** argv)
     {
       inpFile.open(argv[2]);
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       std::cout << ex.what() << "\n";
       return 1;
@@ -32,7 +32,7 @@ int main(int argc, char** argv)
       inpFile >> rows;
       inpFile >> cols;
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       inpFile.close();
       std::cout << ex.what() << "\n";
@@ -54,7 +54,7 @@ int main(int argc, char** argv)
         }
       }
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       inpFile.close();
       std::cout << ex.what() << "\n";
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
     {
       outFile.open(argv[3]);
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       std::cout << ex.what() << "\n";
       return 1;
@@ -85,7 +85,7 @@ int main(int argc, char** argv)
     {
       inpFile.open(argv[2]);
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       std::cout << ex.what() << "\n";
       return 1;
@@ -105,7 +105,7 @@ int main(int argc, char** argv)
         }
       }
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       delete[] dynMatrix;
       inpFile.close();
@@ -119,7 +119,7 @@ int main(int argc, char** argv)
     {
       outFile.open(argv[3]);
     }
-    catch (const std::exception& ex)
+    catch (const std::exception& e)
     {
       std::cout << ex.what() << "\n";
       return 1;

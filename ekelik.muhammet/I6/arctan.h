@@ -3,6 +3,6 @@
 
 #include <cstddef>
 
-double arctan(const double x, const size_t number_max, const double abs_error);
+double arctan(double x, double abs_Error, size_t max_Number);
 
 #endif

@@ -7,29 +7,29 @@
 
 int main()
 {
-  const double abs_error = 0.0001;
-  const double step = 0.05;
-  double x_start = 0.0;
-  double x_end = 0.0;
-  size_t number_max = 0;
+  const double abs_Error = 0.0001;
+  const double m_step = 0.1;
+  double m_1 = 0.0;
+  double m_2 = 0.0;
+  size_t max_Number = 0;
 
-  std::cin >> x_start >> x_end >> number_max;
-  if (x_start > x_end)
+  std::cin >> m_1 >> m_2 >> max_Number;
+  if (!std::cin || m_1 < -1.0 || m_2 > 1.0 || m_1 > m_2)
   {
-    std::cerr << "Invalid interval\n";
+    std::cerr << "Incorrect input\n";
     return 1;
   }
-  for (double x = x_start; x <= x_end; x += step)
+  try
   {
-    try
+    for (double x = m_1; x <= m_2; x += m_step)
     {
-      printTable(std::cout, abs_error, step, x_start, x_end, number_max, x, arctan);
+      printTable(std::cout, abs_Error, m_step, x, x + m_step, max_Number);
     }
-    catch (const std::exception &e)
-    {
-      std::cerr << e.what() << "\n";
-      return 1;
-    }
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << e.what() << "\n";
+    return 1;
   }
   return 0;
 }

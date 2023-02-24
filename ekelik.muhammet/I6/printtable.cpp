@@ -1,24 +1,23 @@
 #include "printtable.h"
-
 #include <iostream>
 #include <cstddef>
 #include <cmath>
 #include <ostream>
 #include <iomanip>
+#include "arctan.h"
 
-void printTableRow(std::ostream& out, const double x, const size_t number_max, const double abs_error, double (*func)(const double, const size_t, const double))
+void printTableRow(std::ostream& out, double x, size_t max_Number, double abs_Error)
 {
-  double result = func(x, number_max, abs_error);
+  double result = arctan(x, max_Number, abs_Error);
   out << std::setw(5) << x << " ";
   out << std::setw(10) << std::setprecision(5) << result << " ";
   out << std::setw(10) << std::setprecision(5) << std::atan(x) << "\n";
 }
 
-void printTable(std::ostream& out,
-    const double abs_error, const double step, const double x_start, const double x_end, const size_t number_max, double (*func)(const double, const size_t, const double))
+void printTable(std::ostream& out, double abs_Error, double m_step, double m_1, double m_2, size_t max_Number)
 {
-  for (double x = x_start; x <= x_end; x += step)
+  for (double x = m_1; x <= m_2; x += m_step)
   {
-    printTableRow(out, x, number_max, abs_error, func);
+    printTableRow(out, x, max_Number, abs_Error);
   }
 }
