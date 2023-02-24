@@ -15,6 +15,16 @@ int main(int argc, const char* argv[])
     std::cin >> abs_error;
     std::cout << "Input maximum terms number: ";
     std::cin >> num_max;
+    if (!std::cin)
+    {
+        std::cerr << "Wrong input\n";
+        return 1;
+    }
+    if (start > end || step <= 0)
+    {
+        std::cerr << "Wrong interval\n";
+        return 1;
+    }
 
     try
     {
