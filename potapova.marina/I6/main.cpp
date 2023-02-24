@@ -16,5 +16,15 @@ int main(int argc, const char* argv[])
     std::cout << "Input maximum terms number: ";
     std::cin >> num_max;
 
+    try
+    {
+        printTable(abs_error, num_max, start, end, step);
+    }
+    catch (std::logic_error& e)
+    {
+        std::cerr << "Error: " << e.what() << '\n';
+        return 1;
+    }
+
     return 0;
 }
