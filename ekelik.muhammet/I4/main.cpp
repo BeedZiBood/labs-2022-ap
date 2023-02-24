@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     }
     catch (const std::exception& e)
     {
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     int stMatrix[1000];
@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     catch (const std::exception& e)
     {
       inpFile.close();
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     if (rows * cols > 1000)
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     catch (const std::exception& e)
     {
       inpFile.close();
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     inpFile.close();
@@ -69,7 +69,7 @@ int main(int argc, char** argv)
     }
     catch (const std::exception& e)
     {
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     outFile << countRowsWithEqualSum(stMatrix, rows, cols) << "\n";
@@ -87,7 +87,7 @@ int main(int argc, char** argv)
     }
     catch (const std::exception& e)
     {
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     size_t rows = 0, cols = 0;
@@ -109,7 +109,7 @@ int main(int argc, char** argv)
     {
       delete[] dynMatrix;
       inpFile.close();
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     inpFile.close();
@@ -121,7 +121,7 @@ int main(int argc, char** argv)
     }
     catch (const std::exception& e)
     {
-      std::cout << ex.what() << "\n";
+      std::cout << e.what() << "\n";
       return 1;
     }
     outFile << countRowsWithEqualSum(dynMatrix, rows, cols) << "\n";
