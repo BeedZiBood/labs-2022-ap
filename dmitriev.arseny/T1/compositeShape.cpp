@@ -154,8 +154,18 @@ void CompositeShape::pushBack(Shape* newShape)
 
 void CompositeShape::pushBack(const Shape* newShape)
 {
-  Shape* newShapeClone = newShape->clone();
-  push_back(newShapeClone);
+  Shape* newShapeClone = nullptr;
+  try
+  {
+    newShapeClone = newShape->clone();
+  }
+  catch (const std::bad_alloc& e)
+  {
+    clear(arr, size);
+    throw e;
+  }
+
+  pushBack(newShapeClone);
 }
 
 void CompositeShape::popBack()
