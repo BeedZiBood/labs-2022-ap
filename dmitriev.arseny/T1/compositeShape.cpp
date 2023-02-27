@@ -64,24 +64,23 @@ double CompositeShape::getArea() const
 
 rectangle_t CompositeShape::getFrameRect() const
 {
-  if (size != 0)
+  if (size == 0)
   {
-    double minX = arr[0]->getFrameRect().center.x - arr[0]->getFrameRect().width / 2;
-    double minY = arr[0]->getFrameRect().center.y - arr[0]->getFrameRect().height / 2;
-    double maxX = arr[0]->getFrameRect().center.x + arr[0]->getFrameRect().width / 2;
-    double maxY = arr[0]->getFrameRect().center.y + arr[0]->getFrameRect().height / 2;
-
-    for (size_t i = 1; i < size; i++)
-    {
-      minX = std::min(minX, arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2);
-      minY = std::min(minY, arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2);
-      maxX = std::max(maxX, arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2);
-      maxY = std::max(maxY, arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2);
-    }
-    return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
+    throw std::logic_error("no elements in arr");
   }
+  double minX = arr[0]->getFrameRect().center.x - arr[0]->getFrameRect().width / 2;
+  double minY = arr[0]->getFrameRect().center.y - arr[0]->getFrameRect().height / 2;
+  double maxX = arr[0]->getFrameRect().center.x + arr[0]->getFrameRect().width / 2;
+  double maxY = arr[0]->getFrameRect().center.y + arr[0]->getFrameRect().height / 2;
 
-  return 0.0;
+  for (size_t i = 1; i < size; i++)
+  {
+    minX = std::min(minX, arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2);
+    minY = std::min(minY, arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2);
+    maxX = std::max(maxX, arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2);
+    maxY = std::max(maxY, arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2);
+  }
+  return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
 }
 
 void CompositeShape::move(double dx, double dy)
