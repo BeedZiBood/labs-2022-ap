@@ -2,6 +2,13 @@
 #include <stdexcept>
 #include <algorithm>
 
+CompositeShape::CompositeShape():
+  size(0),
+  capacity(10),
+  arr(new Shape* [capacity])
+{
+}
+
 void clear(Shape** arr, size_t size)
 {
   for (size_t i = 0; i < size; i++)
@@ -9,13 +16,6 @@ void clear(Shape** arr, size_t size)
     delete arr[i];
   }
   delete[]arr;
-}
-
-CompositeShape::CompositeShape():
-  size(0),
-  capacity(10),
-  arr(new Shape* [capacity])
-{
 }
 
 CompositeShape::CompositeShape(const CompositeShape& otherCS):
