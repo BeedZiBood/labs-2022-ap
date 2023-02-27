@@ -136,7 +136,7 @@ void CompositeShape::unsafeIsoScale(point_t pos, double k)
   }
 }
 
-void CompositeShape::push_back(Shape* newShape)
+void CompositeShape::pushBack(Shape* newShape)
 {
   if (size == capacity)
   {
@@ -152,13 +152,13 @@ void CompositeShape::push_back(Shape* newShape)
   arr[size++] = newShape;
 }
 
-void CompositeShape::push_back(const Shape* newShape)
+void CompositeShape::pushBack(const Shape* newShape)
 {
   Shape* newShapeClone = newShape->clone();
   push_back(newShapeClone);
 }
 
-void CompositeShape::pop_back()
+void CompositeShape::popBack()
 {
   delete arr[--size];
 }

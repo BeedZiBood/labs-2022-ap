@@ -23,9 +23,9 @@ public:
   void isoScale(point_t pos, double k);
   void unsafeIsoScale(point_t pos, double k);
 
-  void push_back(Shape* newShape);
-  void push_back(const Shape* newShape);
-  void pop_back();
+  void pushBack(Shape* newShape);
+  void pushBack(const Shape* newShape);
+  void popBack();
   Shape* at(size_t id);
   const Shape* at(size_t id) const;
 
