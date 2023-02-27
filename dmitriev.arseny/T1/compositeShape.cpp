@@ -81,7 +81,7 @@ rectangle_t CompositeShape::getFrameRect() const
     return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
   }
 
-  return 0;
+  return 0.0;
 }
 
 void CompositeShape::move(double dx, double dy)

@@ -39,7 +39,7 @@ int main()
           Rectangle rec{a, b};
           Shape* shape = rec.clone();
 
-          cShape.push_back(shape);
+          cShape.pushBack(shape);
         }
         else if (name == "TRIANGLE")
         {
@@ -58,7 +58,7 @@ int main()
           Triangle tri{a, b, c};
           Shape* shape = tri.clone();
 
-          cShape.push_back(shape);
+          cShape.pushBack(shape);
         }
         else if (name == "RING")
         {
@@ -72,7 +72,7 @@ int main()
           Ring rin{a, x, y};
           Shape* shape = rin.clone();
 
-          cShape.push_back(shape);
+          cShape.pushBack(shape);
         }
       }
       catch (const std::invalid_argument& e)
