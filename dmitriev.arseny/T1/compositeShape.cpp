@@ -2,7 +2,14 @@
 #include <stdexcept>
 #include <algorithm>
 
-void clear(Shape** arr, size_t size);
+void clear(Shape** arr, size_t size)
+{
+  for (size_t i = 0; i < size; i++)
+  {
+    delete arr[i];
+  }
+  delete[]arr;
+}
 
 CompositeShape::CompositeShape():
   size(0),
@@ -260,13 +267,4 @@ void CompositeShape::printInfo(std::ostream& out, char separator) const
     out << separator << arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2;
     out << separator << arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2;
   }
-}
-
-void clear(Shape** arr, size_t size)
-{
-  for (size_t i = 0; i < size; i++)
-  {
-    delete arr[i];
-  }
-  delete[]arr;
 }
