@@ -3,7 +3,7 @@
 
 #include "shape.h"
 
-class Rectangle : public Shape
+class Rectangle: public Shape
 {
 public:
   Rectangle(point_t leftBott, point_t rightTop);

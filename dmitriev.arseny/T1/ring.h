@@ -3,7 +3,7 @@
 
 #include "shape.h"
 
-class Ring : public Shape
+class Ring: public Shape
 {
 public:
   Ring(point_t center, double externalRadius, double internalRadius);
