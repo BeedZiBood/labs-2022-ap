@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <algorithm>
 
+void clear(Shape** arr, size_t size);
+
 CompositeShape::CompositeShape():
   size(0),
   capacity(10),
