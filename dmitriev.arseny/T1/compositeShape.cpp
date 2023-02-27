@@ -260,7 +260,7 @@ void CompositeShape::printInfo(std::ostream& out, char separator) const
   }
 }
 
-void CompositeShape::clear(Shape** arr, size_t size)
+void clear(Shape** arr, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {

@@ -42,8 +42,6 @@ private:
   size_t size;
   size_t capacity;
   Shape** arr;
-
-  void clear(Shape** arr, size_t size);
 };
 
 #endif
