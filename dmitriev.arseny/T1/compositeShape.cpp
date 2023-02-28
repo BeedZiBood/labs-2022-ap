@@ -224,23 +224,25 @@ CompositeShape& CompositeShape::operator=(CompositeShape&& otherCS)
 
 CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
 {
-  clear(arr, size);
-  size = otherCS.size;
-  capacity = otherCS.capacity;
-  arr = new Shape * [capacity];
+  Shape** newArr = new Shape* [capacity];
 
-  for (size_t i = 0; i < size; i++)
+  for (size_t i = 0; i < otherCS.size; i++)
   {
     try
     {
-      arr[i] = otherCS.arr[i]->clone();
+      newArr[i] = otherCS.arr[i]->clone();
     }
     catch (const std::bad_alloc& e)
     {
-      clear(arr, i);
+      clear(newArr, i);
       throw e;
     }
   }
+
+  clear(arr, size);
+  size = otherCS.size;
+  capacity = otherCS.capacity;
+  arr = newArr;
 
   return *this;
 }
