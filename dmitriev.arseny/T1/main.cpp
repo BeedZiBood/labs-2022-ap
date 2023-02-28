@@ -43,8 +43,15 @@ int main()
 
           Rectangle rec{a, b};
           Shape* shape = rec.clone();
-
-          cShape.pushBack(shape);
+          try
+          {
+            cShape.pushBack(shape);
+          }
+          catch (const std::bad_alloc& e)
+          {
+            delete shape;
+            throw e;
+          }
         }
         else if (name == "TRIANGLE")
         {
@@ -67,8 +74,15 @@ int main()
 
           Triangle tri{a, b, c};
           Shape* shape = tri.clone();
-
-          cShape.pushBack(shape);
+          try
+          {
+            cShape.pushBack(shape);
+          }
+          catch (const std::bad_alloc& e)
+          {
+            delete shape;
+            throw e;
+          }
         }
         else if (name == "RING")
         {
@@ -86,8 +100,15 @@ int main()
 
           Ring rin{a, x, y};
           Shape* shape = rin.clone();
-
-          cShape.pushBack(shape);
+          try
+          {
+            cShape.pushBack(shape);
+          }
+          catch (const std::bad_alloc& e)
+          {
+            delete shape;
+            throw e;
+          }
         }
       }
       catch (const std::invalid_argument& e)
