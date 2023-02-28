@@ -209,7 +209,7 @@ const Shape* CompositeShape::operator[](size_t id) const
   return arr[id];
 }
 
-CompositeShape& CompositeShape::operator=(CompositeShape& otherCS)
+CompositeShape& CompositeShape::operator=(CompositeShape&& otherCS)
 {
   clear(arr, size);
   size = otherCS.size;
