@@ -43,14 +43,9 @@ rectangle_t Triangle::getFrameRect() const
 
 void Triangle::move(double dx, double dy)
 {
-  a.x = a.x + dx;
-  a.y = a.y + dy;
-
-  b.x = b.x + dx;
-  b.y = b.y + dy;
-
-  c.x = c.x + dx;
-  c.y = c.y + dy;
+  a = sumVec(a, {dx, dy});
+  b = sumVec(b, {dx, dy});
+  c = sumVec(c, {dx, dy});
 }
 
 void Triangle::move(point_t newPos)
