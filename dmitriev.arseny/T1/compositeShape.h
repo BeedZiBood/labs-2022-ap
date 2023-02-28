@@ -31,7 +31,7 @@ public:
 
   Shape* operator[](size_t id);
   const Shape* operator[](size_t id) const;
-  CompositeShape& operator=(CompositeShape& otherCS);
+  CompositeShape& operator=(CompositeShape&& otherCS);
   CompositeShape& operator=(const CompositeShape& otherCS);
 
   bool empty() const;
