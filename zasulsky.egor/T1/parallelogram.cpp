@@ -8,11 +8,13 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
   p2_(p2),
   p3_(p3)
 {
-  if (abs(p2_.x - p1_.x) <= 0.0 && abs(p2_.y - p1_.y) <= 0.0 || abs(p3_.x - p2_.x) <= 0.0 && abs(p3_.y - p2_.y) <= 0.0 || abs(p3_.x - p1_.x) <= 0.0 && abs(p3_.y - p1_.y) <= 0.0)
+  bool side12Incorrect = (abs(p2_.x - p1_.x) <= 0.0 && abs(p2_.y - p1_.y) <= 0.0);
+  bool side23Incorrect = (abs(p3_.x - p2_.x) <= 0.0 && abs(p3_.y - p2_.y) <= 0.0);
+  bool side13Incorrect = (abs(p3_.x - p1_.x) <= 0.0 && abs(p3_.y - p1_.y) <= 0.0);
+  if (side12Incorrect || side23Incorrect || side13Incorrect)
   {
     throw std::invalid_argument("Sides should be bigger than 0.0");
   }
-}
 double zasulsky::Parallelogram::getArea() const
 {
   if (p1_.y == p2_.y)

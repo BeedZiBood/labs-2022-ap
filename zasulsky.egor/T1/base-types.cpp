@@ -17,7 +17,7 @@ void zasulsky::isoScalePoint(point_t& p, const point_t& center, double k)
 }
 zasulsky::rectangle_t zasulsky::getFrameRectFromCorners(const point_t& bl, const point_t& tr)
 {
-  if (tr.x < bl.x || tr.y < bl.y) 
+  if (tr.x < bl.x || tr.y < bl.y)
   {
     throw std::invalid_argument("corners set incorrectly");
   }
