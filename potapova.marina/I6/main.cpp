@@ -1,3 +1,4 @@
+#include <iostream>
 #include "calculateAtanSum.h"
 #include "printTable.h"
 
