@@ -17,10 +17,9 @@ int main()
   {
     std::string name;
     std::cin >> name;
-    if (!std::cin)
+    if (!std::cin.good())
     {
-      std::cout << "input error\n";
-      return 1;
+      break;
     }
     if (name == "ELLIPSE")
     {
@@ -29,10 +28,9 @@ int main()
       double radiusHorizontal;
       std::cin >> center.x >> center.y;
       std::cin >> radiusVertical >> radiusHorizontal;
-      if (!std::cin)
+      if (!std::cin.good())
       {
-        std::cout << "input error\n";
-        return 1;
+        break;
       }
       zasulsky::Ellipse* ellipse = nullptr;
       try
@@ -68,10 +66,9 @@ int main()
       std::cin >> p1.x >> p1.y;
       std::cin >> p2.x >> p2.y;
       std::cin >> p3.x >> p3.y;
-      if (!std::cin)
+      if (!std::cin.good())
       {
-        std::cout << "input error\n";
-        return 1;
+        break;
       }
       zasulsky::Parallelogram* parallelogram = nullptr;
       try
@@ -105,10 +102,9 @@ int main()
       zasulsky::point_t p2;
       std::cin >> p1.x >> p1.y;
       std::cin >> p2.x >> p2.y;
-      if (!std::cin)
+      if (!std::cin.good())
       {
-        std::cout << "input error\n";
-        return 1;
+        break;
       }
       zasulsky::Rectangle* rectangle = nullptr;
       try
@@ -142,10 +138,9 @@ int main()
       double k;
       std::cin >> scaleCenter.x >> scaleCenter.y;
       std::cin >> k;
-      if (!std::cin)
+      if (!std::cin.good())
       {
-        std::cout << "input error\n";
-        return 1;
+        break;
       }
       if (k <= 0.0)
       {
@@ -157,6 +152,11 @@ int main()
       hasScaled = true;
       zasulsky::outputComposite(std::cout, composite);
     }
+  }
+  if (!std::cin)
+  {
+    std::cout << "input error\n";
+    return 1;
   }
   if (!hasScaled)
   {
