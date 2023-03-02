@@ -35,7 +35,6 @@ zasulsky::rectangle_t zasulsky::Parallelogram::getFrameRect() const
 {
   point_t location = getCenter();
   double side12x = p2_.x - p1_.x;
-  double side12y = p2_.y - p1_.y;
   double side23x = p3_.x - p2_.x;
   double side13y = p1_.y - p3_.y;
   return rectangle_t{ fabs(side12x) + fabs(side23x), fabs(side13y), location };
