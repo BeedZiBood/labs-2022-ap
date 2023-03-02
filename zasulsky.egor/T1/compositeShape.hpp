@@ -29,8 +29,8 @@ namespace zasulsky
     size_t size() const;
 
   private:
-    size_t size_;
     size_t cap_;
+    size_t size_;
     Shape** shape_;
     point_t getCenter();
     void extend(size_t capDiff);

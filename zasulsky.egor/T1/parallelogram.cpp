@@ -3,7 +3,7 @@
 #include <cmath>
 #include "base-types.hpp"
 
-zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
+zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3) :
   p1_(p1),
   p2_(p2),
   p3_(p3)
@@ -15,6 +15,7 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
   {
     throw std::invalid_argument("Sides should be bigger than 0.0");
   }
+}
 double zasulsky::Parallelogram::getArea() const
 {
   if (p1_.y == p2_.y)

@@ -1,5 +1,5 @@
 #include "ellipse.hpp"
-#include <corecrt_math_defines.h>
+#include <cmath>
 #include <stdexcept>
 #include "base-types.hpp"
 
