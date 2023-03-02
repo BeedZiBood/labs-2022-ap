@@ -2,7 +2,7 @@
 #define COMPOSITESHAPE_HPP
 #include <iosfwd>
 #include "base-types.hpp"
-#include "Shape.hpp"
+#include "shape.hpp"
 
 namespace zasulsky
 {

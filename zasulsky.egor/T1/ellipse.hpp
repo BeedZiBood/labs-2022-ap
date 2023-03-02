@@ -1,6 +1,6 @@
 #ifndef ELLIPSE_HPP
 #define ELLIPSE_HPP
-#include "Shape.hpp"
+#include "shape.hpp"
 
 namespace zasulsky
 {
