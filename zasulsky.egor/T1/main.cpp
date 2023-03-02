@@ -47,6 +47,7 @@ int main()
       catch (const std::invalid_argument& e)
       {
         std::cout << e.what() << '\n';
+        continue;
       }
       try
       {
@@ -85,6 +86,7 @@ int main()
       catch (const std::invalid_argument& e)
       {
         std::cout << e.what() << '\n';
+        continue;
       }
       try
       {
@@ -121,6 +123,7 @@ int main()
       catch (const std::invalid_argument& e)
       {
         std::cout << e.what() << '\n';
+        continue;
       }
       try
       {
