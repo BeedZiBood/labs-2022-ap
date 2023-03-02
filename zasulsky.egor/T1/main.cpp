@@ -149,7 +149,7 @@ int main()
         continue;
       }
       try
-      { 
+      {
       zasulsky::outputComposite(std::cout, composite) << '\n';
       zasulsky::isoScale(composite, scaleCenter, k);
       hasScaled = true;
