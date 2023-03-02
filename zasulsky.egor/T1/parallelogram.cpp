@@ -8,9 +8,9 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
   p2_(p2),
   p3_(p3)
 {
-  bool side12Incorrect = (abs(p2_.x - p1_.x) <= 0.0 && abs(p2_.y - p1_.y) <= 0.0);
-  bool side23Incorrect = (abs(p3_.x - p2_.x) <= 0.0 && abs(p3_.y - p2_.y) <= 0.0);
-  bool side13Incorrect = (abs(p3_.x - p1_.x) <= 0.0 && abs(p3_.y - p1_.y) <= 0.0);
+  bool side12Incorrect = (fabs(p2_.x - p1_.x) <= 0.0 && fabs(p2_.y - p1_.y) <= 0.0);
+  bool side23Incorrect = (fabs(p3_.x - p2_.x) <= 0.0 && fabs(p3_.y - p2_.y) <= 0.0);
+  bool side13Incorrect = (fabs(p3_.x - p1_.x) <= 0.0 && fabs(p3_.y - p1_.y) <= 0.0);
   if (side12Incorrect || side23Incorrect || side13Incorrect)
   {
     throw std::invalid_argument("Sides should be bigger than 0.0");
@@ -20,15 +20,15 @@ double zasulsky::Parallelogram::getArea() const
 {
   if (p1_.y == p2_.y)
   {
-    return (abs(p1_.y - p3_.y)) * abs(p2_.x - p1_.x);
+    return (fabs(p1_.y - p3_.y)) * fabs(p2_.x - p1_.x);
   }
-  return (abs(p1_.y - p3_.y)) * abs(p2_.x - p3_.x);
+  return (fabs(p1_.y - p3_.y)) * fabs(p2_.x - p3_.x);
 }
 zasulsky::point_t zasulsky::Parallelogram::getCenter() const
 {
   point_t location;
-  location.x = abs((p1_.x + p3_.x) * 0.5);
-  location.y = abs((p1_.y + p3_.y) * 0.5);
+  location.x = fabs((p1_.x + p3_.x) * 0.5);
+  location.y = fabs((p1_.y + p3_.y) * 0.5);
   return location;
 }
 zasulsky::rectangle_t zasulsky::Parallelogram::getFrameRect() const
@@ -38,7 +38,7 @@ zasulsky::rectangle_t zasulsky::Parallelogram::getFrameRect() const
   double side12y = p2_.y - p1_.y;
   double side23x = p3_.x - p2_.x;
   double side13y = p1_.y - p3_.y;
-  return rectangle_t{ abs(side12x) + abs(side23x), abs(side13y), location };
+  return rectangle_t{ fabs(side12x) + fabs(side23x), fabs(side13y), location };
 }
 void zasulsky::Parallelogram::move(double dx, double dy)
 {
