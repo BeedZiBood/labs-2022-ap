@@ -13,6 +13,7 @@ int main()
 {
   zasulsky::CompositeShape composite(10);
   bool hasScaled = false;
+  std::cout << std::setprecision(1) << std::fixed;
   while (std::cin.good())
   {
     std::string name;
@@ -150,7 +151,7 @@ int main()
       zasulsky::outputComposite(std::cout, composite) << '\n';
       zasulsky::isoScale(composite, scaleCenter, k);
       hasScaled = true;
-      zasulsky::outputComposite(std::cout, composite);
+      zasulsky::outputComposite(std::cout, composite) << '\n';
     }
   }
   if (!std::cin)
