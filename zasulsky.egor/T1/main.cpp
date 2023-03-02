@@ -148,10 +148,18 @@ int main()
         std::cout << "coefficient is not correctly\n";
         continue;
       }
+      try
+      { 
       zasulsky::outputComposite(std::cout, composite) << '\n';
       zasulsky::isoScale(composite, scaleCenter, k);
       hasScaled = true;
       zasulsky::outputComposite(std::cout, composite) << '\n';
+      }
+      catch(const std::runtime_error& e)
+      {
+        std::cout << e.what() << ' ';
+        return 1;
+      }
     }
   }
   if (!std::cin)
