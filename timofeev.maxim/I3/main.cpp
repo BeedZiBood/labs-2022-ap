@@ -1,5 +1,5 @@
 #include <iostream>
-#include "inputStr.h"
+#include <inputStr.h>
 #include "removeAlphabet.h"
 #include "addNumbersFromSecondToFirst.h"
 int main()

@@ -4,4 +4,3 @@
 #include <cstddef>
 char* formingCstring(size_t& size, std::istream& input);
 #endif
-

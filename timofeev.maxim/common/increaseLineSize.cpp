@@ -1,5 +1,5 @@
 #include "increaseLineSize.h"
-char *increaseSize(const char *cstring, size_t capasity, size_t size)
+char *increaseSize(const char *cstring, size_t &capasity, size_t &size)
 {
   char *newstring = new char[capasity + 20];
   char *j = newstring;
