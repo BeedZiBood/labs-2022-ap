@@ -7,7 +7,11 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
   p1_(p1),
   p2_(p2),
   p3_(p3)
-{
+{ 
+  if ((p1_.y != p2.y) && (p3_.y != p2.y))
+  {
+    throw std::invalid_argument("two sides must be parallel to the x-axis");
+  }
   bool side12Incorrect = (fabs(p2_.x - p1_.x) <= 0.0 && fabs(p2_.y - p1_.y) <= 0.0);
   bool side23Incorrect = (fabs(p3_.x - p2_.x) <= 0.0 && fabs(p3_.y - p2_.y) <= 0.0);
   bool side13Incorrect = (fabs(p3_.x - p1_.x) <= 0.0 && fabs(p3_.y - p1_.y) <= 0.0);
