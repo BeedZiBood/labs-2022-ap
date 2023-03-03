@@ -1,7 +1,7 @@
-#include "SumUnderMainDiagonal.h"
+#include "sumUnderMainDiagonal.h"
 #include <cmath>
 
-double SumUnderMainDiagonal(const int* matrix, size_t line, size_t column)
+double sumUnderMainDiagonal(const int* matrix, size_t line, size_t column)
 {
   double absSum = 0;
   for (size_t i = 1; i < column; i++)
@@ -10,22 +10,22 @@ double SumUnderMainDiagonal(const int* matrix, size_t line, size_t column)
     {
       double localSum = 0;
       size_t localCount = 0;
-      if (j - 1 >= 0 && j - 1 < line)
+      if (j != 0)
       {
         localSum = localSum + matrix[line * i + (j - 1)];
         localCount++;
       }
-      if (j + 1 >= 0 && j + 1 < line)
+      if (j + 1 < line)
       {
         localSum = localSum + matrix[line * i + (j + 1)];
         localCount++;
       }
-      if (i - 1 >= 0 && i - 1 < column)
+      if (i != 0)
       {
         localSum = localSum + matrix[line * (i - 1) + j];
         localCount++;
       }
-      if (i + 1 >= 0 && i + 1 < column)
+      if (i + 1 < column)
       {
         localSum = localSum + matrix[line * (i + 1) + j];
         localCount++;

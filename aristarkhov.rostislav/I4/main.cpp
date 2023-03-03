@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cstddef>
 #include "countGrowingElements.h"
-#include "SumUnderMainDiagonal.h"
+#include "sumUnderMainDiagonal.h"
 
 int main(int argc, char* argv[])
 {
@@ -98,8 +98,7 @@ int main(int argc, char* argv[])
         return 1;
       }
     }
-    fileOutput << countGrowingRows(matrix, line, column) << '\n';
-    fileOutput << SumUnderMainDiagonal(matrix, line, column) << '\n';
+    fileOutput << sumUnderMainDiagonal(matrix, line, column) << '\n';
     delete[] matrix;
   }
 
