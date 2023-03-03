@@ -13,7 +13,7 @@ int main()
 {
   zasulsky::CompositeShape composite(10);
   bool hasScaled = false;
-  std::cout << std::setprecision(1) << std::fixed;
+  std::cerr << std::setprecision(1) << std::fixed;
   while (std::cin.good())
   {
     std::string name;
@@ -40,12 +40,12 @@ int main()
       }
       catch (const std::bad_alloc& e)
       {
-        std::cout << "out of memory\n";
+        std::cerr << "out of memory\n";
         return 1;
       }
       catch (const std::invalid_argument& e)
       {
-        std::cout << e.what() << '\n';
+        std::cerr << e.what() << '\n';
         continue;
       }
       try
@@ -55,7 +55,7 @@ int main()
       catch (const std::bad_alloc& e)
       {
         delete ellipse;
-        std::cout << "out of memory\n";
+        std::cerr << "out of memory\n";
         return 1;
       }
     }
@@ -78,12 +78,12 @@ int main()
       }
       catch (const std::bad_alloc& e)
       {
-        std::cout << "out of memory\n";
+        std::cerr << "out of memory\n";
         return 1;
       }
       catch (const std::invalid_argument& e)
       {
-        std::cout << e.what() << '\n';
+        std::cerr << e.what() << '\n';
         continue;
       }
       try
@@ -93,7 +93,7 @@ int main()
       catch (const std::bad_alloc& e)
       {
         delete parallelogram;
-        std::cout << "out of memory\n";
+        std::cerr << "out of memory\n";
         return 1;
       }
     }
@@ -114,12 +114,12 @@ int main()
       }
       catch (const std::bad_alloc& error)
       {
-        std::cout << "out of memory\n";
+        std::cerr << "out of memory\n";
         return 1;
       }
       catch (const std::invalid_argument& e)
       {
-        std::cout << e.what() << '\n';
+        std::cerr << e.what() << '\n';
         continue;
       }
       try
@@ -129,7 +129,7 @@ int main()
       catch (const std::bad_alloc& e)
       {
         delete rectangle;
-        std::cout << "out of memory\n";
+        std::cerr << "out of memory\n";
         return 1;
       }
     }
@@ -145,7 +145,7 @@ int main()
       }
       if (k <= 0.0)
       {
-        std::cout << "coefficient is not correctly\n";
+        std::cerr << "coefficient is not correctly\n";
         continue;
       }
       try
@@ -157,19 +157,19 @@ int main()
       }
       catch(const std::runtime_error& e)
       {
-        std::cout << e.what() << ' ';
+        std::cerr << e.what() << ' ';
         return 1;
       }
     }
   }
   if (!std::cin && !std::cin.eof())
   {
-    std::cout << "input error\n";
+    std::cerr << "input error\n";
     return 1;
   }
   if (!hasScaled)
   {
-    std::cout << "hasn't scaled\n";
+    std::cerr << "hasn't scaled\n";
     return 1;
   }
 }
