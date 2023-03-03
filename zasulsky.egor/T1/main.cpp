@@ -150,10 +150,10 @@ int main()
       }
       try
       {
-      zasulsky::outputComposite(std::cout, composite) << '\n';
-      zasulsky::isoScale(composite, scaleCenter, k);
-      hasScaled = true;
-      zasulsky::outputComposite(std::cout, composite) << '\n';
+        zasulsky::outputComposite(std::cout, composite) << '\n';
+        zasulsky::isoScale(composite, scaleCenter, k);
+        hasScaled = true;
+        zasulsky::outputComposite(std::cout, composite) << '\n';
       }
       catch(const std::runtime_error& e)
       {
@@ -162,7 +162,7 @@ int main()
       }
     }
   }
-  if (!std::cin)
+  if (!std::cin && !std::cin.eof())
   {
     std::cout << "input error\n";
     return 1;
