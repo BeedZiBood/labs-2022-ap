@@ -13,7 +13,7 @@ int main()
 {
   zasulsky::CompositeShape composite(10);
   bool hasScaled = false;
-  std::cerr << std::setprecision(1) << std::fixed;
+  std::cout << std::setprecision(1) << std::fixed;
   while (std::cin.good())
   {
     std::string name;
