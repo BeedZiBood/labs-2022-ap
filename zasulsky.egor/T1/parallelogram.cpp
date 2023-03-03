@@ -7,7 +7,7 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
   p1_(p1),
   p2_(p2),
   p3_(p3)
-{ 
+{
   if ((p1_.y != p2.y) && (p3_.y != p2.y))
   {
     throw std::invalid_argument("two sides must be parallel to the x-axis");
