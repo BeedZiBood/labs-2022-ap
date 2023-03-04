@@ -1,12 +1,10 @@
-#ifndef WORK_WITH_STRS_H
-#define WORK_WITH_STRS_H
+#ifndef WORKWITHSTRS_H
+#define WORKWITHSTRS_H
 
-#include <utility>
-#include <algorithm>
+#include <cstddef>
 
 const size_t CAPACITY_BLOCK = 100;
 
-void pushBack(char*& str, size_t& str_size, size_t& str_capasity, const char& new_char);
-std::pair< char*, char* > strCopy(const char* str);
+char* pushBack(char* str, size_t& str_size, size_t& str_capasity, const char new_char);
 
 #endif
