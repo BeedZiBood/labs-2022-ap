@@ -12,6 +12,6 @@ struct BothTasks
 		t1(currentValue);
 		t2(currentValue);		
 	}
-};
+}
 
 #endif
