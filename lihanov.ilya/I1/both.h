@@ -5,13 +5,13 @@
 
 struct BothTasks
 {
-	LocalMax t1;
-	Equal t2;
-	void operator()(unsigned int currentValue)
-	{
-		t1(currentValue);
-		t2(currentValue);		
-	}
-}
+  LocalMax t1;
+  Equal t2;
+  void operator()(unsigned int currentValue)
+  {
+    t1(currentValue);
+    t2(currentValue);
+  }
+};
 
 #endif

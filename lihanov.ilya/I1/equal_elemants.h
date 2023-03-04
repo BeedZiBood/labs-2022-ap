@@ -3,12 +3,10 @@
 
 struct Equal
 {
-	void operator()(unsigned int currentValue);
-
-	unsigned int previousValue;
-	unsigned int beforePreviousValue;
-
-	unsigned int countV;
+  void operator()(unsigned int currentValue);
+  unsigned int previousValue;
+  unsigned int beforePreviousValue;
+  unsigned int countV;
 };
 
 #endif
