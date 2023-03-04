@@ -1,8 +1,5 @@
-#ifndef CHECK_REAL_NUMBER_H
-#define CHECK_REAL_NUMBER_H
-
-#include <cctype>
-#include <iostream>
+#ifndef CHECKREALNUMBER_H
+#define CHECKREALNUMBER_H
 
 bool checkRealNumber(const char* str);
 

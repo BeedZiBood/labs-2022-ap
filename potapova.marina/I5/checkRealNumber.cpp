@@ -1,3 +1,5 @@
+#include <cctype>
+#include <iostream>
 #include "checkRealNumber.h"
 
 bool checkSign(const char* str)
