@@ -8,7 +8,6 @@ struct LocalMax {
     unsigned int beforePreviousValue;
 
     unsigned int count;
-    unsigned int countV;
 };
 
 #endif
