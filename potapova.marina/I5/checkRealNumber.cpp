@@ -2,7 +2,7 @@
 
 bool checkSign(const char* str)
 {
-    return *str == '+'  *str == '-';
+    return *str == '+' || *str == '-';
 }
 
 bool checkDigit(const char* str)
@@ -17,7 +17,7 @@ bool checkE(const char* str)
 
 bool checkUnsignedInt(const char* str)
 {
-    return checkDigit(str)  checkDigit(str) && checkUnsignedInt(str++);
+    return checkDigit(str) || checkDigit(str) && checkUnsignedInt(str++);
 }
 
 bool checkPoint(const char* str)
@@ -27,8 +27,7 @@ bool checkPoint(const char* str)
 
 bool checkOrder(const char* str)
 {
-    return checkE(str) && checkUnsignedInt(str)
-           checkE(str) && checkSign(str) && checkUnsignedInt(str);
+    return checkE(str) && checkUnsignedInt(str) || checkE(str) && checkSign(str) && checkUnsignedInt(str);
 }
 
 bool checkMantissa(const char* str)
@@ -38,6 +37,5 @@ bool checkMantissa(const char* str)
 
 bool checkRealNumber(const char* str)
 {
-    return checkMantissa(str) && checkOrder(str)
-           checkSign(str) && checkMantissa(str) && checkOrder(str);
+    return checkMantissa(str) && checkOrder(str) || checkSign(str) && checkMantissa(str) && checkOrder(str);
 }
