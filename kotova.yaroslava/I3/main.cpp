@@ -1,12 +1,12 @@
 #include <iostream>
 #include <stdexcept>
+#include <FormingCstring.h>
 #include "DelNumbers.h"
 #include "RepLetters.h"
-#include "FormingCstring.h"
 
 int main()
 {
-  size_t capacity = 10;
+  size_t capacity = 20;
   size_t size = 0;
   char* cstring = nullptr;
   try

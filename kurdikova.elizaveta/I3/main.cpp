@@ -1,40 +1,22 @@
 #include <iostream>
 #include <cstring>
+#include <ReadString.h>
 #include "DeleteVowelLetters.h"
 #include "TakeSimilarLettersInOrder.h"
 
 int main()
 {
-  size_t capacity = 10;
-  char *cstring = new char[capacity];
-  size_t size = 0;
-
-  std::cin >> std::noskipws;
-  do {
-    if (size == capacity) {
-      try {
-        char *newstr = new char[capacity + 20];
-        for (auto i = cstring, j = newstr; i != cstring + size; i++, j++) {
-          *j = *i;
-        }
-        delete[] cstring;
-        cstring = newstr;
-        capacity += 20;
-      }
-      catch (...) {
-        delete[] cstring;
-        return 1;
-      }
-    }
-    std::cin >> cstring[size];
-  }
-  while (std::cin && cstring[size++] != '\n');
-  if (size <= 1) {
-    delete[] cstring;
-    std::cerr << "Nothing was entered";
+  char* cstring = nullptr;
+  try {
+    cstring = readString(std::cin);
+  } catch (const std::exception& e) {
+    std::cerr << e.what() << "\n";
     return 1;
   }
-  cstring[size - 1] = '\0';
+  size_t size = 0;
+  for (size_t i = 0; cstring[i] != '\0'; i++) {
+    size += 1;
+  }
 
   size_t size2 = 13;
   char *cstring2 = nullptr;
