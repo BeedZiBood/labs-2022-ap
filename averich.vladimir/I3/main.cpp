@@ -2,6 +2,7 @@
 #include <cstddef>
 #include <readthestring.hpp>
 #include "allcharsofcstrings.hpp"
+#include "isthesamechars.hpp"
 int main()
 {
   size_t size = 0;
