@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <readthestring.hpp>
+#include "allcharsofcstrings.hpp"
 int main()
 {
   size_t size = 0;
@@ -29,6 +30,8 @@ int main()
     return 1;
   }
   char cstringInside[] = "ab";
+  allCharsOfCstrings(destination, cstring, cstringInside);
+  std::cout << "All chars of cstring: " << destination << '\n';
   delete[] cstring;
   delete[] destination;
   return 0; 
