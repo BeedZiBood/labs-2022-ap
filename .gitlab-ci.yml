@@ -54,7 +54,7 @@ build:
     paths:
       - out
     expire_in: 1 year
-needs: []
+  needs: []
 acceptance:
   stage: test
   script:
@@ -74,4 +74,3 @@ acceptance:
     expire_in: 1 year
     when: always
     needs: ["build"]
-    
