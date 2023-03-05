@@ -1,4 +1,3 @@
-#include <fstream>
 #include "inputOutputStaticMatrix.h"
 
 void inputStaticMatrix(int* matrix, size_t size, std::ifstream& input)

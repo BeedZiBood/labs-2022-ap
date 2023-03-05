@@ -3,6 +3,6 @@
 
 #include <cstddef>
 
-size_t countRowsWithoutNull(const int* matrix, const size_t count_rows, const size_t count_cols);
+size_t countRowsWithoutNull(const int* matrix, size_t count_rows, size_t count_cols);
 
 #endif
