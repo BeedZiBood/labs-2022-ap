@@ -1,4 +1,4 @@
-#include "Both.h"
+#include "both.h"
 #include <iostream>
 
 int main() {
