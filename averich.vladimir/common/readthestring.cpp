@@ -4,51 +4,43 @@
 #include <limits>
 #include <cstddef>
 #include "extendthestring.hpp"
-char* readTheString(std::istream& inputStr, size_t& in_size, const size_t increaseCapacity)
+char* readTheString(std::istream& inputString, size_t& inputSize, const size_t increaseCapacity)
 {
-  const size_t max_size = std::numeric_limits< size_t >::max();
+  const size_t maxSize = std::numeric_limits< size_t >::max();
   size_t capacity = 10;
   char* cstring = new char[capacity];
   size_t size = 0;
-  inputStr >> std::noskipws;
+  inputString >> std::noskipws;
   do
   {
     if (size == capacity)
     {
-      if (capacity == max_size)
+      if (capacity == maxSize)
       {
         delete[] cstring;
-        throw std::runtime_error("Size more than max");
+        throw std::runtime_error("Error: overflow");
       }
-      if (max_size - increaseCapacity <= capacity)
+      if (maxSize - increaseCapacity <= capacity)
       {
-        capacity = max_size;
+        capacity = maxSize;
       }
       else
       {
         capacity += increaseCapacity;
       }
-      try
-      {
-        char* newStr = extendTheString(cstring, size, capacity);
-        delete[] cstring;
-        cstring = newStr;
-      }
-      catch (...)
-      {
-        delete[] cstring;
-        throw;
-      }
+      char* newString = extendTheString(cstring, size, capacity);
+      delete[] cstring;
+      cstring = newString;
     }
-    inputStr >> cstring[size];
+    inputString >> cstring[size];
   }
-  while (inputStr && cstring[size++] != '\n');
-  if (!inputStr && !size)
+  while (inputString && cstring[size++] != '\n');
+  if (!inputString && !size)
   {
     delete[] cstring;
-    throw std::runtime_error("Input error");
+    throw std::runtime_error("Error: invalid input");
   }
   cstring[size - 1] = '\0';
-  in_size = size;
+  inputSize = size;
   return cstring;
 }
