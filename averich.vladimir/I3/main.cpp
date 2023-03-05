@@ -35,5 +35,5 @@ int main()
   std::cout << "Repeating chars: " << std::boolalpha << isTheSameChars(cstring, size) << '\n';
   delete[] cstring;
   delete[] destination;
-  return 0; 
+  return 0;
 }
