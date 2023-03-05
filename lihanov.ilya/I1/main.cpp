@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-	LocalMax LocalMax{ 0,0,0 };
+  LocalMax LocalMax{ 0,0,0 };
   Equal Equal{0 , 0 , 0};
   unsigned int currentValue = 0;
   do {
