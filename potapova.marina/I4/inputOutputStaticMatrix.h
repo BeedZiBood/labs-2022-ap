@@ -1,9 +1,8 @@
-#ifndef INPUT_OUTPUT_STATIC_MATRIX_H
-#define INPUT_OUTPUT_STATIC_MATRIX_H
+#ifndef INPUTOUTPUTSTATICMATRIX_H
+#define INPUTOUTPUTSTATICMATRIX_H
 
 #include <cstddef>
-#include <fstream>
 
-void inputStaticMatrix(int* matrix, const int rows, size_t cols);
+void inputStaticMatrix(int* matrix, size_t size, std::ifstream& input);
 
 #endif

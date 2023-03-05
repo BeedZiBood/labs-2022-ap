@@ -1,10 +1,8 @@
-#ifndef GET_COUNT_OF_SADDLE_POINTS_H
-#define GET_COUNT_OF_SADDLE_POINTS_H
+#ifndef GETCOUNTOFSADDLEPOINTS_H
+#define GETCOUNTOFSADDLEPOINTS_H
 
-#include <iostream>
+#include <cstddef>
 
-size_t getCountOfSaddlePoints(const std::int64_t* matrix,
-                              size_t count_rows,
-                              size_t count_cols);
+size_t getCountOfSaddlePoints(const int* matrix, size_t count_rows, size_t count_cols);
 
 #endif

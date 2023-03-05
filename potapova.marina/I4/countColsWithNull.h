@@ -1,5 +1,5 @@
-#ifndef COUNT_COLS_WITH_NULL_H
-#define COUNT_COLS_WITH_NULL_H
+#ifndef COUNTCOLSWITHNULL_H
+#define COUNTCOLSWITHNULL_H
 
 #include <cstddef>
 
