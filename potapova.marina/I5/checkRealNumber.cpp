@@ -2,42 +2,42 @@
 #include <iostream>
 #include "checkRealNumber.h"
 
-bool checkSign(const char* str)
+bool checkSign(char str)
 {
-    return *str == '+' || *str == '-';
+    return str == '+' || str == '-';
 }
 
-bool checkDigit(const char* str)
+bool checkDigit(char str)
 {
-    return std::isdigit(*str);
+    return std::isdigit(str);
 }
 
-bool checkE(const char* str)
+bool checkE(char* str)
 {
     return *str == 'E';
 }
 
-bool checkUnsignedInt(const char* str)
+bool checkUnsignedInt(char* str)
 {
-    return checkDigit(str) || checkDigit(str) && checkUnsignedInt(str++);
+    return checkDigit(*str) || checkDigit(*str) && checkUnsignedInt(str++);
 }
 
-bool checkPoint(const char* str)
+bool checkPoint(char str)
 {
-    return *str == '.';
+    return str == '.';
 }
 
-bool checkOrder(const char* str)
+bool checkOrder(char* str)
 {
-    return checkE(str) && checkUnsignedInt(str) || checkE(str) && checkSign(str) && checkUnsignedInt(str);
+    return checkE(str) && checkUnsignedInt(str) || checkE(str) && checkSign(*str) && checkUnsignedInt(str);
 }
 
-bool checkMantissa(const char* str)
+bool checkMantissa(char* str)
 {
-    return checkUnsignedInt(str) && checkPoint(str) && checkUnsignedInt(str);
+    return checkUnsignedInt(str) && checkPoint(*str) && checkUnsignedInt(str);
 }
 
-bool checkRealNumber(const char* str)
+bool checkRealNumber(char* str)
 {
-    return checkMantissa(str) && checkOrder(str) || checkSign(str) && checkMantissa(str) && checkOrder(str);
+    return checkMantissa(str) && checkOrder(str) || checkSign(*str) && checkMantissa(str) && checkOrder(str);
 }
