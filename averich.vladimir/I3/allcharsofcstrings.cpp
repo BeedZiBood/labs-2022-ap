@@ -2,7 +2,6 @@
 #include "sortcharsbyascii.hpp"
 #include <cstddef>
 #include <cctype>
-#include <iostream>
 int allCharsOfCstrings(char* destination, const char* cstring, const char* cstringInside)
 {
   size_t sizeOfDestination = 0;
@@ -48,16 +47,7 @@ int allCharsOfCstrings(char* destination, const char* cstring, const char* cstri
       }
     }
   }
-  for (size_t i = 0; i < sizeOfDestination; i++)
-  {
-    for (size_t j = i + 1; j < sizeOfDestination; j++)
-    {
-      if (destination[i] > destination[j])
-      {
-        std::swap(destination[i], destination[j]);
-      }
-    }
-  }
+  sortCharsByAscii(destination, sizeOfDestination);
   destination[sizeOfDestination] = '\0';
   return 0;
 }
