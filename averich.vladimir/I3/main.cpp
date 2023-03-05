@@ -32,6 +32,7 @@ int main()
   char cstringInside[] = "ab";
   allCharsOfCstrings(destination, cstring, cstringInside);
   std::cout << "All chars of cstring: " << destination << '\n';
+  std::cout << "Repeating chars: " << std::boolalpha << isTheSameChars(cstring, size) << '\n';
   delete[] cstring;
   delete[] destination;
   return 0; 
