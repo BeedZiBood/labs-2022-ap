@@ -1,5 +1,6 @@
 #include "rectangle.h"
 #include <stdexcept>
+#include "base_functions.h"
 Rectangle::Rectangle(point_t left_down, point_t right_up):
   left_down_(left_down),
   right_up_(right_up)
@@ -10,7 +11,16 @@ Rectangle::Rectangle(point_t left_down, point_t right_up):
   }
 }
 
+void Rectangle::move(double dx, double dy)
+{
+  left_down_ = baseFunctions::findMove(left_down_, dx, dy);
+  right_up_ = baseFunctions::findMove(right_up_, dx, dy);
+}
 
+void Rectangle::move(point_t position)
+{
+
+}
 
 void Rectangle::scale(double k)
 {
