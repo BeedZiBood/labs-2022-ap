@@ -6,7 +6,7 @@ struct point_t
   double y;
 };
 
-struct rectangle
+struct rectangle_t
 {
   double height;
   double width;
