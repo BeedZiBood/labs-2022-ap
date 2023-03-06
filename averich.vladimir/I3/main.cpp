@@ -21,7 +21,7 @@ int main()
   char* destination = nullptr;
   try
   {
-    destination = new char[10];
+    destination = new char[27];
   }
   catch (const std::bad_alloc& e)
   {
