@@ -11,6 +11,7 @@ Rectangle::Rectangle(point_t left_down, point_t right_up):
 }
 
 
+
 void Rectangle::scale(double k)
 {
   if (k <= 0)
