@@ -1,4 +1,6 @@
 #include <iostream>
+#include "CountMoreThanPrevious.h"
+#include "CountSameAsMin.h"
 int main()
 {
   int value = 0;
@@ -10,22 +12,19 @@ int main()
   {
     predv = value;
     std::cin >> value;
-    if (predv < value)
-    {
-      compare_count++;
-    }
     if (minv == 0)
     {
       minv = value;
     }
-    if (minv != 0 && value < minv && value != 0)
+    try
     {
-      minv = value;
-      min_count = 0;
+      compare_count = countMoreThanPrevious(predv, value, compare_count);
+      min_count = countSameAsMin(minv, value, min_count);
     }
-    if (minv == value)
+    catch (const std::overflow_error &e)
     {
-      min_count++;
+      std::cout << e.what() << "\n";
+      return 2;
     }
   }
   while (value && std::cin);

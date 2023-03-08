@@ -1,48 +1,25 @@
 #include <iostream>
 #include <cstddef>
 #include <cstring>
+#include <makecsting.h>
 #include "findsamechar.h"
 #include "sortstringbyascii.h"
 
 int main()
 {
-  size_t cap = 10;
-  char* cstring = new char[cap];
-  size_t size = 0;
-  std::cin >> std::noskipws;
-  do
+  char* cstring = nullptr;
+  try
   {
-    if (size == cap - 1)
-    {
-      try
-      {
-        cstring[cap - 1] = '\0';
-        char* newstr = new char[cap + 20];
-        std::strcpy(newstr, cstring);
-        delete [] cstring;
-        cstring = newstr;
-        cap += 20;
-      }
-      catch (...)
-      {
-        delete [] cstring;
-        return 1;
-      }
-    }
-    std::cin >> cstring[size];
+    cstring = makeCSting(std::cin);
   }
-  while (std::cin && cstring[size++] != '\n');
-  const size_t size2 = 4;
-  if (size == 0)
+  catch (const std::exception& e)
   {
-    std::cerr << "Empty string\n";
-    delete [] cstring;
+    std::cerr << "Empty input\n";
+    delete[] cstring;
+    std::cerr << e.what() << "\n";
     return 1;
   }
-  else
-  {
-    cstring[size - 1] = '\0';
-  }
+  const size_t size2 = 4;
   char newstr2[size2] = "azs";
   char* newstr3 = nullptr;
   const unsigned short alphabet = 100;

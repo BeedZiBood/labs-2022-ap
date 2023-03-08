@@ -4,11 +4,6 @@
 #include <fstream>
 int *readFile(std::istream &input, size_t line, int *f_arr)
 {
-  input >> line;
-  if (!input)
-  {
-    throw std::length_error("File error");
-  }
   for (size_t i = 0; i < line; ++i)
   {
     input >> f_arr[i];
