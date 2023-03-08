@@ -10,3 +10,8 @@ Square::Square(const point_t& center, double side):
     throw std::invalid_argument("Invalid side value");
   }
 }
+
+double Square::getArea() const
+{
+  return side_ * side_;
+}
