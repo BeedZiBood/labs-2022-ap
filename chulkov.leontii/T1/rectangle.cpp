@@ -12,3 +12,7 @@ Rectangle::Rectangle(const double width, const double height, const point_t& pos
   }
 }
 
+double Rectangle::getArea() const
+{
+  return width_ * height_;
+}
