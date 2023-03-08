@@ -13,10 +13,8 @@ int main(int argc, char* argv[])
     std::cout << "Erorr!";
     return 1;
   }
-  size_t count_elements_for_array_from_file = 0;
   size_t count_elements = 0;
   int count_elements_for_slide_array = 0;
-  char value_for_reading_file = 0;
   size_t max_decreasing_fragment = 0;
   int array_static[7] = { 7,-5,3,8,9,1,-6 };
   for (int i = 0; i < 7; i++)
