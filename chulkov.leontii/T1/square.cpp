@@ -31,3 +31,12 @@ void Square::move(double dx, double dy)
   center_.x += dx;
   center_.y += dy;
 }
+
+void Square::scale(double factor)
+{
+  if (factor < 0.0)
+  {
+    throw std::invalid_argument("Invalid scale factor");
+  }
+  side_ *= factor;
+}
