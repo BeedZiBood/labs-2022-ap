@@ -1,4 +1,4 @@
-#include "sumUnderMainDiagonal.h"
+#include "SumUnderMainDiagonal.h"
 #include <cmath>
 
 double sumUnderMainDiagonal(const int* matrix, size_t line, size_t column)

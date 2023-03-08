@@ -3,7 +3,7 @@
 #include <fstream>
 #include <cstddef>
 #include "countGrowingElements.h"
-#include "sumUnderMainDiagonal.h"
+#include "SumUnderMainDiagonal.h"
 
 int main(int argc, char* argv[])
 {
