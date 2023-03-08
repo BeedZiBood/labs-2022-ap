@@ -1,5 +1,5 @@
-#ifndef BOTH
-#define BOTH
+#ifndef BOTH_H
+#define BOTH_H
 #include "localmax.h"
 #include "equal_elements.h"
 

@@ -1,5 +1,5 @@
-#ifndef EQUAL_ELEMENTS
-#define EQUAL_ELEMENTS
+#ifndef EQUAL_ELEMENTS_H
+#define EQUAL_ELEMENTS_H
 
 struct Equal
 {
