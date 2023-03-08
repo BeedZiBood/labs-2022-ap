@@ -21,3 +21,14 @@ rectangle_t Circle::getFrameRect() const
 {
   return {pos_, 2 * radius_, 2 * radius_};
 }
+
+void Circle::move(const point_t& pos)
+{
+  pos_ = pos;
+}
+
+void Circle::move(double dx, double dy)
+{
+  pos_.x += dx;
+  pos_.y += dy;
+}
