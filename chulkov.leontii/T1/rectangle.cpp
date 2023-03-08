@@ -21,3 +21,14 @@ rectangle_t Rectangle::getFrameRect() const
 {
   return {pos_, width_, height_};
 }
+
+void Rectangle::move(const point_t& pos)
+{
+  pos_ = pos;
+}
+
+void Rectangle::move(const double dx, const double dy)
+{
+  pos_.x += dx;
+  pos_.y += dy;
+}
