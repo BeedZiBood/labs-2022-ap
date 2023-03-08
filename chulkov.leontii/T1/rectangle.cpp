@@ -16,3 +16,8 @@ double Rectangle::getArea() const
 {
   return width_ * height_;
 }
+
+rectangle_t Rectangle::getFrameRect() const
+{
+  return {pos_, width_, height_};
+}
