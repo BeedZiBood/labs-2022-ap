@@ -20,3 +20,14 @@ rectangle_t Square::getFrameRect() const
 {
   return {center_, side_, side_};
 }
+
+void Square::move(const point_t& newCenter)
+{
+  center_ = newCenter;
+}
+
+void Square::move(double dx, double dy)
+{
+  center_.x += dx;
+  center_.y += dy;
+}
