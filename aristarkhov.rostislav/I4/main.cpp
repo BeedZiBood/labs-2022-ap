@@ -12,7 +12,6 @@ int main(int argc, char* argv[])
     std::cerr << "Error!\n";
     return 1;
   }
-
   std::ifstream fileInput(argv[2]);
   if (!fileInput.is_open())
   {
