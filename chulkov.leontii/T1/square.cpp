@@ -15,3 +15,8 @@ double Square::getArea() const
 {
   return side_ * side_;
 }
+
+rectangle_t Square::getFrameRect() const
+{
+  return {center_, side_, side_};
+}
