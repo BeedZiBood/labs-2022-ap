@@ -11,3 +11,4 @@ Rectangle::Rectangle(const double width, const double height, const point_t& pos
     throw std::invalid_argument("Error: Invalid rectangle dimensions");
   }
 }
+
