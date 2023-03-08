@@ -16,3 +16,8 @@ double Circle::getArea() const
 {
   return M_PI * radius_ * radius_;
 }
+
+rectangle_t Circle::getFrameRect() const
+{
+  return {pos_, 2 * radius_, 2 * radius_};
+}
