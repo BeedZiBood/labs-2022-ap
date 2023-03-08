@@ -6,7 +6,7 @@ int* slideOnLeft(int* array, size_t count_elements, int count_elements_for_slide
   while (count_elements_for_slide_array > 0)
   {
     changer = array[0];
-    for (int i = 0; i < count_elements - 1; i++)
+    for (size_t i = 0; i < count_elements - 1; i++)
     {
       array[i] = array[i + 1];
     }

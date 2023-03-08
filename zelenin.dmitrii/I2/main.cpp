@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
   std::cout << "Enter the number of elements by which to shift the array: ";
   std::cin >> count_elements_for_slide_array;
   int* first_variable_for_array_output = slideOnLeft(array_static, 7, count_elements_for_slide_array);
-  for (int i = 0; i < 7; i++)
+  for (size_t i = 0; i < 7; i++)
   {
     std::cout << first_variable_for_array_output[i] << " ";
   }
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
   {
     int* array_dynamic = new int[count_elements];
     array_dynamic = fillTheArrayWithRandomNumbers(array_dynamic, count_elements);
-    for (int i = 0; i < count_elements; i++)
+    for (size_t i = 0; i < count_elements; i++)
     {
       std::cout << array_dynamic[i] << " ";
     }
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
     std::cout << "Enter the number of elements by which to shift the array: ";
     std::cin >> count_elements_for_slide_array;
     int* second_variable_for_array_output = slideOnLeft(array_dynamic, count_elements, count_elements_for_slide_array);
-    for (int i = 0; i < count_elements; i++)
+    for (size_t i = 0; i < count_elements; i++)
     {
       std::cout << second_variable_for_array_output[i] << " ";
     }
