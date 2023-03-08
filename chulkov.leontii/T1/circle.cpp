@@ -1,4 +1,5 @@
 #include "circle.h"
+#include <cmath>
 #include <stdexcept>
 
 Circle::Circle(const point_t& pos, double radius):
@@ -9,4 +10,9 @@ Circle::Circle(const point_t& pos, double radius):
   {
     throw std::invalid_argument("Radius must be non-negative");
   }
+}
+
+double Circle::getArea() const
+{
+  return M_PI * radius_ * radius_;
 }
