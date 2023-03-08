@@ -17,7 +17,7 @@ author:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: '$CI_PIPELINE_SOURCE == "push"'
     - if: '$CI_PIPELINE_SOURCE == "web"'
-      
+
 branch:
   stage: sanity
   script:
@@ -54,7 +54,7 @@ build:
     paths:
       - out
     expire_in: 1 year
-  needs: []
+
 acceptance:
   stage: test
   script:
@@ -73,4 +73,3 @@ acceptance:
       - out/*/*/acceptance.*
     expire_in: 1 year
     when: always
-  needs: ["build"]

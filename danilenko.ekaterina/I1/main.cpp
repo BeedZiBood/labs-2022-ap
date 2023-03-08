@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "QuantityLocalMin.h"
 #include "QuantitySignChange.h"
 

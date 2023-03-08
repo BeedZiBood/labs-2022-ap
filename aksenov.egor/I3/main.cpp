@@ -2,14 +2,14 @@
 #include <readString.h>
 #include "isRepeatingElements.h"
 #include "deleteSpaces.h"
+#include "increaseCapacityAdd20.h"
 int main()
 {
   char *cstring = nullptr;
   size_t size = 0;
-  const size_t increaseCapacity = 20;
   try
   {
-    cstring = readString(std::cin, size, increaseCapacity);
+    cstring = readString(std::cin, size, increaseCapacityAdd20);
   }
   catch (const std::runtime_error &e)
   {

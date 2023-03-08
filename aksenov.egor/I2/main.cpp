@@ -3,10 +3,10 @@
 #include <cstdlib>
 #include <fstream>
 #include <ctime>
+#include <readingFile.h>
 #include "countAmountOfRightPairs.h"
 #include "repeatingPositiveNumbers.h"
 #include "fillArrayWithRandomNumbers.h"
-#include "readingFile.h"
 int main(int argc, char *argv[])
 {
   std::srand(std::time(nullptr));
@@ -41,6 +41,13 @@ int main(int argc, char *argv[])
   }
   std::string fname = argv[1];
   std::ifstream input(fname);
+  input >> line;
+  if (!input)
+  {
+    std::cout << "Error while reading file" << "\n";
+    delete[] second_arr;
+    return 2;
+  }
   try
   {
     second_arr = readFile(input, line, second_arr);
