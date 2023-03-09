@@ -1,11 +1,10 @@
 #include "rectangle.h"
 #include <stdexcept>
 #include "base_functions.h"
-Rectangle::Rectangle(point_t left_down, point_t right_up):
-  left_down_(left_down),
-  right_up_(right_up)
+Rectangle::Rectangle(point_t l_d, point_t r_up):
+  rectangle_{r_up.y - l_d.y, r_up.x - l_d.x, {(r_up.x - l_d.x) / 2, (r_up.y - l_d.y) / 2}}
 {
-  if (left_down_.x >= right_up_.x || left_down_.y >= right_up_.y)
+  if (rectangle_.height <= 0 || rectangle_.width <= 0)
   {
     throw std::invalid_argument("Error rectangle parameters");
   }
@@ -13,10 +12,8 @@ Rectangle::Rectangle(point_t left_down, point_t right_up):
 
 void Rectangle::move(double dx, double dy)
 {
-  left_down_.x += dx;
-  left_down_.y += dy;
-  right_up_.x += dx;
-  right_up_.y += dy;
+  rectangle_.position.x += dx;
+  rectangle_.position.y += dy;
 }
 
 void Rectangle::move(point_t position)
@@ -30,10 +27,9 @@ void Rectangle::scale(double k)
   {
     throw std::invalid_argument("Error ratio");
   }
-
 }
 
 double Rectangle::getArea() const
 {
-  return gerFrameRectangle().width * gerFrameRectangle().height;
+  return rectangle_.width * rectangle_.height;
 }
