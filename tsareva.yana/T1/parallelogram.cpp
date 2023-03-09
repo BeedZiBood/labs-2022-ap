@@ -11,3 +11,11 @@ Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
     throw std::invalid_argument("Error parallelogram parameters");
   }
 }
+
+void Parallelogram::move(double dx, double dy)
+{
+  point_t d_point{ dx, dy };
+  first_ = movePoint(first_, d_point);
+  second_ = movePoint(second_, d_point);
+  third_ = movePoint(third_, d_point);
+}

@@ -13,4 +13,5 @@ struct rectangle_t
   point_t position;
 };
 
+point_t movePoint(point_t point, point_t d_point);
 #endif
