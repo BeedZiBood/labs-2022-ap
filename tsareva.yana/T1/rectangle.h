@@ -5,11 +5,11 @@ class Rectangle: public Shape
 {
 public:
   Rectangle(point_t left_down, point_t right_up);
-  double getArea() const;
+  double getArea() const override;
   rectangle_t gerFrameRectangle() const;
-  void move(point_t position);
-  void move(double dx, double dy);
-  void scale(double k);
+  void move(point_t position) override;
+  void move(double dx, double dy) override;
+  void scale(double k) override;
 private:
   point_t left_down_;
   point_t right_up_;
