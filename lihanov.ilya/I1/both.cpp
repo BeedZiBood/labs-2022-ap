@@ -1,7 +1,6 @@
 #include "both.h"
 #include <limits>
 #include <stdexcept>
-#include <iostream>
 
 void LocalMax::operator()(unsigned int currentValue)
 {
