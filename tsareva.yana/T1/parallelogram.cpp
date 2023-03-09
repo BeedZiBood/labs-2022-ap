@@ -1,5 +1,6 @@
 #include "parallelogram.h"
 #include <stdexcept>
+#include <cmath>
 
 Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
   first_(first),
@@ -29,3 +30,11 @@ void Parallelogram::move(double dx, double dy)
   second_ = movePoint(second_, d_point);
   third_ = movePoint(third_, d_point);
 }
+
+double Parallelogram::getArea() const
+{
+  double height = std::fabs(first_.y - third_.y);
+  double width = std::fabs(first_.x - second_.x);
+  return height * width;
+}
+
