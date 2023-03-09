@@ -14,4 +14,5 @@ struct rectangle_t
 };
 
 point_t movePoint(point_t point, point_t d_point);
+point_t getCenterParallelogram(point_t first_top, point_t second_top)
 #endif
