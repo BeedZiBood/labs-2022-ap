@@ -18,7 +18,7 @@ void Rectangle::move(double dx, double dy)
 
 void Rectangle::move(point_t position)
 {
-
+  rectangle_.position = position;
 }
 
 void Rectangle::scale(double k)
@@ -27,9 +27,16 @@ void Rectangle::scale(double k)
   {
     throw std::invalid_argument("Error ratio");
   }
+  rectangle_.height *= k;
+  rectangle_.width *=k;
 }
 
 double Rectangle::getArea() const
 {
   return rectangle_.width * rectangle_.height;
+}
+
+rectangle_t Rectangle::getFrameRectangle() const
+{
+  return rectangle_;
 }
