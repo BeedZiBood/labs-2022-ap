@@ -1,15 +1,15 @@
 #include "both.h"
 #include <iostream>
 
-int main() 
+int main()
 {
   BothTasks BothTasks{ 0,0,0 };
   unsigned int currentValue = 0;
-  do 
+  do
   {
     std::cin >> currentValue;
 
-    if (!std::cin) 
+    if (!std::cin)
     {
       std::cout << "Error occurred." << "/n";
       return 1;
@@ -18,7 +18,7 @@ int main()
     {
       BothTasks(currentValue);
     }
-    catch (const std::overflow_error& e) 
+    catch (const std::overflow_error& e)
     {
       std::cout << e.what() << "/n";
       return 2;
