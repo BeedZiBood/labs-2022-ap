@@ -14,7 +14,7 @@ int main()
       std::cout << "Error occurred." << "/n";
       return 1;
     }
-    try 
+    try
     {
       BothTasks(currentValue);
     }
