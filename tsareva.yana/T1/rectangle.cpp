@@ -1,6 +1,6 @@
 #include "rectangle.h"
 #include <stdexcept>
-#include "base_functions.h"
+
 Rectangle::Rectangle(point_t l_d, point_t r_up):
   rectangle_{r_up.y - l_d.y, r_up.x - l_d.x, {(r_up.x - l_d.x) / 2, (r_up.y - l_d.y) / 2}}
 {
