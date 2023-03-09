@@ -1,8 +1,8 @@
-#include "allcharsofcstrings.hpp"
+#include "findeachchars.hpp"
 #include "sortcharsbyascii.hpp"
 #include <cstddef>
 #include <cctype>
-int allCharsOfCstrings(char* destination, const char* cstring, const char* cstringInside)
+void findEachChars(char* destination, const char* cstring, const char* cstringInside)
 {
   size_t sizeOfDestination = 0;
   size_t notLonelyChar = 0;
@@ -12,9 +12,12 @@ int allCharsOfCstrings(char* destination, const char* cstring, const char* cstri
     {
       for (size_t j = i + 1; cstringInside[j]; j++)
       {
-        if (std::tolower(cstringInside[i]) == std::tolower(cstringInside[j]))
+        if (std::isalpha(cstringInside[i]))
         {
-          notLonelyChar = 1;
+          if (std::tolower(cstringInside[i]) == std::tolower(cstringInside[j]))
+          {
+            notLonelyChar = 1;
+          }
         }
       }
       for (size_t j = 0; cstringInside[j]; j++)
@@ -49,5 +52,4 @@ int allCharsOfCstrings(char* destination, const char* cstring, const char* cstri
   }
   sortCharsByAscii(destination, sizeOfDestination);
   destination[sizeOfDestination] = '\0';
-  return 0;
 }

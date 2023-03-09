@@ -1,7 +1,7 @@
 #include "sortcharsbyascii.hpp"
 #include <iostream>
 #include <cstddef>
-int sortCharsByAscii(char* destination, size_t sizeOfDestination)
+char* sortCharsByAscii(char* destination, size_t sizeOfDestination)
 {
   for (size_t i = 0; i < sizeOfDestination; i++)
   {
@@ -13,5 +13,5 @@ int sortCharsByAscii(char* destination, size_t sizeOfDestination)
       }
     }
   }
-  return 0;
+  return destination;
 }

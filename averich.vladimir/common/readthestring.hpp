@@ -1,6 +1,6 @@
-#ifndef READTHESTRING_HPP
-#define READTHESTRING_HPP
-#include <fstream>
+#ifndef READTHESTRING_H
+#define READTHESTRING_H
+#include <iostream>
 #include <cstddef>
-char* readTheString(std::istream& inputString, size_t& inputSize, const size_t increaseCapacity);
+char* readTheString(std::istream& inputStr, size_t& in_size, const size_t increaseCapacity);
 #endif

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <readthestring.hpp>
-#include "allcharsofcstrings.hpp"
+#include "findeachchars.hpp"
 #include "isthesamechars.hpp"
 int main()
 {
@@ -31,7 +31,7 @@ int main()
     return 1;
   }
   char cstringInside[] = "ab";
-  allCharsOfCstrings(destination, cstring, cstringInside);
+  findEachChars(destination, cstring, cstringInside);
   std::cout << "All chars of cstring: " << destination << '\n';
   std::cout << "Repeating chars: " << std::boolalpha << isTheSameChars(cstring, size) << '\n';
   delete[] cstring;
