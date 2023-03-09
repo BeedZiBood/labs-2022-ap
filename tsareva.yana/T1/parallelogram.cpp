@@ -55,3 +55,11 @@ void Parallelogram::scale(double k)
     throw std::invalid_argument("Error ratio");
   }
 }
+
+void Parallelogram::move(point_t point)
+{
+  point_t position = getCenterParallelogram(first_, third_);
+  double dx = point.x - position.x;
+  double dy = point.y - position.y;
+  move(dx, dy);
+}
