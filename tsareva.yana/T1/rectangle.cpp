@@ -13,8 +13,10 @@ Rectangle::Rectangle(point_t left_down, point_t right_up):
 
 void Rectangle::move(double dx, double dy)
 {
-  left_down_ = baseFunctions::findMove(left_down_, dx, dy);
-  right_up_ = baseFunctions::findMove(right_up_, dx, dy);
+  left_down_.x += dx;
+  left_down_.y += dy;
+  right_up_.x += dx;
+  right_up_.y += dy;
 }
 
 void Rectangle::move(point_t position)
