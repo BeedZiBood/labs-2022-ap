@@ -30,7 +30,7 @@ void Rectangle::move(point_t point)
 
 void Rectangle::move(double dx, double dy)
 {
-  addVector(rect_.pos, dx, dy);
+  addVector(rect_.pos, {dx, dy});
 }
 
 void Rectangle::scale(double k)

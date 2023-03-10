@@ -28,7 +28,7 @@ void Ellipse::move(point_t point)
 
 void Ellipse::move(double dx, double dy)
 {
-  addVector(rect_.pos, dx, dy);
+  addVector(rect_.pos, {dx, dy});
 }
 
 void Ellipse::scale(double k)
