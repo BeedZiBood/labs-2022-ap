@@ -47,6 +47,26 @@ int main()
             std::cerr << e.what() << "\n";
           }
         }
+        else if (name == "SQUARE")
+        {
+          try
+          {
+            double x = 0.0;
+            double y = 0.0;
+            double z = 0.0;
+            std::cin >> x >> y >> z;
+            if (!std::cin)
+            {
+              throw std::invalid_argument("invalid arguments");
+            }
+            Square* square = new Square(point_t {x, y}, z);
+            compositeShape.pushBack(square);
+          }
+          catch (const std::logic_error& e)
+          {
+            std::cerr << e.what() << "\n";
+          }
+        }
       }
     }
   }
