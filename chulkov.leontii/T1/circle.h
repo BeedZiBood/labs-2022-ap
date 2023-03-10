@@ -11,6 +11,7 @@ class Circle: public Shape
     void move(const point_t& pos) override;
     void move(const double dx, const double dy) override;
     void scale(double k) override;
+    Shape* clone() const;
 
   private:
     point_t pos_;
