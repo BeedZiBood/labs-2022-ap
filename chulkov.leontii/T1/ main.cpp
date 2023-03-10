@@ -89,6 +89,36 @@ int main()
         std::cerr << e.what() << "\n";
       }
     }
+    else if (name == "SCALE")
+    {
+      try
+      {
+        double x = 0.0;
+        double y = 0.0;
+        std::cin >> x >> y;
+        point_t point{x, y};
+        double k = 0.0;
+        std::cin >> k;
+        std::cout << (compositeShape.getArea());
+        printTable(compositeShape);
+        std::cout << "\n";
+        compositeShape.isotropScale(point, k);
+        std::cout << compositeShape.getArea();
+        printTable(compositeShape);
+        std::cout << "\n";
+      }
+      catch (const std::invalid_argument& e)
+      {
+        std::cerr << e.what() << "\n";
+        return 1;
+      }
+      catch (const std::logic_error& e)
+      {
+        std::cerr << e.what() << "\n";
+        return 1;
+      }
+      return 0;
+    }
   }
   return 0;
 }
