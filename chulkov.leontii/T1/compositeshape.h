@@ -22,6 +22,8 @@ class CompositeShape
     void isotropScale(point_t pos, double k);
 
     void pushBack(Shape* shp);
+    void popBack();
+    Shape* at(size_t id) const;
     Shape* operator[](size_t id) const;
     bool empty() const;
     size_t size() const;
