@@ -5,16 +5,16 @@
 class Rectangle: public Shape
 {
   public:
-    Rectangle(const double width, const double height, const point_t& pos);
+    Rectangle(point_t width,  point_t height);
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(const point_t& pos) override;
     void move(const double dx, const double dy) override;
     void scale(double k) override;
+    Shape* clone() const;
 
   private:
     point_t pos_;
-    double width_;
-    double height_;
+    rectangle_t rect_;
 };
 #endif
