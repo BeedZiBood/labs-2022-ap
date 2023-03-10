@@ -4,7 +4,7 @@
 #include <limits>
 #include <stdexcept>
 
-double arctan(double x, double abs_Error, size_t max_Number)
+double arctan(double x, double absError, size_t maxNumber)
 {
   if (std::abs(x) > 1)
   {
@@ -15,7 +15,7 @@ double arctan(double x, double abs_Error, size_t max_Number)
   double error = std::numeric_limits<double>::max();
   size_t n = 0;
 
-  while ((n < max_Number) && (error > abs_Error))
+  while ((n < maxNumber) && (error > absError))
   {
     double term = std::pow(-1, n) * std::pow(x, 2 * n + 1) / (2 * n + 1);
     error = std::abs(term);
@@ -23,10 +23,9 @@ double arctan(double x, double abs_Error, size_t max_Number)
     ++n;
   }
 
-  if ((n >= max_Number) && (error > abs_Error))
+  if ((n >= maxNumber) && (error > absError))
   {
     throw std::runtime_error("Maximum term count reached, but desired precision could not be achieved.");
   }
-
   return result;
 }
