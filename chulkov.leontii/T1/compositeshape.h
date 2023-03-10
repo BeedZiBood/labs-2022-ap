@@ -32,4 +32,5 @@ class CompositeShape
     size_t size_;
     Shape** shp_;
 };
+
 #endif
