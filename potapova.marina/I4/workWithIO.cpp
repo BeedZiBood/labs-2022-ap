@@ -2,7 +2,7 @@
 #include <fstream>
 #include "workWithIO.h"
 
-void inputMatrix(size_t& count_rows, size_t& count_cols, int*& matrix, const char* const file_name)
+bool inputMatrix(size_t& count_rows, size_t& count_cols, int* matrix, const char* const file_name)
 {
   std::ifstream in(file_name);
   if (!in.is_open())
@@ -34,7 +34,7 @@ void inputMatrix(size_t& count_rows, size_t& count_cols, int*& matrix, const cha
   }
 }
 
-void printCountOfSaddlePoints(size_t сount_of_saddle_points, const char* file_name)
+bool printCountOfSaddlePoints(size_t сount_of_saddle_points, const char* file_name)
 {
   std::ofstream out(file_name);
   if (!out.is_open())

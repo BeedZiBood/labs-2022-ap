@@ -8,14 +8,14 @@ size_t inputMatrixOrder(const char* file_name)
   if (!in.is_open())
   {
     std::cerr << "Can't open " << file_name << '\n';
-    retun 1;
+    return 1;
   }
   size_t result;
   in >> result;
   return result;
 }
 
-void printSpiralMatrix(const size_t* const spiral_matrix, const size_t matrix_order, const char* const file_name)
+bool printSpiralMatrix(const size_t* const spiral_matrix, const size_t matrix_order, const char* const file_name)
 {
   std::ofstream out(file_name);
   if (!out.is_open())

@@ -28,7 +28,7 @@ int getMaxElemInCol(const int* const matrix, const size_t count_rows, const size
   return mx;
 }
 
-bool isMinInRow(int*& min_elems_in_rows, const int* const matrix, const size_t count_rows,
+bool isMinInRow(int* min_elems_in_rows, const int* const matrix, const size_t count_rows,
                   const size_t count_cols, const size_t num_row, const int elem)
 {
   if (min_elems_in_rows == nullptr)
