@@ -67,6 +67,26 @@ int main()
             std::cerr << e.what() << "\n";
           }
         }
+        else if (name == "CIRCLE")
+        {
+          try
+          {
+            double x = 0.0;
+            double y = 0.0;
+            double r = 0.0;
+            std::cin >> x >> y >> r;
+            Circle* circle = new Circle({x, y}, r);
+            compositeShape.pushBack(circle);
+          }
+          catch (const std::exception& e)
+          {
+            std::cerr << e.what() << "\n";
+          }
+        }
+      }
+      catch (const std::invalid_argument &e)
+      {
+        std::cerr << e.what() << "\n";
       }
     }
   }
