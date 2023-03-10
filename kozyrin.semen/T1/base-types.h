@@ -10,6 +10,12 @@ struct rectangle_t {
   point_t pos;
 };
 
-void addVector(point_t& point, double dx, double dy);
+struct vector_t {
+  double x, y;
+  vector_t operator*(double k);
+};
+
+void addVector(point_t& point, vector_t vector);
+vector_t getVector(point_t p1, point_t p2)
 
 #endif
