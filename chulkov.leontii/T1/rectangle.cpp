@@ -1,12 +1,15 @@
 #include "rectangle.h"
 #include <stdexcept>
 
-Rectangle::Rectangle(const double width, const double height, const point_t& pos):
-  width_(width),
-  height_(height),
-  pos_(pos)
+
+Rectangle::Rectangle(point_t width, point_t height):
+  pos_(point_t()),
+  rect_(rectangle_t())
 {
-  if (width_ < 0.0 || height_ < 0.0)
+  rect_.width_ = height.x - width.x;
+  rect_.height_ = height.y - width.y;
+  rect_.pos_ = {width.x + rect_.width_ / 2, width.y + rect_.height_ / 2};
+  if (rect_.width_ < 0.0 || rect_.height_ < 0.0)
   {
     throw std::invalid_argument("Error: Invalid rectangle dimensions");
   }
@@ -14,12 +17,12 @@ Rectangle::Rectangle(const double width, const double height, const point_t& pos
 
 double Rectangle::getArea() const
 {
-  return width_ * height_;
+  return rect_.width_ * rect_.height_;
 }
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return {pos_, width_, height_};
+  return rect_;
 }
 
 void Rectangle::move(const point_t& pos)
@@ -33,12 +36,20 @@ void Rectangle::move(const double dx, const double dy)
   pos_.y += dy;
 }
 
-void Rectangle::scale(const double ratio)
+void Rectangle::scale(double k)
 {
-  if (ratio < 0.0)
+  if (k < 0.0)
   {
-    throw std::invalid_argument("Error: Invalid scale ratio");
+    throw std::invalid_argument("Error: Invalid scale");
   }
-  width_ *= ratio;
-  height_ *= ratio;
+  if (k != 1.0)
+  {
+    rect_.width_ *= k;
+    rect_.height_ *= k;
+  }
+}
+
+Shape* Rectangle::clone() const
+{
+  return new Rectangle(*this);
 }
