@@ -1,7 +1,7 @@
 #include "circle.h"
 #include <cmath>
 #include <stdexcept>
-#include "rectangle.h"
+#include "basetype.h"
 
 Circle::Circle(const point_t& pos, double radius):
   pos_(pos),
@@ -34,12 +34,16 @@ void Circle::move(double dx, double dy)
   pos_.y += dy;
 }
 
-void Rectangle::scale(double k)
+void Circle::scale(double k)
 {
   if (k < 0.0)
   {
-    throw std::invalid_argument("Error: Invalid scale ratio");
+    throw std::invalid_argument("Error: Invalid scale");
   }
-  width_ *= k;
-  height_ *= k;
+  radius_ *= k;
+}
+
+Shape* Circle::clone() const
+{
+  return new Circle(*this);
 }
