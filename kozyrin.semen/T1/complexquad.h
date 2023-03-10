@@ -4,7 +4,7 @@
 
 class Complexquad: public Shape {
 public:
-  explicit Complexquad(point_t* pointArr);
+  explicit Complexquad(point_t p0, point_t p1, point_t p2, point_t p3);
   double getArea() const override;
   rectangle_t getFrameRect() const override;
   void move(point_t point) override;
@@ -13,6 +13,7 @@ public:
   Shape* clone() override;
 private:
   point_t pointArr_[4];
+  point_t center_;
 };
 
 #endif
