@@ -1,11 +1,10 @@
 #include "square.h"
 #include <stdexcept>
 
-Square::Square(const point_t& center, double side):
-  center_(center),
-  side_(side)
+Square::Square(const point_t& pos, double side):
+  rect_(Rectangle{pos, point_t {pos.x + side, pos.y + side}})
 {
-  if (side_ < 0.0)
+  if (side < 0.0)
   {
     throw std::invalid_argument("Invalid side value");
   }
@@ -13,30 +12,33 @@ Square::Square(const point_t& center, double side):
 
 double Square::getArea() const
 {
-  return side_ * side_;
+  return rect_.getArea();
 }
 
 rectangle_t Square::getFrameRect() const
 {
-  return {center_, side_, side_};
+  return rect_.getFrameRect();
 }
 
 void Square::move(const point_t& newCenter)
 {
-  center_ = newCenter;
+  rect_.move(newCenter);
 }
 
 void Square::move(double dx, double dy)
 {
-  center_.x += dx;
-  center_.y += dy;
+  rect_.move(dx, dy);
 }
 
-void Square::scale(double factor)
+void Square::scale(double k)
 {
-  if (factor < 0.0)
+  if (k <= 0.0)
   {
-    throw std::invalid_argument("Invalid scale factor");
+    throw std::invalid_argument("Invalid scale");
   }
-  side_ *= factor;
+  rect_.scale(k);
+}
+Shape* Square::clone() const
+{
+  return new Square(*this);
 }
