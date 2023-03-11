@@ -3,7 +3,6 @@
 
 
 Rectangle::Rectangle(point_t width, point_t height):
-  pos_(point_t()),
   rect_(rectangle_t())
 {
   rect_.width_ = height.x - width.x;
@@ -25,15 +24,15 @@ rectangle_t Rectangle::getFrameRect() const
   return rect_;
 }
 
-void Rectangle::move(const point_t& pos)
-{
-  pos_ = pos;
-}
-
 void Rectangle::move(const double dx, const double dy)
 {
-  pos_.x += dx;
-  pos_.y += dy;
+  rect_.pos_.x += dx;
+  rect_.pos_.y += dy;
+}
+
+void Rectangle::move(const point_t& pos)
+{
+  rect_.pos_ = pos;
 }
 
 void Rectangle::scale(double k)
@@ -42,11 +41,8 @@ void Rectangle::scale(double k)
   {
     throw std::invalid_argument("Error: Invalid scale");
   }
-  if (k != 1.0)
-  {
     rect_.width_ *= k;
     rect_.height_ *= k;
-  }
 }
 
 Shape* Rectangle::clone() const
