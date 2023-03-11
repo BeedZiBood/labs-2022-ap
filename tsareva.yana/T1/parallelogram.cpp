@@ -58,7 +58,15 @@ void Parallelogram::scale(double k)
 
 void Parallelogram::move(point_t point)
 {
-  point_t position = getCenterParallelogram(first_, third_);
+  point_t position;
+  if (findModule(first_, third_) >= findModule(second_, third_))
+  {
+    position = getCenterParallelogram(first_, third_);
+  }
+  else
+  {
+    position = getCenterParallelogram(second_, third_);
+  }
   double dx = point.x - position.x;
   double dy = point.y - position.y;
   move(dx, dy);
