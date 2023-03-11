@@ -100,11 +100,11 @@ rectangle_t CompositeShape::getFrameRect() const
   return rec;
 }
 
-void CompositeShape::move(point_t position)
+void CompositeShape::move(point_t pos)
 {
   for (size_t i = 0; i < size_; ++i)
   {
-    shp_[i]->move(position);
+    shp_[i]->move(pos);
   }
 }
 
