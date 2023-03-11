@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-#include "shape.h"
+#include <stdexcept>
 #include "basetype.h"
 #include "square.h"
 #include "circle.h"
@@ -120,12 +120,12 @@ int main()
     }
     else if (name == "SCALE")
     {
-      if (!use)
-      {
-        throw std::logic_error("Figure is not define");
-      }
       try
       {
+        if (!use)
+        {
+          throw std::logic_error("Figure is not define");
+        }
         double x = 0.0;
         double y = 0.0;
         std::cin >> x >> y;
