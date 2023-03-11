@@ -7,7 +7,7 @@ Circle::Circle(const point_t& pos, double radius):
   pos_(pos),
   radius_(radius)
 {
-  if (radius_ < 0.0)
+  if (radius_ <= 0.0)
   {
     throw std::invalid_argument("Radius must be non-negative");
   }
@@ -30,8 +30,7 @@ void Circle::move(const point_t& pos)
 
 void Circle::move(double dx, double dy)
 {
-  pos_.x += dx;
-  pos_.y += dy;
+  pos_ = movePoint(pos_, point_t{ dx, dy });
 }
 
 void Circle::scale(double k)
