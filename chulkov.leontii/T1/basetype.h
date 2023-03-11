@@ -13,4 +13,7 @@ struct rectangle_t
   double width_;
   double height_;
 };
+
+point_t movePoint(point_t p, point_t dp);
+
 #endif
