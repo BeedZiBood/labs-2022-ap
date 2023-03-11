@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 Square::Square(const point_t& pos, double side):
-  rect_(Rectangle{pos, point_t {pos.x + side, pos.y + side}})
+  rect_(pos, {pos.x + side, pos.y + side})
 {
   if (side <= 0.0)
   {
