@@ -54,6 +54,18 @@ void Parallelogram::scale(double k)
   {
     throw std::invalid_argument("Error ratio");
   }
+  point_t position;
+  if (findModule(first_, third_) >= findModule(second_, third_))
+  {
+    position = getCenterParallelogram(first_, third_);
+  }
+  else
+  {
+    position = getCenterParallelogram(second_, third_);
+  }
+  first_ = scalePoint(first_, position, k);
+  second_= scalePoint(second_, position, k);
+  third_ = scalePoint(third_, position, k);
 }
 
 void Parallelogram::move(point_t point)

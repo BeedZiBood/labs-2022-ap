@@ -20,4 +20,5 @@ double findModule(point_t f_top, point_t s_top);
 bool isParallelogram(point_t f_top, point_t s_top, point_t t_top);
 bool isDiamond(point_t f_top, point_t s_top, point_t t_top);
 bool isRightTriangle(point_t f_top, point_t s_top, point_t t_top);
+point_t scalePoint(point_t point, point_t position, double k);
 #endif

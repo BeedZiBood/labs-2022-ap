@@ -56,3 +56,15 @@ bool isDiamond(point_t f_top, point_t s_top, point_t t_top)
   }
 }
 
+point_t scalePoint(point_t point, point_t position, double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Error ratio");
+  }
+  double dx = (point.x - position.x) * k;
+  double dy = (point.y - position.y) * k;
+  point_t d_point{ dx, dy };
+  return movePoint(position, d_point);
+}
+
