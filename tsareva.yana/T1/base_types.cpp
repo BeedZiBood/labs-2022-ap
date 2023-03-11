@@ -1,5 +1,7 @@
 #include "base_types.h"
 #include <cmath>
+#include <stdexcept>
+#include <algorithm>
 
 point_t movePoint(point_t point, point_t d_point)
 {
@@ -68,3 +70,7 @@ point_t scalePoint(point_t point, point_t position, double k)
   return movePoint(position, d_point);
 }
 
+point_t getCenterDiamond(point_t point)
+{
+  return point;
+}

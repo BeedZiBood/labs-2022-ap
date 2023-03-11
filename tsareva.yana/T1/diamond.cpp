@@ -40,7 +40,15 @@ double Diamond::getArea() const
 
 void Diamond::move(point_t point)
 {
-  point_t position = getCenterParallelogram(first_, third_);
+  point_t position;
+  if (first_.x == third_.x)
+  {
+    position = getCenterDiamond(first_);
+  }
+  else
+  {
+    position = getCenterDiamond(second_);
+  }
   double dx = point.x - position.x;
   double dy = point.y - position.y;
   move(dx, dy);
