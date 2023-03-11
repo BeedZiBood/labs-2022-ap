@@ -2,9 +2,10 @@
 #include <iostream>
 #include "compositeshape.h"
 
-void printTable(const CompositeShape& cShp)
+void printResulte(const CompositeShape& cShp)
 {
-  for (size_t i = 0; i < cShp.size(); ++i) {
+  for (size_t i = 0; i < cShp.size(); ++i)
+  {
     double minX = cShp[i]->getFrameRect().pos_.x;
     minX -= cShp[i]->getFrameRect().width_ / 2;
     double minY = cShp[i]->getFrameRect().pos_.y;
