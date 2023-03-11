@@ -18,10 +18,10 @@ double findModule(point_t f_top, point_t s_top)
 
 bool isTriangle(point_t f_top, point_t s_top, point_t t_top)
 {
-  double first_side = findModule(f_top, s_top);
-  double second_side = findModule(f_top, t_top);
-  double third_side = findModule(s_top, t_top);
-  if ((first_side + second_side > third_side) && (first_side + third_side > second_side) && (second_side + third_side > first_side))
+  double f_side = findModule(f_top, s_top);
+  double s_side = findModule(f_top, t_top);
+  double t_side = findModule(s_top, t_top);
+  if ((f_side + s_side > t_side) && (f_side + t_side > s_side) && (s_side + t_side > f_side))
   {
     return true;
   }
