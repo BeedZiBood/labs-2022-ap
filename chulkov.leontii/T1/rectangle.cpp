@@ -1,7 +1,6 @@
 #include "rectangle.h"
 #include <stdexcept>
 
-
 Rectangle::Rectangle(point_t width, point_t height):
   rect_(rectangle_t())
 {
@@ -41,8 +40,8 @@ void Rectangle::scale(double k)
   {
     throw std::invalid_argument("Error: Invalid scale");
   }
-    rect_.width_ *= k;
-    rect_.height_ *= k;
+  rect_.width_ *= k;
+  rect_.height_ *= k;
 }
 
 Shape* Rectangle::clone() const
