@@ -17,4 +17,5 @@ class Rectangle: public Shape
     point_t pos_;
     rectangle_t rect_;
 };
+
 #endif

@@ -16,7 +16,7 @@ class CompositeShape
 
     double getArea() const;
     rectangle_t getFrameRect() const;
-    void move(point_t position);
+    void move(point_t pos);
     void move(double dx, double dy);
     void scale(double k);
     void isotropScale(point_t pos, double k);

@@ -17,4 +17,5 @@ class Square: public Shape
   private:
     Rectangle rect_;
 };
+
 #endif
