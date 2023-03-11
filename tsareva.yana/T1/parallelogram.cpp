@@ -8,6 +8,10 @@ Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
   second_(second),
   third_(third)
 {
+  if (!(isParallelogram(first, second, third)))
+  {
+    throw std::invalid_argument("Error parallelogram parameters");
+  }
   if (second_.y == third_.y)
   {
     first_ = third;
