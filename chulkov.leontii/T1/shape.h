@@ -15,6 +15,4 @@ class Shape
     virtual Shape* clone() const = 0;
 };
 
-point_t movePoint(point_t p, point_t dp);
-
 #endif
