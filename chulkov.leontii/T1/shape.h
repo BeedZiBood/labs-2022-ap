@@ -1,5 +1,6 @@
 #ifndef SHAPE_HP
 #define SHAPE_HP
+#include <iomanip>
 #include "basetype.h"
 
 class Shape
@@ -13,4 +14,7 @@ class Shape
     virtual void scale(double k) = 0;
     virtual Shape* clone() const = 0;
 };
+
+point_t movePoint(point_t p, point_t dp);
+
 #endif
