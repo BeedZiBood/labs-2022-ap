@@ -209,6 +209,10 @@ void CompositeShape::popBack()
 
 Shape* CompositeShape::at(size_t id) const
 {
+  if (id >= size_)
+  {
+    throw std::logic_error("Going beyond the bounds of the array");
+  }
   return shp_[id];
 }
 
