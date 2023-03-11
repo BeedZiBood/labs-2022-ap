@@ -4,7 +4,7 @@
 Square::Square(const point_t& pos, double side):
   rect_(Rectangle{pos, point_t {pos.x + side, pos.y + side}})
 {
-  if (side < 0.0)
+  if (side <= 0.0)
   {
     throw std::invalid_argument("Invalid side value");
   }
@@ -20,9 +20,9 @@ rectangle_t Square::getFrameRect() const
   return rect_.getFrameRect();
 }
 
-void Square::move(const point_t& newCenter)
+void Square::move(const point_t& pos)
 {
-  rect_.move(newCenter);
+  rect_.move(pos);
 }
 
 void Square::move(double dx, double dy)
