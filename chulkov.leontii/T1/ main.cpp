@@ -11,6 +11,7 @@
 int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
+  bool use = false;
   CompositeShape compositeShape;
   while (std::cin)
   {
@@ -27,6 +28,7 @@ int main()
       {
         if (name == "RECTANGLE")
         {
+          use = true;
           try
           {
             double x = 0.0;
@@ -35,12 +37,23 @@ int main()
             point_t a{x, y};
             std::cin >> x >> y;
             point_t b{x, y};
+            if (a.x > b.x || a.y > b.y)
+            {
+              throw std::logic_error("Bad scale");
+            }
             if (!std::cin)
             {
               throw std::invalid_argument("invalid arguments");
             }
-            Rectangle* rect = new Rectangle(a, b);
-            compositeShape.pushBack(rect);
+            try
+            {
+              Rectangle* rect = new Rectangle(a, b);
+              compositeShape.pushBack(rect);
+            }
+            catch (const std::exception& e)
+            {
+              std::cerr << e.what() << "\n";
+            }
           }
           catch (const std::logic_error& e)
           {
@@ -49,6 +62,7 @@ int main()
         }
         else if (name == "SQUARE")
         {
+          use = true;
           try
           {
             double x = 0.0;
@@ -59,8 +73,15 @@ int main()
             {
               throw std::invalid_argument("invalid arguments");
             }
-            Square* square = new Square(point_t {x, y}, z);
-            compositeShape.pushBack(square);
+            try
+            {
+              Square* square = new Square(point_t {x, y}, z);
+              compositeShape.pushBack(square);
+            }
+            catch (const std::exception& e)
+            {
+              std::cerr << e.what() << "\n";
+            }
           }
           catch (const std::logic_error& e)
           {
@@ -69,14 +90,22 @@ int main()
         }
         else if (name == "CIRCLE")
         {
+          use = true;
           try
           {
             double x = 0.0;
             double y = 0.0;
             double r = 0.0;
             std::cin >> x >> y >> r;
-            Circle* circle = new Circle({x, y}, r);
-            compositeShape.pushBack(circle);
+            try
+            {
+              Circle* circle = new Circle({x, y}, r);
+              compositeShape.pushBack(circle);
+            }
+            catch (const std::exception& e)
+            {
+              std::cerr << e.what() << "\n";
+            }
           }
           catch (const std::exception& e)
           {
@@ -91,6 +120,10 @@ int main()
     }
     else if (name == "SCALE")
     {
+      if (!use)
+      {
+        throw std::logic_error("Figure is not define");
+      }
       try
       {
         double x = 0.0;
