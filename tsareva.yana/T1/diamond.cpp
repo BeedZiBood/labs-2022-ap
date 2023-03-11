@@ -45,7 +45,7 @@ void Diamond::move(point_t point)
   {
     position = getCenterDiamond(first_);
   }
-  else
+  else if (second_.x == third_.x)
   {
     position = getCenterDiamond(second_);
   }
@@ -53,3 +53,24 @@ void Diamond::move(point_t point)
   double dy = point.y - position.y;
   move(dx, dy);
 }
+
+void Diamond::scale(double k)
+{
+  if (k <= 0)
+  {
+    throw std::invalid_argument("Error ratio");
+  }
+  point_t position;
+  if (first_.x == third_.x)
+  {
+    position = getCenterDiamond(first_);
+  }
+  else if (second_.x == third_.x)
+  {
+    position = getCenterDiamond(second_);
+  }
+  first_ = scalePoint(first_, position, k);
+  second_= scalePoint(second_, position, k);
+  third_ = scalePoint(third_, position, k);
+}
+
