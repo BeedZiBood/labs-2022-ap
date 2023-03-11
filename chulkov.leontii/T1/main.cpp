@@ -5,7 +5,7 @@
 #include "square.h"
 #include "circle.h"
 #include "rectangle.h"
-#include "compositeShape.h"
+#include "compositeshape.h"
 #include "print.h"
 
 int main()

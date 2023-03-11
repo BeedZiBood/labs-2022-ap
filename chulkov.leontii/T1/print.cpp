@@ -1,6 +1,6 @@
 #include "print.h"
 #include <iostream>
-#include "compositeShape.h"
+#include "compositeshape.h"
 
 void printTable(const CompositeShape& cShp)
 {
