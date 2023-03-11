@@ -70,7 +70,14 @@ point_t scalePoint(point_t point, point_t position, double k)
   return movePoint(position, d_point);
 }
 
-point_t getCenterDiamond(point_t point)
+point_t getCenterDiamond(point_t f_top, point_t s_top, point_t t_top)
 {
-  return point;
+  if (f_top.x == t_top.x)
+  {
+    return f_top;
+  }
+  else if (s_top.x == t_top.x)
+  {
+    return s_top;
+  }
 }
