@@ -36,6 +36,7 @@ void output(std::ostream& outStream, std::istream& inStream, Shape** arr, size_t
     rect = arr[i]->getFrameRect();
     outStream << rect.pos.x - rect.width / 2 << ' ' << rect.pos.y - rect.height / 2 << ' ';
     outStream << rect.pos.x + rect.width / 2 << ' ' << rect.pos.y + rect.height / 2 << ' ';
+    delete arr[i];
   }
 }
 
@@ -62,8 +63,7 @@ int main()
       if (name == "RECTANGLE") {
         arr[size] = makeRectangle(std::cin);
       } else if (name == "ELLIPSE") {
-        Shape* ell = makeEllipse(std::cin);
-        arr[size] = ell;
+        arr[size] = makeEllipse(std::cin);
       } else if (name == "COMPLEXQUAD") {
         arr[size] = makeComplexquad(std::cin);
       } else if (name == "SCALE") {
@@ -79,6 +79,9 @@ int main()
       continue;
     }
     size += 1;
+  }
+  for (size_t i = 0; i < size; ++i) {
+    delete arr[i];
   }
   delete[] arr;
   std::cerr << "Error: scale command not found";

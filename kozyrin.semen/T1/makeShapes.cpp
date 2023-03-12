@@ -2,13 +2,11 @@
 
 Shape* makeRectangle(std::istream& input)
 {
-  point_t p1{0, 0};
-  point_t p2{0, 0};
-  input >> p1.x;
-  input >> p1.y;
-  input >> p2.x;
-  input >> p2.y;
-  return new Rectangle(p1, p2);
+  double args[4]{0};
+  for (size_t i = 0; i < 4; ++i) {
+    input >> args[i];
+  }
+  return new Rectangle({args[0], args[1]}, {args[2], args[3]});
 }
 
 Shape* makeEllipse(std::istream& input)
