@@ -2,7 +2,7 @@
 #include "makeShapes.h"
 #include <iomanip>
 
-void printRow(std::ostream& outStream, std::istream& inStream, Shape** arr, size_t size)
+void printRow(std::ostream& outStream, Shape** arr, size_t size)
 {
   double area = 0;
   for (size_t i = 0; i < size; ++i) {
@@ -38,12 +38,12 @@ int printArr(std::ostream& errStream, std::ostream& outStream, std::istream& inS
     return 2;
   }
 
-  printRow(outStream, inStream, arr, size);
+  printRow(outStream, arr, size);
   for (size_t i = 0; i < size; ++i) {
     isoScale(arr[i], point, k);
   }
   outStream << '\n';
-  printRow(outStream, inStream, arr, size);
+  printRow(outStream, arr, size);
 
   for (size_t i = 0; i < size; ++i) {
     delete arr[i];
