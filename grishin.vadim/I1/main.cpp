@@ -1,6 +1,6 @@
-#include<iostream>
 #include "sequence.h"
 #include "LocalMax.h"
+#include<iostream>
 
 int main()
 {

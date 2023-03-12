@@ -1,5 +1,5 @@
-#include "iostream"
 #include "LocalMax.h"
+#include <iostream>
 
 int LocalMax(int countLocalMax, int currentValue, int value1, int value2)
 {
