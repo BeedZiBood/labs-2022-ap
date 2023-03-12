@@ -1,17 +1,33 @@
-#include "sequence.h"
-#include "LocalMax.h"
-#include<iostream>
+#include "isSequence.h"
+#include "isLocalMax.h"
+#include <iostream>
 int main()
 {
-  int countLocalMax = 0;
   int currentValue = 0;
-  int value1;
-  int value2;
-  int count2 = 0;
-  do
+  int value1 = 0;
+  int value2 = 0;
+  int countOfLocalMax = 0;
+  int countOfSequence = 0;
+  std::cin >> currentValue;
+  if (!std::cin)
   {
-    std::cin >> value2 >> value1;
+    std::cout << "Error, you need to type an integer\n";
+    return 1;
   }
-  while (currentValue != 0);
-  std::cout << countLocalMax;
+  while (currentValue != 0)
+  {
+    value2 = value1;
+    value1 = currentValue;
+    std::cin >> currentValue;
+    if (!std::cin)
+    {
+      std::cout << "Entered incorrect value\n";
+      return 1;
+    }
+    countOfLocalMax += isLocalMax(currentValue, value1, value2);
+    countOfSequence += isSequence(currentValue, value1, value2);
+  }
+  std::cout << countOfLocalMax << "\n";
+  std::cout << countOfSequence << "\n";
+  return 0;
 }
