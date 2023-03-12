@@ -1,5 +1,5 @@
-#include "isSequence.h"
-#include "isLocalMax.h"
+#include "issequence.h"
+#include "islocalmax.h"
 #include <iostream>
 int main()
 {
