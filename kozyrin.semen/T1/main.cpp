@@ -35,9 +35,10 @@ int printArr(std::ostream& errStream, std::ostream& outStream, std::istream& inS
   point_t point{x, y};
   double k = 0;
   inStream >> k;
+  int res = 0;
   if (k <= 0) {
     errStream << "Error: scale coefficient must be greater than zero";
-    return 2;
+    res = 2;
   } else {
     printRow(outStream, arr, size);
     for (size_t i = 0; i < size; ++i) {
@@ -50,7 +51,7 @@ int printArr(std::ostream& errStream, std::ostream& outStream, std::istream& inS
     delete arr[i];
   }
   delete[] arr;
-  return 0;
+  return res;
 }
 
 int main()
