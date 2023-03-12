@@ -11,7 +11,7 @@ vector_t getVector(point_t p1, point_t p2)
   return {p2.x - p1.x, p2.y - p1.y};
 }
 
-vector_t vector_t::operator*(double k)
+vector_t vector_t::operator*(double k) const
 {
    return {x * k, y * k};
 }

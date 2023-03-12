@@ -88,7 +88,7 @@ bool isIntersection(const point_t center, const point_t* arr)
 
 double getTriangleArea(const point_t p1, const point_t p2, const point_t p3)
 {
-  return (std::abs((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y)) / 2);
+  return (std::abs(((p2.x - p1.x) * (p3.y - p1.y)) - ((p3.x - p1.x) * (p2.y - p1.y))) / 2);
 }
 
 Complexquad::Complexquad(const point_t p0, const point_t p1, const point_t p2, const point_t p3):
@@ -102,8 +102,8 @@ Complexquad::Complexquad(const point_t p0, const point_t p1, const point_t p2, c
 
 double Complexquad::getArea() const
 {
-  double res = getTriangleArea(center_, pointArr_[0], pointArr_[3]);
-  res += getTriangleArea(center_, pointArr_[1], pointArr_[2]);
+  double res = getTriangleArea(center_, pointArr_[0], pointArr_[1]);
+  res += getTriangleArea(center_, pointArr_[2], pointArr_[3]);
   return res;
 }
 

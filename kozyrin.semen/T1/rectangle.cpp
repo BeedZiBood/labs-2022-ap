@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 Rectangle::Rectangle(point_t p1, point_t p2):
-  rect_{p1.x - p2.x, p1.y - p2.y, (p1.x - p2.x) / 2, (p1.y - p2.y) / 2}
+  rect_{p2.x - p1.x, p2.y - p1.y, (p2.x + p1.x) / 2, (p2.y + p1.y) / 2}
 {
   if (rect_.width <= 0 || rect_.height <= 0) {
     throw std::invalid_argument("Incorrect rectangle size");
