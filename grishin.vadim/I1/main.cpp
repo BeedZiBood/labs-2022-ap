@@ -1,7 +1,6 @@
 #include "sequence.h"
 #include "LocalMax.h"
 #include<iostream>
-
 int main()
 {
   int countLocalMax = 0;
@@ -9,11 +8,9 @@ int main()
   int value1;
   int value2;
   int count2 = 0;
-
   do
   {
     std::cin >> value2 >> value1;
-
   }
   while (currentValue != 0);
   std::cout << countLocalMax;
