@@ -13,7 +13,7 @@ Ellipse::Ellipse(point_t pos, double r1, double r2):
 
 double Ellipse::getArea() const
 {
-  return r1_ * r2_ * 3.14;
+  return r1_ * r2_ * 3.14159265359;
 }
 
 rectangle_t Ellipse::getFrameRect() const
