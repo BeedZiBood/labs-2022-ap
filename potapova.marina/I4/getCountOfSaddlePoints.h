@@ -3,6 +3,6 @@
 
 #include <cstddef>
 
-size_t getCountOfSaddlePoints(const int* matrix, size_t count_rows, size_t count_cols);
+size_t getCountOfSaddlePoints(const long long* const* matrix, size_t count_rows, size_t count_cols);
 
 #endif

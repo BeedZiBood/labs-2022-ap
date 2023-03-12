@@ -1,37 +1,52 @@
+#include <iostream>
 #include "fillSpiralMatrix.h"
 
-void fillSpiralMatrix(size_t* const dest, const size_t matrix_order)
+void printSpiralMatrix(const long long* const* const spiral_matrix, const size_t matrix_order, size_t count_slice)
 {
-  static size_t orig_matrix_order = 0;
-  if (orig_matrix_order == 0)
+  for (const long long* const* cur_row_ptr = spiral_matrix; cur_row_ptr < spiral_matrix + matrix_order; ++cur_row_ptr)
   {
-    orig_matrix_order = matrix_order;
+    for (const long long* cur_elem_ptr = *cur_row_ptr + count_slice;
+          cur_elem_ptr < *cur_row_ptr + matrix_order + count_slice; ++cur_elem_ptr)
+    {
+      std::cout << *cur_elem_ptr << ' ';
+    }
+    std::cout << '\n';
   }
-  static size_t cur_elem_val = 1;
-  if (matrix_order == 1 && (orig_matrix_order & 1) == 1)
+}
+
+void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
+{
+  static size_t count_slice = 0;
+  static long long cur_elem_val = 1;
+  if (matrix_order == 1)
   {
-    *dest = cur_elem_val;
+    dest[0][count_slice] = cur_elem_val;
   }
   else if (matrix_order > 1)
   {
-    for (size_t* cur_elem_ptr = dest + matrix_order - 1; cur_elem_ptr >= dest; --cur_elem_ptr)
+    for (long long* cur_elem_ptr = dest[0] + count_slice + matrix_order - 1; cur_elem_ptr >= dest[0] + count_slice; --cur_elem_ptr)
     {
       *cur_elem_ptr = cur_elem_val++;
+      printSpiralMatrix(dest, matrix_order, count_slice);
     }
-    size_t* first_in_row_ptr = dest + orig_matrix_order * (matrix_order - 1);
-    for (size_t* cur_elem_ptr = dest + orig_matrix_order; cur_elem_ptr <= first_in_row_ptr; cur_elem_ptr += orig_matrix_order)
+    long long** last_row_ptr = dest + matrix_order - 1;
+    for (long long** cur_row_ptr = dest + 1; cur_row_ptr <= last_row_ptr; ++cur_row_ptr)
+    {
+      (*cur_row_ptr)[count_slice] = cur_elem_val++;
+      printSpiralMatrix(dest, matrix_order, count_slice);
+    }
+    for (long long* cur_elem_ptr = *last_row_ptr + count_slice + 1;
+          cur_elem_ptr < *last_row_ptr + count_slice + matrix_order; ++cur_elem_ptr)
     {
       *cur_elem_ptr = cur_elem_val++;
+      printSpiralMatrix(dest, matrix_order, count_slice);
     }
-    for (size_t* cur_elem_ptr = first_in_row_ptr + 1; cur_elem_ptr < first_in_row_ptr + matrix_order; ++cur_elem_ptr)
+    for (long long** cur_row_ptr = last_row_ptr - 1; cur_row_ptr > dest; --cur_row_ptr)
     {
-      *cur_elem_ptr = cur_elem_val++;
+      (*cur_row_ptr)[matrix_order + count_slice - 1] = cur_elem_val++;
+      printSpiralMatrix(dest, matrix_order, count_slice);
     }
-    for (size_t* cur_elem_ptr = first_in_row_ptr - orig_matrix_order + matrix_order - 1;
-          cur_elem_ptr > dest + matrix_order - 1; cur_elem_ptr -= orig_matrix_order)
-    {
-      *cur_elem_ptr = cur_elem_val++;
-    }
-    fillSpiralMatrix(dest + orig_matrix_order + 1, matrix_order - 2);
+    ++count_slice;
+    fillSpiralMatrix(dest + 1, matrix_order - 2);
   }
 }

@@ -7,7 +7,6 @@
 #include "fillSpiralMatrix.h"
 #include "workWithIO.h"
 #include "getCountOfSaddlePoints.h"
-#include "workWithIOAnother.h"
 
 int main(int argc, char* argv[])
 {
@@ -16,48 +15,53 @@ int main(int argc, char* argv[])
     std::cerr << "Incorrect count of main arguments\n";
     return 1;
   }
-  size_t count_rows = 0;
-  size_t count_cols = 0;
   std::ifstream input(argv[2]);
   if (!input.is_open())
   {
-    std::cerr << "File cannot be open\n";
+    std::cerr << argv[2] << " cannot be open\n";
     return 1;
   }
-  input >> count_rows >> count_cols;
-  if (!input)
+  size_t count_rows = 0;
+  size_t count_cols = 0;
+  if (!(input >> count_rows >> count_cols))
   {
-    std::cerr << "File is empty\n";
+    std::cerr << "Input error\n";
     return 1;
   }
-  if (count_rows * count_cols > 1000)
+  std::ofstream output(argv[3]);
+  if (!output.is_open())
   {
-    std::cerr << "Incorrect range";
+    std::cerr << argv[3] << " cannot be open\n";
     return 1;
   }
-  if (!std::strcmp(argv[1], "1"))
+  if (std::strcmp(argv[1], "1") == 0)
   {
-    int static_arr[1000];
-    for (size_t i = 0; i < count_rows * count_cols; ++i)
+    long long matrix[1000];
+    inputMatrix(matrix, count_rows, count_cols, input);
+    output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' '
+           << countColsWithNull(matrix, count_rows, count_cols) << '\n';
+  }
+  else if (strcmp(argv[1], "2") == 0)
+  {
+    size_t count_rows;
+    size_t count_cols;
+    long long** matrix = new long long*[count_rows];
+    for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
     {
-      input >> static_arr[i];
-      if (!input)
-      {
-        std::cerr << "Error\n";
-        return 1;
-      }
+      *cur_row_ptr = new long long[count_cols];
     }
-    std::ofstream output(argv[3]);
-    output << countRowsWithoutNull(static_arr, count_rows, count_cols) << " "
-           << countColsWithNull(static_arr, count_rows, count_cols) << "\n";
-  }
-  else if (!strcmp(argv[1], "2"))
-  {
-    const size_t matrix_order = inputMatrixOrder(argv[2]);
-    size_t* spiral_matrix;
+    inputMatrix(matrix, count_rows, count_cols, input);
+    output << getCountOfSaddlePoints(matrix, count_rows, count_cols);
+    delete[] matrix;
+    size_t& matrix_order = count_rows;
+    long long** spiral_matrix;
     try
     {
-      spiral_matrix = new size_t[matrix_order * matrix_order];
+      spiral_matrix = new long long*[matrix_order];
+      for (long long** cur_row_ptr = spiral_matrix; cur_row_ptr < spiral_matrix + matrix_order; ++cur_row_ptr)
+      {
+        *cur_row_ptr = new long long[matrix_order];
+      }
     }
     catch (const std::bad_alloc& e)
     {
@@ -65,14 +69,8 @@ int main(int argc, char* argv[])
       return 1;
     }
     fillSpiralMatrix(spiral_matrix, matrix_order);
-    printSpiralMatrix(spiral_matrix, matrix_order, argv[3]);
+    printSpiralMatrix(spiral_matrix, matrix_order, output);
     delete[] spiral_matrix;
-    size_t count_rows;
-    size_t count_cols;
-    int* matrix;
-    inputMatrix(count_rows, count_cols, matrix, argv[2]);
-    printCountOfSaddlePoints(getCountOfSaddlePoints(matrix, count_rows, count_cols), argv[3]);
-    delete[] matrix;
   }
   else
   {

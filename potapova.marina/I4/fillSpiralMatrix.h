@@ -3,6 +3,6 @@
 
 #include <cstddef>
 
-void fillSpiralMatrix(size_t* dest, size_t matrix_order);
+void fillSpiralMatrix(long long** dest, size_t matrix_order);
 
 #endif

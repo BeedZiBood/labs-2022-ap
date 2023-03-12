@@ -1,46 +1,48 @@
-#include <iostream>
-#include <fstream>
 #include "workWithIO.h"
 
-bool inputMatrix(size_t& count_rows, size_t& count_cols, int* matrix, const char* const file_name)
+bool inputMatrix(long long* const matrix, size_t count_rows, size_t count_cols, std::ifstream& in)
 {
-  std::ifstream in(file_name);
-  if (!in.is_open())
-  {
-    std::cerr << "Can't open " << file_name << '\n';
-    return 1;
-  }
   if (!(in >> count_rows >> count_cols))
   {
-    std::cerr << "Input error " << '\n';
-    return 1;
+    return false;
   }
-  try
-  {
-    matrix = new int[count_rows * count_cols];
-  }
-  catch (const std::bad_alloc& e)
-  {
-    std::cerr << "Allocation error " << e.what() << '\n';
-    return 1;
-  }
-  for (int* cur_elem_ptr = matrix; cur_elem_ptr < matrix + count_rows * count_cols; ++cur_elem_ptr)
+  for (long long* cur_elem_ptr = matrix; cur_elem_ptr < matrix + count_rows * count_cols; ++cur_elem_ptr)
   {
     if (!(in >> *cur_elem_ptr))
     {
-      std::cerr << "Input error " << '\n';
-      return 1;
+      return false;
     }
   }
+  return true;
 }
 
-bool printCountOfSaddlePoints(size_t сount_of_saddle_points, const char* file_name)
+bool inputMatrix(long long* const* const matrix, size_t count_rows, size_t count_cols, std::ifstream& in)
 {
-  std::ofstream out(file_name);
-  if (!out.is_open())
+  if (!(in >> count_rows >> count_cols))
   {
-    std::cerr << "Can't open " << file_name << '\n';
-    return 1;
+    return false;
   }
-  out << сount_of_saddle_points << '\n';
+  for (long long* const* cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
+  {
+    for (long long* cur_elem_ptr = *cur_row_ptr; cur_elem_ptr < *cur_row_ptr + count_cols; ++cur_elem_ptr)
+    {
+      if (!(in >> *cur_elem_ptr))
+      {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+void printSpiralMatrix(const long long* const* const spiral_matrix, const size_t matrix_order, std::ostream& out)
+{
+  for (const long long* const* cur_row_ptr = spiral_matrix; cur_row_ptr < spiral_matrix + matrix_order; ++cur_row_ptr)
+  {
+    for (const long long* cur_elem_ptr = *cur_row_ptr; cur_elem_ptr < *cur_row_ptr + matrix_order; ++cur_elem_ptr)
+    {
+      out << *cur_elem_ptr << ' ';
+    }
+    out << '\n';
+  }
 }

@@ -2,9 +2,10 @@
 #define WORKWITHIO_H
 
 #include <cstddef>
+#include <fstream>
 
-void inputMatrix(size_t& count_rows, size_t& count_cols, int* matrix, const char* file_name);
-
-void printCountOfSaddlePoints(size_t сount_of_saddle_points, const char* file_name);
+bool inputMatrix(long long* matrix, size_t count_rows, size_t count_cols, std::ifstream& in);
+bool inputMatrix(long long* const* matrix, size_t count_rows, size_t count_cols, std::ifstream& in);
+void printSpiralMatrix(const long long* const* spiral_matrix, size_t matrix_order, std::ostream& out);
 
 #endif
