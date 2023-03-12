@@ -4,22 +4,22 @@
 point_t getCenter(const point_t* arr)
 {
   point_t res{0, 0};
-  if (arr[3].x == arr[0].x && arr[2].x == arr[1].x) {
+  if (arr[0].x == arr[1].x && arr[2].x == arr[3].x) {
     throw std::invalid_argument("Intersection point doesn't exist or there are multiple of them");
-  } else if (arr[3].x == arr[0].x) {
-    double k2 = (arr[2].y - arr[1].y) / (arr[2].x - arr[1].x);
+  } else if (arr[0].x == arr[1].x) {
+    double k2 = (arr[3].y - arr[2].y) / (arr[3].x - arr[2].x);
     double b2 = arr[2].y - k2 * arr[2].x;
-    res.x = arr[3].x;
+    res.x = arr[0].x;
     res.y = k2 * res.x + b2;
-  } else if (arr[2].x == arr[1].x) {
-    double k1 = (arr[3].y - arr[0].y) / (arr[3].x - arr[0].x);
-    double b1 = arr[3].y - k1 * arr[3].x;
+  } else if (arr[2].x == arr[3].x) {
+    double k1 = (arr[1].y - arr[0].y) / (arr[1].x - arr[0].x);
+    double b1 = arr[0].y - k1 * arr[0].x;
     res.x = arr[2].x;
     res.y = k1 * res.x + b1;
   } else {
-    double k1 = (arr[3].y - arr[0].y) / (arr[3].x - arr[0].x);
-    double b1 = arr[3].y - k1 * arr[3].x;
-    double k2 = (arr[2].y - arr[1].y) / (arr[2].x - arr[1].x);
+    double k1 = (arr[1].y - arr[0].y) / (arr[1].x - arr[0].x);
+    double b1 = arr[0].y - k1 * arr[0].x;
+    double k2 = (arr[3].y - arr[2].y) / (arr[3].x - arr[2].x);
     double b2 = arr[2].y - k2 * arr[2].x;
     if (k1 == k2) {
       throw std::invalid_argument("Intersection point doesn't exist");
@@ -69,14 +69,14 @@ void getBorders(point_t* res, const point_t* arr, const size_t size)
 bool isIntersection(const point_t center, const point_t* arr)
 {
   point_t borders[2]{0, 0, 0, 0};
-  getBorders(borders, arr[0], arr[3]);
+  getBorders(borders, arr[0], arr[1]);
   if (borders[0].x > center.x || borders[0].y > center.y) {
     return false;
   }
   if (borders[1].x < center.x || borders[1].y < center.y) {
     return false;
   }
-  getBorders(borders, arr[1], arr[2]);
+  getBorders(borders, arr[2], arr[3]);
   if (borders[0].x > center.x || borders[0].y > center.y) {
     return false;
   }
@@ -102,8 +102,8 @@ Complexquad::Complexquad(const point_t p0, const point_t p1, const point_t p2, c
 
 double Complexquad::getArea() const
 {
-  double res = getTriangleArea(center_, pointArr_[0], pointArr_[1]);
-  res += getTriangleArea(center_, pointArr_[2], pointArr_[3]);
+  double res = getTriangleArea(center_, pointArr_[0], pointArr_[3]);
+  res += getTriangleArea(center_, pointArr_[1], pointArr_[2]);
   return res;
 }
 
