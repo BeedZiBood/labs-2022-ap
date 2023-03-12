@@ -66,6 +66,7 @@ int main()
         arr[size] = makeComplexquad(std::cin);
       } else if (name == "SCALE") {
         output(std::cout, std::cin, arr, size);
+        delete[] arr;
         return 0;
       } else {
         continue;
@@ -73,10 +74,10 @@ int main()
     }
     catch (const std::exception& err) {
       std::cerr << "Error: " << err.what();
-      return 1;
     }
     size += 1;
   }
+  delete[] arr;
   std::cerr << "Error: scale command not found";
   return 1;
 }

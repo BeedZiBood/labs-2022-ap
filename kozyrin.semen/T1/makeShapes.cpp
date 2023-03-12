@@ -28,5 +28,5 @@ Shape* makeComplexquad(std::istream& input)
     input >> y;
     points[i] = {x, y};
   }
-  return new Complexquad(points[0], points[1], points[2], points[3]);
+  return new Complexquad(points[0], points[3], points[1], points[2]);
 }
