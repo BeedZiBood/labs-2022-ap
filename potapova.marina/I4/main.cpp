@@ -43,8 +43,6 @@ int main(int argc, char* argv[])
   }
   else if (strcmp(argv[1], "2") == 0)
   {
-    size_t count_rows;
-    size_t count_cols;
     long long** matrix = new long long*[count_rows];
     for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
     {
