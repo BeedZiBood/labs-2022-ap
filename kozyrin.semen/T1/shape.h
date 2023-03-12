@@ -13,4 +13,6 @@ public:
   virtual ~Shape() = default;
 };
 
+void isoScale(Shape* shp, point_t point, double k);
+
 #endif
