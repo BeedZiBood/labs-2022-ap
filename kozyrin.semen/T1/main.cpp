@@ -4,7 +4,8 @@
 
 void output(std::ostream& outStream, std::istream& inStream, Shape** arr, size_t size)
 {
-  double x, y;
+  double x = 0;
+  double y = 0;
   inStream >> x;
   inStream >> y;
   point_t point{x, y};
@@ -73,7 +74,8 @@ int main()
       }
     }
     catch (const std::exception& err) {
-      std::cerr << "Error: " << err.what();
+      std::cerr << "Error: " << err.what() << '\n';
+      continue;
     }
     size += 1;
   }
