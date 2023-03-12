@@ -18,6 +18,7 @@ void printRow(std::ostream& outStream, Shape** arr, size_t size)
       outStream << ' ';
     }
   }
+  outStream << '\n';
 }
 
 int printArr(std::ostream& errStream, std::ostream& outStream, std::istream& inStream, Shape** arr, size_t size)
@@ -42,7 +43,6 @@ int printArr(std::ostream& errStream, std::ostream& outStream, std::istream& inS
   for (size_t i = 0; i < size; ++i) {
     isoScale(arr[i], point, k);
   }
-  outStream << '\n';
   printRow(outStream, arr, size);
 
   for (size_t i = 0; i < size; ++i) {
