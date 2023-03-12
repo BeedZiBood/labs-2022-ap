@@ -70,17 +70,17 @@ bool isIntersection(const point_t center, const point_t* arr)
 {
   point_t borders[2]{0, 0, 0, 0};
   getBorders(borders, arr[0], arr[1]);
-  if (borders[0].x > center.x || borders[0].y > center.y) {
+  if (borders[0].x >= center.x || borders[0].y >= center.y) {
     return false;
   }
-  if (borders[1].x < center.x || borders[1].y < center.y) {
+  if (borders[1].x <= center.x || borders[1].y <= center.y) {
     return false;
   }
   getBorders(borders, arr[2], arr[3]);
-  if (borders[0].x > center.x || borders[0].y > center.y) {
+  if (borders[0].x >= center.x || borders[0].y >= center.y) {
     return false;
   }
-  if (borders[1].x < center.x || borders[1].y < center.y) {
+  if (borders[1].x <= center.x || borders[1].y <= center.y) {
     return false;
   }
   return true;
