@@ -2,16 +2,8 @@
 #include "makeShapes.h"
 #include <iomanip>
 
-void output(std::ostream& outStream, std::istream& inStream, Shape** arr, size_t size)
+void printRow(std::ostream& outStream, std::istream& inStream, Shape** arr, size_t size)
 {
-  double x = 0;
-  double y = 0;
-  inStream >> x;
-  inStream >> y;
-  point_t point{x, y};
-  double k = 0;
-  inStream >> k;
-
   double area = 0;
   for (size_t i = 0; i < size; ++i) {
     area += arr[i]->getArea();
@@ -21,23 +13,43 @@ void output(std::ostream& outStream, std::istream& inStream, Shape** arr, size_t
   for (size_t i = 0; i < size; ++i) {
     rect = arr[i]->getFrameRect();
     outStream << rect.pos.x - rect.width / 2 << ' ' << rect.pos.y - rect.height / 2 << ' ';
-    outStream << rect.pos.x + rect.width / 2 << ' ' << rect.pos.y + rect.height / 2 << ' ';
+    outStream << rect.pos.x + rect.width / 2 << ' ' << rect.pos.y + rect.height / 2;
+    if (i != size - 1) {
+      outStream << ' ';
+    }
   }
+}
+
+int printArr(std::ostream& errStream, std::ostream& outStream, std::istream& inStream, Shape** arr, size_t size)
+{
+  if (size == 0) {
+    errStream << "Error: nothing to scale";
+    return 1;
+  }
+  double x = 0;
+  double y = 0;
+  inStream >> x;
+  inStream >> y;
+  point_t point{x, y};
+  double k = 0;
+  inStream >> k;
+  if (k <= 0) {
+    errStream << "Error: scale coefficient must be greater than zero";
+    return 2;
+  }
+
+  printRow(outStream, inStream, arr, size);
   for (size_t i = 0; i < size; ++i) {
     isoScale(arr[i], point, k);
   }
+  outStream << '\n';
+  printRow(outStream, inStream, arr, size);
 
-  area = 0;
   for (size_t i = 0; i < size; ++i) {
-    area += arr[i]->getArea();
-  }
-  outStream << '\n' << area << ' ';
-  for (size_t i = 0; i < size; ++i) {
-    rect = arr[i]->getFrameRect();
-    outStream << rect.pos.x - rect.width / 2 << ' ' << rect.pos.y - rect.height / 2 << ' ';
-    outStream << rect.pos.x + rect.width / 2 << ' ' << rect.pos.y + rect.height / 2 << ' ';
     delete arr[i];
   }
+  delete[] arr;
+  return 0;
 }
 
 int main()
@@ -67,9 +79,7 @@ int main()
       } else if (name == "COMPLEXQUAD") {
         arr[size] = makeComplexquad(std::cin);
       } else if (name == "SCALE") {
-        output(std::cout, std::cin, arr, size);
-        delete[] arr;
-        return 0;
+        return printArr(std::cerr, std::cout, std::cin, arr, size);
       } else {
         continue;
       }
