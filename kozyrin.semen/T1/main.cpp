@@ -66,7 +66,7 @@ int main()
     try {
       if (size == capacity) {
         capacity += 10;
-        Shape **temp = new Shape *[capacity];
+        Shape** temp = new Shape*[capacity];
         for (size_t i = 0; i < size; ++i) {
           temp[i] = arr[i];
         }
@@ -78,7 +78,7 @@ int main()
         arr[size] = makeRectangle(std::cin);
       } else if (name == "ELLIPSE") {
         arr[size] = makeEllipse(std::cin);
-      } else if (name == "COMPLEXQUAD") {
+      } else if (name == "OMPLEXQUAD") {
         arr[size] = makeComplexquad(std::cin);
       } else if (name == "SCALE") {
         return printArr(std::cerr, std::cout, std::cin, arr, size);
