@@ -62,7 +62,8 @@ int main()
       if (name == "RECTANGLE") {
         arr[size] = makeRectangle(std::cin);
       } else if (name == "ELLIPSE") {
-        arr[size] = makeEllipse(std::cin);
+        Shape* ell = makeEllipse(std::cin);
+        arr[size] = ell;
       } else if (name == "COMPLEXQUAD") {
         arr[size] = makeComplexquad(std::cin);
       } else if (name == "SCALE") {
