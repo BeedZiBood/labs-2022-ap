@@ -35,6 +35,11 @@ int main(int argc, char* argv[])
   }
   if (std::strcmp(argv[1], "1") == 0)
   {
+    if (count_rows * count_cols > 1000)
+    {
+      std::cerr << "Too many elements\n";
+      return 1;
+    }
     long long matrix[1000];
     if (!inputMatrix(matrix, count_rows, count_cols, input))
     {
@@ -65,7 +70,7 @@ int main(int argc, char* argv[])
       std::cerr << "Input error\n";
       return 1;
     }
-    output << getCountOfSaddlePoints(matrix, count_rows, count_cols);
+    output << getCountOfSaddlePoints(matrix, count_rows, count_cols) << '\n';
     for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
     {
       delete[] *cur_row_ptr;
