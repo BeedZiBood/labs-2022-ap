@@ -51,6 +51,18 @@ int main()
       shapes[size] = diamond;
       size++;
     }
+    else if (figure == "SCALE")
+    {
+      double x1 = 0.0;
+      double y1 = 0.0;
+      double k = 0.0;
+      std::cin >> x1 >> y1 >> k;
+      double sum_area_figure = 0.0;
+      for (size_t i = 0; i < size; i++)
+      {
+        sum_area_figure += shapes[i]->getArea();
+      }
+    }
   }
   return 0;
 }
