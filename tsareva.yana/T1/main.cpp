@@ -88,7 +88,7 @@ int main()
       std::cin >> x1 >> y1 >> k;
       if (k <= 0)
       {
-        std::cerr << "Invalid coef (sucker redo)";
+        std::cerr << "Invalid coefficient (sucker redo)";
         for (size_t i = 0; i < size; i++)
         {
           delete [] shapes[i];
