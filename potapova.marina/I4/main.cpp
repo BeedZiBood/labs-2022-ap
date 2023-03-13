@@ -36,7 +36,11 @@ int main(int argc, char* argv[])
   if (std::strcmp(argv[1], "1") == 0)
   {
     long long matrix[1000];
-    inputMatrix(matrix, count_rows, count_cols, input);
+    if (!inputMatrix(matrix, count_rows, count_cols, input))
+    {
+      std::cerr << "Input error\n";
+      return 1;
+    }
     output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' '
            << countColsWithNull(matrix, count_rows, count_cols) << '\n';
   }
@@ -56,7 +60,11 @@ int main(int argc, char* argv[])
       std::cerr << "Allocation failed: " << e.what() << '\n';
       return 1;
     }
-    inputMatrix(matrix, count_rows, count_cols, input);
+    if (!inputMatrix(matrix, count_rows, count_cols, input))
+    {
+      std::cerr << "Input error\n";
+      return 1;
+    }
     output << getCountOfSaddlePoints(matrix, count_rows, count_cols);
     for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
     {

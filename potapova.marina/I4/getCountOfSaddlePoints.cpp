@@ -33,7 +33,7 @@ bool isMinInRow(long long* min_elems_in_rows, const long long* const* const matr
 {
   if (min_elems_in_rows == nullptr)
   {
-    return getMinElemInRow(matrix + num_row, count_cols) == elem; 
+    return getMinElemInRow(matrix + num_row, count_cols) == elem;
   }
   return min_elems_in_rows[num_row] == elem;
 }
