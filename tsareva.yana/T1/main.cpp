@@ -43,9 +43,16 @@ int main()
       double x3 = 0.0;
       double y3 = 0.0;
       std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
-      Parallelogram *parallelogram = new Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
-      shapes[size] = parallelogram;
-      size++;
+      try
+      {
+        Parallelogram *parallelogram = new Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
+        shapes[size] = parallelogram;
+        size++;
+      }
+      catch (...)
+      {
+        isCorrectFigure = false;
+      }
     }
     else if (figure == "DIAMOND")
     {
