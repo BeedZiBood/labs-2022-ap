@@ -73,6 +73,13 @@ int main()
         isotropicScale(shapes[i], {x1, y1}, k);
         sum_area_figure += shapes[i]->getArea();
       }
+      std::cout << "\n" << sum_area_figure;
+      for (size_t i = 0; i < size; i++)
+      {
+        rectangle_t rectangle = shapes[i]->getFrameRectangle();
+        std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
+                  << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
+      }
     }
   }
   return 0;
