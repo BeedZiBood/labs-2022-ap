@@ -68,6 +68,11 @@ int main(int argc, char* argv[])
     if (!inputMatrix(matrix, count_rows, count_cols, input))
     {
       std::cerr << "Input error\n";
+      for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
+      {
+        delete[] *cur_row_ptr;
+      }
+      delete[] matrix;
       return 1;
     }
     output << getCountOfSaddlePoints(matrix, count_rows, count_cols) << '\n';
