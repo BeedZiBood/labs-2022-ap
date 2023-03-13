@@ -63,9 +63,16 @@ int main()
       double x3 = 0.0;
       double y3 = 0.0;
       std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
-      Diamond *diamond = new Diamond({x1, y1}, {x2, y2}, {x3, y3});
-      shapes[size] = diamond;
-      size++;
+      try
+      {
+        Diamond *diamond = new Diamond({x1, y1}, {x2, y2}, {x3, y3});
+        shapes[size] = diamond;
+        size++;
+      }
+      catch (...)
+      {
+        isCorrectFigure = false;
+      }
     }
     else if (figure == "SCALE")
     {
