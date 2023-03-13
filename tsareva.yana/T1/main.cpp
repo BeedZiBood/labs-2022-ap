@@ -76,6 +76,12 @@ int main()
     }
     else if (figure == "SCALE")
     {
+      if (size == 0)
+      {
+        std::cerr << "No figure(sucker redo)";
+        delete [] shapes;
+        return 1;
+      }
       double x1 = 0.0;
       double y1 = 0.0;
       double k = 0.0;
