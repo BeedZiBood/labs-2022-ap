@@ -4,6 +4,7 @@
 #include "rectangle.h"
 #include "parallelogram.h"
 #include "diamond.h"
+#include "isotropic_scale.h"
 
 int main()
 {
@@ -60,6 +61,16 @@ int main()
       double sum_area_figure = 0.0;
       for (size_t i = 0; i < size; i++)
       {
+        sum_area_figure += shapes[i]->getArea();
+      }
+      std::cout << sum_area_figure;
+      sum_area_figure = 0.0;
+      for (size_t i = 0; i < size; i++)
+      {
+        rectangle_t rectangle = shapes[i]->getFrameRectangle();
+        std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
+                  << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
+        isotropicScale(shapes[i], {x1, y1}, k);
         sum_area_figure += shapes[i]->getArea();
       }
     }
