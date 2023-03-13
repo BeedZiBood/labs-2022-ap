@@ -102,6 +102,10 @@ int main()
         std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
                   << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
       }
+      if (!isCorrectFigure)
+      {
+        std::cerr << "Invalid figure(sucker redo)";
+      }
     }
   }
   return 0;
