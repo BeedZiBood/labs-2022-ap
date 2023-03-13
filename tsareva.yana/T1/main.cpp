@@ -12,6 +12,7 @@ int main()
   size_t size = 0;
   size_t capacity = 10;
   Shape ** shapes = new Shape*[capacity];
+  bool isCorrectFigure = true;
   while (std::cin)
   {
     std::cin >> figure;
@@ -22,9 +23,16 @@ int main()
       double y1 = 0.0;
       double y2 = 0.0;
       std::cin >> x1 >> y1 >> x2 >> y2;
-      Rectangle *rectangle = new Rectangle({x1, y1}, {x2, y2});
-      shapes[size] = rectangle;
-      size++;
+      try
+      {
+        Rectangle *rectangle = new Rectangle({x1, y1}, {x2, y2});
+        shapes[size] = rectangle;
+        size++;
+      }
+      catch (...)
+      {
+        isCorrectFigure = false;
+      }
     }
     else if (figure == "PARALLELOGRAM")
     {
