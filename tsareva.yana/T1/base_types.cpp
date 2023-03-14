@@ -34,7 +34,7 @@ bool isTriangle(point_t f_top, point_t s_top, point_t t_top)
   return ((f_side + s_side > t_side) && (f_side + t_side > s_side) && (s_side + t_side > f_side));
 }
 
-bool isParallelogram(point_t f_top, point_t s_top, point_t t_top)z
+bool isParallelogram(point_t f_top, point_t s_top, point_t t_top)
 {
   if (!(isTriangle(f_top, s_top, t_top)))
   {
@@ -54,7 +54,7 @@ bool isDiamond(point_t f_top, point_t s_top, point_t t_top)
   }
   else
   {
-    return (((f_top.y == s_top.y) || (s_top.y = t_top.y)) && (f_top.y - s_top.y != s_top.y - t_top.y) && isRightTriangle(point_t f_top, point_t s_top, point_t t_top));
+    return (((f_top.y == s_top.y) || (s_top.y = t_top.y)) && (f_top.y - s_top.y != s_top.y - t_top.y) && isRightTriangle(f_top, s_top, t_top));
   }
 }
 
@@ -80,4 +80,5 @@ point_t getCenterDiamond(point_t f_top, point_t s_top, point_t t_top)
   {
     return s_top;
   }
+  return {0, 0};
 }
