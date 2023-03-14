@@ -3,7 +3,7 @@
 bool isGrowingElements(const int* matrix, size_t line, size_t column)
 {
   size_t counter_in_row = 0;
-  for (size_t j = 0; j < column; j++)
+  for (size_t j = 0; j < column - 1; j++)
   {
     size_t order1 = line * column + j;
     if (matrix[order1] < matrix[order1 + 1])
