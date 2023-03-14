@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <readMatrix.h>
 #include "countNegativeAfterMax.h"
 #include "maxValueInterval.h"
 
@@ -70,15 +71,15 @@ int main(int argc, char** argv)
     return 1;
   }
   int* arr3 = new int[size_arr3];
-  for (size_t i = 0; i < size_arr3; i++)
+  try
   {
-    file >> arr3[i];
-    if (!file)
-    {
-      std::cerr << "Error while reading\n";
-      delete[] arr3;
-      return 1;
-    }
+    arr3 = readMatrix(arr3, size_arr3, file);
+  }
+  catch (const std::length_error& e)
+  {
+    std::cout << e.what() << "\n";
+    delete[] arr3;
+    return 1;
   }
   if (size_arr3 == 0)
   {
