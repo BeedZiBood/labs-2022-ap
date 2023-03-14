@@ -2,8 +2,8 @@
 #define PRINTTABLE_H
 
 #include <cstddef>
-#include <ostream>
+#include <iostream>
 
-void printTable(std::ostream& out, double absError, double mStep, double m1, double m2, size_t maxNumber);
+void printTable(std::ostream& out, double m1, double m2,  double mStep, size_t maxNumber, double absError);
 
 #endif

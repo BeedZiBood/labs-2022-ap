@@ -3,7 +3,6 @@
 #include <limits>
 #include <stdexcept>
 #include "printtable.h"
-#include "arctan.h"
 
 int main()
 {
@@ -16,19 +15,16 @@ int main()
   std::cin >> m1 >> m2 >> maxNumber;
   if (!std::cin || m1 < -1.0 || m2 > 1.0 || m1 > m2)
   {
-    std::cerr << "Incorrect input\n";
+    std::cout << "Incorrect input\n";
     return 1;
   }
   try
   {
-    for (double x = m1; x <= m2; x += mStep)
-    {
-      printTable(std::cout, absError, mStep, x, x + mStep, maxNumber);
-    }
+    printTable(std::cout, m1, m2, mStep, maxNumber, absError);
   }
   catch (const std::exception &e)
   {
-    std::cerr << e.what() << "\n";
+    std::cout << e.what() << "\n";
     return 1;
   }
   return 0;
