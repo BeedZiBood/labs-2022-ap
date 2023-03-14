@@ -15,6 +15,20 @@ void clearingMemory(Shape ** pShape, size_t size)
   delete [] pShape;
 }
 
+Shape ** extend(Shape ** pShape, size_t old_size, size_t new_capacity)
+{
+  if (new_capacity < old_size)
+  {
+    throw std::invalid_argument("bruh");
+  }
+  Shape ** extended = new Shape*[new_capacity];
+  for (size_t i = 0; i < old_size; i++)
+  {
+    extended[i] = pShape[i];
+  }
+  return extended;
+}
+
 int main()
 {
   std::string figure;
