@@ -54,7 +54,7 @@ bool isDiamond(point_t f_top, point_t s_top, point_t t_top)
   }
   else
   {
-    return (((f_top.y == s_top.y) || (s_top.y = t_top.y)) && (f_top.y - s_top.y != s_top.y - t_top.y) && isRightTriangle(f_top, s_top, t_top));
+    return (f_top.y == s_top.y || s_top.y == t_top.y) && (f_top.y - s_top.y != s_top.y - t_top.y) && isRightTriangle(f_top, s_top, t_top);
   }
 }
 
