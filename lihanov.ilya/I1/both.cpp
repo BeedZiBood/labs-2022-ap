@@ -5,7 +5,8 @@
 void LocalMax::operator()(unsigned int currentValue)
 {
   const unsigned int MaxUnInt = std::numeric_limits< unsigned int >::max();
-  if (currentValue != 0 && beforePreviousValue != 0 && previousValue != 0) {
+  if (currentValue != 0 && beforePreviousValue != 0 && previousValue != 0)
+  {
     if (previousValue > currentValue && previousValue > beforePreviousValue)
     {
       if (count == MaxUnInt)
@@ -25,7 +26,8 @@ void Equal::operator()(unsigned int currentValue)
 {
   const unsigned int MaxUnInt = std::numeric_limits< unsigned int >::max();
 
-  if (currentValue != 0 && beforePreviousValue != 0 && previousValue != 0) {
+  if (currentValue != 0 && beforePreviousValue != 0 && previousValue != 0)
+  {
     if (previousValue > currentValue && previousValue < beforePreviousValue)
     {
       if (countV == MaxUnInt)
