@@ -1,11 +1,11 @@
-#include "issequence.h"
-#include "islocalmax.h"
+#include "isSequence.h"
+#include "isLocalmax.h"
 #include <iostream>
 int main()
 {
   int currentValue = 0;
   int value1 = 0;
-  int value2 = 0;
+  int value2;
   int countOfLocalMax = 0;
   int countOfSequence = 0;
   std::cin >> currentValue;

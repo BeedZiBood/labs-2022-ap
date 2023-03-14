@@ -1,1 +1,0 @@
-CMakeLists.txt not found in /Users/vadimgrishin/spbspu-labs-2022-aap-904-a/grishin.vadim/I1 Select CMakeLists.txt

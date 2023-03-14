@@ -1,4 +1,4 @@
-#include "issequence.h"
+#include "isSequence.h"
 int isSequence(int currentValue2, int value1, int value2)
 {
   if (currentValue2 != 0)

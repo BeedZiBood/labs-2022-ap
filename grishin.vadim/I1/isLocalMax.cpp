@@ -1,4 +1,4 @@
-#include "islocalmax.h"
+#include "isLocalMax.h"
 int isLocalMax(int currentValue, int value1, int value2)
 {
   if (currentValue != 0)
