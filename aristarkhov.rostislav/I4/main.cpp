@@ -2,6 +2,7 @@
 #include <cstring>
 #include <fstream>
 #include <cstddef>
+#include <readMatrix.h>
 #include "countGrowingElements.h"
 #include "SumUnderMainDiagonal.h"
 
@@ -23,8 +24,6 @@ int main(int argc, char* argv[])
   if (!fileOutput.is_open())
   {
     std::cerr << "Error while opening file\n";
-    fileInput.close();
-    fileOutput.close();
     return 1;
   }
 
@@ -40,16 +39,12 @@ int main(int argc, char* argv[])
     if (!fileInput)
     {
       std::cerr << "Problems while reading file\n";
-      fileInput.close();
-      fileOutput.close();
       return 1;
     }
     size_t size_1 = line * column;
     if (size_1 > max_size)
     {
       std::cerr << "Too many value\n";
-      fileInput.close();
-      fileOutput.close();
       return 1;
     }
     for (size_t i = 0; i < size_1; i++)
@@ -58,8 +53,6 @@ int main(int argc, char* argv[])
       if (!fileInput)
       {
         std::cerr << "Problems while reading file\n";
-        fileInput.close();
-        fileOutput.close();
         return 1;
       }
     }
@@ -78,24 +71,19 @@ int main(int argc, char* argv[])
     if (!fileInput)
     {
       std::cerr << "Problems while reading file\n";
-      fileInput.close();
-      fileOutput.close();
       return 1;
     }
-
-    int* matrix = new int[line * column];
     size_t size_2 = line * column;
-    for (size_t i = 0; i < size_2; i++)
+    int* matrix = new int[size_2];
+    try
     {
-      fileInput >> matrix[i];
-      if (!fileInput)
-      {
-        std::cerr << "Problems while reading file\n";
-        delete[] matrix;
-        fileInput.close();
-        fileOutput.close();
-        return 1;
-      }
+      matrix = readMatrix(matrix, size_2, fileInput);
+    }
+    catch (const std::length_error& e)
+    {
+      std::cout << e.what() << "\n";
+      delete[] matrix;
+      return 1;
     }
     fileOutput << sumUnderMainDiagonal(matrix, line, column) << '\n';
     delete[] matrix;
