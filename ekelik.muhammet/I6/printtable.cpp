@@ -8,9 +8,8 @@
 
 void printTableRow(std::ostream& out, double x, double absError, unsigned maxNumber)
 {
-  double result = arctan(x, maxNumber, absError);
   out << std::setw(5) << x << " ";
-  out << std::setw(10) << std::setprecision(5) << result << " ";
+  out << std::setw(10) << std::setprecision(5) << arctan(x, maxNumber, absError) << " ";
   out << std::setw(10) << std::setprecision(5) << std::atan(x) << "\n";
 }
 
