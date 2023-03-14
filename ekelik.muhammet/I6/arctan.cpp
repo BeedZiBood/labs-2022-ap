@@ -1,9 +1,5 @@
 #include "arctan.h"
 
-#include <cmath>
-#include <limits>
-#include <stdexcept>
-
 double factorial(size_t n)
 {
   double result = 1;
