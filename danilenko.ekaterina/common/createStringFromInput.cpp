@@ -33,12 +33,12 @@ char* createStringFromInput(std::istream& input)
     }
     input >> source1[size];
   }
-  while (input && source1[size] != '\0' && source1[size++] != '\n');
+  while (input && source1[size++] != '\n');
 
-  if (source1[0] == '\n' || source1[0] == '\0')
+  if (source1[0] == '\0' || source1[0] == '\n')
   {
     delete[] source1;
-    throw std::logic_error("Empty string");
+    return nullptr;
   }
   source1[size - 1] = '\0';
   return source1;

@@ -1,7 +1,7 @@
 #include "makeStringExtention.h"
 #include <cstddef>
 
-char* makeStringExtention(const char* source1, size_t capacity, size_t size, size_t capacity_extention)
+char* makeStringExtention(const char* source1, const size_t capacity, const size_t size, const size_t capacity_extention)
 {
   char* new_string = new char[capacity + capacity_extention];
   auto j = new_string;
