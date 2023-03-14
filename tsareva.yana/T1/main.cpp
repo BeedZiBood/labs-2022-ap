@@ -6,6 +6,15 @@
 #include "diamond.h"
 #include "isotropic_scale.h"
 
+void clearingMemory(Shape ** pShape, size_t size)
+{
+  for (size_t i = 0; i < size; i++)
+  {
+    delete [] pShape[i];
+  }
+  delete [] pShape;
+}
+
 int main()
 {
   std::string figure;
@@ -89,11 +98,7 @@ int main()
       if (k <= 0)
       {
         std::cerr << "Invalid coefficient(sucker redo)";
-        for (size_t i = 0; i < size; i++)
-        {
-          delete [] shapes[i];
-        }
-        delete [] shapes;
+        clearingMemory(shapes, size);
         return 1;
       }
       double sum_area_figure = 0.0;
@@ -124,10 +129,6 @@ int main()
       }
     }
   }
-  for (size_t i = 0; i < size; i++)
-  {
-    delete [] shapes[i];
-  }
-  delete [] shapes;
+  clearingMemory(shapes, size);
   return 0;
 }
