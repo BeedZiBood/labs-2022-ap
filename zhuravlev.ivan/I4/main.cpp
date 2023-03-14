@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
       std::cerr << e.what();
       return 2;
     }
-      delete[] dyn_array;
+    delete[] dyn_array;
   }
   return 0;
 }

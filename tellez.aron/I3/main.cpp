@@ -1,16 +1,7 @@
 #include <iostream>
+#include <newCapacityCstring.h>
 #include "removeLatinLetters.h"
 #include "countUniqueLatinLetters.h"
-char* makeNewCapacityCString(char* cstring, size_t& capacity, size_t size)
-{
-  char* newstring = new char[capacity + 20];
-  for (auto i = cstring, j = newstring; i != cstring + size; ++i, ++j)
-  {
-    *j = *i;
-  }
-  capacity += 20;
-  return newstring;
-}
 int main()
 {
   size_t capacity = 10;

@@ -25,4 +25,3 @@ int countOfRowsWithSameElements(int* arr, size_t nRows, size_t nColomns)
   }
   return cnt;
 }
-
