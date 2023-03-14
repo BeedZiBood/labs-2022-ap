@@ -12,7 +12,7 @@ void printTableRow(std::ostream& out, double x, double error, unsigned cnt)
 
 void createTable(std::ostream& out, double left_border, double right_border, double step, double error, unsigned members)
 {
-  for (double i = left_border; i <= right_border; i = i + step)
+  for (double i = left_border; i <= right_border; i += step)
   {
     printTableRow(out, i, error,  members);
     if (right_border <=  step + i)
