@@ -1,6 +1,6 @@
+#include "create_table.h"
 #include <iomanip>
 #include <cmath>
-#include "create_table.h"
 #include "arctg.h"
 
 void printTableRow(std::ostream& out, double x, double error, unsigned cnt)
