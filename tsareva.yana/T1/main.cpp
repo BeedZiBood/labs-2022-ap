@@ -48,7 +48,7 @@ int main()
       std::cin >> x1 >> y1 >> x2 >> y2;
       try
       {
-        Rectangle *rectangle = new Rectangle({x1, y1}, {x2, y2});
+        Rectangle * rectangle = new Rectangle({x1, y1}, {x2, y2});
         shapes[size] = rectangle;
         size++;
       }
@@ -68,7 +68,7 @@ int main()
       std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
       try
       {
-        Parallelogram *parallelogram = new Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
+        Parallelogram * parallelogram = new Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
         shapes[size] = parallelogram;
         size++;
       }
@@ -88,7 +88,7 @@ int main()
       std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
       try
       {
-        Diamond *diamond = new Diamond({x1, y1}, {x2, y2}, {x3, y3});
+        Diamond * diamond = new Diamond({x1, y1}, {x2, y2}, {x3, y3});
         shapes[size] = diamond;
         size++;
       }
