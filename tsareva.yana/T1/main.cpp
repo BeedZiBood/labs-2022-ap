@@ -49,6 +49,13 @@ int main()
       try
       {
         Rectangle * rectangle = new Rectangle({x1, y1}, {x2, y2});
+        if (size == capacity)
+        {
+          Shape ** new_shapes = extend(shapes, size, capacity + 10);
+          capacity += 10;
+          clearingMemory(shapes, size);
+          shapes = new_shapes;
+        }
         shapes[size] = rectangle;
         size++;
       }
@@ -69,6 +76,13 @@ int main()
       try
       {
         Parallelogram * parallelogram = new Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
+        if (size == capacity)
+        {
+          Shape ** new_shapes = extend(shapes, size, capacity + 10);
+          capacity += 10;
+          clearingMemory(shapes, size);
+          shapes = new_shapes;
+        }
         shapes[size] = parallelogram;
         size++;
       }
@@ -89,6 +103,13 @@ int main()
       try
       {
         Diamond * diamond = new Diamond({x1, y1}, {x2, y2}, {x3, y3});
+        if (size == capacity)
+        {
+          Shape ** new_shapes = extend(shapes, size, capacity + 10);
+          capacity += 10;
+          clearingMemory(shapes, size);
+          shapes = new_shapes;
+        }
         shapes[size] = diamond;
         size++;
       }
