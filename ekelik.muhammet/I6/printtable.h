@@ -4,6 +4,6 @@
 #include <cstddef>
 #include <iostream>
 
-void printTable(std::ostream& out, double m1, double m2,  double mStep, size_t maxNumber, double absError);
+void printTable(std::ostream& out, double m1, double m2,  double mStep, unsigned maxNumber, double absError);
 
 #endif
