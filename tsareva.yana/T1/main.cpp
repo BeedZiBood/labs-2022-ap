@@ -36,6 +36,7 @@ int main()
   size_t capacity = 10;
   Shape ** shapes = new Shape*[capacity];
   bool isCorrectFigure = true;
+  bool isScale = false;
   while (std::cin)
   {
     std::cin >> figure;
@@ -120,6 +121,7 @@ int main()
     }
     else if (figure == "SCALE")
     {
+      isScale = true;
       if (size == 0)
       {
         std::cerr << "No figure(sucker redo)";
@@ -165,5 +167,10 @@ int main()
     }
   }
   clearingMemory(shapes, size);
+  if (!isScale)
+  {
+    std::cerr <<" No scaling(sucker redo)";
+    return 1;
+  }
   return 0;
 }
