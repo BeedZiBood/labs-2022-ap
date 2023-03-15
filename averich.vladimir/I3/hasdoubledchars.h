@@ -1,6 +1,8 @@
-#ifndef HASDOUBLEDCHARS_H
-#define HASDOUBLEDCHARS_H
+#ifndef FINDDUPLICATELETTERS_H
+#define FINDDUPLICATELETTERS_H
 
-bool hasDoubledChars(const char* source);
+#include <cstddef>
+
+bool hasDoubledChars(const char* c_string);
 
 #endif

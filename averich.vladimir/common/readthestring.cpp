@@ -1,27 +1,26 @@
-#include "readthestring.h"
-#include <iostream>
+#include "readTheString.h"
+
 char* readTheString()
 {
-  char* string = nullptr;
-  size_t const buf_size = 256;
-  char buf[buf_size];
+  const size_t MaxStringSize = 256;
+  char buf[MaxStringSize] = { 0 };
   
-  while (true)
-  {
-    char* result = std::fgets(buf, buf_size, stdin);
-    if (result)
-    {
-      string = result;
-      // len
-      // allocate string
-      // copy data written
-      break;
+  char* result = std::fgets(buf, MaxStringSize, stdin);
+  if (result) {
+    size_t strLength = 0;
+    while (*result != '\0' && *result != '\n') {
+      ++strLength;
+      ++result;
     }
-    // if eof?
-    // copy data written
-    // read again
-    // else free allocated memory
-    // return nullptr
+    if (strLength > 0) {
+      result = new char[strLength + 1];
+      for (size_t i = 0; i < strLength; ++i) {
+        result[i] = buf[i];
+      }
+      result[strLength + 1] = '\0';
+      return result;
+    }
   }
-  return string;
+  
+  return nullptr;
 }
