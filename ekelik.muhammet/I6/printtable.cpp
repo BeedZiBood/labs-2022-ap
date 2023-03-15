@@ -19,7 +19,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
   {
     try
     {
-      printTableRow(out << "\n", x, absError, maxNumber);
+      printTableRow(out, x, absError, maxNumber);
     }
     catch (const std::exception& e)
     {
