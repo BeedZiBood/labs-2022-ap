@@ -5,10 +5,10 @@
 int main()
 {
   const char* input_str;
-  size_t str1_size;
+  size_t str_size;
   try
   {
-    input_str = getLineFromFile(&str1_size);
+    input_str = getLineFromFile(&str_size);
   }
   catch (const std::bad_alloc& e)
   {
