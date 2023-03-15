@@ -45,7 +45,7 @@ rectangle_t Parallelogram::getFrameRectangle() const
   double maxPointX = std::max(first_.x, std::max(second_.x, third_.x));
   double minPointY = std::min(first_.y, std::min(second_.y, third_.y));
   double maxPointY = std::max(first_.y, std::max(second_.y, third_.y));
-  return { maxPointX - minPointX, maxPointY - minPointY, getCenterParallelogram(first_, third_)};
+  return { maxPointY - minPointY, maxPointX - minPointX, getCenterParallelogram(first_, third_)};
 }
 
 void Parallelogram::scale(double k)
