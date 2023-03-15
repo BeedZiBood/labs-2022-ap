@@ -40,6 +40,10 @@ int main()
   while (std::cin)
   {
     std::cin >> figure;
+    if (!std::cin)
+    {
+      break;
+    }
     if (figure == "RECTANGLE")
     {
       double x1 = 0.0;
