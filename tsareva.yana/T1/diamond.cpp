@@ -65,6 +65,6 @@ rectangle_t Diamond::getFrameRectangle() const
   double maxPointX = std::max(first_.x, std::max(second_.x, third_.x));
   double minPointY = std::min(first_.y, std::min(second_.y, third_.y));
   double maxPointY = std::max(first_.y, std::max(second_.y, third_.y));
-  return { 2 * (maxPointX - minPointX), 2 * (maxPointY - minPointY), getCenterDiamond(first_, second_, third_)};
+  return { 2 * (maxPointY - minPointY), 2 * (maxPointX - minPointX), getCenterDiamond(first_, second_, third_)};
 }
 

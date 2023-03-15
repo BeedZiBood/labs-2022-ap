@@ -41,14 +41,7 @@ bool isParallelogram(point_t f_top, point_t s_top, point_t t_top)
 
 bool isDiamond(point_t f_top, point_t s_top, point_t t_top)
 {
-  if (!(isTriangle(f_top, s_top, t_top)))
-  {
-    return isTriangle(f_top, s_top, t_top);
-  }
-  else
-  {
-    return (f_top.y == s_top.y || s_top.y == t_top.y) && (f_top.y - s_top.y != s_top.y - t_top.y) && isRightTriangle(f_top, s_top, t_top);
-  }
+  return isTriangle(f_top, s_top, t_top) && (f_top.y == s_top.y && s_top.x == t_top.x || s_top.y == t_top.y && f_top.x == t_top.x);
 }
 
 point_t scalePoint(point_t point, point_t position, double k)
