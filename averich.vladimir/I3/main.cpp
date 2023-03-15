@@ -1,8 +1,8 @@
 #include <iostream>
 #include <cstddef>
+#include <readTheString.h>
 #include "hasDoubledChars.h"
 #include "findDuplicateLetters.h"
-#include "readTheString.h"
 
 int main()
 {
