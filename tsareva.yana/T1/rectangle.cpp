@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 Rectangle::Rectangle(point_t l_d, point_t r_up):
-  rectangle_{r_up.y - l_d.y, r_up.x - l_d.x, {(r_up.x - l_d.x) / 2, (r_up.y - l_d.y) / 2}}
+  rectangle_{r_up.y - l_d.y, r_up.x - l_d.x, {(r_up.x + l_d.x) / 2, (r_up.y + l_d.y) / 2}}
 {
   if (rectangle_.height <= 0 || rectangle_.width <= 0)
   {
