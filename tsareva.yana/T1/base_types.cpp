@@ -31,19 +31,12 @@ bool isTriangle(point_t f_top, point_t s_top, point_t t_top)
   double f_side = findModule(f_top, s_top);
   double s_side = findModule(f_top, t_top);
   double t_side = findModule(s_top, t_top);
-  return ((f_side + s_side > t_side) && (f_side + t_side > s_side) && (s_side + t_side > f_side));
+  return (f_side + s_side > t_side) && (f_side + t_side > s_side) && (s_side + t_side > f_side);
 }
 
 bool isParallelogram(point_t f_top, point_t s_top, point_t t_top)
 {
-  if (!(isTriangle(f_top, s_top, t_top)))
-  {
-    return isTriangle(f_top, s_top, t_top);
-  }
-  else
-  {
-    return (((f_top.y == s_top.y) || (s_top.y = t_top.y)) && (f_top.y - s_top.y != s_top.y - t_top.y));
-  }
+  return isTriangle(t_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || t_top.y == f_top.y);
 }
 
 bool isDiamond(point_t f_top, point_t s_top, point_t t_top)
