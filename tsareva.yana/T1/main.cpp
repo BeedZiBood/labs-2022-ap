@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstddef>
+#include <iomanip>
 #include "shape.h"
 #include "rectangle.h"
 #include "parallelogram.h"
@@ -147,7 +148,7 @@ int main()
       {
         sum_area_figure += shapes[i]->getArea();
       }
-      std::cout << sum_area_figure;
+      std::cout << std::setprecision(1) << std::fixed << sum_area_figure;
       sum_area_figure = 0.0;
       for (size_t i = 0; i < size; i++)
       {
@@ -176,7 +177,7 @@ int main()
   clearingMemory(shapes, size);
   if (!isScale)
   {
-    std::cerr <<" No scaling(sucker redo)";
+    std::cerr << "No scaling(sucker redo)";
     return 1;
   }
   return 0;
