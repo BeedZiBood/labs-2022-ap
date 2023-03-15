@@ -4,7 +4,7 @@
 
 int main()
 {
-  const char* input_str;
+  char* input_str;
   size_t str_size;
   try
   {

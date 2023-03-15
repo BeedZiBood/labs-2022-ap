@@ -1,43 +1,67 @@
 #include <cctype>
-#include <iostream>
 #include "checkRealNumber.h"
 
-bool checkSign(char str)
+bool checkSign(char sym)
 {
-    return str == '+' || str == '-';
+    return sym == '+' || sym == '-';
 }
 
-bool checkDigit(char str)
+bool checkDigit(char sym)
 {
-    return std::isdigit(str);
+    return std::isdigit(sym);
 }
 
-bool checkE(char* str)
+char* checkUnsignedInt(char* str)
 {
-    return *str == 'E';
+    char* next_check_res;
+    if (!checkDigit(*str))
+    {
+        return nullptr;
+    }
+    else if ((next_check_res = checkUnsignedInt(++str)) != nullptr)
+    {
+        return next_check_res;
+    }
+    return str;
 }
 
-bool checkUnsignedInt(char* str)
+bool checkE(char sym)
 {
-    return checkDigit(*str) || checkDigit(*str) && checkUnsignedInt(str++);
+    return sym == 'E';
 }
 
-bool checkPoint(char str)
+bool checkPoint(char sym)
 {
-    return str == '.';
+    return sym == '.';
 }
 
-bool checkOrder(char* str)
+char* checkOrder(char* str)
 {
-    return checkE(str) && checkUnsignedInt(str) || checkE(str) && checkSign(*str) && checkUnsignedInt(str);
+    if (checkE(*str))
+    {
+        if (checkSign(*++str))
+        {
+            ++str;
+        }
+        return checkUnsignedInt(str);
+    }
+    return nullptr;
 }
 
-bool checkMantissa(char* str)
+char* checkMantissa(char* str)
 {
-    return checkUnsignedInt(str) && checkPoint(*str) && checkUnsignedInt(str);
+    if ((str = checkUnsignedInt(str)) != nullptr && checkPoint(*str) && (str = checkUnsignedInt(++str)) != nullptr)
+    {
+        return str;
+    }
+    return nullptr;
 }
 
 bool checkRealNumber(char* str)
 {
-    return checkMantissa(str) && checkOrder(str) || checkSign(*str) && checkMantissa(str) && checkOrder(str);
+    if (checkSign(*str))
+    {
+        ++str;
+    }
+    return (str = checkMantissa(str)) != nullptr && checkOrder(str) != nullptr;
 }

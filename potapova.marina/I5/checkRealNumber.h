@@ -1,6 +1,6 @@
 #ifndef CHECKREALNUMBER_H
 #define CHECKREALNUMBER_H
 
-bool checkRealNumber(const char* str);
+bool checkRealNumber(char* str);
 
 #endif
