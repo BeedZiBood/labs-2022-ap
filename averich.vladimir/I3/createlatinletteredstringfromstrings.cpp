@@ -1,4 +1,4 @@
-#include "createLatinLetteredStringFromStrings.h"
+#include "createlatinletteredstringfromstrings.h"
 #include "tolower.h"
 #include <cstdlib>
 

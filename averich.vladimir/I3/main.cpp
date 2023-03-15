@@ -1,4 +1,4 @@
-#include "createLatinLetteredStringFromStrings.h"
+#include "createlatinletteredstringfromstrings.h"
 #include "hasdoubledchars.h"
 
 #include <readthestring.h>
