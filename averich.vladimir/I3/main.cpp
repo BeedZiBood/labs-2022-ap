@@ -1,23 +1,26 @@
+#include "createLatinLetteredStringFromStrings.h"
+#include "hasdoubledchars.h"
+
+#include <readthestring.h>
+
 #include <iostream>
 #include <cstddef>
-#include <readthestring.hpp>
-#include "findeachchars.hpp"
-#include "isthesamechars.hpp"
+
 int main()
 {
-  size_t size = 0;
-  char* cstring = nullptr;
-  size_t increaseCapacity = 10;
+  char* c_string = nullptr;
+  
   try
   {
-    cstring = readTheString(std::cin, size, increaseCapacity);
+    c_string = readTheString();
   }
   catch (const std::exception& e)
   {
     std::cout << e.what() << '\n';
-    delete[] cstring;
-    return 1;
+    delete[] c_string;
+    return EXIT_FAILURE;
   }
+  
   char* destination = nullptr;
   try
   {
@@ -26,15 +29,18 @@ int main()
   catch (const std::bad_alloc& e)
   {
     std::cout << e.what() << '\n';
-    delete[] cstring;
+    delete[] c_string;
     delete[] destination;
-    return 1;
+    return EXIT_FAILURE;
   }
-  char cstringInside[] = "ab";
-  findEachChars(destination, cstring, cstringInside);
+  
+  const char c_string_predefined[] = "abZ";
+  destination = createLatinLetteredStringFromStrings(c_string, c_string_predefined);
+  
   std::cout << "All chars of cstring: " << destination << '\n';
-  std::cout << "Repeating chars: " << std::boolalpha << isTheSameChars(cstring, size) << '\n';
-  delete[] cstring;
+  std::cout << "Repeating chars: " << std::boolalpha << hasDoubledChars(c_string) << '\n';
+  delete[] c_string;
   delete[] destination;
-  return 0;
+  
+  return EXIT_SUCCESS;
 }

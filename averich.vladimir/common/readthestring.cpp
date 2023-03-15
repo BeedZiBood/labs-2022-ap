@@ -1,54 +1,27 @@
-#include "readthestring.hpp"
-#include <stdexcept>
+#include "readthestring.h"
 #include <iostream>
-#include <limits>
-#include <cstddef>
-#include <extendthestring.hpp>
-char* readTheString(std::istream& inputString, size_t& inSize, const size_t increaseCapacity)
+char* readTheString()
 {
-  const size_t maxSize = std::numeric_limits< size_t >::max();
-  size_t capacity = 10;
-  char* cstring = new char[capacity];
-  size_t size = 0;
-  inputString >> std::noskipws;
-  do
+  char* string = nullptr;
+  size_t const buf_size = 256;
+  char buf[buf_size];
+  
+  while (true)
   {
-    if (size == capacity)
+    char* result = std::fgets(buf, buf_size, stdin);
+    if (result)
     {
-      if (capacity == maxSize)
-      {
-        delete[] cstring;
-        throw std::runtime_error("Size more than max");
-      }
-      if (maxSize - increaseCapacity <= capacity)
-      {
-        capacity = maxSize;
-      }
-      else
-      {
-        capacity += increaseCapacity;
-      }
-      try
-      {
-        char* newString = extendTheString(cstring, size, capacity);
-        delete[] cstring;
-        cstring = newString;
-      }
-      catch (...)
-      {
-        delete[] cstring;
-        throw;
-      }
+      string = result;
+      // len
+      // allocate string
+      // copy data written
+      break;
     }
-    inputString >> cstring[size];
+    // if eof?
+    // copy data written
+    // read again
+    // else free allocated memory
+    // return nullptr
   }
-  while (inputString && cstring[size++] != '\n');
-  if (!inputString && !size)
-  {
-    delete[] cstring;
-    throw std::runtime_error("Input error");
-  }
-  cstring[size - 1] = '\0';
-  inSize = size;
-  return cstring;
+  return string;
 }
