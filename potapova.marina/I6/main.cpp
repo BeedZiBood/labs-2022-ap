@@ -4,18 +4,12 @@
 
 int main(int argc, const char* argv[])
 {
-  double start, end;
-  double abs_error;
-  size_t num_max;
-  double step;
-  std::cout << "Input interval: ";
-  std::cin >> start >> end;
-  std::cout << "Input step: ";
-  std::cin >> step;
-  std::cout << "Input abs error: ";
-  std::cin >> abs_error;
-  std::cout << "Input maximum terms number: ";
-  std::cin >> num_max;
+  double start = 0.0;
+  double end = 0.0;
+  double abs_error = 0.0;
+  size_t num_max = 0;
+  double step = 0.0;
+  std::cin >> abs_error >> num_max >> start >> end >> step;
   if (!std::cin)
   {
     std::cerr << "Wrong input\n";
