@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <limits>
-#include "extendString.h"
+#include <extendString.h>
 char *readString(std::istream &inputStr, size_t &in_size, size_t (*p)(size_t))
 {
   size_t capacity = 10;
