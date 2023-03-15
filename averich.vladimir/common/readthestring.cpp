@@ -4,7 +4,6 @@ char* readTheString()
 {
   const size_t MaxStringSize = 256;
   char buf[MaxStringSize] = { 0 };
-  
   char* result = std::fgets(buf, MaxStringSize, stdin);
   if (result) {
     size_t strLength = 0;
@@ -21,6 +20,5 @@ char* readTheString()
       return result;
     }
   }
-  
   return nullptr;
 }
