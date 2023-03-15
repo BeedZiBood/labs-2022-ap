@@ -10,7 +10,7 @@ void clearingMemory(Shape ** pShape, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
-    delete [] pShape[i];
+    delete pShape[i];
   }
   delete [] pShape;
 }
@@ -164,10 +164,13 @@ int main()
         std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
                   << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
       }
+      std::cout << "\n";
       if (!isCorrectFigure)
       {
         std::cerr << "Invalid figure(sucker redo)";
       }
+      clearingMemory(shapes, size);
+      return 0;
     }
   }
   clearingMemory(shapes, size);
