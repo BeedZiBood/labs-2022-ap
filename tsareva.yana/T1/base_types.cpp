@@ -36,7 +36,7 @@ bool isTriangle(point_t f_top, point_t s_top, point_t t_top)
 
 bool isParallelogram(point_t f_top, point_t s_top, point_t t_top)
 {
-  return isTriangle(t_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || t_top.y == f_top.y);
+  return isTriangle(f_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || f_top.y == t_top.y);
 }
 
 bool isDiamond(point_t f_top, point_t s_top, point_t t_top)
