@@ -1,47 +1,26 @@
 #include <iostream>
+#include <inputcstring.hpp>
 #include "unitestring.hpp"
 #include "existconsecutiveequalelement.hpp"
 #include "generatealphabeticchar.hpp"
 
 int main()
 {
-  size_t capacity = 10;
-  char* c_string = new char[capacity];
-  size_t size = 0;
-
-  std::cin >> std::noskipws;
-  do
+  char* c_string = nullptr;
+  try
   {
-    if (size == capacity)
-    {
-      try
-      {
-        char* new_str = new char[capacity + 20];
-        for (auto i = c_string, j = new_str; i != c_string + size; ++i, ++j)
-        {
-          *j = *i;
-        }
-        delete[] c_string;
-        c_string = new_str;
-        capacity += 20;
-      }
-      catch (...)
-      {
-        delete[] c_string;
-        return 1;
-      }
-    }
-    std::cin >> c_string[size];
+    c_string = inputCString(std::cin);
   }
-  while (std::cin && c_string[size++] != '\n');
-
-  if (size <= 1)
+  catch (const std::exception& e)
   {
-    std::cerr << "Empty input\n";
-    delete[] c_string;
+    std::cerr << e.what() << "\n";
     return 1;
   }
-  c_string[size - 1] = '\0';
+  size_t size = 0;
+  while (c_string[size] != '\0')
+  {
+    size++;
+  }
   std::cout << c_string << "\n";
 
   std::srand(time(0));
@@ -86,3 +65,4 @@ int main()
   delete[] rand_string;
   delete[] united_string;
 }
+
