@@ -1,7 +1,7 @@
+#include "readString.h"
 #include <stdexcept>
 #include <istream>
 #include <cstddef>
-#include "readString.h"
 #include <cstring>
 
 char *readString(std::istream &inp)
