@@ -1,4 +1,4 @@
-#include "readTheString.h"
+#include "readthestring.h"
 
 char* readTheString()
 {
@@ -16,7 +16,7 @@ char* readTheString()
       for (size_t i = 0; i < strLength; ++i) {
         result[i] = buf[i];
       }
-      result[strLength + 1] = '\0';
+      result[strLength] = '\0';
       return result;
     }
   }

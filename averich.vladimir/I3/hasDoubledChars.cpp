@@ -1,4 +1,4 @@
-#include "hasDoubledChars.h"
+#include "hasdoubledchars.h"
 
 bool hasDoubledChars(const char* c_string)
 {

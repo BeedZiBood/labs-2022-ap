@@ -1,4 +1,4 @@
-#include "findDuplicateLetters.h"
+#include "findduplicateletters.h"
 
 void uniqueLettersFromLoweredString(bool dictionary[LettersInEnglishAlphabet], const char* c_str)
 {
