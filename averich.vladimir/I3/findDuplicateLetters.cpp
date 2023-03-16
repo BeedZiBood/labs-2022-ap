@@ -7,8 +7,8 @@ void uniqueLettersFromLoweredString(bool dictionary[LettersInEnglishAlphabet], c
   }
   size_t letters_found = 0;
   while (*c_str && letters_found < LettersInEnglishAlphabet) {
-    char c = tolower(*c_str);
-    if (isalpha(c)) {
+    char c = std::tolower(*c_str);
+    if (std::isalpha(c)) {
       size_t idx = c - 'a';
       if (!dictionary[idx]) {
         dictionary[idx] = true;
