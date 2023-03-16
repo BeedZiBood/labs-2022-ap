@@ -1,49 +1,44 @@
-#include "readString.h"
-#include <iostream>
+#include <stdexcept>
+#include <istream>
 #include <cstddef>
+#include "readString.h"
+#include <cstring>
 
-void customCopy(char *dest, const char *src, size_t count) {
-    for (size_t i = 0; i < count; ++i)
+char *readString(std::istream &inp)
+{
+  size_t capacity = 11;
+  size_t size = 0;
+  char* cstring = nullptr;
+  cstring = new char[capacity];
+  char chInp = '\0';
+  inp >> std::noskipws;
+  for (inp >> chInp; (inp && chInp) && (chInp != '\n'); inp >> chInp)
+  {
+    if (size + 1 == capacity)
     {
-        dest[i] = src[i];
-    }
-}
-void readString(char *cstring, size_t initialCapacity, size_t capacityIncrement) {
-    size_t capacity = initialCapacity;
-    size_t size = 0;
-    std::cin >> std::noskipws;
-    char inputCharacter;
-    while (std::cin >> inputCharacter)
-    {
-        if (size == capacity - 1)
-        {
-            char *newString = nullptr;
-            try
-            {
-                newString = new char[capacity + capacityIncrement];
-                customCopy(newString, cstring, capacity);
-                delete[] cstring;
-                cstring = newString;
-                capacity += capacityIncrement;
-            }
-            catch (const std::bad_alloc& e)
-            {
-                std::cerr << e.what() << '\n';
-                delete[] cstring;
-                return;
-            }
-        }
-        cstring[size++] = inputCharacter;
-        if (inputCharacter == '\n')
-        {
-            break;
-        }
-    }
-    if (size == 0)
-    {
-        std::cerr << "Empty string\n";
+      capacity = capacity + 10;
+      char *dupStr = nullptr;
+      try
+      {
+        dupStr = new char[capacity];
+      }
+      catch (const std::bad_alloc& e)
+      {
         delete[] cstring;
-        return;
+        throw;
+      }
+      cstring[size] = '\0';
+      dupStr = strcpy(dupStr, cstring);
+      delete[] cstring;
+      cstring = dupStr;
     }
-    cstring[size - 1] = '\0';
+    cstring[size++] = chInp;
+  }
+  if (size == 0)
+  {
+    delete[] cstring;
+    throw std::logic_error("Error: Empty String!");
+  }
+  cstring[size] = '\0';
+  return cstring;
 }
