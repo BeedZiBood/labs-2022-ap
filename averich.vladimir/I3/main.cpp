@@ -12,7 +12,7 @@ int main()
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
   if (!resultOfDuplicateTestString) {
-    delete [] inputString;
+    delete[] inputString;
     return EXIT_FAILURE;
   }
   const char predifinedString[] = "abZ";
