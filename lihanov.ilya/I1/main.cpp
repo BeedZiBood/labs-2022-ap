@@ -1,5 +1,5 @@
-#include "both.h"
 #include <iostream>
+#include "both.h"
 
 int main()
 {
