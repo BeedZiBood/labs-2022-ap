@@ -8,20 +8,24 @@ int main()
     char* string = new char[10];
     size_t size = 10;
     size_t discard = 0;
+
     readString(string, size, discard);
+if (discard == 0) {
+    std::cout << "Error: Empty string" << '\n';
+    delete[] string;
+    return 1;
+}
+
     try
     {
-        if (string == nullptr)
-        {
-            throw std::runtime_error("Failed to read string");
-        }
         std::cout << std::boolalpha << isRealNumber(string) << '\n';
-        delete[] string;
     }
     catch (const std::exception& err)
     {
-        std::cout << "Error: " << err.what() << '\n';
+        std::cerr << "Error: " << err.what() << '\n';
+        delete[] string;
         return 1;
     }
+    delete[] string;
     return 0;
 }

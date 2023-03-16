@@ -2,7 +2,7 @@
 #include <cctype>
 const char *skipSign(const char *string)
 {
-    if (*string == '+' || *string == '-')
+    if (string != nullptr && (*string == '+' || *string == '-'))
     {
         return string + 1;
     }
@@ -10,12 +10,13 @@ const char *skipSign(const char *string)
 }
 const char *skipUnsigned(const char *string)
 {
-    if (!isdigit(*(string++)))
+    if (string == nullptr || !isdigit(*string))
     {
         return nullptr;
     }
-    return isdigit(*string) ? skipUnsigned(string) : string;
+    return isdigit(*(string + 1)) ? skipUnsigned(string + 1) : string + 1;
 }
+
 const char *skipExponent(const char *string)
 {
     if (string == nullptr || *(string++) != 'E')
@@ -35,6 +36,10 @@ const char *skipMantissa(const char *string)
 }
 const char *skipRealNumber(const char *string)
 {
+    if (string == nullptr)
+    {
+        return nullptr;
+    }
     return skipExponent(skipMantissa(skipSign(string)));
 }
 bool isRealNumber(const char *string)
