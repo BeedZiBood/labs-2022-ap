@@ -8,7 +8,7 @@ char *readString(std::istream &inp)
 {
   size_t capacity = 11;
   size_t size = 0;
-  char* cstring = nullptr;
+  char *cstring = nullptr;
   cstring = new char[capacity];
   char chInp = '\0';
   inp >> std::noskipws;
