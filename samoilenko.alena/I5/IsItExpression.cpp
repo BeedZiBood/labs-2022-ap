@@ -21,3 +21,7 @@ bool isAster(char c)
   return c == '*';
 }
 
+bool isSign (char c)
+{
+  return c == '+' || c == '-';
+}
