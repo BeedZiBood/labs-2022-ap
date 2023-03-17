@@ -20,6 +20,6 @@ int main()
     return 1;
   }
   std::cout << std::boolalpha << outResult(cstr) << '\n';
-  delete cstr;
+  delete[] cstr;
   return 0;
 }
