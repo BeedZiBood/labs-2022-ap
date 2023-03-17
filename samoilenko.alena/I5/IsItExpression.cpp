@@ -1,6 +1,5 @@
 #include "IsItExpression.h"
 #include <iostream>
-#include <cstring>
 
 bool isLetter(char c)
 {

@@ -1,6 +1,5 @@
 #ifndef ISITEXPRESSION_H
 #define ISITEXPRESSION_H
-#include <cstddef>
 
 bool isLetter(char);
 bool isDigit(char);

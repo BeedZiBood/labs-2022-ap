@@ -2,14 +2,19 @@
 #include <iostream>
 #include <string_from_input.h>
 
-int main() {
+int main()
+{
   char *cstr = nullptr;
-  try {
+  try
+  {
     cstr = makeStringFromInput(std::cin);
-    if (cstr[0] == '\0') {
+    if (cstr[0] == '\0')
+    {
       throw std::logic_error("String is empty");
     }
-  } catch (const std::exception &ex) {
+  }
+  catch (const std::exception &ex)
+  {
     std::cerr << ex.what() << '\n';
     delete[] cstr;
     return 1;
