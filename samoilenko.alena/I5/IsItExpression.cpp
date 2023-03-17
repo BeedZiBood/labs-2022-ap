@@ -25,3 +25,9 @@ bool isSign (char c)
 {
   return c == '+' || c == '-';
 }
+
+bool isBracket(char c)
+{
+  return c == '(' || c == ')';
+}
+
