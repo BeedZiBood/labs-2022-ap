@@ -16,3 +16,8 @@ bool isIdentificator(char c)
   return (isLetter(c) == 0) ? 0 : 1;
 }
 
+bool isAster(char c)
+{
+  return c == '*';
+}
+
