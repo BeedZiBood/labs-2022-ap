@@ -1,6 +1,7 @@
 #include "CreateCString.h"
 #include "StringExtension.h"
 
+
 char *createCString(std::istream &input)
 {
   size_t capacity = 10;

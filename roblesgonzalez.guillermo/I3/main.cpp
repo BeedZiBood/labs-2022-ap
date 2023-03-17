@@ -4,7 +4,7 @@
 #include "removeDuplicateSpaces.h"
 #include "removeDigits.h"
 
-void customCopy(char* dest, const char* src, size_t count)
+void customCopy(char *dest, const char *src, size_t count)
 {
   for (size_t i = 0; i < count; ++i)
   {
@@ -16,7 +16,7 @@ int main()
   constexpr size_t initialCapacity = 10;
   constexpr size_t capacityIncrement = 20;
   size_t capacity = initialCapacity;
-  char* cstring = new char[capacity];
+  char *cstring = new char[capacity];
   size_t size = 0;
   std::cin >> std::noskipws;
   char inputCharacter;
@@ -24,7 +24,7 @@ int main()
   {
     if (size == capacity - 1)
     {
-      char* newString = nullptr;
+      char *newString = nullptr;
       try
       {
         newString = new char[capacity + capacityIncrement];
@@ -54,7 +54,7 @@ int main()
   }
   cstring[size - 1] = '\0';
   size_t len = std::strlen(cstring);
-  char* newString = new char[len + 1];
+  char *newString = new char[len + 1];
   removeDuplicateSpaces2(newString, cstring);
   removeDigits(newString, cstring);
   std::cout << newString << '\n';

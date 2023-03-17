@@ -1,12 +1,12 @@
 #include "removeDigits.h"
 #include <cctype>
-char* removeDigits(char* destination, const char* source)
+char *removeDigits(char *destination, const char *source)
 {
   if (destination == nullptr || source == nullptr)
   {
     return nullptr;
   }
-  char* result = destination;
+  char *result = destination;
   while (*source != '\0')
   {
     if (!std::isdigit(*source))
