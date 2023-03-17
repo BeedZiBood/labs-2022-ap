@@ -10,3 +10,9 @@ bool isDigit(char c)
 {
   return std::isdigit(c);
 }
+
+bool isIdentificator(char c)
+{
+  return (isLetter(c) == 0) ? 0 : 1;
+}
+
