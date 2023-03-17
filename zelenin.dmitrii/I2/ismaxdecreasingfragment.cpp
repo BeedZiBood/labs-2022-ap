@@ -1,5 +1,4 @@
 #include "ismaxdecreasingfragment.h"
-
 size_t isMaxDecreasingFragment(int* array, size_t count_elements)
 {
   size_t max_decreasing_fragment = 0;

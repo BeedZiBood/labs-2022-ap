@@ -1,5 +1,4 @@
 #include "slideonleft.h"
-
 int* slideOnLeft(int* array, size_t count_elements, int count_elements_for_slide_array)
 {
   int changer = 0;

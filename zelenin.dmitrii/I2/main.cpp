@@ -4,8 +4,7 @@
 #include "slideonleft.h"
 #include "fillthearraywithrandomnumbers.h"
 #include "ismaxdecreasingfragment.h"
-
-
+#include "isarrayoutput.h"
 int main(int argc, char* argv[])
 {
   if (argc != 2)
@@ -13,24 +12,20 @@ int main(int argc, char* argv[])
     std::cout << "Erorr!";
     return 1;
   }
+  size_t count_elements_for_array_from_file = 0;
   size_t count_elements = 0;
-  int count_elements_for_slide_array = 0;
+  size_t count_elements_for_slide_array = 0;
+  char value_for_reading_file = 0;
   size_t max_decreasing_fragment = 0;
   int array_static[7] = { 7,-5,3,8,9,1,-6 };
-  for (int i = 0; i < 7; i++)
-  {
-    std::cout << array_static[i] << " ";
-  }
+  isArrayOutput(array_static, 7);
   std::cout << "\n";
   max_decreasing_fragment = isMaxDecreasingFragment(array_static, 7);
   std::cout << "Maximum decreasing fragments: " << max_decreasing_fragment << "\n";
   std::cout << "Enter the number of elements by which to shift the array: ";
   std::cin >> count_elements_for_slide_array;
   int* first_variable_for_array_output = slideOnLeft(array_static, 7, count_elements_for_slide_array);
-  for (size_t i = 0; i < 7; i++)
-  {
-    std::cout << first_variable_for_array_output[i] << " ";
-  }
+  isArrayOutput(first_variable_for_array_output, 7);
   std::cout << "\n";
   std::cout << "Enter the number of elements of the dynamic array: ";
   std::cin >> count_elements;
@@ -38,20 +33,14 @@ int main(int argc, char* argv[])
   {
     int* array_dynamic = new int[count_elements];
     array_dynamic = fillTheArrayWithRandomNumbers(array_dynamic, count_elements);
-    for (size_t i = 0; i < count_elements; i++)
-    {
-      std::cout << array_dynamic[i] << " ";
-    }
+    isArrayOutput(array_dynamic, count_elements);
     max_decreasing_fragment = isMaxDecreasingFragment(array_dynamic, count_elements);
     std::cout << "\n";
     std::cout << "Maximum decreasing fragments: " << max_decreasing_fragment << "\n";
     std::cout << "Enter the number of elements by which to shift the array: ";
     std::cin >> count_elements_for_slide_array;
     int* second_variable_for_array_output = slideOnLeft(array_dynamic, count_elements, count_elements_for_slide_array);
-    for (size_t i = 0; i < count_elements; i++)
-    {
-      std::cout << second_variable_for_array_output[i] << " ";
-    }
+    isArrayOutput(second_variable_for_array_output, count_elements);
     std::cout << "\n";
     delete[] array_dynamic;
   }
@@ -79,6 +68,12 @@ int main(int argc, char* argv[])
   for (size_t i = 0; i < size_file; i++)
   {
     file >> array_from_file[i];
+    if (!file)
+    {
+      std::cout << "Error\n";
+      return 1;
+    }
+
   }
   file.close();
   std::cout << isMaxDecreasingFragment(array_from_file, size_file) << "\n";
