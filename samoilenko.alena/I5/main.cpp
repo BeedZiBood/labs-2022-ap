@@ -4,11 +4,11 @@
 
 int main()
 {
-  char* inp = nullptr;
+  char* cstr = nullptr;
   try
   {
-    inp = makeStringFromInput(std::cin);
-    if (inp[0] == '\0')
+    cstr = makeStringFromInput(std::cin);
+    if (cstr[0] == '\0')
     {
       throw std::logic_error("String is empty");
     }
@@ -16,10 +16,10 @@ int main()
   catch(const std::exception &ex)
   {
     std::cerr << ex.what() << '\n';
-    delete[] inp;
+    delete[] cstr;
     return 1;
   }
-  std::cout << std::boolalpha << outResult(inp) << '\n';
-  delete inp;
+  std::cout << std::boolalpha << outResult(cstr) << '\n';
+  delete cstr;
   return 0;
 }
