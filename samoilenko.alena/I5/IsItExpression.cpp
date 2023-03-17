@@ -31,3 +31,13 @@ bool isBracket(char c)
   return c == '(' || c == ')';
 }
 
+bool isUnsignedInteger(const char* inp, size_t firstVal, size_t secondVal)
+{
+  if ((*(inp + firstVal) != '\0') && (isDigit(*(inp + firstVal))))
+  {
+    firstVal++;
+    return ((*(inp + firstVal) == '\0') || (firstVal == secondVal + 1)) ? 1 : isUnsignedInteger(inp, firstVal, secondVal);
+  }
+  return 0;
+}
+
