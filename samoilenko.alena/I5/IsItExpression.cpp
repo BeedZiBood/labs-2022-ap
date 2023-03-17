@@ -17,9 +17,9 @@ bool isIdentificator(char c)
   return (isLetter(c) == 0) ? 0 : 1;
 }
 
-bool isAster(char c)
+bool isEnd(char c)
 {
-  return c == '*';
+  return (c == '\0');
 }
 
 bool isSign (char c)
@@ -32,89 +32,22 @@ bool isBracket(char c)
   return c == '(' || c == ')';
 }
 
-bool isUnsignedInteger(const char* inp, size_t firstVal, size_t secondVal)
+bool isUnsignedInteger(char* inp)
 {
-  if ((*(inp + firstVal) != '\0') && (isDigit(*(inp + firstVal))))
-  {
-    firstVal++;
-    return ((*(inp + firstVal) == '\0') || (firstVal == secondVal + 1)) ? 1 : isUnsignedInteger(inp, firstVal, secondVal);
-  }
-  return 0;
+  return isDigit(*inp) || (isDigit(*inp) && isUnsignedInteger(inp + 1));
 }
 
-bool isMult(const char* inp, size_t firstVal, size_t secondVal)
+bool isMult(char* inp)
 {
-  if (isIdentificator(*(inp + firstVal)) && (firstVal == secondVal))
-  {
-    return 1;
-  }
-  else
-  {
-    if (isBracket(*(inp + firstVal)) && (isBracket(*(inp + secondVal))))
-    {
-      return examExpress(inp, firstVal + 1, secondVal - 1);
-    }
-    else
-    {
-      return isUnsignedInteger(inp, firstVal, secondVal);
-    }
-  }
-  return 0;
+  return isUnsignedInteger(inp) || isIdentificator(*inp) || (isBracket(*inp) && examExpression(inp + 1));
 }
 
-bool isTerm(const char* inp, size_t firstVal, size_t secondVal)
+bool isTerm(char* inp)
 {
-  size_t t = firstVal;
-  while (!isAster(*(inp + t)) && (t != secondVal))
-  {
-    t++;
-  }
-  if (t == secondVal)
-  {
-    if (isMult(inp, firstVal, t))
-    {
-      return 1;
-    }
-  }
-  if (isMult(inp, firstVal, t - 1))
-  {
-    firstVal = t + 1;
-    return isTerm(inp, firstVal, secondVal);
-  }
-  else
-  {
-    return 0;
-  }
-  return 0;
+  return isMult(inp) || (isMult(inp) && isTerm(inp + 1));
 }
 
-bool examExpress(const char* inp, size_t firstVal, size_t secondVal)
+bool examExpression(char* inp)
 {
-  size_t t = firstVal;
-  while (!isSign(*(inp + t)) && (t != secondVal))
-  {
-    t++;
-  }
-  if (t == secondVal)
-  {
-    if (isTerm(inp, firstVal, t))
-    {
-      return 1;
-    }
-  }
-  if (isTerm(inp, firstVal, t - 1))
-  {
-    firstVal = t + 1;
-    return examExpress(inp, firstVal, secondVal);
-  }
-  else
-  {
-    return 0;
-  }
-  return 0;
-}
-
-bool outResult(const char* inp)
-{
-  return examExpress(inp, 0, strlen(inp) - 1);
+  return isEnd(*inp) || (isTerm(inp) && isSign(*(inp + 1)) && examExpression(inp + 1)) || isDigit(*inp);
 }
