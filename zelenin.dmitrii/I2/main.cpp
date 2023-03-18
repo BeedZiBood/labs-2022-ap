@@ -4,7 +4,7 @@
 #include "slideonleft.h"
 #include "fillthearraywithrandomnumbers.h"
 #include "ismaxdecreasingfragment.h"
-#include "isarrayoutput.h"
+#include "outputanarray.h"
 #include "readarray.h"
 int main(int argc, char* argv[])
 {
@@ -17,14 +17,14 @@ int main(int argc, char* argv[])
   size_t count_elements_for_slide_array = 0;
   size_t max_decreasing_fragment = 0;
   int array_static[7] = { 7, -5, 3, 8, 9, 1, -6 };
-  isArrayOutput(array_static, 7);
+  outputAnArray(array_static, 7);
   std::cout << "\n";
   max_decreasing_fragment = isMaxDecreasingFragment(array_static, 7);
   std::cout << "Maximum decreasing fragments: " << max_decreasing_fragment << "\n";
   std::cout << "Enter the number of elements by which to shift the array: ";
   std::cin >> count_elements_for_slide_array;
   int* first_variable_for_array_output = slideOnLeft(array_static, 7, count_elements_for_slide_array);
-  isArrayOutput(first_variable_for_array_output, 7);
+  outputAnArray(first_variable_for_array_output, 7);
   std::cout << "\n";
   std::cout << "Enter the number of elements of the dynamic array: ";
   std::cin >> count_elements;
@@ -32,14 +32,14 @@ int main(int argc, char* argv[])
   {
     int* array_dynamic = new int[count_elements];
     array_dynamic = fillTheArrayWithRandomNumbers(array_dynamic, count_elements);
-    isArrayOutput(array_dynamic, count_elements);
+    outputAnArray(array_dynamic, count_elements);
     max_decreasing_fragment = isMaxDecreasingFragment(array_dynamic, count_elements);
     std::cout << "\n";
     std::cout << "Maximum decreasing fragments: " << max_decreasing_fragment << "\n";
     std::cout << "Enter the number of elements by which to shift the array: ";
     std::cin >> count_elements_for_slide_array;
     int* second_variable_for_array_output = slideOnLeft(array_dynamic, count_elements, count_elements_for_slide_array);
-    isArrayOutput(second_variable_for_array_output, count_elements);
+    outputAnArray(second_variable_for_array_output, count_elements);
     std::cout << "\n";
     delete[] array_dynamic;
   }

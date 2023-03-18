@@ -1,5 +1,5 @@
 #include <iostream>
-#include "isarrayoutput.h"
+#include "outputanarray.h"
 void outputAnArray(const int* array, size_t count_elements)
 {
   for (size_t i = 0; i < count_elements; i++)
