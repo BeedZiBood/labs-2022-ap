@@ -10,6 +10,9 @@ int main()
   char* inputString = readTheString(std::cin, MaxStringSize);
   if (!inputString || *inputString == '\0') {
     std::cerr << "Input string is empty" << '\n';
+    if (inputString) {
+      delete[] inputString;
+    }
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
