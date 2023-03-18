@@ -1,7 +1,7 @@
 #include "compositeshape.h"
+#include <algorithm>
 #include <cstddef>
 #include <stdexcept>
-#include <algorithm>
 #include "basetype.h"
 
 void remove(Shape** shp, size_t size)
@@ -43,7 +43,7 @@ CompositeShape::~CompositeShape()
   remove(shp_, size_);
 }
 
-CompositeShape& CompositeShape::operator=(CompositeShape &&anotherCompShp)
+CompositeShape& CompositeShape::operator=(CompositeShape&& anotherCompShp)
 {
   remove(shp_, size_);
   size_ = anotherCompShp.size_;
@@ -53,7 +53,7 @@ CompositeShape& CompositeShape::operator=(CompositeShape &&anotherCompShp)
   return *this;
 }
 
-CompositeShape& CompositeShape::operator=(const CompositeShape &anotherCompShp)
+CompositeShape& CompositeShape::operator=(const CompositeShape& anotherCompShp)
 {
   remove(shp_, size_);
   size_ = anotherCompShp.size_;
@@ -150,7 +150,7 @@ void CompositeShape::isotropScale(point_t pos, double k)
   }
 }
 
-void CompositeShape::pushBack(Shape *shp)
+void CompositeShape::pushBack(Shape* shp)
 {
   try
   {
@@ -193,8 +193,7 @@ void CompositeShape::popBack()
   try
   {
     Shape** newShape = new Shape*[--size_];
-    for (size_t i = 0; i < size_; ++i)
-    {
+    for (size_t i = 0; i < size_; ++i) {
       newShape[i] = shp_[i];
     }
     remove(shp_, size_);

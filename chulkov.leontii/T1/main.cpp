@@ -1,12 +1,12 @@
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <stdexcept>
 #include "basetype.h"
-#include "square.h"
 #include "circle.h"
-#include "rectangle.h"
 #include "compositeshape.h"
 #include "print.h"
+#include "rectangle.h"
+#include "square.h"
 
 int main()
 {
@@ -31,7 +31,7 @@ int main()
         {
           double x = 0.0;
           double y = 0.0;
-          std::cin >> x >>y;
+          std::cin >> x >> y;
           point_t a{x, y};
           std::cin >> x >> y;
           point_t b{x, y};
@@ -73,7 +73,7 @@ int main()
           }
           try
           {
-            Square* square = new Square(point_t {x, y}, z);
+            Square* square = new Square(point_t{x, y}, z);
             compositeShape.pushBack(square);
           }
           catch (const std::exception& e)
@@ -111,7 +111,7 @@ int main()
         }
       }
     }
-    catch (const std::invalid_argument &e)
+    catch (const std::invalid_argument& e)
     {
       std::cerr << e.what() << "\n";
     }

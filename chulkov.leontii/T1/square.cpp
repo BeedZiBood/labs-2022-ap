@@ -38,6 +38,7 @@ void Square::scale(double k)
   }
   rect_.scale(k);
 }
+
 Shape* Square::clone() const
 {
   return new Square(*this);
