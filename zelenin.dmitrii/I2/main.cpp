@@ -5,6 +5,7 @@
 #include "fillthearraywithrandomnumbers.h"
 #include "ismaxdecreasingfragment.h"
 #include "isarrayoutput.h"
+#include "readarray.h"
 int main(int argc, char* argv[])
 {
   if (argc != 2)
@@ -15,7 +16,7 @@ int main(int argc, char* argv[])
   size_t count_elements = 0;
   size_t count_elements_for_slide_array = 0;
   size_t max_decreasing_fragment = 0;
-  int array_static[7] = { 7,-5,3,8,9,1,-6 };
+  int array_static[7] = { 7, -5, 3, 8, 9, 1, -6 };
   isArrayOutput(array_static, 7);
   std::cout << "\n";
   max_decreasing_fragment = isMaxDecreasingFragment(array_static, 7);
@@ -63,15 +64,10 @@ int main(int argc, char* argv[])
     return 1;
   }
   int* array_from_file = new int[size_file];
-  for (size_t i = 0; i < size_file; i++)
+  if (readArray(array_from_file, size_file, file) == nullptr)
   {
-    file >> array_from_file[i];
-    if (!file)
-    {
-      std::cout << "Error\n";
-      return 1;
-    }
-
+    delete[] arr_from_file;
+    return 1;
   }
   file.close();
   std::cout << isMaxDecreasingFragment(array_from_file, size_file) << "\n";
