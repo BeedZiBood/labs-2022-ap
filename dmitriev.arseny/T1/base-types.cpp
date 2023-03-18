@@ -20,7 +20,7 @@ point_t multVec(point_t begin, point_t end, double k)
   return point_t{begin.x + (end.x - begin.x) * k,  begin.y + (end.y - begin.y) * k};
 }
 
-point_t sumVec(point_t m_a, point_t m_b)
+point_t sumVec(point_t a, point_t b)
 {
-  return point_t{m_a.x + m_b.x, m_a.y + m_b.y};
+  return point_t{a.x + b.x, a.y + b.y};
 }

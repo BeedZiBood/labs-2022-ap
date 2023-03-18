@@ -22,7 +22,7 @@ rectangle_t Rectangle::getFrameRect() const
 
 void Rectangle::move(double dx, double dy)
 {
-  m_rect.center = sumVec(m_rect.center, {dx, dy})
+  m_rect.center = sumVec(m_rect.center, {dx, dy});
 }
 
 void Rectangle::move(point_t newPos)

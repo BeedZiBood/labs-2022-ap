@@ -17,6 +17,6 @@ struct rectangle_t
 rectangle_t makeNewRect(point_t leftBott, point_t rightTop);
 double makeLine(point_t begin, point_t end);
 point_t multVec(point_t begin, point_t end, double k);
-point_t sumVec(point_t m_a, point_t m_b);
+point_t sumVec(point_t a, point_t b);
 
 #endif
