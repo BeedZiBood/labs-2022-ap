@@ -92,10 +92,8 @@ void CompositeShape::move(double dx, double dy)
 
 void CompositeShape::move(point_t newPos)
 {
-  for (size_t i = 0; i < m_size; i++)
-  {
-    m_arr[i]->move(newPos);
-  }
+  point_t center = getFrameRect().center;
+  move(newPos.x - center.x, newPos.y - center.y);
 }
 
 void CompositeShape::scale(double k)
@@ -161,18 +159,17 @@ void CompositeShape::pushBack(Shape* newShape)
 
 void CompositeShape::pushBack(const Shape* newShape)
 {
-  Shape* newShapeClone = nullptr;
+  Shape* newShapeClone = newShape->clone();;
+ 
   try
   {
-    newShapeClone = newShape->clone();
+    pushBack(newShapeClone);
   }
   catch (const std::exception& e)
   {
-    clear(m_arr, m_size);
+    delete newShapeClone;
     throw e;
   }
-
-  pushBack(newShapeClone);
 }
 
 void CompositeShape::popBack()
