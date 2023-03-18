@@ -159,8 +159,8 @@ void CompositeShape::pushBack(Shape* newShape)
 
 void CompositeShape::pushBack(const Shape* newShape)
 {
-  Shape* newShapeClone = newShape->clone();;
- 
+  Shape* newShapeClone = newShape->clone();
+
   try
   {
     pushBack(newShapeClone);
