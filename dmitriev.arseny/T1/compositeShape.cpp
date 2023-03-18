@@ -32,7 +32,7 @@ CompositeShape::CompositeShape(const CompositeShape& otherCS):
     catch(const std::bad_alloc& e)
     {
       clear(arr, i);
-      throw e;
+      throw;
     }
   }
 }
@@ -170,7 +170,7 @@ void CompositeShape::pushBack(const Shape* newShape)
   catch (const std::bad_alloc& e)
   {
     clear(arr, size);
-    throw e;
+    throw;
   }
 
   pushBack(newShapeClone);
@@ -183,7 +183,7 @@ void CompositeShape::popBack()
 
 Shape* CompositeShape::at(size_t id)
 {
-  if (id < 0 || id >= size)
+  if (id >= size)
   {
     throw std::out_of_range("out of range");
   }
@@ -192,7 +192,7 @@ Shape* CompositeShape::at(size_t id)
 
 const Shape* CompositeShape::at(size_t id) const
 {
-  if (id < 0 || id >= size)
+  if (id >= size)
   {
     throw std::out_of_range("out of range");
   }
@@ -235,7 +235,7 @@ CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
     catch (const std::bad_alloc& e)
     {
       clear(newArr, i);
-      throw e;
+      throw;
     }
   }
 
