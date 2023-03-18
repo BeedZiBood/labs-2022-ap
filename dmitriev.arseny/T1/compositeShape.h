@@ -39,9 +39,9 @@ public:
   void printInfo(std::ostream& out, char separator) const;
 
 private:
-  size_t size;
-  size_t capacity;
-  Shape** arr;
+  size_t m_size;
+  size_t m_capacity;
+  Shape** m_arr;
 };
 
 #endif
