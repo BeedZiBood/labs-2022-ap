@@ -10,3 +10,17 @@ void printTableRow(std::ostream& out, double x, double absError, unsigned number
   out << std::setw(10) << std::exp(x * x * (-1)) << '\n';
 }
 
+void printTable(std::ostream& out, double step, double right, double left, double absError, unsigned numberMax)
+{
+  for (double x = left; x + step <= right; x += step)
+  {
+    try
+    {
+      printTableRow(out, x, absError, numberMax);
+    }
+    catch (const std::exception &ex)
+    {
+      out << ex.what() << '\n';
+    }
+  }
+}
