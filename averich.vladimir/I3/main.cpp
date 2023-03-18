@@ -8,7 +8,8 @@ int main()
 {
   constexpr size_t MaxStringSize = 256;
   char* inputString = readTheString(std::cin, MaxStringSize);
-  if (!inputString) {
+  if (!inputString || *inputString == '\0') {
+    std::cerr << "Input string is empty" << '\n';
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
