@@ -9,5 +9,5 @@ int* readArray(int* array_from_file, size_t  size_file, std::ifstream& file)
       return nullptr;
     }
   }
-  retrun array_from_file;
+  return array_from_file;
 }
