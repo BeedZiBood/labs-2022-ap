@@ -2,8 +2,8 @@
 #define READMATRIX_H
 
 #include <cstddef>
-#include <fstream>
+#include <istream>
 
-void readMatrix(int* matrix, size_t size, std::ifstream& fileInput);
+void readMatrix(int* matrix, size_t size, std::istream& fileInput);
 
 #endif
