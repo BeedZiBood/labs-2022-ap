@@ -50,16 +50,16 @@ void Triangle::move(double dx, double dy)
 
 void Triangle::move(point_t newPos)
 {
-  point_t m_center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
-  move(newPos.x - m_center.x, newPos.y - m_center.y);
+  point_t center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
+  move(newPos.x - center.x, newPos.y - center.y);
 }
 
 void Triangle::unsafeScale(double k)
 {
-  point_t m_center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
-  m_a = multVec(m_center, m_a, k);
-  m_b = multVec(m_center, m_b, k);
-  m_c = multVec(m_center, m_c, k);
+  point_t center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
+  m_a = multVec(center, m_a, k);
+  m_b = multVec(center, m_b, k);
+  m_c = multVec(center, m_c, k);
 }
 
 Shape* Triangle::clone() const
