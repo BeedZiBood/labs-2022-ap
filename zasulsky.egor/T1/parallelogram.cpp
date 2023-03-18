@@ -24,9 +24,9 @@ double zasulsky::Parallelogram::getArea() const
 {
   if (p1_.y == p2_.y)
   {
-    return (fabs(p1_.y - p3_.y)) * fabs(p2_.x - p1_.x);
+    return (std::fabs(p1_.y - p3_.y)) * std::fabs(p2_.x - p1_.x);
   }
-  return (fabs(p1_.y - p3_.y)) * fabs(p2_.x - p3_.x);
+  return (std::fabs(p1_.y - p3_.y)) * std::fabs(p2_.x - p3_.x);
 }
 zasulsky::point_t zasulsky::Parallelogram::getCenter() const
 {
@@ -41,7 +41,7 @@ zasulsky::rectangle_t zasulsky::Parallelogram::getFrameRect() const
   double side12x = p2_.x - p1_.x;
   double side23x = p3_.x - p2_.x;
   double side13y = p1_.y - p3_.y;
-  return rectangle_t{ fabs(side12x) + fabs(side23x), fabs(side13y), location };
+  return rectangle_t{ std::fabs(side12x) + std::fabs(side23x), std::fabs(side13y), location };
 }
 void zasulsky::Parallelogram::move(double dx, double dy)
 {
