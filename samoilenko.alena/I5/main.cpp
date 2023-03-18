@@ -1,6 +1,6 @@
-#include "IsItExpression.h"
 #include <iostream>
 #include <string_from_input.h>
+#include "IsItExpression.h"
 
 int main()
 {
