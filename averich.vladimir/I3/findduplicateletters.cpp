@@ -47,7 +47,6 @@ void findDuplicateLetters(char* destination, const char* c_string_1, const char*
     }
     ++c_string_1;
   }
-  
   if (symbolsAdded > 0) {
     sortString(destination, symbolsAdded);
   }
