@@ -14,7 +14,6 @@ double arctg(double x, double error, unsigned max_cnt)
     x1 *= -(1) / (multiplier * x * x);
     cnt++;
   }
-  while(cnt < max_cnt || std::fabs(x) > error);
-
+  while (cnt < max_cnt || std::fabs(x) > error);
   return summ;
 }
