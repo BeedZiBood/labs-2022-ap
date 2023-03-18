@@ -3,7 +3,7 @@
 
 int main()
 {
-  BothTasks BothTasks{ 0,0,0 };
+  BothTasks BothTasks{0, 0, 0};
   unsigned int currentValue = 0;
   do
   {
