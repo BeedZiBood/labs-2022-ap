@@ -181,5 +181,4 @@ Accepted Labs
 | Yergatov Adil             | ✓  |    |    |    |    |    |    |    |
 | Zasulsky Egor             | ✓  | ✓  |    |    |    |    |    |    |
 | Zhuravlev Ivan            | ✓  | ✓  |    |    |    |    |    |    |
-| Экелик Мухаммет           | ✓  | ✓  | ✓  | ✓  | ✓  | ✓  | ✓  |    |
-| __Total__                 |  46|  34|  18|  10|   8|   4|   3|   0|
+| __Total__                 |  45|  33|  17|   9|   7|   3|   2|   0|
