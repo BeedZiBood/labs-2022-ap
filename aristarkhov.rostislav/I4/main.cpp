@@ -47,14 +47,15 @@ int main(int argc, char* argv[])
       std::cerr << "Too many value\n";
       return 1;
     }
-    for (size_t i = 0; i < size_1; i++)
+    try
     {
-      fileInput >> matrix[i];
-      if (!fileInput)
-      {
-        std::cerr << "Problems while reading file\n";
-        return 1;
-      }
+      readMatrix(matrix, size_1, fileInput);
+    }
+    catch (const std::length_error& e)
+    {
+      std::cout << e.what() << "\n";
+      delete[] matrix;
+      return 1;
     }
 
     fileOutput << countGrowingElements(matrix, line, column) << '\n';
@@ -77,7 +78,7 @@ int main(int argc, char* argv[])
     int* matrix = new int[size_2];
     try
     {
-      matrix = readMatrix(matrix, size_2, fileInput);
+      readMatrix(matrix, size_2, fileInput);
     }
     catch (const std::length_error& e)
     {
@@ -88,8 +89,5 @@ int main(int argc, char* argv[])
     fileOutput << sumUnderMainDiagonal(matrix, line, column) << '\n';
     delete[] matrix;
   }
-
-  fileInput.close();
-  fileOutput.close();
   return 0;
 }
