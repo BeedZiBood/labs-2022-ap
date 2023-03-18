@@ -183,7 +183,7 @@ void CompositeShape::popBack()
 
 Shape* CompositeShape::at(size_t id)
 {
-  if (id < size || id >= size)
+  if (id < 0 || id >= size)
   {
     throw std::out_of_range("out of range");
   }
@@ -192,7 +192,7 @@ Shape* CompositeShape::at(size_t id)
 
 const Shape* CompositeShape::at(size_t id) const
 {
-  if (id < size || id >= size)
+  if (id < 0 || id >= size)
   {
     throw std::out_of_range("out of range");
   }
