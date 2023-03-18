@@ -22,15 +22,13 @@ rectangle_t Rectangle::getFrameRect() const
 
 void Rectangle::move(double dx, double dy)
 {
-  m_rect.m_center.x = m_rect.m_center.x + dx;
-  m_rect.m_center.y = m_rect.m_center.y + dy;
+  m_rect = sumVec(m_rect, {dx, dy})
 }
 
 void Rectangle::move(point_t newPos)
 {
-  double dx = newPos.x - m_rect.m_center.x;
-  double dy = newPos.y - m_rect.m_center.y;
-  move(dx, dy);
+  point_t d = sumVec(newPos, {-m_rect.center.x, -m_rect.center.y});
+  move(d.x, d.y);
 }
 
 void Rectangle::unsafeScale(double k)
@@ -41,7 +39,7 @@ void Rectangle::unsafeScale(double k)
 
 Shape* Rectangle::clone() const
 {
-  point_t leftBott{m_rect.m_center.x - m_rect.width / 2, m_rect.m_center.y - m_rect.height / 2};
-  point_t rightTop{m_rect.m_center.x + m_rect.width / 2, m_rect.m_center.y + m_rect.height / 2};
+  point_t leftBott{m_rect.center.x - m_rect.width / 2, m_rect.center.y - m_rect.height / 2};
+  point_t rightTop{m_rect.center.x + m_rect.width / 2, m_rect.center.y + m_rect.height / 2};
   return new Rectangle{leftBott, rightTop};
 }
