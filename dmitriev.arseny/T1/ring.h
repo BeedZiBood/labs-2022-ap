@@ -6,7 +6,7 @@
 class Ring: public Shape
 {
 public:
-  Ring(point_t m_center, double m_externalRadius, double m_internalRadius);
+  Ring(point_t center, double externalRadius, double internalRadius);
   double getArea() const override;
   rectangle_t getFrameRect() const override;
   void move(double dx, double dy) override;

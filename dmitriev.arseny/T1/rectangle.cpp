@@ -27,8 +27,7 @@ void Rectangle::move(double dx, double dy)
 
 void Rectangle::move(point_t newPos)
 {
-  point_t d = sumVec(newPos, {-m_rect.center.x, -m_rect.center.y});
-  move(d.x, d.y);
+  m_rect.center = newPos;
 }
 
 void Rectangle::unsafeScale(double k)

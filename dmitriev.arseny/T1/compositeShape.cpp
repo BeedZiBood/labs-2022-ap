@@ -151,7 +151,7 @@ void CompositeShape::pushBack(Shape* newShape)
     {
       newArr[i] = m_arr[i];
     }
-    delete[]m_arr;
+    delete[] m_arr;
     m_arr = newArr;
   }
   m_arr[m_size++] = newShape;

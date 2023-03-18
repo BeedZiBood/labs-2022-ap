@@ -31,17 +31,17 @@ int main()
           double y = 0;
 
           std::cin >> x >> y;
-          point_t m_a{x, y};
+          point_t a{x, y};
 
           std::cin >> x >> y;
-          point_t m_b{x, y};
+          point_t b{x, y};
 
           if (!std::cin)
           {
             throw std::invalid_argument("invalid_argument");
           }
 
-          Rectangle rec{m_a, m_b};
+          Rectangle rec{a, b};
           Shape* shape = rec.clone();
           try
           {
@@ -59,20 +59,20 @@ int main()
           double y = 0;
 
           std::cin >> x >> y;
-          point_t m_a{x, y};
+          point_t a{x, y};
 
           std::cin >> x >> y;
-          point_t m_b{x, y};
+          point_t b{x, y};
 
           std::cin >> x >> y;
-          point_t m_c{x, y};
+          point_t c{x, y};
 
           if (!std::cin)
           {
             throw std::invalid_argument("invalid_argument");
           }
 
-          Triangle tri{m_a, m_b, m_c};
+          Triangle tri{a, b, c};
           Shape* shape = tri.clone();
           try
           {
@@ -90,7 +90,7 @@ int main()
           double y = 0.0;
 
           std::cin >> x >> y;
-          point_t m_a{x, y};
+          point_t a{x, y};
           std::cin >> x >> y;
 
           if (!std::cin)
@@ -98,7 +98,7 @@ int main()
             throw std::invalid_argument("invalid_argument");
           }
 
-          Ring rin{m_a, x, y};
+          Ring rin{a, x, y};
           Shape* shape = rin.clone();
           try
           {
