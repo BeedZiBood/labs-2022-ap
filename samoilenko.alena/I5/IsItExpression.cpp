@@ -23,7 +23,7 @@ bool isEnd(char c)
 
 bool isSign (char c)
 {
-  return c == '+' || c == '-';
+  return c == '+' || c == '-' || c == '*';
 }
 
 bool isBracket(char c)
