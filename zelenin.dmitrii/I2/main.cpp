@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
   int* array_from_file = new int[size_file];
   if (readArray(array_from_file, size_file, file) == nullptr)
   {
-    delete[] arr_from_file;
+    delete[] array_from_file;
     return 1;
   }
   file.close();
