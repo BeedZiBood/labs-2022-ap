@@ -2,15 +2,15 @@
 #include <stdexcept>
 
 Ring::Ring(point_t center, double externalRadius, double internalRadius):
-  center(center),
-  internalRadius(internalRadius),
-  externalRadius(externalRadius)
+  m_center(center),
+  m_internalRadius(internalRadius),
+  m_externalRadius(externalRadius)
 {
-  if (externalRadius < internalRadius)
+  if (m_externalRadius < m_internalRadius)
   {
     throw std::invalid_argument("invalid arguments");
   }
-  if (internalRadius <= 0.0)
+  if (m_internalRadius <= 0.0)
   {
     throw std::invalid_argument("invalid arguments");
   }
@@ -19,34 +19,34 @@ Ring::Ring(point_t center, double externalRadius, double internalRadius):
 double Ring::getArea() const
 {
   double pi = 3.141592653589793;
-  return pi * externalRadius * externalRadius - pi * internalRadius * internalRadius;
+  return pi * m_externalRadius * m_externalRadius - pi * m_internalRadius * m_internalRadius;
 }
 
 rectangle_t Ring::getFrameRect() const
 {
-  point_t leftBott{center.x - externalRadius, center.y - externalRadius};
-  point_t rightTop{center.x + externalRadius, center.y + externalRadius};
+  point_t leftBott{m_center.x - m_externalRadius, m_center.y - m_externalRadius};
+  point_t rightTop{m_center.x + m_externalRadius, m_center.y + m_externalRadius};
   return makeNewRect(leftBott, rightTop);
 }
 
 void Ring::move(double dx, double dy)
 {
-  center.x = center.x + dx;
-  center.y = center.y + dy;
+  m_center.x = m_center.x + dx;
+  m_center.y = m_center.y + dy;
 }
 
 void Ring::move(point_t newPos)
 {
-  move(newPos.x - center.x, newPos.y - center.y);
+  move(newPos.x - m_center.x, newPos.y - m_center.y);
 }
 
 void Ring::unsafeScale(double k)
 {
-  externalRadius = externalRadius * k;
-  internalRadius = internalRadius * k;
+  m_externalRadius = m_externalRadius * k;
+  m_internalRadius = m_internalRadius * k;
 }
 
 Shape* Ring::clone() const
 {
-  return new Ring{center, externalRadius, internalRadius};
+  return new Ring{m_center, m_externalRadius, m_internalRadius};
 }

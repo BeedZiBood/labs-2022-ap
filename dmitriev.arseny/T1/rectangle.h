@@ -15,7 +15,7 @@ public:
   Shape* clone() const override;
 
 private:
-  rectangle_t rect;
+  rectangle_t m_rect;
 };
 
 #endif

@@ -68,17 +68,17 @@ rectangle_t CompositeShape::getFrameRect() const
   {
     throw std::logic_error("no elements in arr");
   }
-  double minX = arr[0]->getFrameRect().center.x - arr[0]->getFrameRect().width / 2;
-  double minY = arr[0]->getFrameRect().center.y - arr[0]->getFrameRect().height / 2;
-  double maxX = arr[0]->getFrameRect().center.x + arr[0]->getFrameRect().width / 2;
-  double maxY = arr[0]->getFrameRect().center.y + arr[0]->getFrameRect().height / 2;
+  double minX = arr[0]->getFrameRect().m_center.x - arr[0]->getFrameRect().width / 2;
+  double minY = arr[0]->getFrameRect().m_center.y - arr[0]->getFrameRect().height / 2;
+  double maxX = arr[0]->getFrameRect().m_center.x + arr[0]->getFrameRect().width / 2;
+  double maxY = arr[0]->getFrameRect().m_center.y + arr[0]->getFrameRect().height / 2;
 
   for (size_t i = 1; i < size; i++)
   {
-    minX = std::min(minX, arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2);
-    minY = std::min(minY, arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2);
-    maxX = std::max(maxX, arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2);
-    maxY = std::max(maxY, arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2);
+    minX = std::min(minX, arr[i]->getFrameRect().m_center.x - arr[i]->getFrameRect().width / 2);
+    minY = std::min(minY, arr[i]->getFrameRect().m_center.y - arr[i]->getFrameRect().height / 2);
+    maxX = std::max(maxX, arr[i]->getFrameRect().m_center.x + arr[i]->getFrameRect().width / 2);
+    maxY = std::max(maxY, arr[i]->getFrameRect().m_center.y + arr[i]->getFrameRect().height / 2);
   }
   return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
 }
@@ -133,9 +133,9 @@ void CompositeShape::unsafeIsoScale(point_t pos, double k)
 {
   for (size_t i = 0; i < size; i++)
   {
-    point_t p1{arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y};
+    point_t p1{arr[i]->getFrameRect().m_center.x, arr[i]->getFrameRect().m_center.y};
     arr[i]->move(pos);
-    point_t p2{arr[i]->getFrameRect().center.x, arr[i]->getFrameRect().center.y};
+    point_t p2{arr[i]->getFrameRect().m_center.x, arr[i]->getFrameRect().m_center.y};
 
     double dx = k * (p1.x - p2.x);
     double dy = k * (p1.y - p2.y);
@@ -263,9 +263,9 @@ void CompositeShape::printInfo(std::ostream& out, char separator) const
 
   for (size_t i = 0; i < sizeArr(); i++)
   {
-    out << separator << arr[i]->getFrameRect().center.x - arr[i]->getFrameRect().width / 2;
-    out << separator << arr[i]->getFrameRect().center.y - arr[i]->getFrameRect().height / 2;
-    out << separator << arr[i]->getFrameRect().center.x + arr[i]->getFrameRect().width / 2;
-    out << separator << arr[i]->getFrameRect().center.y + arr[i]->getFrameRect().height / 2;
+    out << separator << arr[i]->getFrameRect().m_center.x - arr[i]->getFrameRect().width / 2;
+    out << separator << arr[i]->getFrameRect().m_center.y - arr[i]->getFrameRect().height / 2;
+    out << separator << arr[i]->getFrameRect().m_center.x + arr[i]->getFrameRect().width / 2;
+    out << separator << arr[i]->getFrameRect().m_center.y + arr[i]->getFrameRect().height / 2;
   }
 }

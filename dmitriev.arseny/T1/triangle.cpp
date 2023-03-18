@@ -3,13 +3,13 @@
 #include <cmath>
 
 Triangle::Triangle(point_t a, point_t b, point_t c):
-  a(a),
-  b(b),
-  c(c)
+  m_a(a),
+  m_b(b),
+  m_c(c)
 {
-  double aSide = makeLine(a, b);
-  double bSide = makeLine(b, c);
-  double cSide = makeLine(c, a);
+  double aSide = makeLine(m_a, m_b);
+  double bSide = makeLine(m_b, m_c);
+  double cSide = makeLine(m_c, m_a);
 
   if (aSide + bSide == cSide)
   {
@@ -27,42 +27,42 @@ Triangle::Triangle(point_t a, point_t b, point_t c):
 
 double Triangle::getArea() const
 {
-  double aSide = makeLine(a, b);
-  double bSide = makeLine(b, c);
-  double cSide = makeLine(c, a);
+  double aSide = makeLine(m_a, m_b);
+  double bSide = makeLine(m_b, m_c);
+  double cSide = makeLine(m_c, m_a);
   double p = (aSide + bSide + cSide) / 2;
   return std::sqrt(p * (p - aSide) * (p - bSide) * (p - cSide));
 }
 
 rectangle_t Triangle::getFrameRect() const
 {
-  point_t leftBott{std::min(a.x, std::min(b.x, c.x)), std::min(a.y, std::min(b.y, c.y))};
-  point_t rightTop{std::max(a.x, std::max(b.x, c.x)), std::max(a.y, std::max(b.y, c.y))};
+  point_t leftBott{std::min(m_a.x, std::min(m_b.x, m_c.x)), std::min(m_a.y, std::min(m_b.y, m_c.y))};
+  point_t rightTop{std::max(m_a.x, std::max(m_b.x, m_c.x)), std::max(m_a.y, std::max(m_b.y, m_c.y))};
   return makeNewRect(leftBott, rightTop);
 }
 
 void Triangle::move(double dx, double dy)
 {
-  a = sumVec(a, {dx, dy});
-  b = sumVec(b, {dx, dy});
-  c = sumVec(c, {dx, dy});
+  m_a = sumVec(m_a, {dx, dy});
+  m_b = sumVec(m_b, {dx, dy});
+  m_c = sumVec(m_c, {dx, dy});
 }
 
 void Triangle::move(point_t newPos)
 {
-  point_t center{(a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3};
-  move(newPos.x - center.x, newPos.y - center.y);
+  point_t m_center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
+  move(newPos.x - m_center.x, newPos.y - m_center.y);
 }
 
 void Triangle::unsafeScale(double k)
 {
-  point_t center{(a.x + b.x + c.x) / 3, (a.y + b.y + c.y) / 3};
-  a = multVec(center, a, k);
-  b = multVec(center, b, k);
-  c = multVec(center, c, k);
+  point_t m_center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
+  m_a = multVec(m_center, m_a, k);
+  m_b = multVec(m_center, m_b, k);
+  m_c = multVec(m_center, m_c, k);
 }
 
 Shape* Triangle::clone() const
 {
-  return new Triangle{a, b, c};
+  return new Triangle{m_a, m_b, m_c};
 }

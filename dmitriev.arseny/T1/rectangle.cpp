@@ -2,9 +2,9 @@
 #include <stdexcept>
 
 Rectangle::Rectangle(point_t leftBott, point_t rightTop):
-  rect(makeNewRect(leftBott, rightTop))
+  m_rect(makeNewRect(leftBott, rightTop))
 {
-  if (rect.height <= 0.0 || rect.width <= 0.0)
+  if (m_rect.height <= 0.0 || m_rect.width <= 0.0)
   {
     throw std::invalid_argument("invalid arguments");
   }
@@ -12,36 +12,36 @@ Rectangle::Rectangle(point_t leftBott, point_t rightTop):
 
 double Rectangle::getArea() const
 {
-  return rect.height * rect.width;
+  return m_rect.height * m_rect.width;
 }
 
 rectangle_t Rectangle::getFrameRect() const
 {
-  return rect;
+  return m_rect;
 }
 
 void Rectangle::move(double dx, double dy)
 {
-  rect.center.x = rect.center.x + dx;
-  rect.center.y = rect.center.y + dy;
+  m_rect.m_center.x = m_rect.m_center.x + dx;
+  m_rect.m_center.y = m_rect.m_center.y + dy;
 }
 
 void Rectangle::move(point_t newPos)
 {
-  double dx = newPos.x - rect.center.x;
-  double dy = newPos.y - rect.center.y;
+  double dx = newPos.x - m_rect.m_center.x;
+  double dy = newPos.y - m_rect.m_center.y;
   move(dx, dy);
 }
 
 void Rectangle::unsafeScale(double k)
 {
-  rect.height = rect.height * k;
-  rect.width = rect.width * k;
+  m_rect.height = m_rect.height * k;
+  m_rect.width = m_rect.width * k;
 }
 
 Shape* Rectangle::clone() const
 {
-  point_t leftBott{rect.center.x - rect.width / 2, rect.center.y - rect.height / 2};
-  point_t rightTop{rect.center.x + rect.width / 2, rect.center.y + rect.height / 2};
+  point_t leftBott{m_rect.m_center.x - m_rect.width / 2, m_rect.m_center.y - m_rect.height / 2};
+  point_t rightTop{m_rect.m_center.x + m_rect.width / 2, m_rect.m_center.y + m_rect.height / 2};
   return new Rectangle{leftBott, rightTop};
 }
