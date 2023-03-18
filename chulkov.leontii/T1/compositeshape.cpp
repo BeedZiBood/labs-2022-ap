@@ -102,10 +102,8 @@ rectangle_t CompositeShape::getFrameRect() const
 
 void CompositeShape::move(point_t pos)
 {
-  for (size_t i = 0; i < size_; ++i)
-  {
-    shp_[i]->move(pos);
-  }
+  point_t center = getFrameRect().pos_;
+  move(pos.x - center.x, pos.y - center.y);
 }
 
 void CompositeShape::move(double dx, double dy)
