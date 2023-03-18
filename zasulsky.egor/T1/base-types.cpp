@@ -13,6 +13,10 @@ void zasulsky::isoScalePoint(point_t& p, const point_t& center, double k)
   {
     throw std::invalid_argument("k must not be less than zero");
   }
+  unsafeIsoScalePoint(p, center, k);
+}
+void unsafeIsoScalePoint(point_t& p, const point_t& center, double k)
+{
   movePoint(p, (p.x - center.x) * (k - 1.0), (p.y - center.y) * (k - 1.0));
 }
 zasulsky::rectangle_t zasulsky::getFrameRectFromCorners(const point_t& bl, const point_t& tr)

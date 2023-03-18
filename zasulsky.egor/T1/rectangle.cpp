@@ -31,12 +31,8 @@ void zasulsky::Rectangle::move(const point_t& pos)
   rect_.pos = pos;
 }
 
-void zasulsky::Rectangle::scale(double k)
+void zasulsky::Rectangle::unsafeScale(double k)
 {
-  if (k <= 0.0)
-  {
-    throw std::invalid_argument("k should be bigger than 0.0");
-  }
   rect_.width *= k;
   rect_.height *= k;
 }

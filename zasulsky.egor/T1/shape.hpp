@@ -12,7 +12,8 @@ namespace zasulsky
     virtual rectangle_t getFrameRect() const = 0;
     virtual void move(double dx, double dy) = 0;
     virtual void move(const point_t& position) = 0;
-    virtual void scale(double k) = 0;
+    virtual void unsafeScale(double k) = 0;
+    void scale(double k);
   };
   void isoScale(Shape* shp, const point_t& center, double k);
 }

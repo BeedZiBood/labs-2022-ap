@@ -5,7 +5,7 @@
 
 namespace zasulsky
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     explicit Rectangle(const rectangle_t& rect);
@@ -15,7 +15,7 @@ namespace zasulsky
     rectangle_t getFrameRect() const;
     void move(double dx, double dy);
     void move(const point_t& pos);
-    void scale(double k);
+    void unsafeScale(double k);
   private:
     rectangle_t rect_;
   };

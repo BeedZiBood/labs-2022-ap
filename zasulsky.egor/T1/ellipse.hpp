@@ -4,7 +4,7 @@
 
 namespace zasulsky
 {
-  class Ellipse : public Shape
+  class Ellipse: public Shape
   {
   public:
     Ellipse(const point_t& center, double radiusVerical, double radiusHorizontal);
@@ -13,7 +13,7 @@ namespace zasulsky
     rectangle_t getFrameRect() const;
     void move(double dx, double dy);
     void move(const point_t& position);
-    void scale(double k);
+    void unsafeScale(double k);
   private:
     point_t center_;
     double radiusVertical_;

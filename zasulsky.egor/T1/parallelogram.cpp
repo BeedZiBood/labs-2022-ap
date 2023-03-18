@@ -3,7 +3,7 @@
 #include <cmath>
 #include "base-types.hpp"
 
-zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3) :
+zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, const point_t& p3):
   p1_(p1),
   p2_(p2),
   p3_(p3)
@@ -12,9 +12,9 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
   {
     throw std::invalid_argument("two sides must be parallel to the x-axis");
   }
-  bool side12Incorrect = (fabs(p2_.x - p1_.x) <= 0.0 && fabs(p2_.y - p1_.y) <= 0.0);
-  bool side23Incorrect = (fabs(p3_.x - p2_.x) <= 0.0 && fabs(p3_.y - p2_.y) <= 0.0);
-  bool side13Incorrect = (fabs(p3_.x - p1_.x) <= 0.0 && fabs(p3_.y - p1_.y) <= 0.0);
+  bool side12Incorrect = (std::fabs(p2_.x - p1_.x) <= 0.0 && std::fabs(p2_.y - p1_.y) <= 0.0);
+  bool side23Incorrect = (std::fabs(p3_.x - p2_.x) <= 0.0 && std::fabs(p3_.y - p2_.y) <= 0.0);
+  bool side13Incorrect = (std::fabs(p3_.x - p1_.x) <= 0.0 && std::fabs(p3_.y - p1_.y) <= 0.0);
   if (side12Incorrect || side23Incorrect || side13Incorrect)
   {
     throw std::invalid_argument("Sides should be bigger than 0.0");
@@ -54,7 +54,7 @@ void zasulsky::Parallelogram::move(const zasulsky::point_t& position)
   point_t location = getCenter();
   move(position.x - location.x, position.y - location.y);
 }
-void zasulsky::Parallelogram::scale(double k)
+void zasulsky::Parallelogram::unsafeScale(double k)
 {
   point_t location = getCenter();
   isoScalePoint(p1_, location, k);

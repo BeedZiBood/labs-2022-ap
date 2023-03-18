@@ -1,5 +1,4 @@
 #include "ellipse.hpp"
-#include <cmath>
 #include <stdexcept>
 #include "base-types.hpp"
 
@@ -15,7 +14,8 @@ zasulsky::Ellipse::Ellipse(const point_t& center, double radiusVertical, double 
 }
 double zasulsky::Ellipse::getArea() const
 {
-  return radiusVertical_ * radiusHorizontal_ * M_PI;
+  constexpr double pi = 3.14159265358979323846;
+  return radiusVertical_ * radiusHorizontal_ * pi;
 }
 zasulsky::rectangle_t zasulsky::Ellipse::getFrameRect() const
 {
@@ -23,14 +23,13 @@ zasulsky::rectangle_t zasulsky::Ellipse::getFrameRect() const
 }
 void zasulsky::Ellipse::move(double dx, double dy)
 {
-  center_.x += dx;
-  center_.y += dy;
+  movePoint(center_, dx, dy);
 }
 void zasulsky::Ellipse::move(const point_t& position)
 {
   center_ = position;
 }
-void zasulsky::Ellipse::scale(double k)
+void zasulsky::Ellipse::unsafeScale(double k)
 {
   radiusHorizontal_ *= k;
   radiusVertical_ *= k;
