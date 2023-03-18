@@ -1,7 +1,7 @@
 #ifndef SQUARE_H
 #define SQUARE_H
-#include "shape.h"
 #include "rectangle.h"
+#include "shape.h"
 
 class Square: public Shape
 {
