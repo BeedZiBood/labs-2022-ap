@@ -104,7 +104,7 @@ int main()
           {
             cShape.pushBack(shape);
           }
-          catch (const std::bad_alloc& e)
+          catch (const std::exception& e)
           {
             delete shape;
             throw e;
@@ -115,7 +115,7 @@ int main()
       {
         std::cerr << "Invalid shape or shapes";
       }
-      catch (const std::bad_alloc& e)
+      catch (const std::exception& e)
       {
         std::cerr << "Invalid composite";
       }

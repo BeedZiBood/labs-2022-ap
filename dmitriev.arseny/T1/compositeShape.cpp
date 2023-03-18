@@ -29,10 +29,10 @@ CompositeShape::CompositeShape(const CompositeShape& otherCS):
     {
       arr[i] = otherCS.arr[i]->clone();
     }
-    catch(const std::bad_alloc& e)
+    catch(const std::exception& e)
     {
       clear(arr, i);
-      throw;
+      throw e;
     }
   }
 }
@@ -167,10 +167,10 @@ void CompositeShape::pushBack(const Shape* newShape)
   {
     newShapeClone = newShape->clone();
   }
-  catch (const std::bad_alloc& e)
+  catch (const std::exception& e)
   {
     clear(arr, size);
-    throw;
+    throw e;
   }
 
   pushBack(newShapeClone);
@@ -232,10 +232,10 @@ CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
     {
       newArr[i] = otherCS.arr[i]->clone();
     }
-    catch (const std::bad_alloc& e)
+    catch (const std::exception& e)
     {
       clear(newArr, i);
-      throw;
+      throw e;
     }
   }
 
