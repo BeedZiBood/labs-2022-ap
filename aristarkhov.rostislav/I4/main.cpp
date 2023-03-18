@@ -54,7 +54,6 @@ int main(int argc, char* argv[])
     catch (const std::length_error& e)
     {
       std::cout << e.what() << "\n";
-      delete[] matrix;
       return 1;
     }
 
