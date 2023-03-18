@@ -193,7 +193,8 @@ void CompositeShape::popBack()
   try
   {
     Shape** newShape = new Shape*[--size_];
-    for (size_t i = 0; i < size_; ++i) {
+    for (size_t i = 0; i < size_; ++i)
+    {
       newShape[i] = shp_[i];
     }
     remove(shp_, size_);
