@@ -6,11 +6,15 @@
 
 int main()
 {
-  char* inputString = readTheString();
+  constexpr size_t MaxStringSize = 256;
+  char* inputString = readTheString(std::cin, MaxStringSize);
   if (!inputString) {
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
+  for (size_t i = 0; i < LettersInEnglishAlphabet + 1; ++i) {
+    *(resultOfDuplicateTestString + i) = '\0';
+  }
   if (!resultOfDuplicateTestString) {
     delete[] inputString;
     return EXIT_FAILURE;

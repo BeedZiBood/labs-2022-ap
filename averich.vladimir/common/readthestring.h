@@ -1,9 +1,9 @@
 #ifndef READTHESTRING_H
 #define READTHESTRING_H
 
-#include <cstddef>
 #include <iostream>
+#include <cstddef>
 
-char* readTheString();
+char* readTheString(std::istream& steam, size_t maxStringSize);
 
 #endif
