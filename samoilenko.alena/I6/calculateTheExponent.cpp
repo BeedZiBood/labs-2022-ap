@@ -1,4 +1,6 @@
 #include "calculateTheExponent.h"
+#include <stdexcept>
+#include <cmath>
 
 double calculateTheExponent(double absError, double x, unsigned numberMax)
 {
@@ -16,5 +18,9 @@ double calculateTheExponent(double absError, double x, unsigned numberMax)
     divisor *= members;
   }
   while (sum > absError || members < numberMax);
+  if (std::abs(sum) > absError)
+  {
+    throw std::logic_error("The required accuracy has not been achieved\n");
+  }
   return result;
 }
