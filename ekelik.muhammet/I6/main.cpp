@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <cmath>
 #include <limits>
 #include <stdexcept>
@@ -6,7 +7,7 @@
 
 int main()
 {
-  const double absError = 0.0001;
+  const double absError = 0.00000001;
   const double mStep = 0.1;
   double m1 = 0.0;
   double m2 = 0.0;

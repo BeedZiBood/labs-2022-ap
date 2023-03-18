@@ -10,7 +10,7 @@ void printTableRow(std::ostream& out, double x, double absError, unsigned maxNum
 {
   out << std::setw(5) << x << " ";
   out << std::setw(10) << std::setprecision(precision) << arctan(x, absError, maxNumber) << " ";
-  out << std::setw(10) << std::setprecision(precision) << 1.0 / pow(1 + x * x, 2) * x << "\n";
+  out << std::setw(10) << std::setprecision(precision) << (1.0 / pow(1 + x * x, 2) * x) << "\n";
 }
 
 void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned maxNumber, double absError, int precision)
@@ -22,7 +22,8 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
   {
     throw std::logic_error("Borders error");
   }
-  for (double x = m1; x + mStep <= m2; x = x + mStep)
+  double x = m1;
+  while (x <= m2)
   {
     try
     {
@@ -32,6 +33,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
     {
       out << e.what() << '\n';
     }
+    x += mStep;
   }
   try
   {
