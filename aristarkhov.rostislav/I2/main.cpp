@@ -73,7 +73,7 @@ int main(int argc, char** argv)
   int* arr3 = new int[size_arr3];
   try
   {
-    arr3 = readMatrix(arr3, size_arr3, file);
+    readMatrix(arr3, size_arr3, file);
   }
   catch (const std::length_error& e)
   {
