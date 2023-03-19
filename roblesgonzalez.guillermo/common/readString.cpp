@@ -6,7 +6,7 @@
 
 char *readString(std::istream &inp)
 {
-  size_t capacity = 11;
+  size_t capacity = 10;
   size_t size = 0;
   char *cstring = nullptr;
   cstring = new char[capacity];
