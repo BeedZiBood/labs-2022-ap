@@ -10,7 +10,7 @@ void printTableRow(std::ostream& out, double x, double absError, unsigned maxNum
 {
   out << std::setw(5) << x << " ";
   out << std::setw(10) << std::setprecision(5) << arctan(x, absError, maxNumber) << " ";
-  out << std::setw(10) << std::exp(1.0 / pow(1 + x * x, 2) * x) << "\n";
+  out << std::setw(10) << (1.0 / pow(1 + x * x, 2) * x) << "\n";
 }
 
 void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned maxNumber, double absError)
