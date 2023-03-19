@@ -143,8 +143,8 @@ void zasulsky::isoScale(CompositeShape& shp, const point_t& center, double k)
   shp.move(center);
   point_t A2 = shp.getFrameRect().pos;
   shp.scale(k);
-  isoScalePoint(A1, center, k);
-  isoScalePoint(A2, center, k);
+  unsafeIsoScalePoint(A1, center, k);
+  unsafeIsoScalePoint(A2, center, k);
   shp.move(A1.x - A2.x, A1.y - A2.y);
 }
 std::ostream& zasulsky::outputComposite(std::ostream& out, const CompositeShape& composite)
