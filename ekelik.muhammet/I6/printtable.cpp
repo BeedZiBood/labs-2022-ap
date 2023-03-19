@@ -6,14 +6,14 @@
 #include <iomanip>
 #include "arctan.h"
 
-void printTableRow(std::ostream& out, double x, double absError, unsigned maxNumber, int precision)
+void printTableRow(std::ostream& out, double x, double absError, unsigned maxNumber)
 {
   out << std::setw(5) << x << " ";
-  out << std::setw(10) << std::setprecision(precision) << arctan(x, absError, maxNumber) << " ";
-  out << std::setw(10) << std::setprecision(precision) << (1.0 / pow(1 + x * x, 2) * x) << "\n";
+  out << std::setw(10) << std::setprecision(5) << arctan(x, absError, maxNumber) << " ";
+  out << std::setw(10) << std::exp(1.0 / pow(1 + x * x, 2) * x) << "\n";
 }
 
-void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned maxNumber, double absError, int precision)
+void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned maxNumber, double absError)
 {
   out << std::setw(5) << "x" << " ";
   out << std::setw(10) << "arctan(x)" << " ";
@@ -27,7 +27,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
   {
     try
     {
-      printTableRow(out << "\n", x, absError, maxNumber, precision);
+      printTableRow(out << "\n", x, absError, maxNumber);
     }
     catch (const std::exception& e)
     {
@@ -37,7 +37,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
   }
   try
   {
-    printTableRow(out << "\n", m2, absError, maxNumber, precision);
+    printTableRow(out << "\n", m2, absError, maxNumber);
   }
   catch (const std::exception& e)
   {
