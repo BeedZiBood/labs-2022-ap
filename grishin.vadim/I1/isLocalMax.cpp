@@ -7,7 +7,7 @@ int isLocalMax(int currentValue, int value1, int value2)
     {
       if (value1 > value2)
       {
-        return  1;
+        return 1;
       }
     }
   }
