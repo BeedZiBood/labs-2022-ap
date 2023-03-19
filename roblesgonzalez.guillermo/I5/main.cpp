@@ -8,7 +8,7 @@ int main()
   {
     cstring = readString(std::cin);
   }
-  catch (const std::exception& e)
+  catch (const std::exception &e)
   {
     std::cout << e.what() << '\n';
     return 1;
