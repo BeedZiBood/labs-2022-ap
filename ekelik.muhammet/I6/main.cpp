@@ -12,6 +12,7 @@ int main()
   double m1 = 0.0;
   double m2 = 0.0;
   unsigned maxNumber = 0;
+  int precision = 5;
 
   std::cin >> m1 >> m2 >> maxNumber;
   if (!std::cin || m1 < -1.0 || m2 > 1.0 || m1 > m2)
@@ -21,7 +22,7 @@ int main()
   }
   try
   {
-    printTable(std::cout, m1, m2, mStep, maxNumber, absError);
+    printTable(std::cout, m1, m2, mStep, maxNumber, absError, precision);
   }
   catch (const std::exception &e)
   {
