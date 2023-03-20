@@ -1,7 +1,7 @@
 #include "arctg.h"
 #include <cmath>
 
-double arctg(double x, double error, unsigned max_cnt)
+double arctg(double x, double absError, unsigned numberMax)
 {
   double x1 = - (1 / x);
   double summ = M_PI / 2;
@@ -14,6 +14,6 @@ double arctg(double x, double error, unsigned max_cnt)
     x1 *= -(1) / (multiplier * x * x);
     cnt++;
   }
-  while (cnt < max_cnt || std::fabs(x) > error);
+  while (cnt < numberMax || std::fabs(x) > absError);
   return summ;
 }
