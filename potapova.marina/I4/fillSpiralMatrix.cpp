@@ -10,7 +10,9 @@ void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
   }
   else if (matrix_order > 1)
   {
-    for (long long* cur_elem_ptr = dest[0] + count_slice + matrix_order - 1; cur_elem_ptr >= dest[0] + count_slice; --cur_elem_ptr)
+    long long* const first_elem_ptr = dest[0] + count_slice;
+    long long* const end_of_row_ptr = first_elem_ptr + matrix_order - 1;
+    for (long long* cur_elem_ptr = end_of_row_ptr; cur_elem_ptr >= first_elem_ptr; --cur_elem_ptr)
     {
       *cur_elem_ptr = cur_elem_val++;
     }
@@ -19,8 +21,8 @@ void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
     {
       (*cur_row_ptr)[count_slice] = cur_elem_val++;
     }
-    for (long long* cur_elem_ptr = *last_row_ptr + count_slice + 1;
-          cur_elem_ptr < *last_row_ptr + count_slice + matrix_order; ++cur_elem_ptr)
+    const long long* const last_elem_ptr = *last_row_ptr + count_slice + matrix_order;
+    for (long long* cur_elem_ptr = *last_row_ptr + count_slice + 1; cur_elem_ptr < last_elem_ptr; ++cur_elem_ptr)
     {
       *cur_elem_ptr = cur_elem_val++;
     }

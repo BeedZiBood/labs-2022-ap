@@ -6,6 +6,7 @@
 #include "getCountOfSaddlePoints.h"
 #include "fillSpiralMatrix.h"
 #include "workWithIO.h"
+#include "allocationAndDeleteMatrix.h"
 
 int main(int argc, char* argv[])
 {
@@ -20,8 +21,8 @@ int main(int argc, char* argv[])
     std::cerr << argv[2] << " cannot be open\n";
     return 1;
   }
-  size_t count_rows;
-  size_t count_cols;
+  size_t count_rows = 0;
+  size_t count_cols = 0;
   if (!(input >> count_rows >> count_cols))
   {
     std::cerr << "Input error\n";
@@ -35,69 +36,39 @@ int main(int argc, char* argv[])
   }
   if (std::strcmp(argv[1], "1") == 0)
   {
-    if (count_rows * count_cols > 1000)
-    {
-      std::cerr << "Too many elements\n";
-      return 1;
-    }
     long long matrix[1000];
-    if (!inputMatrix(matrix, count_rows, count_cols, input))
+    if(!inputMatrix(matrix, count_rows, count_cols, input))
     {
       std::cerr << "Input error\n";
       return 1;
     }
-    output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' '
-           << countColsWithNull(matrix, count_rows, count_cols) << '\n';
+    output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' ' << countColsWithNull(matrix, count_rows, count_cols) << '\n';
   }
   else if (strcmp(argv[1], "2") == 0)
   {
     long long** matrix;
-    try
+    if ((matrix = createMatrix(count_rows, count_cols)) == nullptr)
     {
-      matrix = new long long*[count_rows];
-      for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
-      {
-        *cur_row_ptr = new long long[count_cols];
-      }
-    }
-    catch (const std::bad_alloc& e)
-    {
-      std::cerr << "Allocation failed: " << e.what() << '\n';
+      std::cerr << "Allocation of matrix failed\n";
       return 1;
     }
     if (!inputMatrix(matrix, count_rows, count_cols, input))
     {
       std::cerr << "Input error\n";
-      for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
-      {
-        delete[] *cur_row_ptr;
-      }
-      delete[] matrix;
+      deleteMatrix(matrix, count_rows);
       return 1;
     }
     output << getCountOfSaddlePoints(matrix, count_rows, count_cols) << '\n';
-    for (long long** cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
-    {
-      delete[] *cur_row_ptr;
-    }
-    delete[] matrix;
+    deleteMatrix(matrix, count_rows);
     size_t& matrix_order = count_rows;
     long long** spiral_matrix;
-    try
+    if ((spiral_matrix = createMatrix(matrix_order, matrix_order)) == nullptr)
     {
-      spiral_matrix = new long long*[matrix_order];
-      for (long long** cur_row_ptr = spiral_matrix; cur_row_ptr < spiral_matrix + matrix_order; ++cur_row_ptr)
-      {
-        *cur_row_ptr = new long long[matrix_order];
-      }
-    }
-    catch (const std::bad_alloc& e)
-    {
-      std::cerr << "Allocation failed: " << e.what() << '\n';
+      std::cerr << "Allocation of matrix failed\n";
       return 1;
     }
     fillSpiralMatrix(spiral_matrix, matrix_order);
-    printSpiralMatrix(spiral_matrix, matrix_order, output);
+    printMatrix(spiral_matrix, matrix_order, output);
     for (long long** cur_row_ptr = spiral_matrix; cur_row_ptr < spiral_matrix + matrix_order; ++cur_row_ptr)
     {
       delete[] *cur_row_ptr;
