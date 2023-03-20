@@ -7,16 +7,17 @@ void printTableRow(std::ostream& out, double x, double absError, unsigned number
 {
   out << std::setw(5) << x << ' ';
   out << std::setw(10) << std::setprecision(precision) << std::atan(x) << ' ';
-  out << std::setw(5) << std::setprecision(precision) << arctg(x, absError, numberMax) << '\n';
+  out << std::setw(10) << std::setprecision(precision) << arctg(x, absError, numberMax) << '\n';
 }
 
-void createTable(std::ostream& out, double left_border, double right_border, double step, double absError, unsigned numberMax, int precision)
+void createTable(std::ostream& out, double l_border, double r_border, double step, double absError, unsigned numberMax, int precision)
 {
-  if (left_border > right_border)
+  if (l_border > r_border)
   {
     throw std::invalid_argument("Wrong input");
   }
-  for (double x = left_border; x <= right_border; x += step)
+  out << "coordinate" << "\t" << "library atan " << std::setw(5) << "selfmade atan\n";
+  for (double x = l_border; x <= r_border; x += step)
   {
     try
     {
