@@ -16,12 +16,12 @@ int main()
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
-  for (size_t i = 0; i < LettersInEnglishAlphabet + 1; ++i) {
-    *(resultOfDuplicateTestString + i) = '\0';
-  }
   if (!resultOfDuplicateTestString) {
     delete[] inputString;
     return EXIT_FAILURE;
+  }
+  for (size_t i = 0; i < LettersInEnglishAlphabet + 1; ++i) {
+    *(resultOfDuplicateTestString + i) = '\0';
   }
   const char predifinedString[] = "abZ";
   findDuplicateLetters(resultOfDuplicateTestString, inputString, predifinedString);
