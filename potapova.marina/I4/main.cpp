@@ -42,7 +42,8 @@ int main(int argc, char* argv[])
       std::cerr << "Input error\n";
       return 1;
     }
-    output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' ' << countColsWithNull(matrix, count_rows, count_cols) << '\n';
+    output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' ';
+    output << countColsWithNull(matrix, count_rows, count_cols) << '\n';
   }
   else if (strcmp(argv[1], "2") == 0)
   {
@@ -69,11 +70,7 @@ int main(int argc, char* argv[])
     }
     fillSpiralMatrix(spiral_matrix, matrix_order);
     printMatrix(spiral_matrix, matrix_order, output);
-    for (long long** cur_row_ptr = spiral_matrix; cur_row_ptr < spiral_matrix + matrix_order; ++cur_row_ptr)
-    {
-      delete[] *cur_row_ptr;
-    }
-    delete[] spiral_matrix;
+    deleteMatrix(spiral_matrix, count_rows);
   }
   else
   {

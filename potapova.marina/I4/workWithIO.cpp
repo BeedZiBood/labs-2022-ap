@@ -1,6 +1,9 @@
 #include "workWithIO.h"
 
-std::istream& inputMatrix(long long* const matrix, const size_t count_rows, const size_t count_cols, std::istream& in)
+std::istream& inputMatrix(long long* const matrix,
+  const size_t count_rows,
+  const size_t count_cols,
+  std::istream& in)
 {
   for (long long* cur_elem_ptr = matrix; cur_elem_ptr < matrix + count_rows * count_cols; ++cur_elem_ptr)
   {
@@ -9,13 +12,16 @@ std::istream& inputMatrix(long long* const matrix, const size_t count_rows, cons
   return in;
 }
 
-std::istream& inputMatrix(long long* const* const matrix, const size_t count_rows, const size_t count_cols, std::istream& in)
+std::istream& inputMatrix(long long* const* const matrix,
+  const size_t count_rows,
+  const size_t count_cols,
+  std::istream& in)
 {
   for (long long* const* cur_row_ptr = matrix; cur_row_ptr < matrix + count_rows; ++cur_row_ptr)
   {
-    for (long long* cur_elem_ptr = *cur_row_ptr; cur_elem_ptr < *cur_row_ptr + count_cols; ++cur_elem_ptr)
+    if (!inputMatrix(*cur_row_ptr, 1, count_cols, in))
     {
-      in >> *cur_elem_ptr;
+      break;
     }
   }
   return in;

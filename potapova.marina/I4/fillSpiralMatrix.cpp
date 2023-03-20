@@ -1,9 +1,10 @@
 #include "fillSpiralMatrix.h"
 
-void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
+void fillSpiralMatrixImpl(long long** const dest,
+  const size_t matrix_order,
+  const size_t count_slice = 0,
+  long long cur_elem_val = 1)
 {
-  static size_t count_slice = 0;
-  static long long cur_elem_val = 1;
   if (matrix_order == 1)
   {
     dest[0][count_slice] = cur_elem_val;
@@ -30,7 +31,11 @@ void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
     {
       (*cur_row_ptr)[matrix_order + count_slice - 1] = cur_elem_val++;
     }
-    ++count_slice;
-    fillSpiralMatrix(dest + 1, matrix_order - 2);
+    fillSpiralMatrixImpl(dest + 1, matrix_order - 2, count_slice + 1, cur_elem_val);
   }
+}
+
+void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
+{
+  fillSpiralMatrixImpl(dest, matrix_order);
 }
