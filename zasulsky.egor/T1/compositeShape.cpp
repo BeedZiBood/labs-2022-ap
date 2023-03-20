@@ -12,7 +12,7 @@ zasulsky::CompositeShape::CompositeShape(size_t cap):
 zasulsky::CompositeShape::CompositeShape(const zasulsky::CompositeShape& cshp):
   CompositeShape(cshp.cap_)
 {
-  for (size_t i = 0; i < cshp.size(); i++) 
+  for (size_t i = 0; i < cshp.size(); i++)
   {
     push_back(cshp[i]->clone());
   }
