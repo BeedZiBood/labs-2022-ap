@@ -4,6 +4,13 @@
 #include <cstddef>
 #include <cstring>
 
+void customCopy(char *dest, const char *src, size_t count)
+{
+  for (size_t i = 0; i < count; ++i)
+  {
+    dest[i] = src[i];
+  }
+}
 char *readString(std::istream &inp)
 {
   size_t capacity = 10;
@@ -17,20 +24,19 @@ char *readString(std::istream &inp)
     if (size + 1 == capacity)
     {
       capacity = capacity + 10;
-      char *dupStr = nullptr;
+      char *newString = nullptr;
       try
       {
-        dupStr = new char[capacity];
+        newString = new char[capacity];
+        customCopy(newString, cstring, capacity);
+        delete[] cstring;
+        cstring = newString;
       }
-      catch (const std::bad_alloc& e)
+      catch (const std::bad_alloc &e)
       {
         delete[] cstring;
         throw;
       }
-      cstring[size] = '\0';
-      dupStr = strcpy(dupStr, cstring);
-      delete[] cstring;
-      cstring = dupStr;
     }
     cstring[size++] = chInp;
   }
