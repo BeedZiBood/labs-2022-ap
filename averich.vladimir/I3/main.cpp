@@ -1,4 +1,4 @@
-#include <iostream>
+    #include <iostream>
 #include <cstddef>
 #include <readthestring.h>
 #include "hasdoubledchars.h"
@@ -10,7 +10,7 @@ int main()
   char* inputString = readTheString(std::cin, MaxStringSize);
   if (!inputString || *inputString == '\0') {
     std::cerr << "Input string is empty" << '\n';
-    if (!inputString) {
+    if (inputString) {
       delete[] inputString;
     }
     return EXIT_FAILURE;
