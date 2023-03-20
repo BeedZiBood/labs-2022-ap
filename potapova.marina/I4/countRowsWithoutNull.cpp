@@ -2,7 +2,7 @@
 
 size_t countRowsWithoutNull(const long long* const matrix, const size_t count_rows, const size_t count_cols)
 {
-  size_t num_zero_rows = 0; 
+  size_t num_zero_rows = 0;
   const long long* const end_elem_ptr = matrix + count_cols * count_rows;
   for (const long long* cur_row_ptr = matrix; cur_row_ptr < end_elem_ptr; cur_row_ptr += count_cols)
   {
