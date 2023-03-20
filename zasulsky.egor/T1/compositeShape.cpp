@@ -28,8 +28,8 @@ zasulsky::CompositeShape::CompositeShape(CompositeShape&& cshp):
 }
 zasulsky::CompositeShape& zasulsky::CompositeShape::operator=(const zasulsky::CompositeShape& cshp)
 {
-  zasulsky::Shape** newShape = new zasulsky::Shape * [cshp.cap_];
-  for (size_t i = 0; i < cshp.size(), i++)
+  zasulsky::Shape** newShape = new zasulsky::Shape* [cshp.cap_];
+  for (size_t i = 0; i < cshp.size(); i++)
   {
     try
     {
