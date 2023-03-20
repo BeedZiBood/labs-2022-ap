@@ -26,7 +26,7 @@ zasulsky::CompositeShape::CompositeShape(CompositeShape&& cshp):
   cshp.cap_ = 0;
   cshp.size_ = 0;
 }
-zasulsky::CompositeShape& operator=(const zasulsky::CompositeShape& cshp)
+zasulsky::CompositeShape& zasulsky::CompositeShape::operator=(const zasulsky::CompositeShape& cshp)
 {
   zasulsky::Shape** newShape = new zasulsky::Shape * [cshp.cap_];
   for (size_t i = 0; i < cshp.size(), i++)
@@ -50,7 +50,7 @@ zasulsky::CompositeShape& operator=(const zasulsky::CompositeShape& cshp)
   size_ = cshp.size_;
   return *this;
 }
-CompositeShape& operator=(CompositeShape&& cshp)
+zasulsky::CompositeShape& zasulsky::CompositeShape::operator=(CompositeShape&& cshp)
 {
   purge();
   shape_ = cshp.shape_;
