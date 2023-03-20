@@ -12,6 +12,10 @@ zasulsky::Ellipse::Ellipse(const point_t& center, double radiusVertical, double 
     throw std::invalid_argument("radius should be bigger than 0");
   }
 }
+zasulsky::Shape* zasulsky::Ellipse::clone() const
+{
+  return new zasulsky::Ellipse(center_, radiusVertical_, radiusHorizontal_);
+}
 double zasulsky::Ellipse::getArea() const
 {
   constexpr double pi = 3.14159265358979323846;

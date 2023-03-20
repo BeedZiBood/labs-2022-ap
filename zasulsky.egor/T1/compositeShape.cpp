@@ -4,11 +4,63 @@
 #include <ostream>
 #include "base-types.hpp"
 
-zasulsky::CompositeShape::CompositeShape(size_t cap) :
+zasulsky::CompositeShape::CompositeShape(size_t cap):
   cap_(cap),
   size_(0),
   shape_(new Shape* [cap])
 {}
+zasulsky::CompositeShape::CompositeShape(const zasulsky::CompositeShape& cshp):
+  CompositeShape(cshp.cap_)
+{
+  for (size_t i = 0; i < cshp.size(); i++) 
+  {
+    push_back(cshp[i]->clone());
+  }
+}
+zasulsky::CompositeShape::CompositeShape(CompositeShape&& cshp):
+  cap_(cshp.cap_),
+  size_(cshp.size_),
+  shape_(cshp.shape_)
+{
+  cshp.shape_ = nullptr;
+  cshp.cap_ = 0;
+  cshp.size_ = 0;
+}
+zasulsky::CompositeShape& operator=(const zasulsky::CompositeShape& cshp)
+{
+  zasulsky::Shape** newShape = new zasulsky::Shape * [cshp.cap_];
+  for (size_t i = 0; i < cshp.size(), i++)
+  {
+    try
+    {
+      newShape[i] = cshp[i]->clone();
+    }
+    catch (...)
+    {
+      for (size_t j = 0; j < i; j++)
+      {
+        delete newShape[i];
+      }
+      delete[] newShape;
+    }
+  }
+  purge();
+  shape_ = newShape;
+  cap_ = cshp.cap_;
+  size_ = cshp.size_;
+  return *this;
+}
+CompositeShape& operator=(CompositeShape&& cshp)
+{
+  purge();
+  shape_ = cshp.shape_;
+  cap_ = cshp.cap_;
+  size_ = cshp.size_;
+  cshp.shape_ = nullptr;
+  cshp.cap_ = 0;
+  cshp.size_ = 0;
+  return *this;
+}
 zasulsky::CompositeShape::~CompositeShape()
 {
   for (size_t i = 0; i < size_; i++)
@@ -25,7 +77,14 @@ const zasulsky::Shape* zasulsky::CompositeShape::operator[](size_t id) const
 {
   return shape_[id];
 }
-
+void zasulsky::CompositeShape::purge()
+{
+  while (!empty())
+  {
+    pop_back();
+  }
+  delete[] shape_;
+}
 double zasulsky::CompositeShape::getArea() const
 {
   double area = 0.0;

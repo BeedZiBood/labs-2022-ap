@@ -10,8 +10,11 @@ namespace zasulsky
   {
   public:
     explicit CompositeShape(size_t cap);
+    CompositeShape(const CompositeShape& cshp);
+    CompositeShape(CompositeShape&& cshp);
     ~CompositeShape();
-
+    CompositeShape& operator=(const CompositeShape& cshp);
+    CompositeShape& operator=(CompositeShape&& cshp);
     Shape* operator[](size_t id);
     const Shape* operator[](size_t id) const;
 
@@ -34,6 +37,7 @@ namespace zasulsky
     Shape** shape_;
     point_t getCenter();
     void extend(size_t capDiff);
+    void purge();
   };
   void isoScale(CompositeShape& shp, const point_t& center, double k);
   std::ostream& outputComposite(std::ostream& out, const CompositeShape& composite);

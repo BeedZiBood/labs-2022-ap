@@ -16,6 +16,7 @@ namespace zasulsky
     void move(double dx, double dy);
     void move(const point_t& pos);
     void unsafeScale(double k);
+    Shape* clone() const;
   private:
     rectangle_t rect_;
   };

@@ -11,6 +11,10 @@ zasulsky::Rectangle::Rectangle(const point_t& p1, const point_t& p2):
   rect_(getFrameRectFromCorners(p1, p2))
 {}
 
+zasulsky::Shape* zasulsky::Rectangle::clone() const
+{
+  return new zasulsky::Rectangle(rect_);
+}
 double zasulsky::Rectangle::getArea() const
 {
   return rect_.width * rect_.height;

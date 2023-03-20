@@ -20,6 +20,10 @@ zasulsky::Parallelogram::Parallelogram(const point_t& p1, const point_t& p2, con
     throw std::invalid_argument("Sides should be bigger than 0.0");
   }
 }
+zasulsky::Shape* zasulsky::Parallelogram::clone() const
+{
+  return new zasulsky::Parallelogram(p1_, p2_, p3_);
+}
 double zasulsky::Parallelogram::getArea() const
 {
   if (p1_.y == p2_.y)

@@ -14,6 +14,7 @@ namespace zasulsky
     void move(double dx, double dy);
     void move(const point_t& position);
     void unsafeScale(double k);
+    Shape* clone() const;
   private:
     point_t center_;
     double radiusVertical_;

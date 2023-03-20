@@ -14,6 +14,7 @@ namespace zasulsky
     virtual void move(const point_t& position) = 0;
     virtual void unsafeScale(double k) = 0;
     void scale(double k);
+    virtual Shape* clone() const = 0;
   };
   void isoScale(Shape* shp, const point_t& center, double k);
 }
