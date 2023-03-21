@@ -8,7 +8,7 @@ long long** createMatrix(size_t count_rows, size_t count_cols)
   {
     result = new long long*[count_rows];
   }
-  catch(const std::bad_alloc& e)
+  catch (const std::bad_alloc& e)
   {
     return nullptr;
   }
@@ -18,7 +18,7 @@ long long** createMatrix(size_t count_rows, size_t count_cols)
     {
       *cur_row_ptr = new long long[count_cols];
     }
-    catch(const std::bad_alloc& e)
+    catch (const std::bad_alloc& e)
     {
       deleteMatrix(result, static_cast< size_t >(cur_row_ptr - result - 1));
       return nullptr;

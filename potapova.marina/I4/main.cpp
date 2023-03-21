@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
   if (std::strcmp(argv[1], "1") == 0)
   {
     long long matrix[1000];
-    if(!inputMatrix(matrix, count_rows, count_cols, input))
+    if(!inputMatrix(matrix, count_rows * count_cols, input))
     {
       std::cerr << "Input error\n";
       return 1;
