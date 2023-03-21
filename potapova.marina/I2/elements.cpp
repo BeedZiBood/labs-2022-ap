@@ -1,6 +1,6 @@
 #include "elements.h"
 
-size_t potapova::findNegativeAfterMax(const int* array, size_t size)
+size_t potapova::findNegativeAfterMax(const long long int* array, size_t size)
 {
   int max_element = 0;
   for (size_t i = 0; i < size; i++)
@@ -20,7 +20,7 @@ size_t potapova::findNegativeAfterMax(const int* array, size_t size)
   }
   return count_negative;
 }
-bool potapova::findRepeatingPositiveNumbers(const int* array, size_t size)
+bool potapova::findRepeatingPositiveNumbers(const long long int* array, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
