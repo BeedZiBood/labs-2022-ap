@@ -50,7 +50,7 @@ int main()
           catch (const std::bad_alloc& e)
           {
             delete shape;
-            throw e;
+            throw;
           }
         }
         else if (name == "TRIANGLE")
@@ -81,7 +81,7 @@ int main()
           catch (const std::bad_alloc& e)
           {
             delete shape;
-            throw e;
+            throw;
           }
         }
         else if (name == "RING")
@@ -107,7 +107,7 @@ int main()
           catch (const std::exception& e)
           {
             delete shape;
-            throw e;
+            throw;
           }
         }
       }
