@@ -11,7 +11,7 @@ int main(int argc, char** argv)
     std::cerr << "Not correct amount of CML args\n";
     return 2;
   }
-  int array[10] = {-1, 5, -5, 5, 3, 2, 5, -27, 4, 1};
+  long long int array[10] = {-1, 5, -5, 5, 3, 2, 5, -27, 4, 1};
   size_t array_size = 10;
   size_t neg_after_max = potapova::findNegativeAfterMax(array, array_size);
   size_t repeat_pos_numb = potapova::findRepeatingPositiveNumbers(array, array_size);
@@ -25,7 +25,7 @@ int main(int argc, char** argv)
   }
   if (dyn_array_size > 0)
   {
-    int* dyn_array = new int[dyn_array_size];
+    long long int* dyn_array = new long long int[dyn_array_size];
     const unsigned int srand_elem = 3;
     std::srand(srand_elem);
     for (size_t i = 0; i < dyn_array_size; i++)
