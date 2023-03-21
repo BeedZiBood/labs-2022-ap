@@ -25,8 +25,8 @@ int main()
     if (name == "ELLIPSE")
     {
       zasulsky::point_t center;
-      double radiusVertical;
-      double radiusHorizontal;
+      double radiusVertical = 0.0;
+      double radiusHorizontal = 0.0;
       std::cin >> center.x >> center.y;
       std::cin >> radiusVertical >> radiusHorizontal;
       if (!std::cin.good())
