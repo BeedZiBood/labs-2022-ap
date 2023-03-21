@@ -16,6 +16,14 @@ int main()
     std::cerr << "Wrong input" << "\n";
     return 1;
   }
-  createTable(std::cout, left_border, right_border, step, absError, numberMax, precision);
+  try
+  {
+    createTable(std::cout, left_border, right_border, step, absError, numberMax, precision);
+  }
+  catch (const std::exception& e)
+  {
+    std::cerr << e.what() << '\n';
+    return 1;
+  }
   return 0;
 }

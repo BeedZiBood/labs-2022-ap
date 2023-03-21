@@ -1,4 +1,5 @@
 #include "arctg.h"
+#include <stdexcept>
 #include <cmath>
 
 double arctg(double x, double absError, unsigned numberMax)
@@ -14,6 +15,10 @@ double arctg(double x, double absError, unsigned numberMax)
     x1 *= -(1) / (multiplier * x * x);
     cnt++;
   }
-  while (cnt < numberMax || std::fabs(x) > absError);
+  while (cnt <= numberMax && std::fabs(x) > absError);
+  if (std::fabs(x) > absError)
+  {
+    throw std::invalid_argument("the error is too small");
+  }
   return summ;
 }
