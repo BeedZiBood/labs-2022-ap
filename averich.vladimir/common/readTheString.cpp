@@ -4,7 +4,7 @@
 char* readTheString(std::istream& stream)
 {
   std::string string;
-  std::getline(std::cin, string);
+  std::getline(stream, string);
   char* buf = new char[string.size() + 1];
   if (buf) {
     char const* p = string.c_str();
