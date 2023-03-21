@@ -27,6 +27,31 @@ size_t countVariousElementsInRow(const int * array, size_t len, size_t rowIdx)
     return count;
 }
 
+size_t countRowsWithEqualSum(const int* array, size_t rows, size_t columns) {
+    int count = 0;
+    for (size_t i = 0; i < rows; ++i) {
+        int row_sum = 0;
+
+        for (size_t j = 0; j < columns; ++j) {
+            row_sum += *(array + i * columns + j);
+        }
+        bool found = false;
+        for (size_t k = i + 1; k < rows; ++k) {
+            int other_sum = 0;
+
+            for (size_t j = 0; j < columns; ++j) {
+                other_sum += *(array + k * columns + j);
+            }
+
+            if (row_sum == other_sum) {
+                found = true;
+                break;
+            }
+        }
+        return count;
+    }
+}
+
 size_t countVariousElements(const int * array, size_t rows, size_t columns)
 {
     size_t count = 0;
