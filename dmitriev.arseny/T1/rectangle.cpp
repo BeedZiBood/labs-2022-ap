@@ -15,7 +15,7 @@ double dmitriev::Rectangle::getArea() const
   return m_rect.height * m_rect.width;
 }
 
-rectangle_t dmitriev::Rectangle::getFrameRect() const
+dmitriev::rectangle_t dmitriev::Rectangle::getFrameRect() const
 {
   return m_rect;
 }
@@ -36,7 +36,7 @@ void dmitriev::Rectangle::unsafeScale(double k)
   m_rect.width *= k;
 }
 
-Shape* dmitriev::Rectangle::clone() const
+dmitriev::Shape* dmitriev::Rectangle::clone() const
 {
   point_t leftBott{m_rect.center.x - m_rect.width / 2, m_rect.center.y - m_rect.height / 2};
   point_t rightTop{m_rect.center.x + m_rect.width / 2, m_rect.center.y + m_rect.height / 2};

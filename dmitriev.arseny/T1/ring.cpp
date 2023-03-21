@@ -22,7 +22,7 @@ double dmitriev::Ring::getArea() const
   return pi * m_externalRadius * m_externalRadius - pi * m_internalRadius * m_internalRadius;
 }
 
-rectangle_t dmitriev::Ring::getFrameRect() const
+dmitriev::rectangle_t dmitriev::Ring::getFrameRect() const
 {
   point_t leftBott{m_center.x - m_externalRadius, m_center.y - m_externalRadius};
   point_t rightTop{m_center.x + m_externalRadius, m_center.y + m_externalRadius};
@@ -45,7 +45,7 @@ void dmitriev::Ring::unsafeScale(double k)
   m_internalRadius *= k;
 }
 
-Shape* dmitriev::Ring::clone() const
+dmitriev::Shape* dmitriev::Ring::clone() const
 {
   return new Ring{m_center, m_externalRadius, m_internalRadius};
 }

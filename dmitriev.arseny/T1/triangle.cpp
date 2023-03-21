@@ -34,7 +34,7 @@ double dmitriev::Triangle::getArea() const
   return std::sqrt(p * (p - aSide) * (p - bSide) * (p - cSide));
 }
 
-rectangle_t dmitriev::Triangle::getFrameRect() const
+dmitriev::rectangle_t dmitriev::Triangle::getFrameRect() const
 {
   point_t leftBott{std::min(m_a.x, std::min(m_b.x, m_c.x)), std::min(m_a.y, std::min(m_b.y, m_c.y))};
   point_t rightTop{std::max(m_a.x, std::max(m_b.x, m_c.x)), std::max(m_a.y, std::max(m_b.y, m_c.y))};
@@ -62,7 +62,7 @@ void dmitriev::Triangle::unsafeScale(double k)
   m_c = multVec(center, m_c, k);
 }
 
-Shape* dmitriev::Triangle::clone() const
+dmitriev::Shape* dmitriev::Triangle::clone() const
 {
   return new Triangle{m_a, m_b, m_c};
 }

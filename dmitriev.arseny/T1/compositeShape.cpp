@@ -64,7 +64,7 @@ double dmitriev::CompositeShape::getArea() const
   return area;
 }
 
-rectangle_t dmitriev::CompositeShape::getFrameRect() const
+dmitriev::rectangle_t dmitriev::CompositeShape::getFrameRect() const
 {
   if (m_size == 0)
   {
@@ -180,7 +180,7 @@ void dmitriev::CompositeShape::popBack()
   delete m_arr[--m_size];
 }
 
-Shape* dmitriev::CompositeShape::at(size_t id)
+dmitriev::Shape* dmitriev::CompositeShape::at(size_t id)
 {
   if (id >= m_size)
   {
@@ -189,7 +189,7 @@ Shape* dmitriev::CompositeShape::at(size_t id)
   return m_arr[id];
 }
 
-const Shape* dmitriev::CompositeShape::at(size_t id) const
+const dmitriev::Shape* dmitriev::CompositeShape::at(size_t id) const
 {
   if (id >= m_size)
   {
@@ -198,17 +198,17 @@ const Shape* dmitriev::CompositeShape::at(size_t id) const
   return m_arr[id];
 }
 
-Shape* dmitriev::CompositeShape::operator[](size_t id)
+dmitriev::Shape* dmitriev::CompositeShape::operator[](size_t id)
 {
   return m_arr[id];
 }
 
-const Shape* dmitriev::CompositeShape::operator[](size_t id) const
+const dmitriev::Shape* dmitriev::CompositeShape::operator[](size_t id) const
 {
   return m_arr[id];
 }
 
-CompositeShape& dmitriev::CompositeShape::operator=(CompositeShape&& otherCS)
+dmitriev::CompositeShape& dmitriev::CompositeShape::operator=(CompositeShape&& otherCS)
 {
   clear(m_arr, m_size);
   m_size = otherCS.m_size;
@@ -220,7 +220,7 @@ CompositeShape& dmitriev::CompositeShape::operator=(CompositeShape&& otherCS)
   return *this;
 }
 
-CompositeShape& dmitriev::CompositeShape::operator=(const CompositeShape& otherCS)
+dmitriev::CompositeShape& dmitriev::CompositeShape::operator=(const CompositeShape& otherCS)
 {
   Shape** newArr = new Shape* [m_capacity];
 
