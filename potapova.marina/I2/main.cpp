@@ -60,7 +60,7 @@ int main(int argc, char** argv)
   }
   else
   {
-    long long int* arr = new int[arr_size];
+    long long int* arr = new long long int[arr_size];
     if (!inputMatrix(arr, arr_size, input))
     {
       std::cerr << "Input error\n";
