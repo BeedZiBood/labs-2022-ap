@@ -31,8 +31,7 @@ rectangle_t Ring::getFrameRect() const
 
 void Ring::move(double dx, double dy)
 {
-  m_center.x = m_center.x + dx;
-  m_center.y = m_center.y + dy;
+  m_center = sumVec(m_center, {dx, dy});
 }
 
 void Ring::move(point_t newPos)
@@ -42,8 +41,8 @@ void Ring::move(point_t newPos)
 
 void Ring::unsafeScale(double k)
 {
-  m_externalRadius = m_externalRadius * k;
-  m_internalRadius = m_internalRadius * k;
+  m_externalRadius *= k;
+  m_internalRadius *= k;
 }
 
 Shape* Ring::clone() const

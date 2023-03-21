@@ -32,7 +32,7 @@ CompositeShape::CompositeShape(const CompositeShape& otherCS):
     catch(const std::exception& e)
     {
       clear(m_arr, i);
-      throw e;
+      throw;
     }
   }
 }
@@ -168,7 +168,7 @@ void CompositeShape::pushBack(const Shape* newShape)
   catch (const std::exception& e)
   {
     delete newShapeClone;
-    throw e;
+    throw;
   }
 }
 
@@ -230,7 +230,7 @@ CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
     catch (const std::exception& e)
     {
       clear(newArr, i);
-      throw e;
+      throw;
     }
   }
 
