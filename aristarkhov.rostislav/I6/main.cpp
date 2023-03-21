@@ -9,7 +9,6 @@ int main()
   unsigned numberMax = 0;
   double left = 0.0;
   double right = 0.0;
-  double sum = 0.0;
 
   std::cin >> left >> right >> numberMax;
 
