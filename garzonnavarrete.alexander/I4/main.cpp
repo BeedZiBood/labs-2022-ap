@@ -1,123 +1,106 @@
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include "SumMaxInDiag.h"
 #include "CountRow.h"
-int main(int argc, char ** argv)
+#include <cstddef>
+
+bool hasSimilarElement(const int * array, size_t len, size_t idx)
 {
-    if (argc != 4)
+    int currentEl = array[idx];
+    for (size_t i = idx + 1; i < len; i++)
     {
-        std::cerr << "Not appropriate parameters number.\n";
-        return 2;
+        if (currentEl == array[i])
+        {
+            return true;
+        }
     }
-    char * taskNumber = argv[1];
-    std::string fileIn = argv[2];
-    std::string fileOut = argv[3];
-    std::fstream fileInput(fileIn);
-    std::ofstream fileOutput(fileOut);
-    if (!fileInput.is_open())
+    return false;
+}
+
+size_t countVariousElementsInRow(const int * array, size_t len, size_t rowIdx)
+{
+    size_t count = 0;
+    for (size_t i = rowIdx * len; i < (rowIdx + 1) * len; i++)
     {
-        std::cerr << "Error while opening file " << fileIn << ".\n";
-        return 2;
+        if (!hasSimilarElement(array, len, i))
+        {
+            count++;
+        }
     }
-    if (!fileOutput.is_open())
-    {
-        std::cerr << "Error while opening file " << fileOut << ".\n";
-        return 2;
-    }
-    size_t rows = 0;
-    fileInput >> rows;
-    if (!fileInput)
-    {
-        std::cerr << "Error while reading rows.\n";
-        return 2;
-    }
-    size_t columns = 0;
-    fileInput >> columns;
-    if (!fileInput)
-    {
-        std::cerr << "Error while reading columns.\n";
-        return 2;
-    }
-    if ((rows == 0) || (columns == 0))
-    {
-        std::cout << "Empty array.\n";
+    return count;
+}
+int countRowsWithEqualSum(const int* array, size_t rows, size_t columns) {
+    int count = 0;
+    for (size_t i = 0; i < rows; ++i) {
+        int row_sum = 0;
+
+        for (size_t j = 0; j < columns; ++j) {
+            row_sum += *(array + i * columns + j);
+        }
+        bool found = false;
+        for (size_t k = i + 1; k < rows; ++k) {
+            int other_sum = 0;
+
+            for (size_t j = 0; j < columns; ++j) {
+                other_sum += *(array + k * columns + j);
+            }
+
+            if (row_sum == other_sum) {
+                found = true;
+                break;
+            }
+        }
         return 0;
     }
-    if (!std::strcmp(taskNumber, "1"))
+}
+
+size_t countVariousElements(const int * array, size_t rows, size_t columns)
+{
+    size_t count = 0;
+    for (size_t i = 0; i < rows; i++)
     {
-        size_t arraySize = rows * columns;
-        int array[1000];
-        if (arraySize > 1000)
+        count += countVariousElementsInRow(array, columns, i);
+    }
+    return count;
+}
+bool hasSuccessionEqual(const int* row, size_t len)
+{
+    for (size_t i = 0; i < len - 1; i++)
+    {
+        if (row[i] == row[i + 1])
         {
-            std::cerr << "Maximum possible array size exceeded.\n";
-            return 2;
-        }
-        for (size_t i = 0; i < arraySize; i++)
-        {
-            fileInput >> array[i];
-            if (!fileInput)
-            {
-                std::cerr << "Error while reading file " << fileIn << "\n";
-                return 2;
-            }
-        }
-        size_t countDivEl = countVariousElements(array, rows, columns);
-        size_t countEqSum = countRowsWithEqualSum(array, rows, columns);
-        try
-        {
-            fileOutput << countDivEl << " " << countEqSum;
-        }
-        catch (...)
-        {
-            std::cerr << "Error while writing result.\n";
-            return 2;
+            return true;
         }
     }
-    if (!std::strcmp(taskNumber, "2"))
+    return false;
+}
+size_t countRowsWithEqualElements(const int* matrix, size_t matrixDim)
+{
+    size_t count = 0;
+    for (size_t i = 0; i < matrixDim; i++)
     {
-        if (rows != columns)
+        if (hasSuccessionEqual(&matrix[i * matrixDim], matrixDim))
         {
-            std::cerr << "Matrix dimension determination is impossible.\n";
-            return 2;
+            count++;
         }
-        size_t matrixDim = rows;
-        size_t matrixSize = matrixDim * matrixDim;
-        int * matrix = nullptr;
-        try
+    }
+    return count;
+}
+size_t countEqualElementsSequences(const int * matrix, size_t matrixDim)
+{
+    size_t count = 0;
+    for (size_t i = 0; i < matrixDim; i++)
+    {
+        bool foundSuccessionEqual = false;
+        for (size_t j = 0; j < matrixDim - 1; j++)
         {
-            matrix = new int[ matrixSize ];
-        }
-        catch (...)
-        {
-            std::cerr << "Error while creating matrix.\n";
-            return 2;
-        }
-        for (size_t i = 0; i < matrixSize; i++)
-        {
-            fileInput >> matrix[i];
-            if (!fileInput)
+            if (matrix[i * matrixDim + j] == matrix[i * matrixDim + j + 1])
             {
-                std::cerr << "Error while reading file " << fileIn << ".\n";
-                delete[] matrix;
-                return 2;
+                foundSuccessionEqual = true;
+                break;
+            }
+            if (!foundSuccessionEqual)
+            {
+                count++;
             }
         }
-        int * smoothedMatrix = nullptr;
-        try
-        {
-            smoothedMatrix = new int[ matrixSize ];
-        }
-        catch (...)
-        {
-            std::cerr << "Error while creating smoothed matrix.\n";
-            delete[] matrix;
-            return 2;
-        }
-        size_t countSuccEqEl = countEqualElementsSequences(matrix, matrixDim);
-        size_t countUpMainDiag = findMaxSumOfDiagonal(matrix,rows,columns);
-        delete[] smoothedMatrix;
-        delete[] matrix;
-        fileOutput << countSuccEqEl << " " << countUpMainDiag;
     }
+    return count;
 }
