@@ -7,11 +7,11 @@ int main()
   double left_border = 0.0;
   double right_border = 0.0;
   size_t cos_members = 0;
-  std::cin >> left_border >> right_border >> cos_members;
-  if (!std::cin || left_border <= -1 || right_border >= 1 || right_border < left_border)
+  std::cin >> left >> right >> cos_members;
+  if (!std::cin || left <= -1 || right >= 1 || right < left)
   {
     std::cout << "error";
     return 1;
   }
-  printTable(std::cout, cos_error, cos_members, left_border, right_border, step);
+  printTable(std::cout, cos_error, cos_members, left, right, step);
 }
