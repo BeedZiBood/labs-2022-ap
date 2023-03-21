@@ -27,7 +27,7 @@ size_t countVariousElementsInRow(const int* array, size_t len, size_t rowIdx)
     return count;
 }
 
-size_t countRowsWithEqualSum(const int* array, size_t rows, size_t columns)
+int countRowsWithEqualSum(const int* array, size_t rows, size_t columns)
 {
     size_t count = 0;
     for (size_t i = 0; i < rows; ++i)
