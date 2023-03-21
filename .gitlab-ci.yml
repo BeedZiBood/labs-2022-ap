@@ -1,4 +1,4 @@
-image: 'volgarenok/cxx-test:0.0.24'
+image: 'volgarenok/cxx-test:0.0.27'
 stages:
   - sanity
   - build
@@ -17,7 +17,7 @@ author:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: '$CI_PIPELINE_SOURCE == "push"'
     - if: '$CI_PIPELINE_SOURCE == "web"'
-      
+
 branch:
   stage: sanity
   script:
