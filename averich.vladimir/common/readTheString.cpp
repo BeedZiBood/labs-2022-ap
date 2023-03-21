@@ -11,6 +11,7 @@ char* readTheString(std::istream& stream)
     for (size_t i = 0; i < string.size() + 1; ++i) {
       buf[i] = p[i];
     }
+    delete[] buf;
   }
   return buf;
 }
