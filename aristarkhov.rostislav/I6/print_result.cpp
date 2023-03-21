@@ -1,5 +1,6 @@
 #include "print_result.h"
 #include "sqrt_one_plus_x.h"
+#include <cmath>
 #include <iomanip>
 
 void print_result_row(std::ostream& out, double x, double absError, unsigned numberMax)

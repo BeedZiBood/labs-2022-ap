@@ -26,13 +26,13 @@ double sqrt_one_plus_x(double x, double absError, unsigned numberMax)
   throw std::logic_error("the required accuracy has not been achieved");
 }
 
-MemberOfRow::MemberOfRow(double x) :
+MemberOfRow::MemberOfRow(double x):
   x(x),
-  n(0),
+  powX(1),
   next(1),
   member(0),
   sign(-1),
-  powX(1),
+  n(0),
   oddFactorial(1),
   evenFactorial(2)
 {
