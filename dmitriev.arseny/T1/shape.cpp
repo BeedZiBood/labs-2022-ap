@@ -1,7 +1,7 @@
 #include "shape.h"
 #include <stdexcept>
 
-void Shape::scale(double k)
+void dmitriev::Shape::scale(double k)
 {
   if (k < 0.0)
   {

@@ -2,23 +2,26 @@
 #include <stdexcept>
 #include <algorithm>
 
-CompositeShape::CompositeShape():
+dmitriev::CompositeShape::CompositeShape():
   m_size(0),
   m_capacity(10),
   m_arr(new Shape* [m_capacity])
 {
 }
 
-void clear(Shape** arr, size_t size)
+namespace dmitriev
 {
-  for (size_t i = 0; i < size; i++)
+  void clear(Shape** arr, size_t size)
   {
-    delete arr[i];
+    for (size_t i = 0; i < size; i++)
+    {
+      delete arr[i];
+    }
+    delete[] arr;
   }
-  delete[] arr;
 }
 
-CompositeShape::CompositeShape(const CompositeShape& otherCS):
+dmitriev::CompositeShape::CompositeShape(const CompositeShape& otherCS):
   m_size(otherCS.m_size),
   m_capacity(otherCS.m_capacity),
   m_arr(new Shape* [m_capacity])
@@ -37,7 +40,7 @@ CompositeShape::CompositeShape(const CompositeShape& otherCS):
   }
 }
 
-CompositeShape::CompositeShape(CompositeShape&& othrerCS):
+dmitriev::CompositeShape::CompositeShape(CompositeShape&& othrerCS):
   m_size(othrerCS.m_size),
   m_capacity(othrerCS.m_capacity),
   m_arr(othrerCS.m_arr)
@@ -46,12 +49,12 @@ CompositeShape::CompositeShape(CompositeShape&& othrerCS):
   othrerCS.m_arr = nullptr;
 }
 
-CompositeShape::~CompositeShape()
+dmitriev::CompositeShape::~CompositeShape()
 {
   clear(m_arr, m_size);
 }
 
-double CompositeShape::getArea() const
+double dmitriev::CompositeShape::getArea() const
 {
   double area = 0.0;
   for (size_t i = 0; i < m_size; i++)
@@ -61,7 +64,7 @@ double CompositeShape::getArea() const
   return area;
 }
 
-rectangle_t CompositeShape::getFrameRect() const
+rectangle_t dmitriev::CompositeShape::getFrameRect() const
 {
   if (m_size == 0)
   {
@@ -82,7 +85,7 @@ rectangle_t CompositeShape::getFrameRect() const
   return makeNewRect(point_t{ minX, minY }, point_t{ maxX, maxY });
 }
 
-void CompositeShape::move(double dx, double dy)
+void dmitriev::CompositeShape::move(double dx, double dy)
 {
   for (size_t i = 0; i < m_size; i++)
   {
@@ -90,13 +93,13 @@ void CompositeShape::move(double dx, double dy)
   }
 }
 
-void CompositeShape::move(point_t newPos)
+void dmitriev::CompositeShape::move(point_t newPos)
 {
   point_t center = getFrameRect().center;
   move(newPos.x - center.x, newPos.y - center.y);
 }
 
-void CompositeShape::scale(double k)
+void dmitriev::CompositeShape::scale(double k)
 {
   if (k < 0.0)
   {
@@ -105,7 +108,7 @@ void CompositeShape::scale(double k)
   unsafeScale(k);
 }
 
-void CompositeShape::unsafeScale(double k)
+void dmitriev::CompositeShape::unsafeScale(double k)
 {
   for (size_t i = 0; i < m_size; i++)
   {
@@ -113,7 +116,7 @@ void CompositeShape::unsafeScale(double k)
   }
 }
 
-void CompositeShape::isoScale(point_t pos, double k)
+void dmitriev::CompositeShape::isoScale(point_t pos, double k)
 {
   if (k < 0.0)
   {
@@ -126,7 +129,7 @@ void CompositeShape::isoScale(point_t pos, double k)
   unsafeIsoScale(pos, k);
 }
 
-void CompositeShape::unsafeIsoScale(point_t pos, double k)
+void dmitriev::CompositeShape::unsafeIsoScale(point_t pos, double k)
 {
   for (size_t i = 0; i < m_size; i++)
   {
@@ -141,7 +144,7 @@ void CompositeShape::unsafeIsoScale(point_t pos, double k)
   }
 }
 
-void CompositeShape::pushBack(Shape* newShape)
+void dmitriev::CompositeShape::pushBack(Shape* newShape)
 {
   if (m_size == m_capacity)
   {
@@ -157,7 +160,7 @@ void CompositeShape::pushBack(Shape* newShape)
   m_arr[m_size++] = newShape;
 }
 
-void CompositeShape::pushBack(const Shape* newShape)
+void dmitriev::CompositeShape::pushBack(const Shape* newShape)
 {
   Shape* newShapeClone = newShape->clone();
 
@@ -172,12 +175,12 @@ void CompositeShape::pushBack(const Shape* newShape)
   }
 }
 
-void CompositeShape::popBack()
+void dmitriev::CompositeShape::popBack()
 {
   delete m_arr[--m_size];
 }
 
-Shape* CompositeShape::at(size_t id)
+Shape* dmitriev::CompositeShape::at(size_t id)
 {
   if (id >= m_size)
   {
@@ -186,7 +189,7 @@ Shape* CompositeShape::at(size_t id)
   return m_arr[id];
 }
 
-const Shape* CompositeShape::at(size_t id) const
+const Shape* dmitriev::CompositeShape::at(size_t id) const
 {
   if (id >= m_size)
   {
@@ -195,17 +198,17 @@ const Shape* CompositeShape::at(size_t id) const
   return m_arr[id];
 }
 
-Shape* CompositeShape::operator[](size_t id)
+Shape* dmitriev::CompositeShape::operator[](size_t id)
 {
   return m_arr[id];
 }
 
-const Shape* CompositeShape::operator[](size_t id) const
+const Shape* dmitriev::CompositeShape::operator[](size_t id) const
 {
   return m_arr[id];
 }
 
-CompositeShape& CompositeShape::operator=(CompositeShape&& otherCS)
+CompositeShape& dmitriev::CompositeShape::operator=(CompositeShape&& otherCS)
 {
   clear(m_arr, m_size);
   m_size = otherCS.m_size;
@@ -217,7 +220,7 @@ CompositeShape& CompositeShape::operator=(CompositeShape&& otherCS)
   return *this;
 }
 
-CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
+CompositeShape& dmitriev::CompositeShape::operator=(const CompositeShape& otherCS)
 {
   Shape** newArr = new Shape* [m_capacity];
 
@@ -242,17 +245,17 @@ CompositeShape& CompositeShape::operator=(const CompositeShape& otherCS)
   return *this;
 }
 
-bool CompositeShape::empty() const
+bool dmitriev::CompositeShape::empty() const
 {
   return (m_size == 0);
 }
 
-size_t CompositeShape::sizeArr() const
+size_t dmitriev::CompositeShape::sizeArr() const
 {
   return m_size;
 }
 
-void CompositeShape::printInfo(std::ostream& out, char separator) const
+void dmitriev::CompositeShape::printInfo(std::ostream& out, char separator) const
 {
   out << getArea();
 

@@ -10,7 +10,7 @@ int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
 
-  CompositeShape cShape;
+  dmitriev::CompositeShape cShape;
   bool isScaleCalled = false;
 
   while (std::cin)
@@ -31,18 +31,18 @@ int main()
           double y = 0;
 
           std::cin >> x >> y;
-          point_t a{x, y};
+          dmitriev::point_t a{x, y};
 
           std::cin >> x >> y;
-          point_t b{x, y};
+          dmitriev::point_t b{x, y};
 
           if (!std::cin)
           {
             throw std::invalid_argument("invalid_argument");
           }
 
-          Rectangle rec{a, b};
-          Shape* shape = rec.clone();
+          dmitriev::Rectangle rec{a, b};
+          dmitriev::Shape* shape = rec.clone();
           try
           {
             cShape.pushBack(shape);
@@ -59,21 +59,21 @@ int main()
           double y = 0;
 
           std::cin >> x >> y;
-          point_t a{x, y};
+          dmitriev::point_t a{x, y};
 
           std::cin >> x >> y;
-          point_t b{x, y};
+          dmitriev::point_t b{x, y};
 
           std::cin >> x >> y;
-          point_t c{x, y};
+          dmitriev::point_t c{x, y};
 
           if (!std::cin)
           {
             throw std::invalid_argument("invalid_argument");
           }
 
-          Triangle tri{a, b, c};
-          Shape* shape = tri.clone();
+          dmitriev::Triangle tri{a, b, c};
+          dmitriev::Shape* shape = tri.clone();
           try
           {
             cShape.pushBack(shape);
@@ -90,7 +90,7 @@ int main()
           double y = 0.0;
 
           std::cin >> x >> y;
-          point_t a{x, y};
+          dmitriev::point_t a{x, y};
           std::cin >> x >> y;
 
           if (!std::cin)
@@ -98,8 +98,8 @@ int main()
             throw std::invalid_argument("invalid_argument");
           }
 
-          Ring rin{a, x, y};
-          Shape* shape = rin.clone();
+          dmitriev::Ring rin{a, x, y};
+          dmitriev::Shape* shape = rin.clone();
           try
           {
             cShape.pushBack(shape);
@@ -128,7 +128,7 @@ int main()
       double y = 0.0;
 
       std::cin >> x >> y;
-      point_t point{x, y};
+      dmitriev::point_t point{x, y};
 
       double k = 0.0;
 

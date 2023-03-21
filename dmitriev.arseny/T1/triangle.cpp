@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include <cmath>
 
-Triangle::Triangle(point_t a, point_t b, point_t c):
+dmitriev::Triangle::Triangle(point_t a, point_t b, point_t c):
   m_a(a),
   m_b(b),
   m_c(c)
@@ -25,7 +25,7 @@ Triangle::Triangle(point_t a, point_t b, point_t c):
   }
 }
 
-double Triangle::getArea() const
+double dmitriev::Triangle::getArea() const
 {
   double aSide = makeLine(m_a, m_b);
   double bSide = makeLine(m_b, m_c);
@@ -34,27 +34,27 @@ double Triangle::getArea() const
   return std::sqrt(p * (p - aSide) * (p - bSide) * (p - cSide));
 }
 
-rectangle_t Triangle::getFrameRect() const
+rectangle_t dmitriev::Triangle::getFrameRect() const
 {
   point_t leftBott{std::min(m_a.x, std::min(m_b.x, m_c.x)), std::min(m_a.y, std::min(m_b.y, m_c.y))};
   point_t rightTop{std::max(m_a.x, std::max(m_b.x, m_c.x)), std::max(m_a.y, std::max(m_b.y, m_c.y))};
   return makeNewRect(leftBott, rightTop);
 }
 
-void Triangle::move(double dx, double dy)
+void dmitriev::Triangle::move(double dx, double dy)
 {
   m_a = sumVec(m_a, {dx, dy});
   m_b = sumVec(m_b, {dx, dy});
   m_c = sumVec(m_c, {dx, dy});
 }
 
-void Triangle::move(point_t newPos)
+void dmitriev::Triangle::move(point_t newPos)
 {
   point_t center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
   move(newPos.x - center.x, newPos.y - center.y);
 }
 
-void Triangle::unsafeScale(double k)
+void dmitriev::Triangle::unsafeScale(double k)
 {
   point_t center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
   m_a = multVec(center, m_a, k);
@@ -62,7 +62,7 @@ void Triangle::unsafeScale(double k)
   m_c = multVec(center, m_c, k);
 }
 
-Shape* Triangle::clone() const
+Shape* dmitriev::Triangle::clone() const
 {
   return new Triangle{m_a, m_b, m_c};
 }

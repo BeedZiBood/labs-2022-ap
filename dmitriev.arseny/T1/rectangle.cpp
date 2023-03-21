@@ -1,7 +1,7 @@
 #include "rectangle.h"
 #include <stdexcept>
 
-Rectangle::Rectangle(point_t leftBott, point_t rightTop):
+dmitriev::Rectangle::Rectangle(point_t leftBott, point_t rightTop):
   m_rect(makeNewRect(leftBott, rightTop))
 {
   if (m_rect.height <= 0.0 || m_rect.width <= 0.0)
@@ -10,33 +10,33 @@ Rectangle::Rectangle(point_t leftBott, point_t rightTop):
   }
 }
 
-double Rectangle::getArea() const
+double dmitriev::Rectangle::getArea() const
 {
   return m_rect.height * m_rect.width;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+rectangle_t dmitriev::Rectangle::getFrameRect() const
 {
   return m_rect;
 }
 
-void Rectangle::move(double dx, double dy)
+void dmitriev::Rectangle::move(double dx, double dy)
 {
   m_rect.center = sumVec(m_rect.center, {dx, dy});
 }
 
-void Rectangle::move(point_t newPos)
+void dmitriev::Rectangle::move(point_t newPos)
 {
   m_rect.center = newPos;
 }
 
-void Rectangle::unsafeScale(double k)
+void dmitriev::Rectangle::unsafeScale(double k)
 {
-  m_rect.height = m_rect.height * k;
-  m_rect.width = m_rect.width * k;
+  m_rect.height *= k;
+  m_rect.width *= k;
 }
 
-Shape* Rectangle::clone() const
+Shape* dmitriev::Rectangle::clone() const
 {
   point_t leftBott{m_rect.center.x - m_rect.width / 2, m_rect.center.y - m_rect.height / 2};
   point_t rightTop{m_rect.center.x + m_rect.width / 2, m_rect.center.y + m_rect.height / 2};
