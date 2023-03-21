@@ -3,6 +3,14 @@
 #include "makeShapes.h"
 using namespace kozyrin;
 
+void deleteArr(Shape** arr, size_t size)
+{
+  for (size_t i = 0; i < size; ++i) {
+    delete arr[i];
+  }
+  delete[] arr;
+}
+
 void printPoint(std::ostream& out, point_t point)
 {
   out << point.x << ' ' << point.y;
@@ -82,7 +90,7 @@ int main()
         arr[size] = makeComplexquad(std::cin);
       } else if (name == "SCALE") {
         int res = printArr(std::cerr, std::cout, std::cin, arr, size);
-        delete[] arr;
+        deleteArr(arr, size);
         return res;
       } else {
         continue;
@@ -94,7 +102,7 @@ int main()
     }
     size += 1;
   }
-  delete[] arr;
+  deleteArr(arr, size);
   std::cerr << "Error: scale command not found";
   return 1;
 }
