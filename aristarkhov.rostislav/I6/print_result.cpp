@@ -27,6 +27,7 @@ void print_result(std::ostream& out, double left, double right, double step, dou
       out << e.what() << '\n';
     }
   }
+
   try
   {
     print_result_row(out << "\n", right, absError, numberMax);

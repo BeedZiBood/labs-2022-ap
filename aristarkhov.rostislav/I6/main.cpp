@@ -26,8 +26,6 @@ int main()
   {
     std::cout << e.what() << '\n';
     return 1;
-
   }
-
   return 0;
 }
