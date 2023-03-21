@@ -7,11 +7,8 @@
 int main()
 {
   char* inputString = readTheString(std::cin);
-  if (!inputString || *inputString == '\0') {
+  if (!inputString) {
     std::cerr << "Input string is empty" << '\n';
-    if (!inputString) {
-      delete[] inputString;
-    }
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
