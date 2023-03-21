@@ -1,26 +1,26 @@
 #include "complexquad.h"
 #include <stdexcept>
 
-point_t getCenter(const point_t* arr)
+kozyrin::point_t kozyrin::getSegIntersection(const std::array< point_t, 4 > coords)
 {
   point_t res{0, 0};
-  if (arr[0].x == arr[1].x && arr[2].x == arr[3].x) {
+  if (coords[0].x == coords[1].x && coords[2].x == coords[3].x) {
     throw std::invalid_argument("Intersection point doesn't exist or there are multiple of them");
-  } else if (arr[0].x == arr[1].x) {
-    double k2 = (arr[3].y - arr[2].y) / (arr[3].x - arr[2].x);
-    double b2 = arr[2].y - k2 * arr[2].x;
-    res.x = arr[0].x;
+  } else if (coords[0].x == coords[1].x) {
+    double k2 = (coords[3].y - coords[2].y) / (coords[3].x - coords[2].x);
+    double b2 = coords[2].y - k2 * coords[2].x;
+    res.x = coords[0].x;
     res.y = k2 * res.x + b2;
-  } else if (arr[2].x == arr[3].x) {
-    double k1 = (arr[1].y - arr[0].y) / (arr[1].x - arr[0].x);
-    double b1 = arr[0].y - k1 * arr[0].x;
-    res.x = arr[2].x;
+  } else if (coords[2].x == coords[3].x) {
+    double k1 = (coords[1].y - coords[0].y) / (coords[1].x - coords[0].x);
+    double b1 = coords[0].y - k1 * coords[0].x;
+    res.x = coords[2].x;
     res.y = k1 * res.x + b1;
   } else {
-    double k1 = (arr[1].y - arr[0].y) / (arr[1].x - arr[0].x);
-    double b1 = arr[0].y - k1 * arr[0].x;
-    double k2 = (arr[3].y - arr[2].y) / (arr[3].x - arr[2].x);
-    double b2 = arr[2].y - k2 * arr[2].x;
+    double k1 = (coords[1].y - coords[0].y) / (coords[1].x - coords[0].x);
+    double b1 = coords[0].y - k1 * coords[0].x;
+    double k2 = (coords[3].y - coords[2].y) / (coords[3].x - coords[2].x);
+    double b2 = coords[2].y - k2 * coords[2].x;
     if (k1 == k2) {
       throw std::invalid_argument("Intersection point doesn't exist");
     }
@@ -30,7 +30,7 @@ point_t getCenter(const point_t* arr)
   return res;
 }
 
-void getBorders(point_t* res, const point_t p1, const point_t p2)
+void kozyrin::getBorders(point_t* res, const point_t p1, const point_t p2)
 {
   res[0].x = std::min(p1.x, p2.x);
   res[0].y = std::min(p1.y, p2.y);
@@ -38,7 +38,7 @@ void getBorders(point_t* res, const point_t p1, const point_t p2)
   res[1].y = std::max(p1.y, p2.y);
 }
 
-void getBorders(point_t* res, const point_t* arr, const size_t size)
+void kozyrin::getBorders(point_t* res, const std::array< point_t, 4 > arr, const size_t size)
 {
   double mx = arr[0].x;
   double mn = arr[0].x;
@@ -66,7 +66,7 @@ void getBorders(point_t* res, const point_t* arr, const size_t size)
   res[1].y = mx;
 }
 
-bool isIntersection(const point_t center, const point_t* arr)
+bool kozyrin::isIntersection(const point_t center, const std::array< point_t, 4 > arr)
 {
   point_t borders[2]{0, 0, 0, 0};
   getBorders(borders, arr[0], arr[1]);
@@ -86,28 +86,28 @@ bool isIntersection(const point_t center, const point_t* arr)
   return true;
 }
 
-double getTriangleArea(const point_t p1, const point_t p2, const point_t p3)
+double kozyrin::getTriangleArea(const point_t p1, const point_t p2, const point_t p3)
 {
   return (std::abs(((p2.x - p1.x) * (p3.y - p1.y)) - ((p3.x - p1.x) * (p2.y - p1.y))) / 2);
 }
 
-Complexquad::Complexquad(const point_t p0, const point_t p1, const point_t p2, const point_t p3):
-  pointArr_{p0, p1, p2, p3},
-  center_(getCenter(pointArr_))
+kozyrin::Complexquad::Complexquad(const point_t p0, const point_t p1, const point_t p2, const point_t p3):
+  pointArr_{p0, p1, p2, p3}
 {
-  if (!isIntersection(center_, pointArr_)) {
+  if (!isIntersection(getSegIntersection(pointArr_), pointArr_)) {
     throw std::invalid_argument("Intersection point doesn't exist");
   }
 }
 
-double Complexquad::getArea() const
+double kozyrin::Complexquad::getArea() const
 {
-  double res = getTriangleArea(center_, pointArr_[0], pointArr_[3]);
-  res += getTriangleArea(center_, pointArr_[1], pointArr_[2]);
+  point_t center = getSegIntersection(pointArr_);
+  double res = getTriangleArea(center, pointArr_[0], pointArr_[3]);
+  res += getTriangleArea(center, pointArr_[1], pointArr_[2]);
   return res;
 }
 
-rectangle_t Complexquad::getFrameRect() const
+kozyrin::rectangle_t kozyrin::Complexquad::getFrameRect() const
 {
   point_t borders[2]{0, 0, 0, 0};
   getBorders(borders, pointArr_, 4);
@@ -118,32 +118,30 @@ rectangle_t Complexquad::getFrameRect() const
   return res;
 }
 
-void Complexquad::move(point_t point)
+void kozyrin::Complexquad::move(point_t point)
 {
-  vector_t vector = getVector(center_, point);
-  addVector(center_, vector);
+  vector_t vector = getVector(getSegIntersection(pointArr_), point);
   for (size_t i = 0; i < 4; ++i) {
     addVector(pointArr_[i], vector);
   }
 }
 
-void Complexquad::move(double dx, double dy)
+void kozyrin::Complexquad::move(double dx, double dy)
 {
-  addVector(center_, {dx, dy});
   for (size_t i = 0; i < 4; ++i) {
     addVector(pointArr_[i], {dx, dy});
   }
 }
 
-void Complexquad::scale(double k)
+void kozyrin::Complexquad::scale(double k)
 {
   for (size_t i = 0; i < 4; ++i) {
-    vector_t vector = getVector(center_, pointArr_[i]);
+    vector_t vector = getVector(getSegIntersection(pointArr_), pointArr_[i]);
     addVector(pointArr_[i], vector * (k - 1));
   }
 }
 
-Shape *Complexquad::clone()
+kozyrin::Shape* kozyrin::Complexquad::clone()
 {
   return new Complexquad(pointArr_[0], pointArr_[1], pointArr_[2], pointArr_[3]);
 }

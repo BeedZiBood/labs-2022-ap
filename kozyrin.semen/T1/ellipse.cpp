@@ -1,7 +1,7 @@
 #include "ellipse.h"
 #include <stdexcept>
 
-Ellipse::Ellipse(point_t pos, double r1, double r2):
+kozyrin::Ellipse::Ellipse(point_t pos, double r1, double r2):
   r1_(r1),
   r2_(r2),
   rect_{r2_ * 2, r1_ * 2, pos}
@@ -11,27 +11,27 @@ Ellipse::Ellipse(point_t pos, double r1, double r2):
   }
 }
 
-double Ellipse::getArea() const
+double kozyrin::Ellipse::getArea() const
 {
   return r1_ * r2_ * 3.14159265359;
 }
 
-rectangle_t Ellipse::getFrameRect() const
+kozyrin::rectangle_t kozyrin::Ellipse::getFrameRect() const
 {
   return rect_;
 }
 
-void Ellipse::move(point_t point)
+void kozyrin::Ellipse::move(point_t point)
 {
   rect_.pos = point;
 }
 
-void Ellipse::move(double dx, double dy)
+void kozyrin::Ellipse::move(double dx, double dy)
 {
   addVector(rect_.pos, {dx, dy});
 }
 
-void Ellipse::scale(double k)
+void kozyrin::Ellipse::scale(double k)
 {
   r1_ *= k;
   r2_ *= k;
@@ -39,7 +39,7 @@ void Ellipse::scale(double k)
   rect_.height *= k;
 }
 
-Shape *Ellipse::clone()
+kozyrin::Shape* kozyrin::Ellipse::clone()
 {
   return new Ellipse(rect_.pos, r1_, r2_);
 }
