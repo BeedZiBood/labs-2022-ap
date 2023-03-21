@@ -4,10 +4,11 @@
 
 int main()
 {
+  size_t size = 0;
   char* cstring = nullptr;
   try
   {
-    cstring = createCString(std::cin);
+    cstring = createCString(std::cin, size);
     if (cstring[0] == '\0')
     {
       delete[] cstring;
