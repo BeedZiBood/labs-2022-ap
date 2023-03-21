@@ -8,6 +8,11 @@ int main()
   try
   {
     cstring = createCString(std::cin);
+    if (cstring[0] == '\0')
+    {
+      delete[] cstring;
+      throw std::logic_error("Empty input");
+    }
   }
   catch (const std::exception& e)
   {
