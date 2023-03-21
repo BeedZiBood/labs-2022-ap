@@ -2,13 +2,13 @@
 #include <iomanip>
 #include "cosx.h"
 #include <iostream>
-void printTableRow(std::ostream& out, double x, double cos_error, unsigned cos_members)
+void printTableRow(std::ostream& out, double x, double cos_error, size_t cos_members)
 {
   out << std::left << std::setw(10) << std::setfill(' ') << x;
   out << std::right << std::setw(15) << std::setfill(' ') << std::setprecision(5)
       << cosx(x, cos_error, cos_members) << '\n';
 }
-void printTable(std::ostream& out, double cos_error, unsigned cos_members, double left, double right, double step)
+void printTable(std::ostream& out, double cos_error, size_t cos_members, double left, double right, double step)
 {
   const int col_width = 15;
   out << std::left << std::setw(col_width) << "x" << std::setw(col_width) << "f(x)" << '\n';
