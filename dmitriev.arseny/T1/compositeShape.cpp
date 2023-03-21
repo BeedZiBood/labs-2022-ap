@@ -59,7 +59,7 @@ double dmitriev::CompositeShape::getArea() const
   double area = 0.0;
   for (size_t i = 0; i < m_size; i++)
   {
-    area = area + m_arr[i]->getArea();
+    area += m_arr[i]->getArea();
   }
   return area;
 }
