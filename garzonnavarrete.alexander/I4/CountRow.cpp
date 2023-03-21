@@ -1,69 +1,82 @@
 #include "CountRow.h"
 #include <cstddef>
-size_t countVariousElements(const int * array, const size_t rows, const size_t columns)
+
+bool hasSimilarElement(const int * array, size_t len, size_t idx)
 {
-  size_t count = 0;
-  for (size_t i = 0; i < rows; i++)
-  {
-    for (size_t j = 0; j < columns; j++)
+    int currentEl = array[idx];
+    for (size_t i = idx + 1; i < len; i++)
     {
-      bool foundSimilar = false;
-      int currentEl = array[i * rows + j];
-      for (size_t k = j + 1; k < columns; k++)
-      {
-        if (currentEl == array[i * rows + k])
+        if (currentEl == array[i])
         {
-          foundSimilar = true;
-          break;
+            return true;
         }
-      }
-      count += size_t(foundSimilar);
     }
-  }
-  return count;
+    return false;
 }
-size_t countRowsWithEqualSum(const int * array, const size_t rows, const size_t columns)
+
+size_t countVariousElementsInRow(const int * array, size_t len, size_t rowIdx)
 {
-  size_t count = 0;
-  int arraySums[rows];
-  for (size_t i = 0; i < rows; i++)
-  {
-    arraySums[i] = 0;
-    for (size_t j = 0; j < columns; j++)
+    size_t count = 0;
+    for (size_t i = rowIdx * len; i < (rowIdx + 1) * len; i++)
     {
-      arraySums[i] += array[i * rows + j];
+        if (!hasSimilarElement(array, len, i))
+        {
+            count++;
+        }
     }
-  }
-  for (size_t i = 0; i < rows; i++)
-  {
-    for (size_t j = i + 1; j < rows; j++)
-    {
-      if (arraySums[i] == arraySums[j])
-      {
-        count++;
-      }
-    }
-  }
-  return count;
+    return count;
 }
-size_t countEqualElementsSequences(const int * matrix, const size_t matrixDim)
+
+size_t countVariousElements(const int * array, size_t rows, size_t columns)
 {
-  size_t count = 0;
-  for (size_t i = 0; i < matrixDim; i++)
-  {
-    bool foundSuccessionEqual = false;
-    for (size_t j = 0; j < matrixDim - 1; j++)
+    size_t count = 0;
+    for (size_t i = 0; i < rows; i++)
     {
-      if (matrix[i * matrixDim + j] == matrix[i * matrixDim + j + 1])
-      {
-        foundSuccessionEqual = true;
-        break;
-      }
-      if (!foundSuccessionEqual)
-      {
-        count++;
-      }
+        count += countVariousElementsInRow(array, columns, i);
     }
-  }
-  return count;
+    return count;
+}
+bool hasSuccessionEqual(const int* row, size_t len)
+{
+    for (size_t i = 0; i < len - 1; i++)
+    {
+        if (row[i] == row[i + 1])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+size_t countRowsWithEqualElements(const int* matrix, size_t matrixDim)
+{
+    size_t count = 0;
+    for (size_t i = 0; i < matrixDim; i++)
+    {
+        if (hasSuccessionEqual(&matrix[i * matrixDim], matrixDim))
+        {
+            count++;
+        }
+    }
+    return count;
+}
+size_t countEqualElementsSequences(const int * matrix, size_t matrixDim)
+{
+    size_t count = 0;
+    for (size_t i = 0; i < matrixDim; i++)
+    {
+        bool foundSuccessionEqual = false;
+        for (size_t j = 0; j < matrixDim - 1; j++)
+        {
+            if (matrix[i * matrixDim + j] == matrix[i * matrixDim + j + 1])
+            {
+                foundSuccessionEqual = true;
+                break;
+            }
+            if (!foundSuccessionEqual)
+            {
+                count++;
+            }
+        }
+    }
+    return count;
 }
