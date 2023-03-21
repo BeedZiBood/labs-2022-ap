@@ -1,5 +1,5 @@
-#ifndef SQRT_ONE_PLUS_X_H
-#define SQRT_ONE_PLUS_X_H
+#ifndef PRINTRESULT_H
+#define PRINTRESULT_H
 
 #include <ostream>
 
