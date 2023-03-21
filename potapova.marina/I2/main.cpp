@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <fstream>
 #include "elements.h"
+#include "workWithIO.h"
 
 int main(int argc, char** argv)
 {
@@ -49,13 +50,10 @@ int main(int argc, char** argv)
     std::cout << "0 0\n";
   } else {
     int* arr = new int[arr_size];
-    for (size_t i = 0; i < arr_size; i++) {
-      input >> arr[i];
-      if (!input) {
-        std::cerr << "Error while reading\n";
-        delete [] arr;
-        return 2;
-      }
+    if (!inputMatrix(arr, arr_size, input)) {
+      std::cerr << "Input error\n";
+      delete [] arr;
+      return 1;
     }
     size_t neg_after_max = potapova::findNegativeAfterMax(arr, arr_size);
     size_t repeat_pos_numb = potapova::findRepeatingPositiveNumbers(arr, arr_size);
