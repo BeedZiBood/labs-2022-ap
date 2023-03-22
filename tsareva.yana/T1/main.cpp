@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <iomanip>
+#include <golden_ratio.h>
 #include "shape.h"
 #include "rectangle.h"
 #include "parallelogram.h"
@@ -34,8 +35,8 @@ tsareva::Shape ** addFigure(tsareva::Shape ** shapes, size_t & size, size_t & ca
 {
   if (size == capacity)
   {
-    tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
-    capacity += 10;
+    tsareva::Shape ** new_shapes = extend(shapes, size, goldenRatio(capacity));
+    capacity = goldenRatio(capacity);
     clearingMemory(shapes, size);
     shapes = new_shapes;
   }
