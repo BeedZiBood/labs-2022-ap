@@ -6,8 +6,7 @@
 void printTableRow(std::ostream& out, double x, double cos_error, size_t cos_members)
 {
   out << std::setw(5) << x << ' ';
-  out << std::setw(10) << std::setprecision(5) << cosx(x, cos_error, cos_members) << ' ';
-  out << std::setw(10) << std::setprecision(5) << std::cos(x) << '\n';
+  out << std::setw(10) << std::setprecision(5) << cosx(x, cos_error, cos_members) << '\n';
 }
 void printTable(std::ostream& out, double cos_error, size_t cos_members, double left, double right, double step)
 {
