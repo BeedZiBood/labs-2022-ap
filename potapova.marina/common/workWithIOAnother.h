@@ -1,5 +1,5 @@
-#ifndef WORKWITHIO_H
-#define WORKWITHIO_H
+#ifndef WORKWITHIOANOTHER_H
+#define WORKWITHIOANOTHER_H
 
 #include <iostream>
 

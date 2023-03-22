@@ -1,4 +1,4 @@
-#include "workWithIO.h"
+#include "workWithIOAnother.h"
 #include "getMostCommonSyms.h"
 #include "addAllLatinLetters.h"
 

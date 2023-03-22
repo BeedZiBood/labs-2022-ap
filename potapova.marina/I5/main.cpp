@@ -1,6 +1,6 @@
 #include "workWithStrs.h"
 #include "checkRealNumber.h"
-#include "workWithIO.h"
+#include "workWithIOAnother.h"
 
 int main()
 {
