@@ -12,16 +12,6 @@ tsareva::Diamond::Diamond(tsareva::point_t first, tsareva::point_t second, tsare
   {
     throw std::invalid_argument("Error diamond parameters");
   }
-  if (second_.y == third_.y)
-  {
-    first_ = third;
-    third_ = first;
-  }
-  if (first_.y == third_.y)
-  {
-    second_ = third;
-    third_ = second;
-  }
 }
 
 void tsareva::Diamond::move(double dx, double dy)
