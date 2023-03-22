@@ -92,7 +92,7 @@ int main()
     if (figure == "RECTANGLE")
     {
       double p[4];
-      for (size_t i = 1; i < 4; i++)
+      for (size_t i = 0; i < 4; i++)
       {
         std::cin >> p[i];
       }
@@ -109,7 +109,7 @@ int main()
     else if (figure == "PARALLELOGRAM")
     {
       double p[6];
-      for (size_t i = 1; i < 6; i++)
+      for (size_t i = 0; i < 6; i++)
       {
         std::cin >> p[i];
       }
@@ -126,7 +126,7 @@ int main()
     else if (figure == "DIAMOND")
     {
       double p[6];
-      for (size_t i = 1; i < 6; i++)
+      for (size_t i = 0; i < 6; i++)
       {
         std::cin >> p[i];
       }
