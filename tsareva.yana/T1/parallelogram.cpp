@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
+tsareva::Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
   first_(first),
   second_(second),
   third_(third)
@@ -24,7 +24,7 @@ Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
   }
 }
 
-void Parallelogram::move(double dx, double dy)
+void tsareva::Parallelogram::move(double dx, double dy)
 {
   point_t d_point{ dx, dy };
   first_ = movePoint(first_, d_point);
@@ -32,14 +32,14 @@ void Parallelogram::move(double dx, double dy)
   third_ = movePoint(third_, d_point);
 }
 
-double Parallelogram::getArea() const
+double tsareva::Parallelogram::getArea() const
 {
   double height = std::fabs(first_.y - third_.y);
   double width = std::fabs(first_.x - second_.x);
   return height * width;
 }
 
-rectangle_t Parallelogram::getFrameRectangle() const
+tsareva::rectangle_t tsareva::Parallelogram::getFrameRectangle() const
 {
   double minPointX = std::min(first_.x, std::min(second_.x, third_.x));
   double maxPointX = std::max(first_.x, std::max(second_.x, third_.x));
@@ -48,7 +48,7 @@ rectangle_t Parallelogram::getFrameRectangle() const
   return { maxPointY - minPointY, maxPointX - minPointX, getCenterParallelogram(first_, third_)};
 }
 
-void Parallelogram::scale(double k)
+void tsareva::Parallelogram::scale(double k)
 {
   if (k <= 0)
   {
@@ -68,7 +68,7 @@ void Parallelogram::scale(double k)
   third_ = scalePoint(third_, position, k);
 }
 
-void Parallelogram::move(point_t point)
+void tsareva::Parallelogram::move(point_t point)
 {
   point_t position;
   if (findModule(first_, third_) > findModule(second_, third_))

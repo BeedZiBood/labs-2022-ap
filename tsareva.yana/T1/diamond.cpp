@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-Diamond::Diamond(point_t first, point_t second, point_t third):
+tsareva::Diamond::Diamond(tsareva::point_t first, tsareva::point_t second, tsareva::point_t third):
   first_(first),
   second_(second),
   third_(third)
@@ -24,22 +24,22 @@ Diamond::Diamond(point_t first, point_t second, point_t third):
   }
 }
 
-void Diamond::move(double dx, double dy)
+void tsareva::Diamond::move(double dx, double dy)
 {
-  point_t d_point{ dx, dy };
+  tsareva::point_t d_point{ dx, dy };
   first_ = movePoint(first_, d_point);
   second_ = movePoint(second_, d_point);
   third_ = movePoint(third_, d_point);
 }
 
-double Diamond::getArea() const
+double tsareva::Diamond::getArea() const
 {
   double height = std::fabs(first_.y - third_.y);
   double width = std::fabs(first_.x - second_.x);
   return  2 * height * width;
 }
 
-void Diamond::move(point_t point)
+void tsareva::Diamond::move(tsareva::point_t point)
 {
   point_t position = getCenterDiamond(first_, second_, third_);
   double dx = point.x - position.x;
@@ -47,7 +47,7 @@ void Diamond::move(point_t point)
   move(dx, dy);
 }
 
-void Diamond::scale(double k)
+void tsareva::Diamond::scale(double k)
 {
   if (k <= 0)
   {
@@ -59,7 +59,7 @@ void Diamond::scale(double k)
   third_ = scalePoint(third_, position, k);
 }
 
-rectangle_t Diamond::getFrameRectangle() const
+tsareva::rectangle_t tsareva::Diamond::getFrameRectangle() const
 {
   double minPointX = std::min(first_.x, std::min(second_.x, third_.x));
   double maxPointX = std::max(first_.x, std::max(second_.x, third_.x));

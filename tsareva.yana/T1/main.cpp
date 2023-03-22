@@ -7,7 +7,7 @@
 #include "diamond.h"
 #include "isotropic_scale.h"
 
-void clearingMemory(Shape ** pShape, size_t size)
+void clearingMemory(tsareva::Shape ** pShape, size_t size)
 {
   for (size_t i = 0; i < size; i++)
   {
@@ -16,13 +16,13 @@ void clearingMemory(Shape ** pShape, size_t size)
   delete [] pShape;
 }
 
-Shape ** extend(Shape ** pShape, size_t old_size, size_t new_capacity)
+tsareva::Shape ** extend(tsareva::Shape ** pShape, size_t old_size, size_t new_capacity)
 {
   if (new_capacity < old_size)
   {
     throw std::invalid_argument("bruh");
   }
-  Shape ** extended = new Shape*[new_capacity];
+  tsareva::Shape ** extended = new tsareva::Shape*[new_capacity];
   for (size_t i = 0; i < old_size; i++)
   {
     extended[i] = pShape[i];
@@ -35,7 +35,7 @@ int main()
   std::string figure;
   size_t size = 0;
   size_t capacity = 10;
-  Shape ** shapes = new Shape*[capacity];
+  tsareva::Shape ** shapes = new tsareva::Shape*[capacity];
   bool isCorrectFigure = true;
   bool isScale = false;
   while (std::cin)
@@ -54,10 +54,10 @@ int main()
       std::cin >> x1 >> y1 >> x2 >> y2;
       try
       {
-        Rectangle * rectangle = new Rectangle({x1, y1}, {x2, y2});
+        tsareva::Rectangle * rectangle = new tsareva::Rectangle({x1, y1}, {x2, y2});
         if (size == capacity)
         {
-          Shape ** new_shapes = extend(shapes, size, capacity + 10);
+          tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
           capacity += 10;
           clearingMemory(shapes, size);
           shapes = new_shapes;
@@ -81,10 +81,10 @@ int main()
       std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
       try
       {
-        Parallelogram * parallelogram = new Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
+        tsareva::Parallelogram * parallelogram = new tsareva::Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
         if (size == capacity)
         {
-          Shape ** new_shapes = extend(shapes, size, capacity + 10);
+          tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
           capacity += 10;
           clearingMemory(shapes, size);
           shapes = new_shapes;
@@ -108,10 +108,10 @@ int main()
       std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
       try
       {
-        Diamond * diamond = new Diamond({x1, y1}, {x2, y2}, {x3, y3});
+        tsareva::Diamond * diamond = new tsareva::Diamond({x1, y1}, {x2, y2}, {x3, y3});
         if (size == capacity)
         {
-          Shape ** new_shapes = extend(shapes, size, capacity + 10);
+          tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
           capacity += 10;
           clearingMemory(shapes, size);
           shapes = new_shapes;
@@ -152,7 +152,7 @@ int main()
       sum_area_figure = 0.0;
       for (size_t i = 0; i < size; i++)
       {
-        rectangle_t rectangle = shapes[i]->getFrameRectangle();
+        tsareva::rectangle_t rectangle = shapes[i]->getFrameRectangle();
         std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
                   << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
         isotropicScale(shapes[i], {x1, y1}, k);
@@ -161,7 +161,7 @@ int main()
       std::cout << "\n" << sum_area_figure;
       for (size_t i = 0; i < size; i++)
       {
-        rectangle_t rectangle = shapes[i]->getFrameRectangle();
+        tsareva::rectangle_t rectangle = shapes[i]->getFrameRectangle();
         std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
                   << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
       }
