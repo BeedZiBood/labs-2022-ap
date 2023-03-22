@@ -46,6 +46,26 @@ tsareva::Shape ** addFigure(tsareva::Shape ** shapes, size_t & size, size_t & ca
   return shapes;
 }
 
+double getSumArea(tsareva::Shape ** pShape, size_t size)
+{
+  double sum = 0.0;
+  for (size_t i = 0; i < size; i++)
+  {
+    sum += pShape[i]->getArea();
+  }
+  return sum;
+}
+
+void printFrames(tsareva::Shape ** pShape, size_t size, std::ostream & out)
+{
+  for (size_t i = 0; i < size; i++)
+  {
+    tsareva::rectangle_t r = pShape[i]->getFrameRectangle();
+    out << " " << r.pos.x - r.width / 2 << " " << r.pos.y - r.height / 2 << " " << r.pos.x + r.width / 2 << " " << r.pos.y + r.height / 2;
+  }
+}
+
+
 int main()
 {
   std::string figure;
@@ -131,26 +151,14 @@ int main()
         clearingMemory(shapes, size);
         return 1;
       }
-      double sum_area_figure = 0.0;
+      std::cout << std::setprecision(1) << std::fixed << getSumArea(shapes, size);
+      printFrames(shapes, size, std::cout);
       for (size_t i = 0; i < size; i++)
       {
-        sum_area_figure += shapes[i]->getArea();
-      }
-      std::cout << std::setprecision(1) << std::fixed << sum_area_figure;
-      sum_area_figure = 0.0;
-      for (size_t i = 0; i < size; i++)
-      {
-        tsareva::rectangle_t r = shapes[i]->getFrameRectangle();
-        std::cout << " " << r.pos.x - r.width / 2 << " " << r.pos.y - r.height / 2 << " " << r.pos.x + r.width / 2 << " " << r.pos.y + r.height / 2;
         isotropicScale(shapes[i], {x1, y1}, k);
-        sum_area_figure += shapes[i]->getArea();
       }
-      std::cout << "\n" << sum_area_figure;
-      for (size_t i = 0; i < size; i++)
-      {
-        tsareva::rectangle_t r = shapes[i]->getFrameRectangle();
-        std::cout << " " << r.pos.x - r.width / 2 << " " << r.pos.y - r.height / 2 << " " << r.pos.x + r.width / 2 << " " << r.pos.y + r.height / 2;
-      }
+      std::cout << "\n" << getSumArea(shapes, size);
+      printFrames(shapes, size, std::cout);
       std::cout << "\n";
       if (!isCorrectFigure)
       {
