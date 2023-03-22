@@ -35,8 +35,9 @@ tsareva::Shape ** addFigure(tsareva::Shape ** shapes, size_t & size, size_t & ca
 {
   if (size == capacity)
   {
-    tsareva::Shape ** new_shapes = extend(shapes, size, goldenRatio(capacity));
-    capacity = goldenRatio(capacity);
+    size_t new_cap = goldenRatio(capacity);
+    tsareva::Shape ** new_shapes = extend(shapes, size, new_cap);
+    capacity = new_cap;
     clearingMemory(shapes, size);
     shapes = new_shapes;
   }
