@@ -15,7 +15,6 @@ namespace tsareva
   };
   point_t movePoint(point_t point, point_t d_point);
   point_t getCenterParallelogram(point_t f_top, point_t s_top);
-  bool isTriangle(point_t f_top, point_t s_top, point_t t_top);
   double findModule(point_t f_top, point_t s_top);
   bool isParallelogram(point_t f_top, point_t s_top, point_t t_top);
   bool isDiamond(point_t f_t, point_t s_t, point_t t_t);

@@ -18,7 +18,7 @@ double tsareva::findModule(tsareva::point_t f_top, tsareva::point_t s_top)
   return std::sqrt(std::pow(f_top.x - s_top.x, 2) + std::pow(f_top.y - s_top.y, 2));
 }
 
-bool tsareva::isTriangle(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::point_t t_top)
+bool isTriangle(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::point_t t_top)
 {
   double f_side = tsareva::findModule(f_top, s_top);
   double s_side = tsareva::findModule(f_top, t_top);
@@ -28,12 +28,12 @@ bool tsareva::isTriangle(tsareva::point_t f_top, tsareva::point_t s_top, tsareva
 
 bool tsareva::isParallelogram(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::point_t t_top)
 {
-  return tsareva::isTriangle(f_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || f_top.y == t_top.y);
+  return isTriangle(f_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || f_top.y == t_top.y);
 }
 
 bool tsareva::isDiamond(tsareva::point_t f_t, tsareva::point_t s_t, tsareva::point_t t_t)
 {
-  return tsareva::isTriangle(f_t, s_t, t_t) && ((f_t.y == s_t.y && s_t.x == t_t.x) || (s_t.y == t_t.y && f_t.x == t_t.x));
+  return isTriangle(f_t, s_t, t_t) && ((f_t.y == s_t.y && s_t.x == t_t.x) || (s_t.y == t_t.y && f_t.x == t_t.x));
 }
 
 tsareva::point_t tsareva::scalePoint(tsareva::point_t point, tsareva::point_t position, double k)
