@@ -3,6 +3,6 @@
 #include "shape.h"
 namespace tsareva
 {
-  void isotropicScale(Shape *figure, tsareva::point_t point, double k);
+  void isotropicScale(Shape * figure, point_t point, double k);
 }
 #endif
