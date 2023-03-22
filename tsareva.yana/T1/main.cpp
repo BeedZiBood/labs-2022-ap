@@ -30,6 +30,20 @@ tsareva::Shape ** extend(tsareva::Shape ** pShape, size_t old_size, size_t new_c
   return extended;
 }
 
+tsareva::Shape ** addFigure(tsareva::Shape ** shapes, size_t & size, size_t & capacity, tsareva::Shape * figure)
+{
+  if (size == capacity)
+  {
+    tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
+    capacity += 10;
+    clearingMemory(shapes, size);
+    shapes = new_shapes;
+  }
+  shapes[size] = figure;
+  size++;
+  return shapes;
+}
+
 int main()
 {
   std::string figure;
@@ -55,15 +69,7 @@ int main()
       try
       {
         tsareva::Rectangle * rectangle = new tsareva::Rectangle({x1, y1}, {x2, y2});
-        if (size == capacity)
-        {
-          tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
-          capacity += 10;
-          clearingMemory(shapes, size);
-          shapes = new_shapes;
-        }
-        shapes[size] = rectangle;
-        size++;
+        shapes = addFigure(shapes, size, capacity, rectangle);
       }
       catch (...)
       {
@@ -82,15 +88,7 @@ int main()
       try
       {
         tsareva::Parallelogram * parallelogram = new tsareva::Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
-        if (size == capacity)
-        {
-          tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
-          capacity += 10;
-          clearingMemory(shapes, size);
-          shapes = new_shapes;
-        }
-        shapes[size] = parallelogram;
-        size++;
+        shapes = addFigure(shapes, size, capacity, parallelogram);
       }
       catch (...)
       {
@@ -109,15 +107,7 @@ int main()
       try
       {
         tsareva::Diamond * diamond = new tsareva::Diamond({x1, y1}, {x2, y2}, {x3, y3});
-        if (size == capacity)
-        {
-          tsareva::Shape ** new_shapes = extend(shapes, size, capacity + 10);
-          capacity += 10;
-          clearingMemory(shapes, size);
-          shapes = new_shapes;
-        }
-        shapes[size] = diamond;
-        size++;
+        shapes = addFigure(shapes, size, capacity, diamond);
       }
       catch (...)
       {
