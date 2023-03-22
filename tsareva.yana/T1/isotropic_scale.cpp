@@ -1,5 +1,4 @@
 #include "isotropic_scale.h"
-#include <stdexcept>
 
 void tsareva::isotropicScale(Shape * figure, tsareva::point_t point, double k)
 {
