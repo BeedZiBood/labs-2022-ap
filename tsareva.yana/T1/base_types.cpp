@@ -31,9 +31,9 @@ bool tsareva::isParallelogram(tsareva::point_t f_top, tsareva::point_t s_top, ts
   return tsareva::isTriangle(f_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || f_top.y == t_top.y);
 }
 
-bool tsareva::isDiamond(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::point_t t_top)
+bool tsareva::isDiamond(tsareva::point_t f_t, tsareva::point_t s_t, tsareva::point_t t_t)
 {
-  return tsareva::isTriangle(f_top, s_top, t_top) && ((f_top.y == s_top.y && s_top.x == t_top.x) || (s_top.y == t_top.y && f_top.x == t_top.x));
+  return tsareva::isTriangle(f_t, s_t, t_t) && ((f_t.y == s_t.y && s_t.x == t_t.x) || (s_t.y == t_t.y && f_t.x == t_t.x));
 }
 
 tsareva::point_t tsareva::scalePoint(tsareva::point_t point, tsareva::point_t position, double k)
