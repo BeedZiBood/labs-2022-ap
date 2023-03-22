@@ -1,95 +1,81 @@
-#include "countColIfContainsZero.h"
-#include "countStrsWithoutNull.h"
-#include "inputOutputStaticMatrix.h"
+#include <cstring>
+#include <iostream>
+#include <fstream>
+#include "countColsWithNull.h"
+#include "countRowsWithoutNull.h"
+#include "getCountOfSaddlePoints.h"
 #include "fillSpiralMatrix.h"
 #include "workWithIO.h"
-#include "getCountOfSaddlePoints.h"
+#include "allocationAndDeleteMatrix.h"
 
 int main(int argc, char* argv[])
 {
-  if (argc != 3)
+  if (argc != 4)
   {
     std::cerr << "Incorrect count of main arguments\n";
-
     return 1;
   }
-
-  size_t count_rows = 0;
-  size_t count_cols = 0;
   std::ifstream input(argv[2]);
   if (!input.is_open())
   {
-    std::cerr << "File cannot be open\n";
-
+    std::cerr << argv[2] << " cannot be open\n";
     return 1;
   }
-
-  input >> count_rows >> count_cols;
-  if (!input)
+  size_t count_rows = 0;
+  size_t count_cols = 0;
+  if (!(input >> count_rows >> count_cols))
   {
-    std::cerr << "File is empty\n";
-
+    std::cerr << "Input error\n";
     return 1;
   }
-
-  if (count_rows * count_cols > 1000)
+  std::ofstream output(argv[3]);
+  if (!output.is_open())
   {
-    std::cerr << "Incorrect range";
-
+    std::cerr << argv[3] << " cannot be open\n";
     return 1;
   }
-
-  if (!std::strcmp(argv[1], "1"))
+  if (std::strcmp(argv[1], "1") == 0)
   {
-    int arr[1000];
-    for (size_t i = 0; i < count_rows * count_cols; ++i)
+    long long matrix[1000];
+    if (!inputMatrix(matrix, count_rows * count_cols, input))
     {
-      input >> arr[i];
-      if (!input)
-      {
-        std::cerr << "Error\n";
-
-        return 1;
-      }
+      std::cerr << "Input error\n";
+      return 1;
     }
-    std::ofstream output(argv[3]);
-    output << countRowsWithoutNull(arr, count_rows, count_cols) << " " << countRowsWithoutNull(arr, count_rows, count_cols) << "\n";
+    output << countRowsWithoutNull(matrix, count_rows, count_cols) << ' ';
+    output << countColsWithNull(matrix, count_rows, count_cols) << '\n';
+  }
+  else if (strcmp(argv[1], "2") == 0)
+  {
+    long long** matrix;
+    if ((matrix = createMatrix(count_rows, count_cols)) == nullptr)
+    {
+      std::cerr << "Allocation of matrix failed\n";
+      return 1;
+    }
+    if (!inputMatrix(matrix, count_rows, count_cols, input))
+    {
+      std::cerr << "Input error\n";
+      deleteMatrix(matrix, count_rows);
+      return 1;
+    }
+    output << getCountOfSaddlePoints(matrix, count_rows, count_cols) << '\n';
+    deleteMatrix(matrix, count_rows);
+    size_t& matrix_order = count_rows;
+    long long** spiral_matrix;
+    if ((spiral_matrix = createMatrix(matrix_order, matrix_order)) == nullptr)
+    {
+      std::cerr << "Allocation of matrix failed\n";
+      return 1;
+    }
+    fillSpiralMatrix(spiral_matrix, matrix_order);
+    printMatrix(spiral_matrix, matrix_order, output);
+    deleteMatrix(spiral_matrix, count_rows);
   }
   else
   {
-    const std::uint16_t matrix_order = inputMatrixOrder(argv[1]);
-
-    std::uint32_t* spiral_matrix;
-
-    try
-    {
-      spiral_matrix = new std::uint32_t[matrix_order * matrix_order];
-    }
-    catch(const std::bad_alloc& e)
-    {
-      std::cerr << "Allocation failed: " << e.what() << '\n';
-
-      return 1;
-    }
-
-    fillSpiralMatrix(spiral_matrix, matrix_order);
-    printSpiralMatrix(spiral_matrix, matrix_order, argv[2]);
-
-    delete[] spiral_matrix;
-
-    size_t count_rows;
-    size_t count_cols;
-    std::int64_t* matrix;
-
-    inputMatrix(count_rows, count_cols, matrix, argv[1]);
-
-    printCountOfSaddlePoints(
-        getCountOfSaddlePoints(matrix, count_rows, count_cols),
-        argv[2]);
-
-    delete[] matrix;
-    }
-
-
+    std::cerr << "Incorrect exercise number\n";
+    return 1;
+  }
   return 0;
 }

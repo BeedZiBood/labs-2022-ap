@@ -1,36 +1,38 @@
-#include "getMostCommonSyms.h"
-#include "workWithStrFuncs.h"
-#include <iostream>
-#include <algorithm>
+#include <cstddef>
+#include <cstdint>
 #include <utility>
+#include "getMostCommonSyms.h"
 
 char* getMostCommonSyms(char* dest, const char* str)
 {
-  auto str_cpy = strCopy(str);
-  std::sort(str_cpy.first, str_cpy.second);
-  std::pair<char, size_t> common_syms[3];
-  for (char* cur_sum = str_cpy.first; cur_sym < str_cpy.second; ++cur_sum)
+  std::pair< char, size_t > common_syms[3];
+  for (const char* cur_search_sym_ptr = str; *cur_search_sym_ptr != '\0'; ++cur_search_sym_ptr)
   {
-    size_t count_of_sym_common = 1;
-    while (*cur_sym == *(cur_sym + 1))
+    size_t count_commons_sym = 1;
+    for (const char* cur_sym_ptr = cur_search_sym_ptr + 1; *cur_sym_ptr != '\0'; ++cur_sym_ptr)
     {
-      ++count_of_sem_common;
-      ++cur_sym;
-    }
-    for (auto& common_sym : common_syms)
-    {
-      if (common_sym.second < count_of_sym_common)
+      if (*cur_search_sym_ptr == *cur_sym_ptr)
       {
-        common_sym.first = *cur_sym;
-        common_sym.second = count_of_sym_common;
+        ++count_commons_sym;
+      }
+    }
+    for (auto& common_sym: common_syms)
+    {
+      if (*cur_search_sym_ptr == common_sym.first)
+      {
+        break;
+      }
+      if (count_commons_sym > common_sym.second)
+      {
+        common_sym.first = *cur_search_sym_ptr;
+        common_sym.second = count_commons_sym;
         break;
       }
     }
   }
-  delete[] str_cpy.first;
   unsigned int count_valid_syms = 0;
   auto common_sym_ptr = common_syms;
-  for (auto dest_sym_ptr = dest); common_sym_ptr < common_syms + 3; ++common_sym_ptr, ++dest_sym_ptr)
+  for (char* dest_sym_ptr = dest; common_sym_ptr < common_syms + 3; ++common_sym_ptr, ++dest_sym_ptr)
   {
     if (common_sym_ptr->first != '\0')
     {
@@ -40,5 +42,4 @@ char* getMostCommonSyms(char* dest, const char* str)
   }
   dest[count_valid_syms] = '\0';
   return dest;
-
 }

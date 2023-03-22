@@ -1,55 +1,41 @@
 #include "fillSpiralMatrix.h"
 
-void fillSpiralMatrix(std::uint32_t* const dest,
-                      const std::uint16_t matrix_order)
+void fillSpiralMatrixImpl(long long** const dest,
+  const size_t matrix_order,
+  const size_t count_slice = 0,
+  long long cur_elem_val = 1)
 {
-  static std::uint16_t original_matrix_order = 0;
-
-  if (original_matrix_order == 0)
+  if (matrix_order == 1)
   {
-    original_matrix_order = matrix_order;
-  }
-
-  static std::uint32_t cur_elem_val = 1;
-
-  if (matrix_order == 1 && original_matrix_order & 1 == 1)
-  {
-    *dest = cur_elem_val;
+    dest[0][count_slice] = cur_elem_val;
   }
   else if (matrix_order > 1)
   {
-    for (std::uint32_t* cur_elem_ptr = dest + matrix_order - 1;
-      cur_elem_ptr >= dest;
-      --cur_elem_ptr)
+    long long* const first_elem_ptr = dest[0] + count_slice;
+    long long* const end_of_row_ptr = first_elem_ptr + matrix_order - 1;
+    for (long long* cur_elem_ptr = end_of_row_ptr; cur_elem_ptr >= first_elem_ptr; --cur_elem_ptr)
     {
       *cur_elem_ptr = cur_elem_val++;
     }
-
-    std::uint32_t* first_elem_in_last_row_ptr =
-      dest + original_matrix_order * (matrix_order - 1);
-
-    for (std::uint32_t* cur_elem_ptr = dest + original_matrix_order;
-      cur_elem_ptr <= first_elem_in_last_row_ptr;
-      cur_elem_ptr += original_matrix_order)
+    long long** last_row_ptr = dest + matrix_order - 1;
+    for (long long** cur_row_ptr = dest + 1; cur_row_ptr <= last_row_ptr; ++cur_row_ptr)
+    {
+      (*cur_row_ptr)[count_slice] = cur_elem_val++;
+    }
+    const long long* const last_elem_ptr = *last_row_ptr + count_slice + matrix_order;
+    for (long long* cur_elem_ptr = *last_row_ptr + count_slice + 1; cur_elem_ptr < last_elem_ptr; ++cur_elem_ptr)
     {
       *cur_elem_ptr = cur_elem_val++;
     }
-
-    for (std::uint32_t* cur_elem_ptr = first_elem_in_last_row_ptr + 1;
-      cur_elem_ptr < first_elem_in_last_row_ptr + matrix_order;
-      ++cur_elem_ptr)
+    for (long long** cur_row_ptr = last_row_ptr - 1; cur_row_ptr > dest; --cur_row_ptr)
     {
-      *cur_elem_ptr = cur_elem_val++;
+      (*cur_row_ptr)[matrix_order + count_slice - 1] = cur_elem_val++;
     }
-
-    for (std::uint32_t* cur_elem_ptr = first_elem_in_last_row_ptr -
-           original_matrix_order + matrix_order - 1;
-      cur_elem_ptr > dest + matrix_order - 1;
-      cur_elem_ptr -= original_matrix_order)
-    {
-      *cur_elem_ptr = cur_elem_val++;
-    }
-
-    fillSpiralMatrix(dest + original_matrix_order + 1, matrix_order - 2);
+    fillSpiralMatrixImpl(dest + 1, matrix_order - 2, count_slice + 1, cur_elem_val);
   }
+}
+
+void fillSpiralMatrix(long long** const dest, const size_t matrix_order)
+{
+  fillSpiralMatrixImpl(dest, matrix_order);
 }

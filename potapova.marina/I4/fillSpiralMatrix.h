@@ -1,9 +1,8 @@
-#ifndef FILL_SPIRAL_MATRIX_H
-#define FILL_SPIRAL_MATRIX_H
+#ifndef FILLSPIRALMATRIX_H
+#define FILLSPIRALMATRIX_H
 
-#include <cstdint>
+#include <cstddef>
 
-void fillSpiralMatrix(std::uint32_t* dest,
-                      std::uint16_t matrix_order);
+void fillSpiralMatrix(long long** dest, size_t matrix_order);
 
 #endif

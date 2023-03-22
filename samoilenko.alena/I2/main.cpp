@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstddef>
 #include <fstream>
+#include <readArray.h>
 #include "negative_elements.h"
 #include "shifted_array.h"
 #include "array_output.h"
@@ -66,21 +67,18 @@ int main(int argc, char* argv[])
   else
   {
     int* arr_from_file = new int[size_of_mas];
-    for (size_t i = 0; i < size_of_mas; i++)
+    if (readArrayFromFile(arr_from_file, size_of_mas, input) == nullptr)
     {
-      input >> arr_from_file[i];
-      if (!input)
-      {
-        std::cout << "Error during reading the file input.txt";
-        return 1;
-      }
+      std::cerr << "Error writing elements\n";
+      delete[] arr_from_file;
+      return 1;
     }
     std::cout << countNegativeElementsAfterMax(arr_from_file, size_of_mas);
     outputAnArray(arr_from_file, size_of_mas, std::cout);
     std::cout << '\n';
     moveTheArray(arr_from_file, size_of_mas, array_shift);
     outputAnArray(arr_from_file, size_of_mas, std::cout);
-    delete [] arr_from_file;
+    delete[] arr_from_file;
   }
   return 0;
 }
