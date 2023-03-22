@@ -101,7 +101,7 @@ int main()
       return 1;
     }
     try
-    { 
+    {
       if (shp != nullptr)
       {
         composite.push_back(shp);
