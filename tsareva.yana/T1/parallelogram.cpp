@@ -4,23 +4,13 @@
 #include <algorithm>
 
 tsareva::Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
-  first_(first),
-  second_(second),
-  third_(third)
+  first_(getFirstPoint(first, second, third)),
+  second_(getSecondPoint(first, second, third)),
+  third_(getThirdPoint(first, second, third))
 {
   if (!(isParallelogram(first, second, third)))
   {
     throw std::invalid_argument("Error parallelogram parameters");
-  }
-  if (second_.y == third_.y)
-  {
-    first_ = third;
-    third_ = first;
-  }
-  if (first_.y == third_.y)
-  {
-    second_ = third;
-    third_ = second;
   }
 }
 
@@ -82,4 +72,38 @@ void tsareva::Parallelogram::move(point_t point)
   double dx = point.x - position.x;
   double dy = point.y - position.y;
   move(dx, dy);
+}
+
+tsareva::point_t tsareva::Parallelogram::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+{
+  if (s_p.y == t_p.y)
+  {
+    return t_p;
+  }
+  else
+  {
+    return f_p;
+  }
+}
+
+tsareva::point_t tsareva::Parallelogram::getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+{
+  if (f_p.y == t_p.y)
+  {
+    return t_p;
+  }
+  return s_p;
+}
+
+tsareva::point_t tsareva::Parallelogram::getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+{
+  if (s_p.y == t_p.y)
+  {
+    return f_p;
+  }
+  if (f_p.y == t_p.y)
+  {
+    return s_p;
+  }
+  return t_p;
 }

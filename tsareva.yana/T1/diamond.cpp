@@ -4,9 +4,9 @@
 #include <algorithm>
 
 tsareva::Diamond::Diamond(tsareva::point_t first, tsareva::point_t second, tsareva::point_t third):
-  first_(first),
-  second_(second),
-  third_(third)
+  first_(getFirstPoint(first, second, third)),
+  second_(getSecondPoint(first, second, third)),
+  third_(getThirdPoint(first, second, third))
 {
   if (!(isDiamond(first, second, third)))
   {
@@ -68,3 +68,36 @@ tsareva::rectangle_t tsareva::Diamond::getFrameRectangle() const
   return { 2 * (maxPointY - minPointY), 2 * (maxPointX - minPointX), getCenterDiamond(first_, second_, third_)};
 }
 
+tsareva::point_t tsareva::Diamond::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+{
+  if (s_p.y == t_p.y)
+  {
+    return t_p;
+  }
+  else
+  {
+    return f_p;
+  }
+}
+
+tsareva::point_t tsareva::Diamond::getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+{
+  if (f_p.y == t_p.y)
+  {
+    return t_p;
+  }
+  return s_p;
+}
+
+tsareva::point_t tsareva::Diamond::getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+{
+  if (s_p.y == t_p.y)
+  {
+    return f_p;
+  }
+  if (f_p.y == t_p.y)
+  {
+    return s_p;
+  }
+  return t_p;
+}

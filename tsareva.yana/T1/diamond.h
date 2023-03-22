@@ -16,6 +16,9 @@ namespace tsareva
     point_t first_;
     point_t second_;
     point_t third_;
+    point_t getFirstPoint(point_t f_p, point_t s_p, point_t t_p);
+    point_t getSecondPoint(point_t f_p, point_t s_p, point_t t_p);
+    point_t getThirdPoint(point_t f_p, point_t s_p, point_t t_p);
   };
 }
 #endif
