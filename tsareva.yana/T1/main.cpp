@@ -56,12 +56,20 @@ double getSumArea(tsareva::Shape ** pShape, size_t size)
   return sum;
 }
 
+void printPoint(tsareva::point_t point, std::ostream & out)
+{
+  out << point.x << " " << point.y;
+}
+
 void printFrames(tsareva::Shape ** pShape, size_t size, std::ostream & out)
 {
   for (size_t i = 0; i < size; i++)
   {
     tsareva::rectangle_t r = pShape[i]->getFrameRectangle();
-    out << " " << r.pos.x - r.width / 2 << " " << r.pos.y - r.height / 2 << " " << r.pos.x + r.width / 2 << " " << r.pos.y + r.height / 2;
+    out << " ";
+    printPoint(tsareva::getLeftDown(r), out);
+    out << " ";
+    printPoint(tsareva::getRightUp(r), out);
   }
 }
 

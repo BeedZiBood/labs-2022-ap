@@ -60,3 +60,13 @@ tsareva::point_t tsareva::getCenterDiamond(tsareva::point_t f_top, tsareva::poin
   }
   return {0, 0};
 }
+
+tsareva::point_t tsareva::getLeftDown(rectangle_t rectangle)
+{
+  return {rectangle.pos.x - rectangle.width / 2, rectangle.pos.y - rectangle.height / 2 };
+}
+
+tsareva::point_t tsareva::getRightUp(rectangle_t rectangle)
+{
+  return {rectangle.pos.x + rectangle.width / 2, rectangle.pos.y + rectangle.height / 2 };
+}

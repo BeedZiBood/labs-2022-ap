@@ -20,5 +20,7 @@ namespace tsareva
   bool isDiamond(point_t f_t, point_t s_t, point_t t_t);
   point_t scalePoint(point_t point, point_t position, double k);
   point_t getCenterDiamond(point_t f_top, point_t s_top, point_t t_top);
+  point_t getLeftDown(rectangle_t rectangle);
+  point_t getRightUp(rectangle_t rectangle);
 }
 #endif
