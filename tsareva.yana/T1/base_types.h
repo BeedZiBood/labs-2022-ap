@@ -11,7 +11,7 @@ namespace tsareva
   {
     double height;
     double width;
-    point_t position;
+    point_t pos;
   };
   point_t movePoint(point_t point, point_t d_point);
   point_t getCenterParallelogram(point_t f_top, point_t s_top);

@@ -12,13 +12,13 @@ tsareva::Rectangle::Rectangle(point_t l_d, point_t r_up):
 
 void tsareva::Rectangle::move(double dx, double dy)
 {
-  rectangle_.position.x += dx;
-  rectangle_.position.y += dy;
+  rectangle_.pos.x += dx;
+  rectangle_.pos.y += dy;
 }
 
 void tsareva::Rectangle::move(point_t position)
 {
-  rectangle_.position = position;
+  rectangle_.pos = position;
 }
 
 void tsareva::Rectangle::scale(double k)

@@ -140,18 +140,16 @@ int main()
       sum_area_figure = 0.0;
       for (size_t i = 0; i < size; i++)
       {
-        tsareva::rectangle_t rectangle = shapes[i]->getFrameRectangle();
-        std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
-                  << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
+        tsareva::rectangle_t r = shapes[i]->getFrameRectangle();
+        std::cout << " " << r.pos.x - r.width / 2 << " " << r.pos.y - r.height / 2 << " " << r.pos.x + r.width / 2 << " " << r.pos.y + r.height / 2;
         isotropicScale(shapes[i], {x1, y1}, k);
         sum_area_figure += shapes[i]->getArea();
       }
       std::cout << "\n" << sum_area_figure;
       for (size_t i = 0; i < size; i++)
       {
-        tsareva::rectangle_t rectangle = shapes[i]->getFrameRectangle();
-        std::cout << " " << rectangle.position.x - rectangle.width / 2 << " " << rectangle.position.y - rectangle.height / 2
-                  << " " << rectangle.position.x + rectangle.width / 2 << " " << rectangle.position.y + rectangle.height / 2;
+        tsareva::rectangle_t r = shapes[i]->getFrameRectangle();
+        std::cout << " " << r.pos.x - r.width / 2 << " " << r.pos.y - r.height / 2 << " " << r.pos.x + r.width / 2 << " " << r.pos.y + r.height / 2;
       }
       std::cout << "\n";
       if (!isCorrectFigure)
