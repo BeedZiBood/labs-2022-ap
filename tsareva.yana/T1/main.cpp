@@ -61,14 +61,14 @@ int main()
     }
     if (figure == "RECTANGLE")
     {
-      double x1 = 0.0;
-      double x2 = 0.0;
-      double y1 = 0.0;
-      double y2 = 0.0;
-      std::cin >> x1 >> y1 >> x2 >> y2;
+      double p[4];
+      for (size_t i = 1; i < 4; i++)
+      {
+        std::cin >> p[i];
+      }
       try
       {
-        tsareva::Rectangle * rectangle = new tsareva::Rectangle({x1, y1}, {x2, y2});
+        tsareva::Rectangle * rectangle = new tsareva::Rectangle({p[0], p[1]}, {p[2], p[3]});
         shapes = addFigure(shapes, size, capacity, rectangle);
       }
       catch (...)
@@ -78,16 +78,14 @@ int main()
     }
     else if (figure == "PARALLELOGRAM")
     {
-      double x1 = 0.0;
-      double x2 = 0.0;
-      double y1 = 0.0;
-      double y2 = 0.0;
-      double x3 = 0.0;
-      double y3 = 0.0;
-      std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+      double p[6];
+      for (size_t i = 1; i < 6; i++)
+      {
+        std::cin >> p[i];
+      }
       try
       {
-        tsareva::Parallelogram * parallelogram = new tsareva::Parallelogram({x1, y1}, {x2, y2}, {x3, y3});
+        tsareva::Parallelogram * parallelogram = new tsareva::Parallelogram({p[0], p[1]}, {p[2], p[3]}, {p[4], p[5]});
         shapes = addFigure(shapes, size, capacity, parallelogram);
       }
       catch (...)
@@ -97,16 +95,14 @@ int main()
     }
     else if (figure == "DIAMOND")
     {
-      double x1 = 0.0;
-      double x2 = 0.0;
-      double y1 = 0.0;
-      double y2 = 0.0;
-      double x3 = 0.0;
-      double y3 = 0.0;
-      std::cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+      double p[6];
+      for (size_t i = 1; i < 6; i++)
+      {
+        std::cin >> p[i];
+      }
       try
       {
-        tsareva::Diamond * diamond = new tsareva::Diamond({x1, y1}, {x2, y2}, {x3, y3});
+        tsareva::Diamond * diamond = new tsareva::Diamond({p[0], p[1]}, {p[2], p[3]}, {p[4], p[5]});
         shapes = addFigure(shapes, size, capacity, diamond);
       }
       catch (...)
