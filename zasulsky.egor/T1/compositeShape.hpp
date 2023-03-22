@@ -23,6 +23,7 @@ namespace zasulsky
     void move(double dx, double dy);
     void move(const point_t& position);
     void scale(double k);
+    void unsafeScale(double k);
     void push_back(Shape* shp);
     void pop_back();
     Shape* at(size_t id);

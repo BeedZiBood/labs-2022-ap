@@ -133,13 +133,21 @@ void zasulsky::CompositeShape::move(const point_t& position)
   point_t center = getCenter();
   move(position.x - center.x, position.y - center.y);
 }
-void zasulsky::CompositeShape::scale(double k)
+void zasulsky::CompositeShape::unsafeScale(double k)
 {
   point_t center = getCenter();
   for (size_t i = 0; i < size_; ++i)
   {
-    isoScale(shape_[i], center, k);
+    unsafeIsoScale(shape_[i], center, k);
   }
+}
+void zasulsky::CompositeShape::scale(double k)
+{
+  if (k <= 0.0)
+  {
+    throw std::invalid_argument("k must not be less than zero");
+  }
+  unsafeScale(k);
 }
 void zasulsky::CompositeShape::extend(size_t capDiff)
 {
@@ -201,7 +209,7 @@ void zasulsky::isoScale(CompositeShape& shp, const point_t& center, double k)
   point_t A1 = shp.getFrameRect().pos;
   shp.move(center);
   point_t A2 = shp.getFrameRect().pos;
-  shp.scale(k);
+  shp.unsafeScale(k);
   unsafeIsoScalePoint(A1, center, k);
   unsafeIsoScalePoint(A2, center, k);
   shp.move(A1.x - A2.x, A1.y - A2.y);
