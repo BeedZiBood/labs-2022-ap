@@ -17,7 +17,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
 {
   out << std::setw(5) << "x" << " ";
   out << std::setw(10) << "arctan(x)" << " ";
-  out << std::setw(10) << "atan(x)" << "\n";
+  out << std::setw(10) << "atan(x)";
   if (m1 > m2)
   {
     throw std::logic_error("Borders error");
@@ -27,7 +27,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
   {
     try
     {
-      printTableRow(out, x, absError, maxNumber, precision);
+      printTableRow(out << "\n", x, absError, maxNumber, precision);
     }
     catch (const std::exception& e)
     {
@@ -37,7 +37,7 @@ void printTable(std::ostream& out, double m1, double m2, double mStep, unsigned 
   }
   try
   {
-    printTableRow(out, m2, absError, maxNumber, precision);
+    printTableRow(out << "\n", m2, absError, maxNumber, precision);
   }
   catch (const std::exception& e)
   {
