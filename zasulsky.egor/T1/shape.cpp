@@ -14,7 +14,7 @@ void zasulsky::isoScale(Shape* shp, const point_t& center, double k)
   {
     throw std::invalid_argument("k must not be less than zero");
   }
-  unsafeIsoScale(k);
+  unsafeIsoScale(shp, center, k);
 }
 void zasulsky::unsafeIsoScale(Shape* shp, const point_t& center, double k)
 {
