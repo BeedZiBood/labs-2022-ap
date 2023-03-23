@@ -4,7 +4,6 @@
 #include "basetype.h"
 #include "circle.h"
 #include "compositeshape.h"
-#include "print.h"
 #include "rectangle.h"
 #include "square.h"
 
@@ -12,7 +11,7 @@ int main()
 {
   std::cout << std::setprecision(1) << std::fixed;
   bool use = false;
-  CompositeShape compositeShape;
+  chulkov::CompositeShape compositeShape;
   while (std::cin)
   {
     std::string name = "";
@@ -32,9 +31,9 @@ int main()
           double x = 0.0;
           double y = 0.0;
           std::cin >> x >> y;
-          point_t a{x, y};
+          chulkov::point_t a{x, y};
           std::cin >> x >> y;
-          point_t b{x, y};
+          chulkov::point_t b{x, y};
           if (a.x > b.x || a.y > b.y)
           {
             throw std::logic_error("Bad scale");
@@ -45,7 +44,7 @@ int main()
           }
           try
           {
-            Rectangle* rect = new Rectangle(a, b);
+            chulkov::Rectangle* rect = new chulkov::Rectangle(a, b);
             compositeShape.pushBack(rect);
           }
           catch (const std::exception& e)
@@ -73,7 +72,7 @@ int main()
           }
           try
           {
-            Square* square = new Square(point_t{x, y}, z);
+            chulkov::Square* square = new chulkov::Square(chulkov::point_t{x, y}, z);
             compositeShape.pushBack(square);
           }
           catch (const std::exception& e)
@@ -97,7 +96,7 @@ int main()
           std::cin >> x >> y >> r;
           try
           {
-            Circle* circle = new Circle({x, y}, r);
+            chulkov::Circle* circle = new chulkov::Circle({x, y}, r);
             compositeShape.pushBack(circle);
           }
           catch (const std::exception& e)
@@ -126,15 +125,15 @@ int main()
         double x = 0.0;
         double y = 0.0;
         std::cin >> x >> y;
-        point_t point{x, y};
+        chulkov::point_t point{x, y};
         double k = 0.0;
         std::cin >> k;
         std::cout << (compositeShape.getArea());
-        printResulte(compositeShape);
+        compositeShape.print();
         std::cout << "\n";
         compositeShape.isotropScale(point, k);
         std::cout << compositeShape.getArea();
-        printResulte(compositeShape);
+        compositeShape.print();
         std::cout << "\n";
       }
       catch (const std::invalid_argument& e)
