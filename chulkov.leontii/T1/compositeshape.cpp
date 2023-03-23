@@ -34,7 +34,14 @@ chulkov::CompositeShape::CompositeShape(const CompositeShape& anotherCompShp):
 
 chulkov::CompositeShape::~CompositeShape()
 {
-  clear();
+  ShapeNode* current = first_;
+  while (current != nullptr)
+  {
+    ShapeNode* next = current->next;
+    delete current->shape;
+    delete current;
+    current = next;
+  }
 }
 
 chulkov::CompositeShape& chulkov::CompositeShape::operator=(CompositeShape&& anotherCompShp)
@@ -162,7 +169,6 @@ void chulkov::CompositeShape::pushBack(Shape* shape)
     {
       last_->next = node;
     }
-    clear();
     last_ = node;
     ++size_;
   }
