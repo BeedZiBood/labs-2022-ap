@@ -4,15 +4,16 @@
 #include "basetype.h"
 #include "shape.h"
 
-class CompositeShape
+namespace chulkov
 {
+  class CompositeShape {
   public:
     CompositeShape();
     CompositeShape(const CompositeShape& anotherCompShp);
-    CompositeShape(CompositeShape&& anotherCompShp);
-    ~CompositeShape();
     CompositeShape& operator=(const CompositeShape& anotherCompShp);
+    CompositeShape(CompositeShape&& anotherCompShp);
     CompositeShape& operator=(CompositeShape&& anotherCompShp);
+    ~CompositeShape();
 
     double getArea() const;
     rectangle_t getFrameRect() const;
@@ -23,14 +24,22 @@ class CompositeShape
 
     void pushBack(Shape* shp);
     void popBack();
-    Shape* at(size_t id) const;
-    Shape* operator[](size_t id) const;
+    void clear();
     bool empty() const;
     size_t size() const;
+    void print() const;
 
   private:
+    struct ShapeNode
+    {
+      ShapeNode* next;
+      ShapeNode* prev;
+      Shape* shape;
+    };
+    ShapeNode* first_;
+    ShapeNode* last_;
     size_t size_;
-    Shape** shp_;
-};
+  };
+}
 
 #endif

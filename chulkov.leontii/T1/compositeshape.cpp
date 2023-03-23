@@ -2,93 +2,93 @@
 #include <algorithm>
 #include <cstddef>
 #include <stdexcept>
+#include <iostream>
 #include "basetype.h"
 
-void remove(Shape** shp, size_t size)
-{
-  for (size_t i = 0; i < size; ++i)
-  {
-    delete shp[i];
-    shp[i] = nullptr;
-  }
-  delete[] shp;
-  shp = nullptr;
-}
-
-CompositeShape::CompositeShape():
-  size_(0),
-  shp_(nullptr)
+chulkov::CompositeShape::CompositeShape():
+  first_(nullptr),
+  last_(nullptr),
+  size_(0)
 {}
 
-CompositeShape::CompositeShape(CompositeShape&& anotherCompShp):
-  size_(anotherCompShp.size_),
-  shp_(anotherCompShp.shp_)
+chulkov::CompositeShape::CompositeShape(CompositeShape&& anotherCompShp):
+  first_(anotherCompShp.first_),
+  last_(anotherCompShp.last_),
+  size_(anotherCompShp.size_)
 {
-  anotherCompShp.size_ = 0.0;
-  anotherCompShp.shp_ = nullptr;
+  anotherCompShp.first_ = nullptr;
+  anotherCompShp.last_ = nullptr;
+  anotherCompShp.size_ = 0;
 }
 
-CompositeShape::CompositeShape(const CompositeShape& anotherCompShp):
-  size_(anotherCompShp.size()),
-  shp_(new Shape*[size_])
+chulkov::CompositeShape::CompositeShape(const CompositeShape& anotherCompShp):
+  CompositeShape()
 {
-  for (size_t i = 0; i < size_; ++i)
+  ShapeNode* node = anotherCompShp.first_;
+  while (node != nullptr)
   {
-    shp_[i] = anotherCompShp.shp_[i]->clone();
+    pushBack(node->shape->clone());
+    node = node->next;
   }
 }
 
-CompositeShape::~CompositeShape()
+chulkov::CompositeShape::~CompositeShape()
 {
-  remove(shp_, size_);
+  clear();
 }
 
-CompositeShape& CompositeShape::operator=(CompositeShape&& anotherCompShp)
+chulkov::CompositeShape& chulkov::CompositeShape::operator=(CompositeShape&& anotherCompShp)
 {
-  remove(shp_, size_);
-  size_ = anotherCompShp.size_;
-  shp_ = anotherCompShp.shp_;
-  anotherCompShp.size_ = 0.0;
-  anotherCompShp.shp_ = nullptr;
-  return *this;
-}
-
-CompositeShape& CompositeShape::operator=(const CompositeShape& anotherCompShp)
-{
-  remove(shp_, size_);
-  size_ = anotherCompShp.size_;
-  shp_ = new Shape*[size_];
-  for (size_t i = 0; i < size_; ++i)
+  if (this != &anotherCompShp)
   {
-    shp_[i] = anotherCompShp.shp_[i]->clone();
+    clear();
+    first_ = anotherCompShp.first_;
+    last_ = anotherCompShp.last_;
+    size_ = anotherCompShp.size_;
+    anotherCompShp.first_ = nullptr;
+    anotherCompShp.last_ = nullptr;
+    anotherCompShp.size_ = 0;
   }
   return *this;
 }
 
-double CompositeShape::getArea() const
+chulkov::CompositeShape& chulkov::CompositeShape::operator=(const CompositeShape& anotherCompShp)
 {
-  double area = 0.0;
-  for (size_t i = 0; i < size_; ++i)
+  if (this != &anotherCompShp)
   {
-    area += shp_[i]->getArea();
+    CompositeShape t(anotherCompShp);
+    std::swap(first_, t.first_);
+    std::swap(last_, t.last_);
+    std::swap(size_, t.size_);
+  }
+  return *this;
+}
+
+double chulkov::CompositeShape::getArea() const
+{
+  double area = 0;
+  for (ShapeNode* i = first_; i != nullptr; i = i->next)
+  {
+    area += i->shape->getArea();
   }
   return area;
 }
 
-rectangle_t CompositeShape::getFrameRect() const
+chulkov::rectangle_t chulkov::CompositeShape::getFrameRect() const
 {
   if (empty())
   {
     throw std::logic_error("Empty compositeShape");
   }
-  rectangle_t rec = shp_[0]->getFrameRect();
+  ShapeNode* node = first_;
+  rectangle_t rec = node->shape->getFrameRect();
   double minX = rec.pos_.x - rec.width_ / 2;
   double minY = rec.pos_.y - rec.height_ / 2;
   double maxX = rec.pos_.x + rec.width_ / 2;
   double maxY = rec.pos_.y + rec.height_ / 2;
-  for (size_t i = 1; i < size_; ++i)
+  for (ShapeNode* i = first_; i != nullptr; i = i->next)
   {
-    rec = shp_[i]->getFrameRect();
+    rec = i->shape->getFrameRect();
     minX = std::min(minX, rec.pos_.x - rec.width_ / 2);
     minY = std::min(minY, rec.pos_.y - rec.height_ / 2);
     maxX = std::max(maxX, rec.pos_.x + rec.width_ / 2);
@@ -100,21 +100,21 @@ rectangle_t CompositeShape::getFrameRect() const
   return rec;
 }
 
-void CompositeShape::move(point_t pos)
+void chulkov::CompositeShape::move(point_t pos)
 {
   point_t center = getFrameRect().pos_;
   move(pos.x - center.x, pos.y - center.y);
 }
 
-void CompositeShape::move(double dx, double dy)
+void chulkov::CompositeShape::move(double dx, double dy)
 {
-  for (size_t i = 0; i < size_; ++i)
+  for (ShapeNode* i = first_; i != nullptr; i = i->next)
   {
-    shp_[i]->move(dx, dy);
+    i->shape->move(dx, dy);
   }
 }
 
-void CompositeShape::scale(double k)
+void chulkov::CompositeShape::scale(double k)
 {
   if (k == 1.0)
   {
@@ -124,107 +124,115 @@ void CompositeShape::scale(double k)
   {
     throw std::invalid_argument("K is less than 0");
   }
-  for (size_t i = 0; i < size_; ++i)
+  for (ShapeNode* i = first_; i != nullptr; i = i->next)
   {
-    shp_[i]->scale(k);
+    i->shape->scale(k);
   }
 }
 
-void CompositeShape::isotropScale(point_t pos, double k)
+void chulkov::CompositeShape::isotropScale(point_t pos, double k)
 {
   if (k < 0.0)
   {
     throw std::invalid_argument("K is less than 0");
   }
-  for (size_t i = 0; i < size_; ++i)
+  for (ShapeNode* i = first_; i != nullptr; i = i->next)
   {
-    point_t pos1 = shp_[i]->getFrameRect().pos_;
-    shp_[i]->move(pos);
-    point_t pos2 = shp_[i]->getFrameRect().pos_;
-    shp_[i]->scale(k);
+    point_t pos1 = i->shape->getFrameRect().pos_;
+    i->shape->move(pos);
+    point_t pos2 = i->shape->getFrameRect().pos_;
+    i->shape->scale(k);
     double dx = (pos1.x - pos2.x) * k;
     double dy = (pos1.y - pos2.y) * k;
-    shp_[i]->move(dx, dy);
+    i->shape->move(dx, dy);
   }
 }
 
-void CompositeShape::pushBack(Shape* shp)
+void chulkov::CompositeShape::pushBack(Shape* shape)
 {
   try
   {
+    ShapeNode* node = new ShapeNode{nullptr, last_, shape};
     if (empty())
     {
-      shp_ = new Shape*[++size_];
-      shp_[size_ - 1] = shp;
+      first_ = node;
     }
     else
     {
-      Shape** newShape = new Shape*[size_ + 1];
-      for (size_t i = 0; i < size_; ++i)
-      {
-        newShape[i] = shp_[i];
-      }
-      delete[] shp_;
-      shp_ = newShape;
-      shp_[size_] = shp;
-      ++size_;
+      last_->next = node;
     }
+    last_ = node;
+    ++size_;
   }
   catch (...)
   {
-    remove(shp_, size_);
     throw;
   }
 }
 
-void CompositeShape::popBack()
+void chulkov::CompositeShape::popBack()
 {
   if (empty())
   {
     throw std::logic_error("Shape hasn't elements");
   }
-  if (size_ == 1)
-  {
-    delete shp_;
-    shp_ = nullptr;
-  }
   try
   {
-    Shape** newShape = new Shape*[--size_];
-    for (size_t i = 0; i < size_; ++i)
+    if (size_ == 1)
     {
-      newShape[i] = shp_[i];
+      delete first_;
+      first_ = nullptr;
+      last_ = nullptr;
     }
-    remove(shp_, size_);
-    shp_ = newShape;
+    else
+    {
+      ShapeNode* node = last_;
+      last_ = node->prev;
+      last_->next = nullptr;
+      delete node;
+    }
+    --size_;
   }
   catch (...)
   {
-    remove(shp_, size_);
+    clear();
     throw;
   }
 }
 
-Shape* CompositeShape::at(size_t id) const
+void chulkov::CompositeShape::clear()
 {
-  if (id >= size_)
+  while (last_)
   {
-    throw std::logic_error("Going beyond the bounds of the array");
+    popBack();
   }
-  return shp_[id];
 }
 
-Shape* CompositeShape::operator[](size_t id) const
-{
-  return shp_[id];
-}
-
-bool CompositeShape::empty() const
+bool chulkov::CompositeShape::empty() const
 {
   return size_ == 0;
 }
 
-size_t CompositeShape::size() const
+size_t chulkov::CompositeShape::size() const
 {
   return size_;
+}
+
+void chulkov::CompositeShape::print() const
+{
+  for (ShapeNode* i = first_; i != nullptr; i = i->next)
+  {
+    double minX = i->shape->getFrameRect().pos_.x;
+    minX -= i->shape->getFrameRect().width_ / 2;
+    double minY = i->shape->getFrameRect().pos_.y;
+    minY -= i->shape->getFrameRect().height_ / 2;
+    double maxX = i->shape->getFrameRect().pos_.x;
+    maxX += i->shape->getFrameRect().width_ / 2;
+    double maxY = i->shape->getFrameRect().pos_.y;
+    maxY += i->shape->getFrameRect().height_ / 2;
+    std::cout << " " << minX;
+    std::cout << " " << minY;
+    std::cout << " " << maxX;
+    std::cout << " " << maxY;
+  }
 }
