@@ -162,6 +162,7 @@ void chulkov::CompositeShape::pushBack(Shape* shape)
     {
       last_->next = node;
     }
+    clear();
     last_ = node;
     ++size_;
   }
