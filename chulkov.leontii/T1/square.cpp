@@ -1,7 +1,7 @@
 #include "square.h"
 #include <stdexcept>
 
-Square::Square(const point_t& pos, double side):
+chulkov::Square::Square(const point_t& pos, double side):
   rect_(pos, {pos.x + side, pos.y + side})
 {
   if (side <= 0.0)
@@ -10,36 +10,32 @@ Square::Square(const point_t& pos, double side):
   }
 }
 
-double Square::getArea() const
+double chulkov::Square::getArea() const
 {
   return rect_.getArea();
 }
 
-rectangle_t Square::getFrameRect() const
+chulkov::rectangle_t chulkov::Square::getFrameRect() const
 {
   return rect_.getFrameRect();
 }
 
-void Square::move(const point_t& pos)
+void chulkov::Square::move(const point_t& pos)
 {
   rect_.move(pos);
 }
 
-void Square::move(double dx, double dy)
+void chulkov::Square::move(double dx, double dy)
 {
   rect_.move(dx, dy);
 }
 
-void Square::scale(double k)
+void chulkov::Square::unsafeScale(double k)
 {
-  if (k <= 0.0)
-  {
-    throw std::invalid_argument("Invalid scale");
-  }
-  rect_.scale(k);
+  rect_.unsafeScale(k);
 }
 
-Shape* Square::clone() const
+chulkov::Shape* chulkov::Square::clone() const
 {
   return new Square(*this);
 }
