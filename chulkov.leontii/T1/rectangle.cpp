@@ -1,8 +1,8 @@
 #include "rectangle.h"
 #include <stdexcept>
 
-Rectangle::Rectangle(point_t width, point_t height):
-  rect_(rectangle_t())
+chulkov::Rectangle::Rectangle(point_t width, point_t height):
+  rect_()
 {
   rect_.width_ = height.x - width.x;
   rect_.height_ = height.y - width.y;
@@ -13,38 +13,33 @@ Rectangle::Rectangle(point_t width, point_t height):
   }
 }
 
-double Rectangle::getArea() const
+double chulkov::Rectangle::getArea() const
 {
   return rect_.width_ * rect_.height_;
 }
 
-rectangle_t Rectangle::getFrameRect() const
+chulkov::rectangle_t chulkov::Rectangle::getFrameRect() const
 {
   return rect_;
 }
 
-void Rectangle::move(const double dx, const double dy)
+void chulkov::Rectangle::move(const double dx, const double dy)
 {
-  rect_.pos_.x += dx;
-  rect_.pos_.y += dy;
+  rect_.pos_ = movePoint(rect_.pos_, point_t{dx, dy});
 }
 
-void Rectangle::move(const point_t& pos)
+void chulkov::Rectangle::move(const point_t& pos)
 {
   rect_.pos_ = pos;
 }
 
-void Rectangle::scale(double k)
+void chulkov::Rectangle::unsafeScale(double k)
 {
-  if (k < 0.0)
-  {
-    throw std::invalid_argument("Error: Invalid scale");
-  }
   rect_.width_ *= k;
   rect_.height_ *= k;
 }
 
-Shape* Rectangle::clone() const
+chulkov::Shape* chulkov::Rectangle::clone() const
 {
   return new Rectangle(*this);
 }
