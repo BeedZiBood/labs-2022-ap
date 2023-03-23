@@ -2,7 +2,7 @@
 #include <stdexcept>
 #include "basetype.h"
 
-Circle::Circle(const point_t& pos, double radius):
+chulkov::Circle::Circle(const point_t& pos, double radius):
   pos_(pos),
   radius_(radius)
 {
@@ -12,37 +12,33 @@ Circle::Circle(const point_t& pos, double radius):
   }
 }
 
-double Circle::getArea() const
+double chulkov::Circle::getArea() const
 {
   double pi = 3.14159265358979323846;
   return pi * radius_ * radius_;
 }
 
-rectangle_t Circle::getFrameRect() const
+chulkov::rectangle_t chulkov::Circle::getFrameRect() const
 {
   return rectangle_t{pos_, 2 * radius_, 2 * radius_};
 }
 
-void Circle::move(const point_t& pos)
+void chulkov::Circle::move(const point_t& pos)
 {
   pos_ = pos;
 }
 
-void Circle::move(double dx, double dy)
+void chulkov::Circle::move(double dx, double dy)
 {
   pos_ = movePoint(pos_, point_t{dx, dy});
 }
 
-void Circle::scale(double k)
+void chulkov::Circle::unsafeScale(double k)
 {
-  if (k < 0.0)
-  {
-    throw std::invalid_argument("Error: Invalid scale");
-  }
   radius_ *= k;
 }
 
-Shape* Circle::clone() const
+chulkov::Shape* chulkov::Circle::clone() const
 {
   return new Circle(*this);
 }
