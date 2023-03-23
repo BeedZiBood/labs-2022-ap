@@ -27,7 +27,7 @@ int main()
     {
       if (name == "ELLIPSE")
       {
-        zasulsky::point_t center;
+        zasulsky::point_t center{0.0, 0.0};
         double radiusVertical = 0.0;
         double radiusHorizontal = 0.0;
         std::cin >> center.x >> center.y;
@@ -40,9 +40,9 @@ int main()
       }
       else if (name == "PARALLELOGRAM")
       {
-        zasulsky::point_t p1;
-        zasulsky::point_t p2;
-        zasulsky::point_t p3;
+        zasulsky::point_t p1{0.0, 0.0};
+        zasulsky::point_t p2{0.0, 0.0};
+        zasulsky::point_t p3{0.0, 0.0};
         std::cin >> p1.x >> p1.y;
         std::cin >> p2.x >> p2.y;
         std::cin >> p3.x >> p3.y;
@@ -54,8 +54,8 @@ int main()
       }
       else if (name == "RECTANGLE")
       {
-        zasulsky::point_t p1;
-        zasulsky::point_t p2;
+        zasulsky::point_t p1{0.0, 0.0};
+        zasulsky::point_t p2{0.0, 0.0};
         std::cin >> p1.x >> p1.y;
         std::cin >> p2.x >> p2.y;
         if (!std::cin.good())
@@ -66,8 +66,8 @@ int main()
       }
       else if (name == "SCALE")
       {
-        zasulsky::point_t scaleCenter;
-        double k;
+        zasulsky::point_t scaleCenter{0.0, 0.0};
+        double k = 0.0;
         std::cin >> scaleCenter.x >> scaleCenter.y;
         std::cin >> k;
         if (!std::cin.good())

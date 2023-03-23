@@ -34,7 +34,7 @@ double zasulsky::Parallelogram::getArea() const
 }
 zasulsky::point_t zasulsky::Parallelogram::getCenter() const
 {
-  point_t location;
+  point_t location{0.0, 0.0};
   location.x = (p1_.x + p3_.x) * 0.5;
   location.y = (p1_.y + p3_.y) * 0.5;
   return location;

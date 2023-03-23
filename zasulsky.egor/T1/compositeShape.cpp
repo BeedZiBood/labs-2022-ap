@@ -113,8 +113,8 @@ zasulsky::rectangle_t zasulsky::CompositeShape::getFrameRect() const
     minY = std::min(minY, rect.pos.y - rect.height * 0.5);
     maxY = std::max(maxY, rect.pos.y + rect.height * 0.5);
   }
-  point_t p1{ minX, minY };
-  point_t p2{ maxX, maxY };
+  point_t p1{minX, minY};
+  point_t p2{maxX, maxY};
   return getFrameRectFromCorners(p1, p2);
 }
 void zasulsky::CompositeShape::move(double dx, double dy)
