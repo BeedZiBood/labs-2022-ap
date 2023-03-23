@@ -56,6 +56,7 @@ chulkov::CompositeShape& chulkov::CompositeShape::operator=(const CompositeShape
 {
   if (this != &anotherCompShp)
   {
+    clear();
     CompositeShape t(anotherCompShp);
     std::swap(first_, t.first_);
     std::swap(last_, t.last_);
@@ -166,6 +167,7 @@ void chulkov::CompositeShape::pushBack(Shape* shape)
   }
   catch (...)
   {
+    clear();
     throw;
   }
 }
