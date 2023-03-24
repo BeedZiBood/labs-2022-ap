@@ -14,7 +14,7 @@ int main()
   chulkov::CompositeShape compositeShape;
   while (std::cin)
   {
-    std::string name = "";
+    std::string name;
     std::cin >> name;
     if (!std::cin)
     {
