@@ -239,9 +239,6 @@ void chulkov::CompositeShape::print() const
     maxX += i->shape->getFrameRect().width_ / 2;
     double maxY = i->shape->getFrameRect().pos_.y;
     maxY += i->shape->getFrameRect().height_ / 2;
-    std::cout << " " << minX;
-    std::cout << " " << minY;
-    std::cout << " " << maxX;
-    std::cout << " " << maxY;
+    std::cout << " " << minX << " " << minY << " " << maxX << " " << maxY;
   }
 }
