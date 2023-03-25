@@ -14,6 +14,7 @@ int main()
   catch (const std::exception& e)
   {
     std::cout << e.what() << '\n';
+    delete inputString;
     return EXIT_FAILURE;
   }
   if (!inputString) {
