@@ -18,8 +18,11 @@ namespace zasulsky
     Shape* operator[](size_t id);
     const Shape* operator[](size_t id) const;
 
-    double getArea() const;
-    rectangle_t getFrameRect() const;
+    template< class F >
+    F traverse(F f) const;
+    template< class F >
+    F traverse(F f);
+
     void move(double dx, double dy);
     void move(const point_t& position);
     void scale(double k);
@@ -42,5 +45,20 @@ namespace zasulsky
   };
   void isoScale(CompositeShape& shp, const point_t& center, double k);
   std::ostream& outputComposite(std::ostream& out, const CompositeShape& composite);
+  struct CompositeArea
+  {
+    double area;
+    CompositeArea();
+    void operator()(const Shape& shp);
+  };
+  struct CompositeCorners
+  {
+    point_t p1;
+    point_t p2;
+    CompositeCorners();
+    void operator()(const Shape& shp);
+  private:
+    bool isFirstCall_;
+  };
 }
 #endif

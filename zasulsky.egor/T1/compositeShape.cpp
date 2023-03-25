@@ -84,38 +84,61 @@ void zasulsky::CompositeShape::purge()
     pop_back();
   }
   delete[] shape_;
+  
 }
-double zasulsky::CompositeShape::getArea() const
+template< class F >
+F zasulsky::CompositeShape::traverse(F f) const
 {
-  double area = 0.0;
-  for (size_t i = 0; i < size_; i++)
+  for (size_t i = 0; i < size_; ++i)
   {
-    area += shape_[i]->getArea();
+    f(*(*this)[i]);
   }
-  return area;
+  return f;
 }
-zasulsky::rectangle_t zasulsky::CompositeShape::getFrameRect() const
+template< class F >
+F zasulsky::CompositeShape::traverse(F f)
 {
-  if (empty())
+  for (size_t i = 0; i < size_; ++i)
   {
-    throw std::runtime_error("CompositeShape is empty");
+    f(*(*this)[i]);
   }
-  rectangle_t rect = shape_[0]->getFrameRect();
-  double minX = rect.pos.x - rect.width * 0.5;
-  double maxX = rect.pos.x + rect.width * 0.5;
-  double minY = rect.pos.y - rect.height * 0.5;
-  double maxY = rect.pos.y + rect.height * 0.5;
-  for (size_t i = 1; i < size_; i++)
+  return f;
+}
+zasulsky::CompositeArea::CompositeArea():
+  area(0.0)
+{}
+void zasulsky::CompositeArea::operator()(const Shape& shp)
+{
+  area += shp.getArea();
+}
+zasulsky::CompositeCorners::CompositeCorners():
+  p1{0.0, 0.0},
+  p2{0.0, 0.0},
+  isFirstCall_(true)
+{}
+
+void zasulsky::CompositeCorners::operator()(const Shape& shp)
+{
+  rectangle_t fr = shp.getFrameRect();
+  double minX = fr.pos.x - fr.width * 0.5;
+  double maxX = fr.pos.x + fr.width * 0.5;
+  double minY = fr.pos.y - fr.height * 0.5;
+  double maxY = fr.pos.y + fr.height * 0.5;
+  if (isFirstCall_)
   {
-    rect = shape_[i]->getFrameRect();
-    minX = std::min(minX, rect.pos.x - rect.width * 0.5);
-    maxX = std::max(maxX, rect.pos.x + rect.width * 0.5);
-    minY = std::min(minY, rect.pos.y - rect.height * 0.5);
-    maxY = std::max(maxY, rect.pos.y + rect.height * 0.5);
+    isFirstCall_ = false;
+    p1.x = minX;
+    p1.y = minY;
+    p2.x = maxX;
+    p2.y = maxY;
   }
-  point_t p1{minX, minY};
-  point_t p2{maxX, maxY};
-  return getFrameRectFromCorners(p1, p2);
+  else
+  {
+    p1.x = std::min(minX, p1.x);
+    p1.y = std::min(minY, p1.y);
+    p2.x = std::max(maxX, p2.x);
+    p2.y = std::max(maxY, p2.y);
+  }
 }
 void zasulsky::CompositeShape::move(double dx, double dy)
 {
@@ -126,7 +149,9 @@ void zasulsky::CompositeShape::move(double dx, double dy)
 }
 zasulsky::point_t zasulsky::CompositeShape::getCenter()
 {
-  return getFrameRect().pos;
+  CompositeCorners f;
+  f = traverse(f);
+  return getMidPoint(f.p1, f.p2);
 }
 void zasulsky::CompositeShape::move(const point_t& position)
 {
@@ -206,9 +231,19 @@ void zasulsky::isoScale(CompositeShape& shp, const point_t& center, double k)
   {
     throw std::invalid_argument("k must not be less than zero");
   }
-  point_t A1 = shp.getFrameRect().pos;
+  point_t A1{0.0, 0.0};
+  {
+    CompositeCorners f;
+    f = shp.traverse(f);
+    A1 = getMidPoint(f.p1, f.p2);
+  }
   shp.move(center);
-  point_t A2 = shp.getFrameRect().pos;
+  point_t A2{ 0.0, 0.0 };
+  {
+    CompositeCorners f;
+    f = shp.traverse(f);
+    A2 = getMidPoint(f.p1, f.p2);
+  }
   shp.unsafeScale(k);
   unsafeIsoScalePoint(A1, center, k);
   unsafeIsoScalePoint(A2, center, k);
@@ -216,7 +251,10 @@ void zasulsky::isoScale(CompositeShape& shp, const point_t& center, double k)
 }
 std::ostream& zasulsky::outputComposite(std::ostream& out, const CompositeShape& composite)
 {
-  out << composite.getArea();
+  {
+    CompositeArea f;
+    out << composite.traverse(f).area;
+  }
   for (size_t i = 0; i < composite.size(); ++i)
   {
     zasulsky::rectangle_t rect = composite[i]->getFrameRect();

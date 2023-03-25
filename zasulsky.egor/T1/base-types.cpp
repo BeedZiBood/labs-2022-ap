@@ -25,5 +25,9 @@ zasulsky::rectangle_t zasulsky::getFrameRectFromCorners(const point_t& bl, const
   {
     throw std::invalid_argument("corners set incorrectly");
   }
-  return rectangle_t{ tr.x - bl.x, tr.y - bl.y, {(bl.x + tr.x) * 0.5, (bl.y + tr.y) * 0.5} };
+  return rectangle_t{tr.x - bl.x, tr.y - bl.y, getMidPoint(bl, tr)};
+}
+zasulsky::point_t zasulsky::getMidPoint(const point_t& p1, const point_t& p2)
+{
+  return point_t{(p1.x + p2.x) * 0.5, (p1.y + p2.y) * 0.5};
 }

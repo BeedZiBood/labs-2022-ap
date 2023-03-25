@@ -16,5 +16,6 @@ namespace zasulsky
   void unsafeIsoScalePoint(point_t& p, const point_t& center, double k);
   void movePoint(point_t& p, double dx, double dy);
   rectangle_t getFrameRectFromCorners(const point_t& bl, const point_t& tr);
+  point_t getMidPoint(const point_t& p1, const point_t& p2);
 }
 #endif
