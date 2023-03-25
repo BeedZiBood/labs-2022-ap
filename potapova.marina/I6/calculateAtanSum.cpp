@@ -1,6 +1,6 @@
+#include "calculateAtanSum.h"
 #include <cmath>
 #include <stdexcept>
-#include "calculateAtanSum.h"
 
 double calculateAtanSum(double x, double abs_error, size_t num_max)
 {
@@ -10,7 +10,6 @@ double calculateAtanSum(double x, double abs_error, size_t num_max)
   }
   double numerator = x;
   double summation = x;
-  int sign = 1;
   size_t num_summation = 1;
   double sum_res = 0.0;
   while (fabs(summation) > abs_error)
@@ -19,11 +18,14 @@ double calculateAtanSum(double x, double abs_error, size_t num_max)
     {
       throw std::logic_error("The num_summation doesn't converge");
     }
-    summation = sign * numerator / (2 * num_summation - 1);
+    summation = numerator / static_cast<double>(2 * num_summation - 1);
     sum_res += summation;
     numerator *= x * x;
-    sign = -sign;
-    num_summation++;
+    if ((num_summation & 1) == 1)
+    {
+      numerator *= -1.0;
+    }
+    ++num_summation;
   }
   return sum_res;
 }

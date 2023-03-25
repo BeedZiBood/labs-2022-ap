@@ -1,18 +1,19 @@
 #include <iostream>
+#include <iomanip>
 #include "calculateAtanSum.h"
 #include "printTable.h"
 
-int main(int argc, const char* argv[])
+int main()
 {
+  stdout;
   double start = 0.0;
   double end = 0.0;
   double abs_error = 0.0;
   size_t num_max = 0;
   double step = 0.0;
-  std::cin >> abs_error >> num_max >> start >> end >> step;
-  if (!std::cin)
+  if (!(std::cin >> abs_error >> num_max >> start >> end >> step))
   {
-    std::cerr << "Wrong input\n";
+    std::cerr << "Input error\n";
     return 1;
   }
   if (start > end || step <= 0)
@@ -24,7 +25,7 @@ int main(int argc, const char* argv[])
   {
     printTable(abs_error, num_max, start, end, step);
   }
-  catch (std::logic_error& e)
+  catch (const std::exception& e)
   {
     std::cerr << "Error: " << e.what() << '\n';
     return 1;
