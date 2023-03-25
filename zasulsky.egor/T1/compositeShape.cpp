@@ -254,13 +254,14 @@ std::ostream& zasulsky::outputComposite(std::ostream& out, const CompositeShape&
     CompositeArea f;
     out << composite.traverse(f).area;
   }
-  for (size_t i = 0; i < composite.size(); ++i)
-  {
-    zasulsky::rectangle_t rect = composite[i]->getFrameRect();
-    out << ' ' << rect.pos.x - rect.width * 0.5;
-    out << ' ' << rect.pos.y - rect.height * 0.5;
-    out << ' ' << rect.pos.x + rect.width * 0.5;
-    out << ' ' << rect.pos.y + rect.height * 0.5;
-  }
+  composite.traverse([](const Shape& shp)
+    {
+      zasulsky::rectangle_t fr = shp.getFrameRect();
+      out << ' ' << fr.pos.x - fr.width * 0.5;
+      out << ' ' << fr.pos.y - fr.height * 0.5;
+      out << ' ' << fr.pos.x + fr.width * 0.5;
+      out << ' ' << fr.pos.y + fr.height * 0.5;
+    }
+  );
   return out;
 }
