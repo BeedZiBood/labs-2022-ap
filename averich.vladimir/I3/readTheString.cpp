@@ -1,5 +1,5 @@
-#include <string.h>
 #include "readTheString.h"
+#include <string.h>
 
 char* readTheString(std::istream& inp)
 {
@@ -17,14 +17,14 @@ char* readTheString(std::istream& inp)
       char* dupStr = nullptr;
       try
       {
-          dupStr = new char[capacity];
+        dupStr = new char[capacity];
       }
-      catch (const std::bad_alloc)
+      catch (const std::bad_alloc const&)
       {
-          delete[] cStr;
+        delete[] cStr;
       }
       cStr[size] = '\0';
-      dupStr = std::strcpy(dupStr, cStr);
+      dupStr = strcpy(dupStr, cStr);
       delete[] cStr;
       cStr = dupStr;
     }
