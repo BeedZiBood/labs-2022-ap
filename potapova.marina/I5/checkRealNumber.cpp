@@ -1,5 +1,5 @@
-#include <cctype>
 #include "checkRealNumber.h"
+#include <cctype>
 
 bool checkSign(char sym)
 {

@@ -1,11 +1,11 @@
+#include <workWithIOAnother.h>
 #include "workWithStrs.h"
 #include "checkRealNumber.h"
-#include "workWithIOAnother.h"
 
 int main()
 {
-  char* input_str;
-  size_t str_size;
+  char* input_str = nullptr;
+  size_t str_size = 0;
   try
   {
     input_str = getLineFromFile(&str_size);
