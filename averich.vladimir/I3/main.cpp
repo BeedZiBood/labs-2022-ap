@@ -10,11 +10,11 @@ int main()
   char* inputString = new char[size];
   try
   {
-    inputString = readTheString(std::cin, size);
+    inputString = readTheString(std::cin);
   }
-  catch (const std::runtime_error& e)
+  catch (const std::exception& e)
   {
-    std::cout << e.what() << "\n";
+    std::cout << e.what() << '\n';
     delete[] inputString;
     return EXIT_FAILURE;
   }

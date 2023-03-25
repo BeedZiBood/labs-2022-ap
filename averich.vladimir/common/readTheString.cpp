@@ -1,38 +1,41 @@
+#include <string.h>
 #include "readTheString.h"
-#include <stdexcept>
-#include <iostream>
-#include <extendString.h>
-char* readTheString(std::istream& inputStr, size_t& in_size)
+
+char* readTheString(std::istream& inp)
 {
-  size_t capacity = 10;
-  char* cstring = new char[capacity];
+  size_t capacity = 11;
   size_t size = 0;
-  inputStr >> std::noskipws;
-  do
+  char* cStr = nullptr;
+  cStr = new char[capacity];
+  char chInp = '\0';
+  inp >> std::noskipws;
+  for (inp >> chInp; (inp && chInp) && (chInp != '\n'); inp >> chInp)
   {
-    if (size == capacity)
+    if (size + 1 == capacity)
     {
+      capacity = capacity + 10;
+      char* dupStr = nullptr;
       try
       {
-        char* newStr = extendString(cstring, size, capacity);
-        delete[] cstring;
-        cstring = newStr;
+          dupStr = new char[capacity];
       }
-      catch (...)
+      catch (const std::bad_alloc)
       {
-        delete[] cstring;
-        throw;
+          delete[] cStr;
       }
+      cStr[size] = '\0';
+      dupStr = std::strcpy(dupStr, cStr);
+      delete[] cStr;
+      cStr = dupStr;
     }
-    inputStr >> cstring[size];
-  } while (inputStr && cstring[size++] != '\n');
-  if (!inputStr && !size)
-  {
-    delete[] cstring;
-    throw std::runtime_error("Input error");
+    cStr[size++] = chInp;
   }
-  cstring[size - 1] = '\0';
-  in_size = size;
-  return cstring;
+  if (size == 0)
+  {
+    delete[] cStr;
+    throw std::logic_error("Empty string");
+  }
+  cStr[size] = '\0';
+  return cStr;
 }
 
