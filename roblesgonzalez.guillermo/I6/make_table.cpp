@@ -11,9 +11,7 @@ void printTable(std::ostream& out, double cos_error, size_t cos_members, double 
 {
   for (double x = left; x + step <= right; x += step)
   {
-    printTableRow(out, x, cos_error, cos_members);
-    out << '\n';
+    printTableRow(out << "\n", x, cos_error, cos_members);
   }
-  printTableRow(out, right, cos_error, cos_members);
-  out << '\n';
+  printTableRow(out << "\n", right, cos_error, cos_members);
 }
