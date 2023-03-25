@@ -6,8 +6,7 @@
 
 int main()
 {
-  size_t size = 0;
-  char* inputString = new char[size];
+  char* inputString = nullptr;
   try
   {
     inputString = readTheString(std::cin);
@@ -15,7 +14,6 @@ int main()
   catch (const std::exception& e)
   {
     std::cout << e.what() << '\n';
-    delete[] inputString;
     return EXIT_FAILURE;
   }
   if (!inputString) {
