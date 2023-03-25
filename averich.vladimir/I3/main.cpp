@@ -22,6 +22,10 @@ int main()
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
+  if (!resultOfDuplicateTestString) {
+      delete[] inputString;
+      return EXIT_FAILURE;
+  }
   for (size_t i = 0; i < LettersInEnglishAlphabet + 1; ++i) {
     *(resultOfDuplicateTestString + i) = '\0';
   }
