@@ -6,9 +6,21 @@
 
 int main()
 {
-  char* inputString = readTheString(std::cin);
+  size_t size = 0;
+  char* inputString = new char[size];
+  try
+  {
+    inputString = readTheString(std::cin, size);
+  }
+  catch (const std::runtime_error& e)
+  {
+    std::cout << e.what() << "\n";
+    delete[] inputString;
+    return EXIT_FAILURE;
+  }
   if (!inputString) {
     std::cerr << "Input string is empty" << '\n';
+    delete[] inputString;
     return EXIT_FAILURE;
   }
   char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];

@@ -1,20 +1,38 @@
 #include "readTheString.h"
-
-#include <string>
-char* readTheString(std::istream& stream)
+#include <stdexcept>
+#include <iostream>
+#include <extendString.h>
+char* readTheString(std::istream& inputStr, size_t& in_size)
 {
-  std::string string;
-  std::getline(stream, string);
-    if (!string.empty()) {
-        char* buf = new char[string.size() + 1];
-        if (buf) {
-          char const* p = string.c_str();
-          for (size_t i = 0; i < string.size() + 1; ++i) {
-            buf[i] = p[i];
-          }
-        }
-        return buf;
+  size_t capacity = 10;
+  char* cstring = new char[capacity];
+  size_t size = 0;
+  inputStr >> std::noskipws;
+  do
+  {
+    if (size == capacity)
+    {
+      try
+      {
+        char* newStr = extendString(cstring, size, capacity);
+        delete[] cstring;
+        cstring = newStr;
+      }
+      catch (...)
+      {
+        delete[] cstring;
+        throw;
+      }
     }
-
-  return nullptr;
+    inputStr >> cstring[size];
+  } while (inputStr && cstring[size++] != '\n');
+  if (!inputStr && !size)
+  {
+    delete[] cstring;
+    throw std::runtime_error("Input error");
+  }
+  cstring[size - 1] = '\0';
+  in_size = size;
+  return cstring;
 }
+
