@@ -19,7 +19,7 @@ char* readTheString(std::istream& inp)
       {
         dupStr = new char[capacity];
       }
-      catch (const std::bad_alloc const&)
+      catch (const std::bad_alloc &e)
       {
         delete[] cStr;
       }
