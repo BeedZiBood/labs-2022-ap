@@ -1,6 +1,5 @@
 #include "SumMaxInDiag.h"
 #include <cstddef>
-#include <iostream>
 int findMaxSumOfDiagonal(const int* matrix, size_t rows, size_t cols)
 {
   int maxSum = 0;
