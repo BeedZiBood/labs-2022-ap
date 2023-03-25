@@ -66,6 +66,11 @@ int main()
       }
       else if (name == "SCALE")
       {
+        if (composite.empty())
+        {
+          std::cerr << "CompositeShape is empty\n";
+          return 1;
+        }
         zasulsky::point_t scaleCenter{0.0, 0.0};
         double k = 0.0;
         std::cin >> scaleCenter.x >> scaleCenter.y;
