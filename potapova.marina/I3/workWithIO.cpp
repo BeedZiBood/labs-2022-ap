@@ -1,24 +1,25 @@
+#include "workWithStrs.h"
 #include "workWithIO.h"
 
-char* stdinGetLine()
+char* getLineFromFile(size_t* const result_size_ptr, std::istream& in)
 {
-  char* result = nullptr;
-  result = new char[capasity_block];
+  char* result = new char[CAPACITY_BLOCK];
   size_t result_size = 0;
-  size_t result_capasity = capasity_block;
+  size_t result_capasity = CAPACITY_BLOCK;
   char cur_char = '\0';
-  std::cin >> std::noskipws;
-  while (std::cin >> cur_char && cur_char != '\n')
+  in >> std::noskipws;
+  while (in >> cur_char && cur_char != '\n')
   {
-    pushBack(result, result_size, result_capasity, cur_char);
+    result = pushBack(result, result_size, result_capasity, cur_char);
   }
-
   if (cur_char == '\0')
   {
     delete[] result;
-
     return nullptr;
   }
-
+  if (result_size_ptr != nullptr)
+  {
+    *result_size_ptr = result_size;
+  }
   return result;
 }

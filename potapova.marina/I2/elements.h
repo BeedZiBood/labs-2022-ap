@@ -4,8 +4,8 @@
 
 namespace potapova
 {
-  size_t findNegativeAfterMax(const int* array, size_t size);
-  bool findRepeatingPositiveNumbers(const int* array, size_t size);
+  size_t findNegativeAfterMax(const long long int* array, size_t size);
+  bool findRepeatingPositiveNumbers(const long long int* array, size_t size);
 }
 
 #endif

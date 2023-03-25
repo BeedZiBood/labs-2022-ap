@@ -3,7 +3,7 @@
 #include <tuple>
 #include "countUniqueLatin.hpp"
 #include "replaceSymbol.hpp"
-#include "readString.hpp"
+#include <readString.hpp>
 
 int main()
 {

@@ -1,15 +1,10 @@
 #ifndef WORKWITHSTRS_H
 #define WORKWITHSTRS_H
 
-#include <cassert>
+#include <cstddef>
 
-#include <utility>
-#include <algorithm>
-#include <iostream>
+const size_t CAPACITY_BLOCK = 100;
 
-const size_t capasity_block = 100;
-
-bool pushBack(char*& str, size_t& str_size, size_t& str_capasity, const char& new_char);
-std::pair < char*, char* > strCopy(const char* str);
+char* pushBack(char* str, size_t& str_size, size_t& str_capasity, const char new_char);
 
 #endif

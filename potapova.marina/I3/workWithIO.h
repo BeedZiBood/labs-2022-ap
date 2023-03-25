@@ -1,10 +1,8 @@
 #ifndef WORKWITHIO_H
 #define WORKWITHIO_H
 
-#include <fstream>
 #include <iostream>
-#include "workWithStrs.h"
 
-char* stdinGetLine();
+char* getLineFromFile(size_t* result_size_ptr = nullptr, std::istream& in = std::cin);
 
 #endif
