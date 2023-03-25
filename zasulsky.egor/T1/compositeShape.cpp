@@ -84,7 +84,6 @@ void zasulsky::CompositeShape::purge()
     pop_back();
   }
   delete[] shape_;
-  
 }
 template< class F >
 F zasulsky::CompositeShape::traverse(F f) const
