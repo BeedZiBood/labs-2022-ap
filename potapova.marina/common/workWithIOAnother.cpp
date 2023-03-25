@@ -1,5 +1,5 @@
 #include "workWithStrs.h"
-#include "workWithIO.h"
+#include "workWithIOAnother.h"
 
 char* getLineFromFile(size_t* const result_size_ptr, std::istream& in)
 {
