@@ -1,7 +1,7 @@
 #include <iostream>
+#include <string_from_input.h>
 #include "latin_letters.h"
 #include "most_common_characters.h"
-#include "string_from_input.h"
 
 int main()
 {

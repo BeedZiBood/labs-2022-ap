@@ -1,67 +1,28 @@
 #include <iostream>
 #include <cstddef>
 #include <cstring>
+#include <stdexcept>
+#include "readString.h"
 #include "removeDuplicateSpaces.h"
 #include "removeDigits.h"
 
-void customCopy(char* dest, const char* src, size_t count)
-{
-  for (size_t i = 0; i < count; ++i)
-  {
-    dest[i] = src[i];
-  }
-}
 int main()
 {
-  constexpr size_t initialCapacity = 10;
-  constexpr size_t capacityIncrement = 20;
-  size_t capacity = initialCapacity;
-  char* cstring = new char[capacity];
-  size_t size = 0;
-  std::cin >> std::noskipws;
-  char inputCharacter;
-  while (std::cin >> inputCharacter)
+  try
   {
-    if (size == capacity - 1)
-    {
-      char* newString = nullptr;
-      try
-      {
-        newString = new char[capacity + capacityIncrement];
-        customCopy(newString, cstring, capacity);
-        delete[] cstring;
-        cstring = newString;
-        capacity += capacityIncrement;
-      }
-      catch (const std::bad_alloc& e)
-      {
-        std::cerr << e.what() << '\n';
-        delete[] cstring;
-        return 1;
-      }
-    }
-    cstring[size++] = inputCharacter;
-    if (inputCharacter == '\n')
-    {
-      break;
-    }
+    char *inputString = readString(std::cin);
+    size_t len = std::strlen(inputString);
+    char *newString = new char[len + 1];
+    removeDuplicateSpaces2(newString, inputString);
+    removeDigits(newString, newString);
+    std::cout << newString << '\n' ;
+    delete[] inputString;
+    delete[] newString;
   }
-  if (size == 0)
+  catch (const std::exception &e)
   {
-    std::cerr << "Empty string\n";
-    delete[] cstring;
+    std::cerr << "Error: " << e.what() << '\n';
     return 1;
-  }
-  cstring[size - 1] = '\0';
-  size_t len = std::strlen(cstring);
-  char* newString = new char[len + 1];
-  removeDuplicateSpaces2(newString, cstring);
-  removeDigits(newString, cstring);
-  std::cout << newString << '\n';
-  delete[] newString;
-  if (cstring != nullptr)
-  {
-    delete[] cstring;
   }
   return 0;
 }
