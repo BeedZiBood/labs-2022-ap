@@ -17,22 +17,24 @@ double getArea(const dimkashelk::CompositeShape &compositeShape)
 }
 std::ostream& outputShapes(std::ostream &out, const dimkashelk::CompositeShape &compositeShape)
 {
+  namespace dks = dimkashelk;
   out << std::setprecision(1) << std::fixed << getArea(compositeShape);
   for (size_t i = 0; i < compositeShape.size(); i++)
   {
-    dimkashelk::rectangle_t rect = compositeShape[i]->getFrameRect();
-    dimkashelk::point_t left_down = getLeftDownPoint(rect);
-    dimkashelk::point_t right_up = getRightUpPoint(rect);
+    dks::rectangle_t rect = compositeShape[i]->getFrameRect();
+    dks::point_t left_down = getLeftDownPoint(rect);
+    dks::point_t right_up = getRightUpPoint(rect);
     out << " " << left_down.x << " " << left_down.y << " " << right_up.x << " " << right_up.y;
   }
   return out;
 }
 int main()
 {
+  namespace dks = dimkashelk;
   std::string line = "";
   bool contains_errors_with_shapes = false;
   bool call_scale = false;
-  dimkashelk::CompositeShape compositeShape;
+  dks::CompositeShape compositeShape;
   while (std::cin)
   {
     std::string name = "";
@@ -45,7 +47,7 @@ int main()
     {
       try
       {
-        dimkashelk::Shape *shape = dimkashelk::inputRectangle(std::cin);
+        dks::Shape *shape = dks::inputRectangle(std::cin);
         compositeShape.push_back(shape);
       }
       catch (const std::logic_error &e)
@@ -57,7 +59,7 @@ int main()
     {
       try
       {
-        dimkashelk::Shape *shape = dimkashelk::inputRegular(std::cin);
+        dks::Shape *shape = dks::inputRegular(std::cin);
         compositeShape.push_back(shape);
       }
       catch (const std::logic_error &e)
@@ -69,7 +71,7 @@ int main()
     {
       try
       {
-        dimkashelk::Shape *shape = dimkashelk::inputPolygon(std::cin);
+        dks::Shape *shape = dks::inputPolygon(std::cin);
         compositeShape.push_back(shape);
       }
       catch (...)
@@ -78,13 +80,25 @@ int main()
       }
       std::cin.clear();
     }
+    else if (name == "ELLIPSE")
+    {
+      try
+      {
+        dks::Shape *shape = dks::inputEllipse(std::cin);
+        compositeShape.push_back(shape);
+      }
+      catch (...)
+      {
+        contains_errors_with_shapes = true;
+      }
+    }
     else if (name == "SCALE")
     {
       call_scale = true;
       double x = 0.0;
       double y = 0.0;
       std::cin >> x >> y;
-      dimkashelk::point_t point{x, y};
+      dks::point_t point{x, y};
       double k = 0.0;
       std::cin >> k;
       outputShapes(std::cout, compositeShape) << "\n";
