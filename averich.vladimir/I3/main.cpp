@@ -31,11 +31,11 @@ int main()
     const char predifinedString[] = "abZ";
     findDuplicateLetters(resultOfDuplicateTestString, inputString, predifinedString);
     std::cout << "All chars of cstring: " << resultOfDuplicateTestString << '\n';
+    delete[] resultOfDuplicateTestString;
   }
   catch (const std::bad_alloc &e)
   {
     delete[] inputString;
-    delete[] resultOfDuplicateTestString;
     return EXIT_FAILURE;
   }
   std::cout << "Repeating chars: " << std::boolalpha << hasDoubledChars(inputString) << '\n';
