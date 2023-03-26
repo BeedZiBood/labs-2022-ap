@@ -35,6 +35,7 @@ int main()
   catch (const std::bad_alloc &e)
   {
     delete[] inputString;
+    delete[] resultOfDuplicateTestString;
     return EXIT_FAILURE;
   }
   std::cout << "Repeating chars: " << std::boolalpha << hasDoubledChars(inputString) << '\n';
