@@ -1,9 +1,9 @@
 #include "printResult.h"
-#include "sqrt_one_plus_x.h"
+#include "sqrtOnePlusX.h"
 #include <cmath>
 #include <iomanip>
 
-void printResult_row(std::ostream& out, double x, double absError, unsigned numberMax)
+void printResultRow(std::ostream& out, double x, double absError, unsigned numberMax)
 {
   out << std::setw(5) << x << " | ";
   out << std::setw(10) << std::setprecision(5) << sqrtOnePlusX(x, absError, numberMax) << " | ";
@@ -21,7 +21,7 @@ void printResult(std::ostream& out, double left, double right, double step, doub
   {
     try
     {
-      print_result_row(out << '\n', x, absError, numberMax);
+      printResultRow(out << '\n', x, absError, numberMax);
     }
     catch (const std::exception& e)
     {
@@ -31,7 +31,7 @@ void printResult(std::ostream& out, double left, double right, double step, doub
 
   try
   {
-    print_result_row(out << "\n", right, absError, numberMax);
+    printResultRow(out << "\n", right, absError, numberMax);
   }
   catch (const std::exception& e)
   {
