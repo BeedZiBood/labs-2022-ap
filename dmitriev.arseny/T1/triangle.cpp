@@ -1,0 +1,68 @@
+#include "triangle.h"
+#include <stdexcept>
+#include <cmath>
+
+dmitriev::Triangle::Triangle(point_t a, point_t b, point_t c):
+  m_a(a),
+  m_b(b),
+  m_c(c)
+{
+  double aSide = makeLine(m_a, m_b);
+  double bSide = makeLine(m_b, m_c);
+  double cSide = makeLine(m_c, m_a);
+
+  if (aSide + bSide == cSide)
+  {
+    throw std::invalid_argument("invalid argumet");
+  }
+  else if (bSide + cSide == aSide)
+  {
+    throw std::invalid_argument("invalid argumet");
+  }
+  else if (cSide + aSide == bSide)
+  {
+    throw std::invalid_argument("invalid argumet");
+  }
+}
+
+double dmitriev::Triangle::getArea() const
+{
+  double aSide = makeLine(m_a, m_b);
+  double bSide = makeLine(m_b, m_c);
+  double cSide = makeLine(m_c, m_a);
+  double p = (aSide + bSide + cSide) / 2;
+  return std::sqrt(p * (p - aSide) * (p - bSide) * (p - cSide));
+}
+
+dmitriev::rectangle_t dmitriev::Triangle::getFrameRect() const
+{
+  point_t leftBott{std::min(m_a.x, std::min(m_b.x, m_c.x)), std::min(m_a.y, std::min(m_b.y, m_c.y))};
+  point_t rightTop{std::max(m_a.x, std::max(m_b.x, m_c.x)), std::max(m_a.y, std::max(m_b.y, m_c.y))};
+  return makeNewRect(leftBott, rightTop);
+}
+
+void dmitriev::Triangle::move(double dx, double dy)
+{
+  m_a = sumVec(m_a, {dx, dy});
+  m_b = sumVec(m_b, {dx, dy});
+  m_c = sumVec(m_c, {dx, dy});
+}
+
+void dmitriev::Triangle::move(point_t newPos)
+{
+  point_t center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
+  move(newPos.x - center.x, newPos.y - center.y);
+}
+
+void dmitriev::Triangle::unsafeScale(double k)
+{
+  point_t center{(m_a.x + m_b.x + m_c.x) / 3, (m_a.y + m_b.y + m_c.y) / 3};
+  m_a = multVec(center, m_a, k);
+  m_b = multVec(center, m_b, k);
+  m_c = multVec(center, m_c, k);
+}
+
+dmitriev::Shape* dmitriev::Triangle::clone() const
+{
+  return new Triangle{m_a, m_b, m_c};
+}
