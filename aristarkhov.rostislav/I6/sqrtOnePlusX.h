@@ -1,7 +1,7 @@
 #ifndef SQRTONEPLUSX_H
 #define SQRTONEPLUSX_H
 
-double sqrt_one_plus_x(double x, double absError, unsigned numberMax);
+double sqrtOnePlusX(double x, double absError, unsigned numberMax);
 
 class MemberOfRow
 {

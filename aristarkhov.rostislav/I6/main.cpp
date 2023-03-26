@@ -1,6 +1,6 @@
 #include <iostream>
-#include "sqrt_one_plus_x.h"
-#include "print_result.h"
+#include "sqrtOnePlusX.h"
+#include "printResult.h"
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 
   try
   {
-    print_result(std::cout, left, right, step, absError, numberMax);
+    printResult(std::cout, left, right, step, absError, numberMax);
   }
   catch (const std::exception& e)
   {

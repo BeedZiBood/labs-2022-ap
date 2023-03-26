@@ -1,9 +1,9 @@
-#include "sqrt_one_plus_x.h"
+#include "sqrtOnePlusX.h"
 #include <limits>
 #include <stdexcept>
 #include <cstddef>
 
-double sqrt_one_plus_x(double x, double absError, unsigned numberMax)
+double sqrtOnePlusX(double x, double absError, unsigned numberMax)
 {
   if (x <= -1 || x >= 1)
   {
