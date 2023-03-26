@@ -17,16 +17,11 @@ int main()
     delete inputString;
     return EXIT_FAILURE;
   }
-  if (!inputString) {
-    std::cerr << "Input string is empty" << '\n';
-    delete[] inputString;
-    return EXIT_FAILURE;
-  }
   try
   {
     char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
     for (size_t i = 0; i < LettersInEnglishAlphabet + 1; ++i) {
-        *(resultOfDuplicateTestString + i) = '\0';
+      *(resultOfDuplicateTestString + i) = '\0';
     }
     const char predifinedString[] = "abZ";
     findDuplicateLetters(resultOfDuplicateTestString, inputString, predifinedString);
