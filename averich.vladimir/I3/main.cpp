@@ -27,7 +27,7 @@ int main()
     char* resultOfDuplicateTestString = new char[LettersInEnglishAlphabet + 1];
   }
   catch (const std::bad_alloc &e)
-  { 
+  {
     delete[] inputString;
     return EXIT_FAILURE;
   }
