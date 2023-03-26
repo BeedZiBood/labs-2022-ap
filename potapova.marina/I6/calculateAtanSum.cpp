@@ -4,7 +4,7 @@
 
 double calculateAtanSum(double x, double abs_error, size_t num_max)
 {
-  if (fabs(x) > 1)
+  if (std::fabs(x) > 1)
   {
     throw std::domain_error("Wrong x interval");
   }
