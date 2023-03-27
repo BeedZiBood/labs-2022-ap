@@ -8,7 +8,7 @@
 #include "diamond.h"
 #include "isotropic_scale.h"
 
-void enterArray(size_t length, double * arr)
+void inputArray(size_t length, double * arr)
 {
   for (size_t i = 0; i < length; i++)
   {
@@ -100,7 +100,7 @@ int main()
     if (figure == "RECTANGLE")
     {
       double p[4] = { 0 };
-      enterArray(4, p);
+      inputArray(4, p);
       try
       {
         tsareva::Rectangle * rectangle = new tsareva::Rectangle({p[0], p[1]}, {p[2], p[3]});
@@ -114,7 +114,7 @@ int main()
     else if (figure == "PARALLELOGRAM")
     {
       double p[6] = { 0 };
-      enterArray(6, p);
+      inputArray(6, p);
       try
       {
         tsareva::Parallelogram * parallelogram = new tsareva::Parallelogram({p[0], p[1]}, {p[2], p[3]}, {p[4], p[5]});
@@ -128,7 +128,7 @@ int main()
     else if (figure == "DIAMOND")
     {
       double p[6] = { 0 };
-      enterArray(6, p);
+      inputArray(6, p);
       try
       {
         tsareva::Diamond * diamond = new tsareva::Diamond({p[0], p[1]}, {p[2], p[3]}, {p[4], p[5]});
