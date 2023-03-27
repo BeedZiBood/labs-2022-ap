@@ -1,9 +1,10 @@
 #include "rectangle.h"
 #include <stdexcept>
+#include <cmath>
 
 chulkov::Rectangle::Rectangle(point_t width, point_t height):
-  rect_{{width.x + (height.x - width.x) / 2, width.y + (height.y - width.y) / 2},
-        (height.x - width.x) / 2,(height.y - width.y) / 2}
+  rect_{ {width.x + (height.x - width.x) / 2, width.y + (height.y - width.y) / 2},
+        std::fabs(height.x - width.x), std::fabs(height.y - width.y) }
 {
   if (rect_.width_ < 0.0 || rect_.height_ < 0.0)
   {
