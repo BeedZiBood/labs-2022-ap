@@ -99,7 +99,7 @@ int main()
     }
     if (figure == "RECTANGLE")
     {
-      double p[4] = { 0 };
+      double p[4] = {0, 0, 0, 0};
       inputArray(4, p);
       try
       {
@@ -113,7 +113,7 @@ int main()
     }
     else if (figure == "PARALLELOGRAM")
     {
-      double p[6] = { 0 };
+      double p[6] = {0, 0, 0, 0, 0, 0 };
       inputArray(6, p);
       try
       {
@@ -127,7 +127,7 @@ int main()
     }
     else if (figure == "DIAMOND")
     {
-      double p[6] = { 0 };
+      double p[6] = {0, 0, 0, 0, 0, 0 };
       inputArray(6, p);
       try
       {
