@@ -1,0 +1,5 @@
+# ninja log v5
+0	52	1676015709773770405	CMakeFiles/I4.dir/counter_column_which_duplicate_elements.cpp.o	6339e44237092c9b
+0	53	1676015709773620869	CMakeFiles/I4.dir/check_lower_triangular_matrix.cpp.o	e24ce55cd7858169
+0	451	1676015710171272763	CMakeFiles/I4.dir/main.cpp.o	aee0fcc9df5873ba
+452	500	1676015710222380243	I4	5d66d4775e269fc8
