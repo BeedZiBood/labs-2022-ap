@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-tsareva::point_t tsareva::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t getFirstPointDiamond(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (s_p.y == t_p.y)
   {
@@ -15,7 +15,7 @@ tsareva::point_t tsareva::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s
   }
 }
 
-tsareva::point_t tsareva::getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t getSecondPointDiamond(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (f_p.y == t_p.y)
   {
@@ -24,7 +24,7 @@ tsareva::point_t tsareva::getSecondPoint(tsareva::point_t f_p, tsareva::point_t 
   return s_p;
 }
 
-tsareva::point_t tsareva::getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t getThirdPointDiamond(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (s_p.y == t_p.y)
   {
@@ -56,9 +56,9 @@ bool isDiamond(tsareva::point_t f_t, tsareva::point_t s_t, tsareva::point_t t_t)
 }
 
 tsareva::Diamond::Diamond(tsareva::point_t first, tsareva::point_t second, tsareva::point_t third):
-  first_(getFirstPoint(first, second, third)),
-  second_(getSecondPoint(first, second, third)),
-  third_(getThirdPoint(first, second, third))
+  first_(getFirstPointDiamond(first, second, third)),
+  second_(getSecondPointDiamond(first, second, third)),
+  third_(getThirdPointDiamond(first, second, third))
 {
   if (!(isDiamond(first, second, third)))
   {

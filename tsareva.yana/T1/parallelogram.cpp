@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-tsareva::point_t tsareva::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t getFirstPointParallelogram(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (s_p.y == t_p.y)
   {
@@ -15,7 +15,7 @@ tsareva::point_t tsareva::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s
   }
 }
 
-tsareva::point_t tsareva::getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t getSecondPointParallelogram(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (f_p.y == t_p.y)
   {
@@ -24,7 +24,7 @@ tsareva::point_t tsareva::getSecondPoint(tsareva::point_t f_p, tsareva::point_t 
   return s_p;
 }
 
-tsareva::point_t tsareva::getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t getThirdPointParallelogram(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (s_p.y == t_p.y)
   {
@@ -48,9 +48,9 @@ bool isParallelogram(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::po
 }
 
 tsareva::Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
-  first_(getFirstPoint(first, second, third)),
-  second_(getSecondPoint(first, second, third)),
-  third_(getThirdPoint(first, second, third))
+  first_(getFirstPointParallelogram(first, second, third)),
+  second_(getSecondPointParallelogram(first, second, third)),
+  third_(getThirdPointParallelogram(first, second, third))
 {
   if (!(isParallelogram(first, second, third)))
   {
