@@ -2,11 +2,9 @@
 #include <stdexcept>
 
 chulkov::Rectangle::Rectangle(point_t width, point_t height):
-  rect_()
+  rect_{{width.x + (height.x - width.x) / 2, width.y + (height.y - width.y) / 2},
+        (height.x - width.x) / 2,(height.y - width.y) / 2}
 {
-  rect_.width_ = height.x - width.x;
-  rect_.height_ = height.y - width.y;
-  rect_.pos_ = {width.x + rect_.width_ / 2, width.y + rect_.height_ / 2};
   if (rect_.width_ < 0.0 || rect_.height_ < 0.0)
   {
     throw std::invalid_argument("Error: Invalid rectangle dimensions");
