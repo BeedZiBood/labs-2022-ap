@@ -3,7 +3,7 @@
 #include "shape.h"
 namespace tsareva
 {
-  class Diamond : public Shape
+  class Diamond: public Shape
   {
   public:
     Diamond(point_t first, point_t second, point_t third);

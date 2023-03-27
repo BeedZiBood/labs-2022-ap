@@ -3,7 +3,7 @@
 #include "shape.h"
 namespace tsareva
 {
-  class Rectangle : public Shape
+  class Rectangle: public Shape
   {
   public:
     Rectangle(point_t l_d, point_t r_up);

@@ -3,7 +3,7 @@
 #include "shape.h"
 namespace tsareva
 {
-  class Parallelogram : public Shape
+  class Parallelogram: public Shape
   {
   public:
     Parallelogram(point_t first, point_t second, point_t third);
