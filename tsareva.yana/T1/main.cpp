@@ -8,6 +8,14 @@
 #include "diamond.h"
 #include "isotropic_scale.h"
 
+void enterArray(int length, double * arr)
+{
+  for (int i = 0; i < length; i++)
+  {
+    std::cin >> arr[i];
+  }
+}
+
 void clearingMemory(tsareva::Shape ** pShape, size_t size)
 {
   for (size_t i = 0; i < size; i++)
@@ -92,10 +100,7 @@ int main()
     if (figure == "RECTANGLE")
     {
       double p[4] = { 0 };
-      for (size_t i = 0; i < 4; i++)
-      {
-        std::cin >> p[i];
-      }
+      enterArray(4, p);
       try
       {
         tsareva::Rectangle * rectangle = new tsareva::Rectangle({p[0], p[1]}, {p[2], p[3]});
@@ -109,10 +114,7 @@ int main()
     else if (figure == "PARALLELOGRAM")
     {
       double p[6] = { 0 };
-      for (size_t i = 0; i < 6; i++)
-      {
-        std::cin >> p[i];
-      }
+      enterArray(6, p);
       try
       {
         tsareva::Parallelogram * parallelogram = new tsareva::Parallelogram({p[0], p[1]}, {p[2], p[3]}, {p[4], p[5]});
@@ -126,10 +128,7 @@ int main()
     else if (figure == "DIAMOND")
     {
       double p[6] = { 0 };
-      for (size_t i = 0; i < 6; i++)
-      {
-        std::cin >> p[i];
-      }
+      enterArray(6, p);
       try
       {
         tsareva::Diamond * diamond = new tsareva::Diamond({p[0], p[1]}, {p[2], p[3]}, {p[4], p[5]});
