@@ -27,7 +27,16 @@ chulkov::CompositeShape::CompositeShape(const CompositeShape& anotherCompShp):
   ShapeNode* node = anotherCompShp.first_;
   while (node != nullptr)
   {
-    pushBack(node->shape->clone());
+    Shape* clonedShape = node->shape->clone();
+    try
+    {
+      pushBack(clonedShape);
+    }
+    catch(...)
+    {
+      delete clonedShape;
+      throw;
+    }
     node = node->next;
   }
 }
