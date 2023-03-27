@@ -3,6 +3,10 @@
 #include "shape.h"
 namespace tsareva
 {
+  point_t getFirstPoint(point_t f_p, point_t s_p, point_t t_p);
+  point_t getSecondPoint(point_t f_p, point_t s_p, point_t t_p);
+  point_t getThirdPoint(point_t f_p, point_t s_p, point_t t_p);
+
   class Diamond: public Shape
   {
   public:

@@ -3,7 +3,7 @@
 #include <cmath>
 #include <algorithm>
 
-tsareva::point_t getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t tsareva::getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (s_p.y == t_p.y)
   {
@@ -15,7 +15,7 @@ tsareva::point_t getFirstPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsare
   }
 }
 
-tsareva::point_t getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t tsareva::getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (f_p.y == t_p.y)
   {
@@ -24,7 +24,7 @@ tsareva::point_t getSecondPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsar
   return s_p;
 }
 
-tsareva::point_t getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
+tsareva::point_t tsareva::getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsareva::point_t t_p)
 {
   if (s_p.y == t_p.y)
   {
