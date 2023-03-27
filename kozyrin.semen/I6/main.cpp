@@ -17,7 +17,7 @@ int main()
   try {
     printTable(std::cout, lb, rb, error, maxNum, step);
   }
-  catch (std::runtime_error & err) {
+  catch (const std::runtime_error & err) {
     std::cerr << "Error: " << err.what();
     return 2;
   }
