@@ -1,9 +1,9 @@
 #include "complexquad.h"
 #include <stdexcept>
 
-kozyrin::point_t kozyrin::getSegIntersection(const std::array< point_t, 4 > coords)
+kozyrin::point_t getSegIntersection(const std::array< kozyrin::point_t, 4 > coords)
 {
-  point_t res{0, 0};
+  kozyrin::point_t res{0, 0};
   if (coords[0].x == coords[1].x && coords[2].x == coords[3].x) {
     throw std::invalid_argument("Intersection point doesn't exist or there are multiple of them");
   } else if (coords[0].x == coords[1].x) {
@@ -30,7 +30,7 @@ kozyrin::point_t kozyrin::getSegIntersection(const std::array< point_t, 4 > coor
   return res;
 }
 
-void kozyrin::getBorders(point_t* res, const point_t p1, const point_t p2)
+void getBorders(kozyrin::point_t* res, const kozyrin::point_t p1, const kozyrin::point_t p2)
 {
   res[0].x = std::min(p1.x, p2.x);
   res[0].y = std::min(p1.y, p2.y);
@@ -38,7 +38,7 @@ void kozyrin::getBorders(point_t* res, const point_t p1, const point_t p2)
   res[1].y = std::max(p1.y, p2.y);
 }
 
-void kozyrin::getBorders(point_t* res, const std::array< point_t, 4 > arr, const size_t size)
+void getBorders(kozyrin::point_t* res, const std::array< kozyrin::point_t, 4 > arr, const size_t size)
 {
   double mx = arr[0].x;
   double mn = arr[0].x;
@@ -66,9 +66,9 @@ void kozyrin::getBorders(point_t* res, const std::array< point_t, 4 > arr, const
   res[1].y = mx;
 }
 
-bool kozyrin::isIntersection(const point_t center, const std::array< point_t, 4 > arr)
+bool isIntersection(const kozyrin::point_t center, const std::array< kozyrin::point_t, 4 > arr)
 {
-  point_t borders[2]{0, 0, 0, 0};
+  kozyrin::point_t borders[2]{0, 0, 0, 0};
   getBorders(borders, arr[0], arr[1]);
   if (borders[0].x >= center.x || borders[0].y >= center.y) {
     return false;
@@ -86,7 +86,7 @@ bool kozyrin::isIntersection(const point_t center, const std::array< point_t, 4 
   return true;
 }
 
-double kozyrin::getTriangleArea(const point_t p1, const point_t p2, const point_t p3)
+double getTriangleArea(const kozyrin::point_t p1, const kozyrin::point_t p2, const kozyrin::point_t p3)
 {
   return (std::abs(((p2.x - p1.x) * (p3.y - p1.y)) - ((p3.x - p1.x) * (p2.y - p1.y))) / 2);
 }

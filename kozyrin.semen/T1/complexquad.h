@@ -16,12 +16,6 @@ namespace kozyrin {
   private:
     std::array< point_t, 4 > pointArr_;
   };
-
-  point_t getSegIntersection(std::array< point_t, 4 > coords);
-  void getBorders(point_t* res, point_t p1, point_t p2);
-  void getBorders(point_t* res, std::array< point_t, 4 > arr, std::size_t size);
-  bool isIntersection(point_t center, std::array< point_t, 4 > arr);
-  double getTriangleArea(point_t p1, point_t p2, point_t p3);
 }
 
 #endif
