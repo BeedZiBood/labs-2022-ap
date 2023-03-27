@@ -37,6 +37,16 @@ tsareva::point_t getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsare
   return t_p;
 }
 
+tsareva::point_t getCenterParallelogram(tsareva::point_t f_top, tsareva::point_t s_top)
+{
+  return { (f_top.x + s_top.x) / 2, (f_top.y + s_top.y) / 2 };
+}
+
+bool isParallelogram(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::point_t t_top)
+{
+  return tsareva::isTriangle(f_top, s_top, t_top) && (f_top.y == s_top.y || s_top.y == t_top.y || f_top.y == t_top.y);
+}
+
 tsareva::Parallelogram::Parallelogram(point_t first, point_t second, point_t third):
   first_(getFirstPoint(first, second, third)),
   second_(getSecondPoint(first, second, third)),

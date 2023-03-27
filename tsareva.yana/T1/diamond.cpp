@@ -37,6 +37,24 @@ tsareva::point_t getThirdPoint(tsareva::point_t f_p, tsareva::point_t s_p, tsare
   return t_p;
 }
 
+tsareva::point_t getCenterDiamond(tsareva::point_t f_top, tsareva::point_t s_top, tsareva::point_t t_top)
+{
+  if (f_top.x == t_top.x)
+  {
+    return f_top;
+  }
+  else if (s_top.x == t_top.x)
+  {
+    return s_top;
+  }
+  return {0, 0};
+}
+
+bool isDiamond(tsareva::point_t f_t, tsareva::point_t s_t, tsareva::point_t t_t)
+{
+  return tsareva::isTriangle(f_t, s_t, t_t) && ((f_t.y == s_t.y && s_t.x == t_t.x) || (s_t.y == t_t.y && f_t.x == t_t.x));
+}
+
 tsareva::Diamond::Diamond(tsareva::point_t first, tsareva::point_t second, tsareva::point_t third):
   first_(getFirstPoint(first, second, third)),
   second_(getSecondPoint(first, second, third)),
