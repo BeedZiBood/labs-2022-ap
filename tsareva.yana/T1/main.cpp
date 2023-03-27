@@ -8,9 +8,9 @@
 #include "diamond.h"
 #include "isotropic_scale.h"
 
-void enterArray(int length, double * arr)
+void enterArray(size_t length, double * arr)
 {
-  for (int i = 0; i < length; i++)
+  for (size_t i = 0; i < length; i++)
   {
     std::cin >> arr[i];
   }
