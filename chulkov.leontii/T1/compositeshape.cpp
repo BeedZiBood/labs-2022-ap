@@ -25,10 +25,18 @@ chulkov::CompositeShape::CompositeShape(const CompositeShape& anotherCompShp):
   CompositeShape()
 {
   ShapeNode* node = anotherCompShp.first_;
-  while (node != nullptr)
+  try
   {
-    pushBack(node->shape->clone());
-    node = node->next;
+    while (node != nullptr)
+    {
+      pushBack(node->shape->clone());
+      node = node->next;
+    }
+  }
+  catch (...)
+  {
+    clear();
+    throw;
   }
 }
 
@@ -46,7 +54,7 @@ chulkov::CompositeShape::~CompositeShape()
 
 chulkov::CompositeShape& chulkov::CompositeShape::operator=(CompositeShape&& anotherCompShp)
 {
-  if (this != &anotherCompShp)
+  if (this != std::addressof(anotherCompShp))
   {
     clear();
     first_ = anotherCompShp.first_;
@@ -61,10 +69,10 @@ chulkov::CompositeShape& chulkov::CompositeShape::operator=(CompositeShape&& ano
 
 chulkov::CompositeShape& chulkov::CompositeShape::operator=(const CompositeShape& anotherCompShp)
 {
-  if (this != &anotherCompShp)
+  if (this != std::addressof(anotherCompShp))
   {
-    clear();
     CompositeShape t(anotherCompShp);
+    clear();
     std::swap(first_, t.first_);
     std::swap(last_, t.last_);
     std::swap(size_, t.size_);
