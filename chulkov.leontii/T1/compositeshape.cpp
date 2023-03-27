@@ -25,18 +25,10 @@ chulkov::CompositeShape::CompositeShape(const CompositeShape& anotherCompShp):
   CompositeShape()
 {
   ShapeNode* node = anotherCompShp.first_;
-  try
+  while (node != nullptr)
   {
-    while (node != nullptr)
-    {
-      pushBack(node->shape->clone());
-      node = node->next;
-    }
-  }
-  catch (...)
-  {
-    clear();
-    throw;
+    pushBack(node->shape->clone());
+    node = node->next;
   }
 }
 
@@ -166,25 +158,17 @@ void chulkov::CompositeShape::isotropScale(point_t pos, double k)
 
 void chulkov::CompositeShape::pushBack(Shape* shape)
 {
-  try
+  ShapeNode* node = new ShapeNode{nullptr, last_, shape};
+  if (empty())
   {
-    ShapeNode* node = new ShapeNode{nullptr, last_, shape};
-    if (empty())
-    {
-      first_ = node;
-    }
-    else
-    {
-      last_->next = node;
-    }
-    last_ = node;
-    ++size_;
+    first_ = node;
   }
-  catch (...)
+  else
   {
-    clear();
-    throw;
+    last_->next = node;
   }
+  last_ = node;
+  ++size_;
 }
 
 void chulkov::CompositeShape::popBack()
