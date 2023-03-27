@@ -1,3 +1,0 @@
-/Users/anacareva/CLionProjects/spbspu-labs-2022-aap-904-a/tsareva.yana/I4/cmake-build-debug/CMakeFiles/I4.dir
-/Users/anacareva/CLionProjects/spbspu-labs-2022-aap-904-a/tsareva.yana/I4/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/anacareva/CLionProjects/spbspu-labs-2022-aap-904-a/tsareva.yana/I4/cmake-build-debug/CMakeFiles/rebuild_cache.dir

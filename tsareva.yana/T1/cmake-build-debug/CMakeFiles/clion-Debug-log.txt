@@ -1,4 +1,0 @@
-"/Users/anacareva/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/anacareva/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/223.7571.171/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/anacareva/CLionProjects/spbspu-labs-2022-aap-904-a/tsareva.yana/T1 -B /Users/anacareva/CLionProjects/spbspu-labs-2022-aap-904-a/tsareva.yana/T1/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/anacareva/CLionProjects/spbspu-labs-2022-aap-904-a/tsareva.yana/T1/cmake-build-debug
