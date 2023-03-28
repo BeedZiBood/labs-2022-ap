@@ -6,3 +6,4 @@ size_t countDiagonalsWithoutZero(const int* array, size_t n);
 
 #endif
 
+
