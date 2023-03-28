@@ -228,7 +228,7 @@ size_t chulkov::CompositeShape::size() const
   return size_;
 }
 
-void chulkov::CompositeShape::print() const
+std::ostream& chulkov::CompositeShape::print(std::ostream& out) const
 {
   for (ShapeNode* i = first_; i != nullptr; i = i->next)
   {
@@ -240,6 +240,7 @@ void chulkov::CompositeShape::print() const
     maxX += i->shape->getFrameRect().width_ / 2;
     double maxY = i->shape->getFrameRect().pos_.y;
     maxY += i->shape->getFrameRect().height_ / 2;
-    std::cout << " " << minX << " " << minY << " " << maxX << " " << maxY;
+    out << " " << minX << " " << minY << " " << maxX << " " << maxY;
   }
+  return out;
 }

@@ -129,11 +129,11 @@ int main()
         double k = 0.0;
         std::cin >> k;
         std::cout << (compositeShape.getArea());
-        compositeShape.print();
+        compositeShape.print(std::cout);
         std::cout << "\n";
         compositeShape.isotropScale(point, k);
         std::cout << compositeShape.getArea();
-        compositeShape.print();
+        compositeShape.print(std::cout);
         std::cout << "\n";
       }
       catch (const std::invalid_argument& e)

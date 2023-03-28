@@ -6,7 +6,8 @@
 
 namespace chulkov
 {
-  class CompositeShape {
+  class CompositeShape
+  {
   public:
     CompositeShape();
     CompositeShape(const CompositeShape& anotherCompShp);
@@ -27,7 +28,7 @@ namespace chulkov
     void clear();
     bool empty() const;
     size_t size() const;
-    void print() const;
+    std::ostream& print(std::ostream& out) const;
 
   private:
     struct ShapeNode
@@ -36,6 +37,7 @@ namespace chulkov
       ShapeNode* prev;
       Shape* shape;
     };
+
     ShapeNode* first_;
     ShapeNode* last_;
     size_t size_;
